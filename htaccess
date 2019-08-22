@@ -1,4 +1,5 @@
-RewriteEngine On
-RewriteBase /
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+Options +FollowSymLinks
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www.olddomain.com$ [OR]
+RewriteCond %{HTTP_HOST} ^olddomain.com$
+RewriteRule ^(.*)$ http://www.newdomain.com/$1 [R=301,L]
