@@ -49,6 +49,10 @@ yum install -y postgresql96-server
 /usr/pgsql-9.6/bin/postgresql96-setup initdb
 /usr/bin/systemctl start postgresql-9.6
 /usr/bin/systemctl enable postgresql-9.6
+cd /var/lib/pgsql/9.6/data
+rm -f pg_hba.conf
+wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/pg_hba.conf
+systemctl restart postgresql-9.6
 useradd solr
 mkdir /usr/local/solr
 chown solr:solr /usr/local/solr
@@ -77,10 +81,6 @@ wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/limits.c
 cd
 systemctl start httpd.service
 systemctl enable httpd.service
-systemctl start firewalld.service
-systemctl enable firewalld.service
-firewall-cmd --permanent --add-port=80/tcp
-systemctl restart firewalld.service
 cd /etc/httpd/conf.modules.d/
 rm -f 00-base.conf
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/00-base.conf
@@ -103,14 +103,9 @@ rm -f sendmail.mc
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/sendmail.mc
 m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
-
-
-
-
-
-
-
-
+cd /tmp/dvinstall
+wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/default.config
+./install
 
 #########
 sudo -i R
