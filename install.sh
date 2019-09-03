@@ -139,7 +139,7 @@ wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/default.
 ./install
 
 cd /usr/local/glassfish4/glassfish/domains/domain1/applications/dataverse/WEB-INF/classes/
-rm -rf *.properties
+rm -rf Bundle.properties
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/Bundle.properties
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/MimeTypeDisplay.properties
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/MimeTypeFacets.properties
@@ -149,18 +149,12 @@ systemctl restart glassfish.service
 
 
 
-#########
-su - postgres
-psql
-password 'pgginfo2019'
-\q
-exit
-systemctl restart postgresql-9.6
-#########
+
 cd /usr/local/glassfish4/glassfish/
 bin/asadmin --port 4848 change-admin-password
 bin/asadmin --port 4848 enable-secure-admin
 systemctl restart glassfish.service
 senha==>'gfginfo2019'
+
 #########
 /usr/local/glassfish4/bin/asadmin list-applications
