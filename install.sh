@@ -67,6 +67,12 @@ cd /var/lib/pgsql/9.6/data
 rm -f pg_hba.conf
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/pg_hba.conf
 systemctl restart postgresql-9.6
+su - postgres
+psql
+password 'pgginfo2019'
+\q
+exit
+systemctl restart postgresql-9.6
 useradd solr
 mkdir /usr/local/solr
 chown solr:solr /usr/local/solr
@@ -92,6 +98,17 @@ systemctl enable solr.service
 cd /etc/security/
 rm -f limits.conf
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/limits.conf
+cd
+sudo -i R
+dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE) 
+.libPaths(Sys.getenv("R_LIBS_USER")) 
+install.packages("R2HTML", repos="https://cloud.r-project.org/" )
+install.packages("rjson", repos="https://cloud.r-project.org/" )
+install.packages("DescTools", repos="https://cloud.r-project.org/" )
+install.packages("Rserve", repos="https://cloud.r-project.org/" )
+install.packages("haven", repos="https://cloud.r-project.org/" )
+q()
+no
 cd
 systemctl start httpd.service
 systemctl enable httpd.service
@@ -132,17 +149,6 @@ systemctl restart glassfish.service
 
 
 
-#########
-cd
-sudo -i R
-dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE) 
-.libPaths(Sys.getenv("R_LIBS_USER")) 
-install.packages("R2HTML", repos="https://cloud.r-project.org/" )
-install.packages("rjson", repos="https://cloud.r-project.org/" )
-install.packages("DescTools", repos="https://cloud.r-project.org/" )
-install.packages("Rserve", repos="https://cloud.r-project.org/" )
-install.packages("haven", repos="https://cloud.r-project.org/" )
-q()
 #########
 su - postgres
 psql
