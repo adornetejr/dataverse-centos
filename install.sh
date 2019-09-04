@@ -149,6 +149,7 @@ systemctl restart glassfish.service
 
 
 
+
 cd /usr/local/glassfish4/glassfish/
 bin/asadmin --port 4848 change-admin-password
 bin/asadmin --port 4848 enable-secure-admin
