@@ -136,13 +136,12 @@ m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
 cd /tmp/dvinstall
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/default.config
+/usr/local/glassfish4/bin/asadmin list-applications
 ./install
 
 cd /usr/local/glassfish4/glassfish/domains/domain1/applications/dataverse/WEB-INF/classes/
 rm -rf Bundle.properties
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/Bundle.properties
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/MimeTypeDisplay.properties
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/MimeTypeFacets.properties
 systemctl restart glassfish.service
 
 
