@@ -64,7 +64,7 @@ wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/pg_hba.c
 systemctl restart postgresql-9.6
 su - postgres
 psql
-password 'pgginfo2019'
+password ''$1''
 \q
 exit
 systemctl restart postgresql-9.6
