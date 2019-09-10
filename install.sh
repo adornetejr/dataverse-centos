@@ -13,15 +13,14 @@ cd /etc/
 rm -f hosts
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/hosts
 cd
-rm -rf vagrant_2.2.5_x86_64.rpm v4.9.1.zip dataverse-4.9.1.war dvinstall.zip
-wget https://releases.hashicorp.com/vagrant/2.2.5/vagrant_2.2.5_x86_64.rpm
+rm -rf v4.9.1.zip dvinstall.zip
 wget https://github.com/IQSS/dataverse/archive/v4.9.1.zip
-wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dataverse-4.9.1.war
 wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
 rm -rf dataverse-4.9.1
 unzip v4.9.1.zip
 rm -rf dvinstall
 unzip dvinstall.zip
+rm -rf /tmp/dvinstall
 cp -R dvinstall /tmp/
 cd dataverse-4.9.1/downloads
 ./download.sh
@@ -108,7 +107,7 @@ install.packages("DescTools", repos="https://cloud.r-project.org/" )
 install.packages("Rserve", repos="https://cloud.r-project.org/" )
 install.packages("haven", repos="https://cloud.r-project.org/" )
 q()
-no
+n
 cd
 systemctl start httpd.service
 systemctl enable httpd.service
@@ -136,25 +135,18 @@ m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
 cd /tmp/dvinstall
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/default.config
-/usr/local/glassfish4/bin/asadmin list-applications
 ./install
+
+curl -X PUT -d root@dataverse.c3.furg.br http://localhost:8080/api/admin/settings/:SystemEmail
+
+
+/usr/local/glassfish4/bin/asadmin list-applications
+cd /usr/local/glassfish4/glassfish/
+bin/asadmin --user admin --port 4848 change-admin-password
+bin/asadmin --user admin --port 4848 enable-secure-admin
+systemctl restart glassfish.service
 
 cd /usr/local/glassfish4/glassfish/domains/domain1/applications/dataverse/WEB-INF/classes/
 rm -rf Bundle.properties
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/Bundle.properties
 systemctl restart glassfish.service
-
-
-
-
-
-
-
-cd /usr/local/glassfish4/glassfish/
-bin/asadmin --port 4848 change-admin-password
-bin/asadmin --port 4848 enable-secure-admin
-systemctl restart glassfish.service
-senha==>'gfginfo2019'
-
-#########
-/usr/local/glassfish4/bin/asadmin list-applications
