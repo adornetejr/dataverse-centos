@@ -1,14 +1,12 @@
 #!/bin/bash
 cd
-rm -rf anaconda-ks.cfg *.zip *.rpm
+rm -rf anaconda-ks.cfg epel-release-latest-7.noarch.rpm
 yum update -y
 yum install -y wget git net-tools
-rm -rf dataverse-furg
-git clone https://github.com/adornetejr/dataverse-furg
 wget http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 rpm -ihv epel-release*
 yum update -y
-yum install -y nano curl htop lynx wget unzip nmap httpd mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R
+yum install -y nano curl htop lynx wget unzip nmap mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R
 cd /etc/
 rm -f hosts
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/hosts
@@ -22,8 +20,6 @@ rm -rf dvinstall
 unzip dvinstall.zip
 rm -rf /tmp/dvinstall
 cp -R dvinstall /tmp/
-cd dataverse-4.9.1/downloads
-./download.sh
 cd
 rm -rf glassfish-4.1.zip
 wget http://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
@@ -108,25 +104,6 @@ install.packages("Rserve", repos="https://cloud.r-project.org/" )
 install.packages("haven", repos="https://cloud.r-project.org/" )
 q()
 n
-cd
-systemctl start httpd.service
-systemctl enable httpd.service
-cd /etc/httpd/conf.modules.d/
-rm -f 00-base.conf
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/00-base.conf
-cd /etc/httpd/conf/
-rm -f httpd.conf
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/httpd.conf
-cd /var/www/html
-rm -f .htaccess
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/htaccess -O .htaccess
-cd /etc/httpd/conf.d/
-echo "<VirtualHost *:80>" > 00-default.conf
-echo "ProxyPreserveHost On" >> 00-default.conf
-echo "ProxyPass / http://127.0.0.1:8080/" >> 00-default.conf
-echo "ProxyPassReverse / http://127.0.0.1:8080/" >> 00-default.conf
-echo "</VirtualHost>" >> 00-default.conf
-systemctl restart httpd.service
 cd /etc/mail/
 hostname >> /etc/mail/relay-domains
 rm -f sendmail.mc
@@ -134,25 +111,6 @@ wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/sendmail
 m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
 cd /tmp/dvinstall
+rm -rf default.config
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/default.config
 ./install
-chown -R glassfish:glassfish /usr/local/glassfish4
-
-
-
-
-curl -X PUT -d root@dataverse.c3.furg.br http://localhost:8080/api/admin/settings/:SystemEmail
-
-/usr/local/glassfish4/bin/asadmin list-applications
-cd /usr/local/glassfish4/glassfish/
-bin/asadmin --user admin --port 4848 change-admin-password
-bin/asadmin --user admin --port 4848 enable-secure-admin
-systemctl restart glassfish.service
-
-cd
-su - glassfish
-cd /usr/local/glassfish4/glassfish/domains/domain1/applications/dataverse/WEB-INF/classes/
-rm -rf Bundle.properties
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/Bundle.properties
-exit
-systemctl restart glassfish.service
