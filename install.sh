@@ -1,6 +1,6 @@
 #!/bin/bash
 cd
-rm -f anaconda-ks.cfg epel-release-latest-7.noarch.rpm
+rm -rf anaconda-ks.cfg *.zip *.rpm
 yum update -y
 yum install -y wget git net-tools
 rm -rf dataverse-furg
