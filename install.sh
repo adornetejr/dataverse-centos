@@ -136,9 +136,12 @@ systemctl restart sendmail.service
 cd /tmp/dvinstall
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/default.config
 ./install
+chown -R glassfish:glassfish /usr/local/glassfish4
+
+
+
 
 curl -X PUT -d root@dataverse.c3.furg.br http://localhost:8080/api/admin/settings/:SystemEmail
-
 
 /usr/local/glassfish4/bin/asadmin list-applications
 cd /usr/local/glassfish4/glassfish/
@@ -146,7 +149,9 @@ bin/asadmin --user admin --port 4848 change-admin-password
 bin/asadmin --user admin --port 4848 enable-secure-admin
 systemctl restart glassfish.service
 
+su - glassfish
 cd /usr/local/glassfish4/glassfish/domains/domain1/applications/dataverse/WEB-INF/classes/
 rm -rf Bundle.properties
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/Bundle.properties
+exit
 systemctl restart glassfish.service
