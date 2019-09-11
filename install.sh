@@ -37,9 +37,9 @@ rm -rf glassfish-4.1
 unzip glassfish-4.1.zip
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local
 rm -rf /usr/local/glassfish4
-mv glassfish4 /usr/local
+mv glassfish4 /usr/local/
 # ADICIONA USUARIO 
-userdel glassfish
+deluser glassfish
 useradd glassfish
 # ALTERA PERMICOES PARA USUARIO glassfish
 chown -R glassfish:glassfish /usr/local/glassfish4
@@ -87,10 +87,11 @@ wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/pg_hba.c
 systemctl restart postgresql-9.6
 # DEFINE SENHA ADMIN DO POSTGRESQL
 echo "Defina uma senha admin para o POSTGRESQL"
-echo -e -s "Senha: $SENHAPG"
+echo -e "Senha:"
+read -s $SENHAPG
 su - postgres
 psql
-password ''$SENHAPG''
+password $SENHAPG
 \q
 exit
 systemctl restart postgresql-9.6
@@ -139,7 +140,7 @@ q()
 n
 # EXECUTA SCRIPT DE INSTALAÇÃO DO DATAVERSE
 #
-# SE O SCRIPT TRANCAR EM 'Updates Done. Retarting service'
+# SE O SCRIPT TRANCAR EM 'Updates Done. Retarting...'
 # ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
 # $ systemctl restart glassfish.service
 #
