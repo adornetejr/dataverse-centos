@@ -38,7 +38,8 @@ unzip glassfish-4.1.zip
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local
 rm -rf /usr/local/glassfish4
 mv glassfish4 /usr/local
-# ADICIONA USUARIO glassfish
+# ADICIONA USUARIO 
+userdel glassfish
 useradd glassfish
 # ALTERA PERMICOES PARA USUARIO glassfish
 chown -R glassfish:glassfish /usr/local/glassfish4
