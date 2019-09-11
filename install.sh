@@ -85,7 +85,7 @@ rm -f pg_hba.conf
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/pg_hba.conf
 systemctl restart postgresql-9.6
 # DEFINE SENHA ADMIN DO POSTGRESQL
-echo "Você precisa definir uma senha admin para o POSTGRESQL"
+echo "Defina uma senha admin para o POSTGRESQL"
 echo -e -s "Senha: $SENHAPG"
 su - postgres
 psql
@@ -138,7 +138,8 @@ q()
 n
 # EXECUTA SCRIPT DE INSTALAÇÃO DO DATAVERSE
 #
-# SE O SCRIPT TRANCAR EM 'Updates Done. Retarting service' => ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
+# SE O SCRIPT TRANCAR EM 'Updates Done. Retarting service'
+# ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
 # $ systemctl restart glassfish.service
 #
 cd /tmp/dvinstall
