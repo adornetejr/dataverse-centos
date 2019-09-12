@@ -10,7 +10,7 @@ yum update -y
 yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R
 # INSTALA PACOTES OPCIONAIS
 yum install -y nano  lynx net-tools git htop 
-# ALTERANDO ARQUIVO HOSTS PARA CONFIGURAÇÃO DO SENTMAIL
+# ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO DO SENTMAIL
 cd /etc/
 rm -f hosts
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/hosts
@@ -138,7 +138,7 @@ install.packages("Rserve", repos="https://cloud.r-project.org/" )
 install.packages("haven", repos="https://cloud.r-project.org/" )
 q()
 n
-# EXECUTA SCRIPT DE INSTALAÇÃO DO DATAVERSE
+# EXECUTA SCRIPT DE INSTALACAO DO DATAVERSE
 #
 # SE O SCRIPT TRANCAR EM 'Updates Done. Retarting...'
 # ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
