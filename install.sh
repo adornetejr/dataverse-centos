@@ -39,11 +39,10 @@ unzip glassfish-4.1.zip
 rm -rf /usr/local/glassfish4
 mv glassfish4 /usr/local/
 # ADICIONA USUARIO 
-deluser glassfish
-useradd glassfish
+# useradd glassfish
 # ALTERA PERMICOES PARA USUARIO glassfish
-chown -R glassfish:glassfish /usr/local/glassfish4
-su - glassfish
+# chown -R glassfish:glassfish /usr/local/glassfish4
+# su - glassfish
 cd /usr/local/glassfish4/glassfish/modules
 # ATUALIZA MODULO WELD-OSGI
 rm -f weld-osgi-bundle.jar
@@ -55,7 +54,7 @@ wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/domain.x
 # ATUALIZA CERTIFICADO SSL DO GLASSFISH
 rm -rf /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
-exit
+# exit
 # ATIVA SERVICO GLASSFISH PARA INICIALIZAR COM SISTEMA
 cd /usr/lib/systemd/system
 rm -f glassfish.service
