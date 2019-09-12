@@ -145,6 +145,6 @@ n
 # $ systemctl restart glassfish.service
 #
 cd /tmp/dvinstall
-# rm -rf default.config
-# wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/default.config
+rm -rf default.config
+wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/default.config
 ./install
