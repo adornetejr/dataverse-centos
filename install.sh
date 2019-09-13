@@ -10,7 +10,7 @@ yum update -y
 yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R
 # INSTALA PACOTES OPCIONAIS
 yum install -y nano  lynx net-tools git htop 
-# ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO DO SENTMAIL
+# ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
 cd /etc/
 rm -f hosts
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/hosts
@@ -39,10 +39,6 @@ unzip glassfish-4.1.zip
 rm -rf /usr/local/glassfish4
 mv glassfish4 /usr/local/
 # ADICIONA USUARIO 
-# useradd glassfish
-# ALTERA PERMICOES PARA USUARIO glassfish
-# chown -R glassfish:glassfish /usr/local/glassfish4
-# su - glassfish
 cd /usr/local/glassfish4/glassfish/modules
 # ATUALIZA MODULO WELD-OSGI
 rm -f weld-osgi-bundle.jar
@@ -54,7 +50,6 @@ wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/domain.x
 # ATUALIZA CERTIFICADO SSL DO GLASSFISH
 rm -rf /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
-# exit
 # ATIVA SERVICO GLASSFISH PARA INICIALIZAR COM SISTEMA
 cd /usr/lib/systemd/system
 rm -f glassfish.service
@@ -62,6 +57,9 @@ wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/glassfis
 systemctl daemon-reload
 systemctl start glassfish.service
 systemctl enable glassfish.service
+# ALTERA PERMICOES PARA USUARIO glassfish
+useradd glassfish
+chown -R glassfish:glassfish /usr/local/glassfish4
 # INSTALA DEPENDENCIA JQ
 cd /usr/bin
 rm -rf jq
@@ -84,21 +82,9 @@ cd /var/lib/pgsql/9.6/data
 rm -f pg_hba.conf
 wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/pg_hba.conf
 systemctl restart postgresql-9.6
-# DEFINE SENHA ADMIN DO POSTGRESQL
-echo "Defina uma senha admin para o POSTGRESQL"
-echo -e "Senha:"
-read -s $SENHAPG
-su - postgres
-psql
-password $SENHAPG
-\q
-exit
-systemctl restart postgresql-9.6
 # ADICIONA USUARIO solr
 useradd solr
 mkdir /usr/local/solr
-chown solr:solr /usr/local/solr
-su - solr
 # INSTALA DEPENDENCIA SOLR
 cd /usr/local/solr
 rm -rf solr-7.3.0.tgz
@@ -113,7 +99,7 @@ cd /usr/local/solr/solr-7.3.0
 # INICIA SOLR
 bin/solr start
 bin/solr create_core -c collection1 -d server/solr/collection1/conf/
-exit
+chown solr:solr /usr/local/solr
 # ATIVA SERVICO SOLR PARA INICIALIZAR COM SISTEMA
 cd /usr/lib/systemd/system
 rm -f solr.service
