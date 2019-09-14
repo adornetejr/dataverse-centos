@@ -1,15 +1,17 @@
 #!/bin/bash
+# ATUALIZA PACOTES
+yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
 cd /tmp/
 rm -rf epel-release-latest-7.noarch.rpm
 wget http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-rpm -ihv epel-release-latest-7.noarch.rpm
+yum install -y epel-release-latest-7.noarch.rpm
 # ATUALIZA PACOTES
-yum update -y
+yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS
 yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R
 # INSTALA PACOTES OPCIONAIS
-yum install -y nano  lynx net-tools git htop 
+yum install -y nano lynx net-tools git htop 
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
 cd /etc/
 rm -f hosts
