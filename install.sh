@@ -3,7 +3,7 @@ DIR=$PWD
 # ATUALIZA PACOTES
 yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
-cd /tmp/
+cd $DIR
 rm -rf epel-release-latest-7.noarch.rpm
 wget http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum install -y epel-release-latest-7.noarch.rpm
@@ -16,12 +16,12 @@ yum install -y nano lynx net-tools git htop
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
 cd /etc/
 rm -f hosts
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/hosts
+cp $DIR/hosts .
 # CONFIGURA SENDMAIL
 cd /etc/mail/
 hostname >> /etc/mail/relay-domains
 rm -f sendmail.mc
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/sendmail.mc
+cp $DIR/sendmail.mc .
 m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
 # DOWNLOAD DOS PACOTES DE INSTALACAO DO DATAVERSE
@@ -33,8 +33,6 @@ wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
 rm -rf dvinstall
 unzip dvinstall.zip
 cd $DIR
-echo $DIR
-echo $PWD
 # EXECUTA SCRIPT DE INSTALACAO DO DATAVERSE
 #
 # SE O SCRIPT TRANCAR EM 'Updates Done. Retarting...'
