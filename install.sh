@@ -1,5 +1,5 @@
 #!/bin/bash
-$DIR = $PWD
+DIR = $PWD
 # ATUALIZA PACOTES
 yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
@@ -33,6 +33,7 @@ wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
 rm -rf dvinstall
 unzip dvinstall.zip
 cd $DIR
+echo $DIR
 echo $PWD
 # EXECUTA SCRIPT DE INSTALACAO DO DATAVERSE
 #
