@@ -6,7 +6,6 @@ wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/Bundle.p
 systemctl start glassfish.service
 
 
-
 curl http://localhost:8080/api/admin/settings/:Languages -X PUT -d '[{"locale":"en","title":"English"},{"locale":"pt","title":"Português"}]'
 
 mkdir /home/glassfish/lang

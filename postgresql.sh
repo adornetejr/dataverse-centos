@@ -1,4 +1,5 @@
 #!/bin/bash
+DIR=$PWD
 # INSTALA DEPENDENCIA POSTGRESQL
 cd /tmp
 rm -rf pgdg-centos96-9.6-3.noarch.rpm
@@ -13,7 +14,7 @@ yum install -y postgresql96-server
 cd /var/lib/pgsql/9.6/data
 # CONFIGURA POSTGRESQL PARA LIBERAR ACESSO AO BANCO
 rm -f pg_hba.conf
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/pg_hba.conf
+cp $DIR/pg_hba.conf .
 systemctl restart postgresql-9.6
 # DEFINE SENHA ADMIN DO POSTGRESQL
 # su - postgres

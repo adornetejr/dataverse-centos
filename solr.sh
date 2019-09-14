@@ -1,4 +1,5 @@
 #!/bin/bash
+DIR=$PWD
 # CRIA PASTA DE INSTALAÇÃO
 mkdir /usr/local/solr
 # DOWNLOAD DEPENDENCIA SOLR
@@ -21,11 +22,11 @@ chown solr:solr /usr/local/solr
 # ATIVA SERVICO SOLR PARA INICIALIZAR COM SISTEMA
 cd /usr/lib/systemd/system
 rm -f solr.service
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/solr.service
+cp $DIR/solr.service .
 systemctl daemon-reload
 systemctl start solr.service
 systemctl enable solr.service
 # REMOVE LIMITS 
 cd /etc/security/
 rm -f limits.conf
-wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/limits.conf
+cp $DIR/limits.conf .
