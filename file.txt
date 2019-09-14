@@ -1,5 +1,0 @@
-To: adornetejr@gmail.com
-Subject: Sendmail Test 1
-From: root@dataverse.c3.furg.br
-
-And here goes the e-mail body, test test test..
