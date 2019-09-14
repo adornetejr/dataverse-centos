@@ -32,9 +32,16 @@ wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
 rm -rf dvinstall
 unzip dvinstall.zip
+clear
+echo "Etapa (1/7) concluida!"
+echo "Pressione Enter para continuar!"
+read -e $X
 cd $DIR
 chmod 744 glassfish.sh
 ./glassfish.sh
+echo "Etapa (2/7) concluida!"
+echo "Pressione Enter para continuar!"
+read -e $X
 cd $DIR
 # EXECUTA SCRIPT DE INSTALACAO DO DATAVERSE
 #
