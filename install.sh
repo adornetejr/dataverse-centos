@@ -3,7 +3,7 @@ DIR=$PWD
 # ATUALIZA PACOTES
 yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
-cd $DIR
+cd /tmp/
 rm -rf epel-release-latest-7.noarch.rpm
 wget http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum install -y epel-release-latest-7.noarch.rpm
@@ -32,6 +32,9 @@ wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
 rm -rf dvinstall
 unzip dvinstall.zip
+cd $DIR
+chmod 744 glassfish.sh
+./glassfish.sh
 cd $DIR
 # EXECUTA SCRIPT DE INSTALACAO DO DATAVERSE
 #
