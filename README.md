@@ -54,6 +54,6 @@ Atualmente, o script suporta exclusivamente a versão 4.9.1 do Dataverse para o 
 
 Instalação, customização, administração e informações adicionais sobre o Dataverse podem ser encontradas nos guias do site: [Dataverse](http://guides.dataverse.org/en/4.9.1/).
 
-[![Dataverse Project logo](src/main/webapp/resources/images/dataverseproject_logo.jpg?raw=true "Dataverse Project")](http://dataverse.org)
+[![Dataverse Project logo](https://raw.githubusercontent.com/IQSS/dataverse/develop/src/main/webapp/resources/images/dataverseproject_logo.jpg?raw=true "Dataverse Project")](http://dataverse.org)
 
 [![Build Status](https://travis-ci.org/IQSS/dataverse.svg?branch=develop)](https://travis-ci.org/IQSS/dataverse) [![Coverage Status](https://coveralls.io/repos/IQSS/dataverse/badge.svg?branch=develop&service=github)](https://coveralls.io/github/IQSS/dataverse?branch=develop)
