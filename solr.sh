@@ -29,6 +29,6 @@ rm -f solr.service
 cp $DIR/solr.service .
 systemctl daemon-reload
 systemctl start solr.service
-sleep 5s
 systemctl enable solr.service
+sleep 1m
 systemctl status solr.service
