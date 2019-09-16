@@ -21,8 +21,8 @@ rm -f limits.conf
 cp $DIR/limits.conf .
 # INICIA SOLR
 cd /usr/local/solr/solr-7.3.0
-bin/solr start
-bin/solr create_core -c collection1 -d server/solr/collection1/conf/
+sudo solr -e 'bin/solr start'
+sudo solr -e 'bin/solr create_core -c collection1 -d server/solr/collection1/conf/'
 # ATIVA SERVICO SOLR PARA INICIALIZAR COM SISTEMA
 cd /usr/lib/systemd/system
 rm -f solr.service
