@@ -1,6 +1,6 @@
-# Shell script para Dataverse 4.9.1
+# Shell script para Dataverse
 
-Este script foi criado para faciliar a instalação e configuração inicial do Dataverse e suas dependências, GlassFish, Solr, PostgreSQL, Rserve entre outras. 
+Este script foi criado para faciliar a instalação e configuração inicial do Dataverse e suas dependências, GlassFish, Solr, PostgreSQL e Rserve, entre outros ajustes no sistema. 
 
 ## Início rápido
 
@@ -12,9 +12,9 @@ Primeiro passo é clonar o repositório.
 $ git clone https://github.com/ginfo-cflex/dataverse-centos.git
 ```
 
-Segundo passo é mudar as permições de execução do script e executa-lo.
+Segundo passo é mudar as permições de execução do script e executa-lo como root.
 
-### Executar shell script
+### Shell script
 
 ``` bash
 $ chmod 744 install.sh
@@ -52,6 +52,8 @@ Atualmente, o script suporta exclusivamente a versão 4.9.1 do Dataverse para o 
  
 ### Configurações extras
 
-Instalação, customização, administração e informações sobre o Dataverse podem ser encontradas nos guias do site: [Dataverse 4 Guides](http://guides.dataverse.org/en/4.9.1/).
+Instalação, customização, administração e informações adicionais sobre o Dataverse podem ser encontradas nos guias do site: [Dataverse](http://guides.dataverse.org/en/4.9.1/).
 
-[![Build Status](https://travis-ci.org/IQSS/dataverse-ansible.svg?branch=master)](https://travis-ci.org/IQSS/dataverse-ansible)
+[![Dataverse Project logo](src/main/webapp/resources/images/dataverseproject_logo.jpg?raw=true "Dataverse Project")](http://dataverse.org)
+
+[![Build Status](https://travis-ci.org/IQSS/dataverse.svg?branch=develop)](https://travis-ci.org/IQSS/dataverse) [![Coverage Status](https://coveralls.io/repos/IQSS/dataverse/badge.svg?branch=develop&service=github)](https://coveralls.io/github/IQSS/dataverse?branch=develop)
