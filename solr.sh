@@ -18,6 +18,7 @@ cd /etc/security/
 rm -f limits.conf
 cp $DIR/limits.conf .
 # INICIA SOLR
+cd /usr/local/solr
 bin/solr start
 bin/solr create_core -c collection1 -d server/solr/collection1/conf/
 # ADICIONA USUARIO solr
