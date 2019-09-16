@@ -20,9 +20,9 @@ Segundo passo é mudar as permições de execução do script e executa-lo.
 $ chmod 744 install.sh
 $ ./install.sh
 ```
-## Dataverse
+## O Dataverse
 
-O Dataverse é um aplicativo da Web de código-fonte aberto para compartilhar, preservar, citar, explorar e analisar dados de pesquisa. Desenvolvido em sua maior parte na linguagem Java, utiliza o servidor de aplicação Glassfish como serviço de back-end. Várias dependências são necessárias para a sua instalação funcionar corretamente, logo criamos um Shell Script que ajuda na instalação destas.
+O Dataverse é um aplicativo da Web de código-fonte aberto para compartilhar, preservar, citar, explorar e analisar dados de pesquisa. Desenvolvido em sua maior parte na linguagem Java, utiliza o servidor de aplicação Glassfish como serviço de back-end. Várias dependências são necessárias para a sua instalação funcionar corretamente, logo criamos um Shell script que ajuda na instalação destas.
 
 ### Versão
 
@@ -52,6 +52,6 @@ Atualmente, o script suporta exclusivamente a versão 4.9.1 do Dataverse para o 
  
 ### Configurações extras
 
-Instalação, customização, administração e informações sobre API podem ser encontradas no site do Dataverse [Dataverse 4 Guides](http://guides.dataverse.org/en/4.9.1/).
+Instalação, customização, administração e informações sobre o Dataverse podem ser encontradas nos guias do site: [Dataverse 4 Guides](http://guides.dataverse.org/en/4.9.1/).
 
 [![Build Status](https://travis-ci.org/IQSS/dataverse-ansible.svg?branch=master)](https://travis-ci.org/IQSS/dataverse-ansible)
