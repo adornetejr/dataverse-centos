@@ -60,13 +60,27 @@ echo "Etapa (5/7) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
+chmod 744 rserve.sh
+./rserve.sh
+echo "Etapa (6/7) concluida!"
+echo " "
+echo "ATENÇÃO!!"
+echo " "
+echo "Se a próxima etapa trancar em 'Updates Done. Retarting...' por mais de 30 segundos."
+echo " "
+echo "Abra outro terminal e execute o comando:"
+echo "$ systemctl restart glassfish.service"
+echo " "
+echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
+read -e $X
 # EXECUTA SCRIPT DE INSTALACAO DO DATAVERSE
 #
 # SE O SCRIPT TRANCAR EM 'Updates Done. Retarting...'
 # ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
 # $ systemctl restart glassfish.service
 #
-# cd /tmp/dvinstall
-# rm -rf default.config
-# wget https://raw.githubusercontent.com/adornetejr/dataverse-furg/master/default.config
-# ./install
+cd /tmp/dvinstall
+rm -rf default.config
+cp $DIR/default.config .
+./install
+echo "Etapa (7/7) concluida!"
