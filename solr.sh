@@ -14,7 +14,7 @@ cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/
 cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 # ADICIONA USUARIO solr
 useradd solr
-chown solr:solr /usr/local/solr
+chown -R solr:solr /usr/local/solr
 # REMOVE LIMITS 
 cd /etc/security/
 rm -f limits.conf
