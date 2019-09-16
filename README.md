@@ -1,7 +1,6 @@
 # Shell script para Dataverse 4.9.1
 
-Este script foi criado para faciliar a instalação do Dataverse e suas dependências.
-Entres as dependências estão GlassFish, Solr, PostgreSQL, Rserve  entre outras para o melhor funcionamento do Dataverse.
+Este script foi criado para faciliar a instalação e configuração inicial do Dataverse e suas dependências, GlassFish, Solr, PostgreSQL, Rserve entre outras. 
 
 ## Início rápido
 
