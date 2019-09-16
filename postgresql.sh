@@ -23,3 +23,4 @@ systemctl restart postgresql-9.6
 # \q
 # exit
 # systemctl restart postgresql-9.6
+systemctl status postgresql-9.6

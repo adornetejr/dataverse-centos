@@ -13,6 +13,10 @@ cp -r server/solr/configsets/_default server/solr/collection1
 cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 cd /usr/local/solr/solr-7.3.0
+# REMOVE LIMITS 
+cd /etc/security/
+rm -f limits.conf
+cp $DIR/limits.conf .
 # INICIA SOLR
 bin/solr start
 bin/solr create_core -c collection1 -d server/solr/collection1/conf/
@@ -26,7 +30,4 @@ cp $DIR/solr.service .
 systemctl daemon-reload
 systemctl start solr.service
 systemctl enable solr.service
-# REMOVE LIMITS 
-cd /etc/security/
-rm -f limits.conf
-cp $DIR/limits.conf .
+systemctl status solr.service
