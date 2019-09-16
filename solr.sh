@@ -12,7 +12,6 @@ cd solr-7.3.0
 cp -r server/solr/configsets/_default server/solr/collection1
 cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
-cd /usr/local/solr/solr-7.3.0
 # ADICIONA USUARIO solr
 useradd solr
 chown solr:solr /usr/local/solr
@@ -21,7 +20,7 @@ cd /etc/security/
 rm -f limits.conf
 cp $DIR/limits.conf .
 # INICIA SOLR
-cd /usr/local/solr
+cd /usr/local/solr/solr-7.3.0
 bin/solr start
 bin/solr create_core -c collection1 -d server/solr/collection1/conf/
 # ATIVA SERVICO SOLR PARA INICIALIZAR COM SISTEMA
