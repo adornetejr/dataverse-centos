@@ -13,7 +13,7 @@ mv glassfish4 /usr/local/
 cd /usr/local/glassfish4/glassfish/modules
 # ATUALIZA MODULO WELD-OSGI
 rm -f weld-osgi-bundle.jar
-wget https://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
+wget http://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
 # CONFIGURA GLASSFISH DE CLIENTE PARA SERVIDOR
 cd /usr/local/glassfish4/glassfish/domains/domain1/config/
 rm -f domain.xml
