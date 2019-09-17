@@ -1,4 +1,4 @@
-# Shell script para Dataverse
+# Shell Script de instalação do Dataverse
 
 Este script foi criado para faciliar a instalação e configuração inicial do Dataverse e suas dependências, GlassFish, Solr, PostgreSQL e Rserve, entre outros ajustes no sistema. 
 
