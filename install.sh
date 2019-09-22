@@ -3,9 +3,14 @@ DIR=$PWD
 # ATUALIZA PACOTES
 yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
+epel="/tmp/epel-release-latest-7.noarch.rpm"
 cd /tmp/
-rm -rf epel-release-latest-7.noarch.rpm
-wget http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+if [ -f "$epel" ]
+then
+    ls $epel
+else
+    wget http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+fi
 yum install -y epel-release-latest-7.noarch.rpm
 # ATUALIZA PACOTES
 yum makecache fast
