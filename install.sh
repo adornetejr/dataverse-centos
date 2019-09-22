@@ -8,6 +8,8 @@ cd /tmp/
 if [ -f "$epel" ]
 then
     ls $epel
+    md5sum $epel
+    read -e $X
 else
     wget http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 fi
@@ -30,10 +32,15 @@ cp $DIR/sendmail.mc .
 m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
 # DOWNLOAD DOS PACOTES DE INSTALACAO DO DATAVERSE
+dvinstall="/tmp/dvinstall.zip"
 cd /tmp/
-rm -rf v4.9.1.zip dvinstall.zip
-# wget https://github.com/IQSS/dataverse/archive/v4.9.1.zip
-wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
+if [ -f "$dvinstall" ]
+then
+    ls $dvinstall
+else
+    # wget https://github.com/IQSS/dataverse/archive/v4.9.1.zip
+    wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
+fi
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
 rm -rf dvinstall
 unzip dvinstall.zip
