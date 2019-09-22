@@ -3,17 +3,7 @@ DIR=$PWD
 # ATUALIZA PACOTES
 yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
-epel="/tmp/epel-release-latest-7.noarch.rpm"
-cd /tmp/
-if [ -f "$epel" ]
-then
-    ls $epel
-    md5sum $epel
-    read -e $X
-else
-    wget http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-fi
-yum install -y epel-release-latest-7.noarch.rpm
+yum install -y epel-release
 # ATUALIZA PACOTES
 yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS
@@ -33,13 +23,14 @@ m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
 # DOWNLOAD DOS PACOTES DE INSTALACAO DO DATAVERSE
 dvinstall="/tmp/dvinstall.zip"
+link=https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
 cd /tmp/
 if [ -f "$dvinstall" ]
 then
     ls $dvinstall
+    md5sum -s $dvinstall
 else
-    # wget https://github.com/IQSS/dataverse/archive/v4.9.1.zip
-    wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
+    wget $link
 fi
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
 rm -rf dvinstall
