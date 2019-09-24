@@ -1,5 +1,6 @@
 #!/bin/bash
 DIR=$PWD
+systemctl stop solr.service
 # DOWNLOAD DEPENDENCIA SOLR
 solr="/tmp/solr-7.3.0.tgz"
 link=https://archive.apache.org/dist/lucene/solr/7.3.0/solr-7.3.0.tgz
