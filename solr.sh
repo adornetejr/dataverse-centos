@@ -22,9 +22,9 @@ cp -rf solr-7.3.0 /usr/local/solr
 useradd solr
 # CONFIGURA ARQUIVOS SOLR DE ACORDO COM DATAVERSE
 cd /usr/local/solr/solr-7.3.0
-cp -rf server/solr/configsets/_default/* server/solr/collection1/
-cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf/
-cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf/
+cp server/solr/configsets/_default server/solr/collection1
+cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
+cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 chown -R solr:solr /usr/local/solr
 # REMOVE LIMITS 
 cd /etc/security/
@@ -38,6 +38,6 @@ cd /usr/lib/systemd/system
 rm -f solr.service
 cp $DIR/solr.service .
 systemctl daemon-reload
-systemctl   start solr.service
+systemctl start solr.service
 systemctl enable solr.service
 systemctl status solr.service
