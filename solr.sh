@@ -9,7 +9,6 @@ if [ -f "$solr" ]
 then
     ls $solr
     md5sum $solr
-    read $X
 else
     wget $link
 fi
