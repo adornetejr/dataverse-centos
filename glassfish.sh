@@ -1,9 +1,16 @@
 #!/bin/bash
 DIR=$PWD
 # DOWNLOAD DEPENDENCIA GLASSFISH SERVER
+glassfish="/tmp/glassfish-4.1.zip"
+link=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
 cd /tmp/
-rm -rf glassfish-4.1.zip
-wget https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
+if [ -f "$glassfish" ]
+then
+    ls $glassfish
+    md5sum -s $glassfish
+else
+    wget $link
+fi
 rm -rf glassfish-4.1
 unzip glassfish-4.1.zip
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local

@@ -3,15 +3,24 @@ DIR=$PWD
 # CRIA PASTA DE INSTALAÇÃO
 mkdir /usr/local/solr
 # DOWNLOAD DEPENDENCIA SOLR
-cd /usr/local/solr
-rm -rf solr-7.3.0.tgz
-wget https://archive.apache.org/dist/lucene/solr/7.3.0/solr-7.3.0.tgz
+solr="/tmp/solr-7.3.0.tgz"
+link=https://archive.apache.org/dist/lucene/solr/7.3.0/solr-7.3.0.tgz
+cd /tmp/
+if [ -f "$solr" ]
+then
+    ls $solr
+    md5sum -s $solr
+else
+    wget $link
+fi
+rm -rf solr-7.3.0 /usr/local/solr/solr-7.3.0
 tar xvzf solr-7.3.0.tgz
-cd solr-7.3.0
+mkdir /usr/local/solr
+cp -rf solr-7.3.0 /usr/local/solr
 # CONFIGURA ARQUIVOS SOLR DE ACORDO COM DATAVERSE
-cp -r server/solr/configsets/_default server/solr/collection1
-cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
-cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
+cp -rf server/solr/configsets/_default server/solr/collection1
+cp -rf /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
+cp rf /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 # ADICIONA USUARIO solr
 useradd solr
 chown -R solr:solr /usr/local/solr
@@ -30,5 +39,4 @@ cp $DIR/solr.service .
 systemctl daemon-reload
 systemctl start solr.service
 systemctl enable solr.service
-sleep 1m
 systemctl status solr.service
