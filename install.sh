@@ -28,7 +28,7 @@ cd /tmp/
 if [ -f "$dvinstall" ]
 then
     ls $dvinstall
-    md5sum -s $dvinstall
+    md5sum $dvinstall
 else
     wget $link
 fi

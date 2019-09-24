@@ -7,7 +7,7 @@ cd /tmp/
 if [ -f "$glassfish" ]
 then
     ls $glassfish
-    md5sum -s $glassfish
+    md5sum $glassfish
 else
     wget $link
 fi
