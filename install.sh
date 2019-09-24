@@ -65,6 +65,7 @@ read -e $X
 cd $DIR
 chmod 744 rserve.sh
 ./rserve.sh
+clear
 echo "Etapa (6/7) concluida!"
 echo " "
 echo "ATENÇÃO!!"
@@ -72,7 +73,7 @@ echo " "
 echo "Se a próxima etapa trancar em 'Updates Done. Retarting...' por mais de 30 segundos."
 echo " "
 echo "Abra outro terminal e execute o comando:"
-echo "$ systemctl restart glassfish.service"
+echo "# systemctl restart glassfish.service"
 echo " "
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
