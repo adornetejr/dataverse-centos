@@ -37,7 +37,7 @@ cd /usr/lib/systemd/system
 rm -f glassfish.service
 cp $DIR/glassfish.service .
 systemctl daemon-reload
-echo "Starting Glassfish Service!"
+echo "Starting glassfish!"
 systemctl start glassfish.service
 systemctl enable glassfish.service
 # STATUS DO SERVICO GLASSFISH

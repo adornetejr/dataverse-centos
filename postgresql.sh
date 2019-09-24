@@ -9,18 +9,19 @@ yum makecache fast
 yum install -y postgresql96-server
 # INICIALIZA BANCO DE DADOS POSTGRESQL
 /usr/pgsql-9.6/bin/postgresql96-setup initdb
-/usr/bin/systemctl start postgresql-9.6
-/usr/bin/systemctl enable postgresql-9.6
-cd /var/lib/pgsql/9.6/data
+echo "Starting postgresql-9.6!"
+systemctl start postgresql-9.6
+systemctl enable postgresql-9.6
+systemctl stop postgresql-9.6
 # CONFIGURA POSTGRESQL PARA LIBERAR ACESSO AO BANCO
+cd /var/lib/pgsql/9.6/data
 rm -f pg_hba.conf
 cp $DIR/pg_hba.conf .
-systemctl restart postgresql-9.6
 # DEFINE SENHA ADMIN DO POSTGRESQL
-# su - postgres
-# psql
-# password 'senha-aqui'
-# \q
-# exit
-# systemctl restart postgresql-9.6
+echo "Alterando senha root para postgresql"
+echo "Digite os comandos:"
+echo "# password 'NOVA_SENHA_POSTGRES'"
+echo "# \q"
+sudo -u postgres psql
+systemctl restart postgresql-9.6
 systemctl status postgresql-9.6

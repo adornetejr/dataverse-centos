@@ -36,7 +36,7 @@ cd /usr/lib/systemd/system
 rm -f solr.service
 cp $DIR/solr.service .
 systemctl daemon-reload
-echo "Starting Solr Service!"
+echo "Starting solr!"
 systemctl start solr.service
 systemctl enable solr.service
 # INICIA SOLR
