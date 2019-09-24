@@ -31,9 +31,6 @@ chown -R solr:solr /usr/local/solr
 cd /etc/security/
 rm -f limits.conf
 cp $DIR/limits.conf .
-# INICIA SOLR
-sudo -u solr /usr/local/solr/solr-7.3.0/bin/solr create_core -c collection1 -d server/solr/collection1/conf/
-sleep 30
 # ATIVA SERVICO SOLR PARA INICIALIZAR COM SISTEMA
 cd /usr/lib/systemd/system
 rm -f solr.service
@@ -41,4 +38,7 @@ cp $DIR/solr.service .
 systemctl daemon-reload
 systemctl start solr.service
 systemctl enable solr.service
+# INICIA SOLR
+sudo -u solr /usr/local/solr/solr-7.3.0/bin/solr create_core -c collection1 -d server/solr/collection1/conf/
+sleep 30
 systemctl status solr.service
