@@ -1,7 +1,5 @@
 #!/bin/bash
 DIR=$PWD
-# CRIA PASTA DE INSTALAÇÃO
-mkdir /usr/local/solr
 # DOWNLOAD DEPENDENCIA SOLR
 solr="/tmp/solr-7.3.0.tgz"
 link=https://archive.apache.org/dist/lucene/solr/7.3.0/solr-7.3.0.tgz
@@ -10,21 +8,23 @@ if [ -f "$solr" ]
 then
     ls $solr
     md5sum $solr
+    read $X
 else
     wget $link
 fi
 rm -rf solr-7.3.0
 tar xvzf solr-7.3.0.tgz
+# CRIA PASTA DE INSTALAÇÃO
 mkdir /usr/local/solr
 rm -rf /usr/local/solr/solr-7.3.0
 cp -rf solr-7.3.0 /usr/local/solr
-# CONFIGURA ARQUIVOS SOLR DE ACORDO COM DATAVERSE
-cd /usr/local/solr/solr-7.3.0
-cp -rf server/solr/configsets/_default server/solr/collection1
-cp -f /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
-cp -f /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 # ADICIONA USUARIO solr
 useradd solr
+# CONFIGURA ARQUIVOS SOLR DE ACORDO COM DATAVERSE
+cd /usr/local/solr/solr-7.3.0
+cp -rf server/solr/configsets/_default/* server/solr/collection1/
+cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf/
+cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf/
 chown -R solr:solr /usr/local/solr
 # REMOVE LIMITS 
 cd /etc/security/
