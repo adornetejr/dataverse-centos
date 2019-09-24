@@ -1,5 +1,6 @@
 #!/bin/bash
 DIR=$PWD
+systemctl stop glassfish.service
 # DOWNLOAD DEPENDENCIA GLASSFISH SERVER
 glassfish="/tmp/glassfish-4.1.zip"
 link=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
