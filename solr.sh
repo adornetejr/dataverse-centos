@@ -23,7 +23,7 @@ cp -rf solr-7.3.0 /usr/local/solr
 useradd solr
 # CONFIGURA ARQUIVOS SOLR DE ACORDO COM DATAVERSE
 cd /usr/local/solr/solr-7.3.0
-cp server/solr/configsets/_default server/solr/collection1
+cp -r server/solr/configsets/_default server/solr/collection1
 cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 chown -R solr:solr /usr/local/solr
