@@ -38,6 +38,7 @@ rm -f glassfish.service
 cp $DIR/glassfish.service .
 systemctl daemon-reload
 systemctl start glassfish.service
+sleep 180
 systemctl enable glassfish.service
 # STATUS DO SERVICO GLASSFISH
 systemctl status glassfish.service
