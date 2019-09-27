@@ -17,8 +17,8 @@ Segundo passo é mudar as permições de execução do script e executa-lo como 
 ### Shell script
 
 ``` bash
-$ chmod 744 install.sh
-$ ./install.sh
+# chmod 744 install.sh
+# ./install.sh
 ```
 ## O Dataverse
 
