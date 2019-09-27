@@ -3,10 +3,7 @@ DIR=$PWD
 # ATUALIZA PACOTES
 yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
-cd /tmp/
-rm -rf epel-release-latest-7.noarch.rpm
-wget http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum install -y epel-release-latest-7.noarch.rpm
+yum install -y epel-release
 # ATUALIZA PACOTES
 yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS
@@ -25,10 +22,16 @@ cp $DIR/sendmail.mc .
 m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
 # DOWNLOAD DOS PACOTES DE INSTALACAO DO DATAVERSE
+dvinstall="/tmp/dvinstall.zip"
+link=https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
 cd /tmp/
-rm -rf v4.9.1.zip dvinstall.zip
-# wget https://github.com/IQSS/dataverse/archive/v4.9.1.zip
-wget https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
+if [ -f "$dvinstall" ]
+then
+    ls $dvinstall
+    md5sum $dvinstall
+else
+    wget $link
+fi
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
 rm -rf dvinstall
 unzip dvinstall.zip
@@ -62,6 +65,7 @@ read -e $X
 cd $DIR
 chmod 744 rserve.sh
 ./rserve.sh
+clear
 echo "Etapa (6/7) concluida!"
 echo " "
 echo "ATENÇÃO!!"
@@ -69,7 +73,7 @@ echo " "
 echo "Se a próxima etapa trancar em 'Updates Done. Retarting...' por mais de 30 segundos."
 echo " "
 echo "Abra outro terminal e execute o comando:"
-echo "$ systemctl restart glassfish.service"
+echo "# systemctl restart glassfish.service"
 echo " "
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
