@@ -86,6 +86,24 @@ read -e $X
 # ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
 # $ systemctl restart glassfish.service
 #
+HOST=hostname
+echo "HOST_DNS_ADDRESS    $HOST"
+echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4"
+echo "GLASSFISH_USER	glassfish"
+echo "ADMIN_EMAIL	root@$HOST"
+echo "MAIL_SERVER	$HOST"
+echo "POSTGRES_ADMIN_PASSWORD	ROOT_SECRET"
+echo "POSTGRES_SERVER	127.0.0.1"
+echo "POSTGRES_PORT	5432"
+echo "POSTGRES_DATABASE	dvndb"
+echo "POSTGRES_USER	dvnapp"
+echo "POSTGRES_PASSWORD	USER_SECRET"
+echo "SOLR_LOCATION	localhost:8983"
+echo "TWORAVENS_LOCATION	NOT INSTALLED"
+echo "RSERVE_HOST	localhost"
+echo "RSERVE_PORT	6311"
+echo "RSERVE_USER	rserve"
+echo "RSERVE_PASSWORD	rserve"
 cd /tmp/dvinstall
 rm -rf default.config
 cp $DIR/default.config .
