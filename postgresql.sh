@@ -4,6 +4,8 @@ DIR=$PWD
 cd /tmp
 rm -rf pgdg-centos96-9.6-3.noarch.rpm
 wget https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
+yum remove -y postgresql96-server
+rm -rf /var/lib/pgsql
 yum install -y pgdg-centos96-9.6-3.noarch.rpm
 yum makecache fast
 yum install -y postgresql96-server
