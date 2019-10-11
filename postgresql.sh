@@ -1,7 +1,7 @@
 #!/bin/bash
 DIR=$PWD
 yum remove -y postgresql96-server
-yum autoremove
+yum autoremove -y
 rm -rf /usr/pgsql-9.6
 rm -rf /var/lib/pgsql
 # INSTALA DEPENDENCIA POSTGRESQL
