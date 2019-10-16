@@ -33,9 +33,8 @@ cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassf
 useradd glassfish
 chown -R glassfish:glassfish /usr/local/glassfish4
 # ATIVA SERVICO GLASSFISH PARA INICIALIZAR COM SISTEMA
-cd /usr/lib/systemd/system
-rm -f glassfish.service
-cp $DIR/glassfish.service .
+rm -f /usr/lib/systemd/system/glassfish.service
+cp $DIR/glassfish.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "Starting glassfish!"
 systemctl start glassfish.service

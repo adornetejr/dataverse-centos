@@ -27,13 +27,11 @@ cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/
 cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.0/server/solr/collection1/conf
 chown -R solr:solr /usr/local/solr
 # REMOVE LIMITS 
-cd /etc/security/
-rm -f limits.conf
-cp $DIR/limits.conf .
+rm -f /etc/security/limits.conf
+cp $DIR/limits.conf /etc/security/
 # ATIVA SERVICO SOLR PARA INICIALIZAR COM SISTEMA
-cd /usr/lib/systemd/system
-rm -f solr.service
-cp $DIR/solr.service .
+rm -f /usr/lib/systemd/system/solr.service
+cp $DIR/solr.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "Starting solr!"
 systemctl start solr.service

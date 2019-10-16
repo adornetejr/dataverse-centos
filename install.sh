@@ -11,14 +11,17 @@ yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjd
 # INSTALA PACOTES OPCIONAIS
 yum install -y nano lynx net-tools git htop 
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
-cd /etc/
-rm -f hosts
-cp $DIR/hosts .
+echo "IP Address"
+ip -f inet address | grep inet
+echo "Hostname"
+hostname
+echo "Altere os parametros do arquivo /etc/hosts com as informações acima!"
+echo "Após, pressione Enter para continuar!"
+read -e $X
 # CONFIGURA SENDMAIL
-cd /etc/mail/
 hostname >> /etc/mail/relay-domains
-rm -f sendmail.mc
-cp $DIR/sendmail.mc .
+rm -f /etc/mail/sendmail.mc
+cp $DIR/sendmail.mc /etc/mail/
 m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
 # DOWNLOAD DOS PACOTES DE INSTALACAO DO DATAVERSE
@@ -33,7 +36,7 @@ else
     wget $link
 fi
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
-rm -rf dvinstall
+rm -rf /tmp/dvinstall
 unzip dvinstall.zip
 echo "Etapa (1/7) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
@@ -83,6 +86,24 @@ read -e $X
 # ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
 # $ systemctl restart glassfish.service
 #
+HOST=hostname
+echo "HOST_DNS_ADDRESS    $HOST"
+echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4"
+echo "GLASSFISH_USER	glassfish"
+echo "ADMIN_EMAIL	root@$HOST"
+echo "MAIL_SERVER	$HOST"
+echo "POSTGRES_ADMIN_PASSWORD	ROOT_SECRET"
+echo "POSTGRES_SERVER	127.0.0.1"
+echo "POSTGRES_PORT	5432"
+echo "POSTGRES_DATABASE	dvndb"
+echo "POSTGRES_USER	dvnapp"
+echo "POSTGRES_PASSWORD	USER_SECRET"
+echo "SOLR_LOCATION	localhost:8983"
+echo "TWORAVENS_LOCATION	NOT INSTALLED"
+echo "RSERVE_HOST	localhost"
+echo "RSERVE_PORT	6311"
+echo "RSERVE_USER	rserve"
+echo "RSERVE_PASSWORD	rserve"
 cd /tmp/dvinstall
 rm -rf default.config
 cp $DIR/default.config .

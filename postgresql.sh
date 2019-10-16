@@ -1,5 +1,9 @@
 #!/bin/bash
 DIR=$PWD
+yum remove -y postgresql96-server
+yum autoremove -y
+rm -rf /usr/pgsql-9.6
+rm -rf /var/lib/pgsql
 # INSTALA DEPENDENCIA POSTGRESQL
 cd /tmp
 rm -rf pgdg-centos96-9.6-3.noarch.rpm
@@ -14,14 +18,17 @@ systemctl start postgresql-9.6
 systemctl enable postgresql-9.6
 systemctl stop postgresql-9.6
 # CONFIGURA POSTGRESQL PARA LIBERAR ACESSO AO BANCO
-cd /var/lib/pgsql/9.6/data
-rm -f pg_hba.conf
-cp $DIR/pg_hba.conf .
+rm -f /var/lib/pgsql/9.6/data/pg_hba.conf
+cp $DIR/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 # DEFINE SENHA ADMIN DO POSTGRESQL
-echo "Alterando senha root para postgresql"
-echo "Digite os comandos:"
-echo "# password 'NOVA_SENHA_POSTGRES'"
-echo "# \q"
-sudo -u postgres psql
-systemctl restart postgresql-9.6
+echo "Alterando senha root do postgres"
+echo "Digite a nova senha:"
+read -e $PASSWORD
+systemctl start postgresql-9.6
+psql -U postgres -c "alter user postgres with password '$PASSWORD';"
+systemctl stop postgresql-9.6
+# CONFIGURA POSTGRESQL PARA LIBERAR ACESSO AO BANCO
+rm -f /var/lib/pgsql/9.6/data/pg_hba.conf
+cp $DIR/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+systemctl start postgresql-9.6
 systemctl status postgresql-9.6
