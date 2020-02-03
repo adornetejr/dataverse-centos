@@ -48,21 +48,15 @@ echo "Etapa (2/7) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 jq.sh
-./jq.sh
-echo "Etapa (3/7) concluida!"
-echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
-read -e $X
-cd $DIR
 chmod 744 solr.sh
 ./solr.sh
-echo "Etapa (4/7) concluida!"
+echo "Etapa (3/7) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 postgresql.sh
 ./postgresql.sh
-echo "Etapa (5/7) concluida!"
+echo "Etapa (4/7) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
@@ -75,7 +69,7 @@ cd $DIR
 chmod 744 counter.sh
 ./counter.sh
 clear
-echo "Etapa (6/7) concluida!"
+echo "Etapa (5/7) concluida!"
 echo " "
 echo "ATENÇÃO!!"
 echo " "
