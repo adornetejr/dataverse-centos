@@ -7,7 +7,7 @@ yum install -y epel-release
 # ATUALIZA PACOTES
 yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS
-yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R
+yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R jq
 # INSTALA PACOTES OPCIONAIS
 yum install -y nano lynx net-tools git htop 
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
@@ -38,38 +38,32 @@ fi
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
 rm -rf /tmp/dvinstall
 unzip dvinstall.zip
-echo "Etapa (1/7) concluida!"
+echo "Etapa (1/6) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 glassfish.sh
 ./glassfish.sh
-echo "Etapa (2/7) concluida!"
-echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
-read -e $X
-cd $DIR
-chmod 744 jq.sh
-./jq.sh
-echo "Etapa (3/7) concluida!"
+echo "Etapa (2/6) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 solr.sh
 ./solr.sh
-echo "Etapa (4/7) concluida!"
+echo "Etapa (3/6) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 postgresql.sh
 ./postgresql.sh
-echo "Etapa (5/7) concluida!"
+echo "Etapa (4/6) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 rserve.sh
 ./rserve.sh
 clear
-echo "Etapa (6/7) concluida!"
+echo "Etapa (5/6) concluida!"
 echo " "
 echo "ATENÇÃO!!"
 echo " "
