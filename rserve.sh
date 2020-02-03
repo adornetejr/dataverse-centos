@@ -13,3 +13,12 @@ sudo R -e 'install.packages(c("R2HTML", "rjson", "DescTools", "Rserve", "haven")
 # install.packages("haven", repos="https://cloud.r-project.org/" )
 # q()
 # n
+useradd rserve
+rm -f /usr/lib/systemd/system/rserve.service
+cp $DIR/rserve.service /usr/lib/systemd/system/
+systemctl daemon-reload
+echo "Starting rserve!"
+systemctl start rserve.service
+systemctl enable rserve.service
+# STATUS DO SERVICO RSERVE
+systemctl status rserve.service
