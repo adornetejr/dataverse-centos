@@ -7,7 +7,7 @@ yum install -y epel-release
 # ATUALIZA PACOTES
 yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS
-yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R
+yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R R-core R-core-devel jq python36
 # INSTALA PACOTES OPCIONAIS
 yum install -y nano lynx net-tools git htop 
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
@@ -68,6 +68,12 @@ read -e $X
 cd $DIR
 chmod 744 rserve.sh
 ./rserve.sh
+echo "Etapa (5/7) concluida!"
+echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
+read -e $X
+cd $DIR
+chmod 744 counter.sh
+./counter.sh
 clear
 echo "Etapa (6/7) concluida!"
 echo " "
