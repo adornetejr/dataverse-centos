@@ -26,7 +26,7 @@ m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail.service
 # DOWNLOAD DOS PACOTES DE INSTALACAO DO DATAVERSE
 dvinstall="/tmp/dvinstall.zip"
-link=https://github.com/IQSS/dataverse/releases/download/v4.9.1/dvinstall.zip
+link=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
 cd /tmp/
 if [ -f "$dvinstall" ]
 then
