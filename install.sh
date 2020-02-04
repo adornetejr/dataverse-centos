@@ -5,6 +5,7 @@ yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
 yum install -y epel-release
 # ATUALIZA PACOTES
+yum update -y
 yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS
 yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R R-core R-core-devel jq python36
