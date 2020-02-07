@@ -158,12 +158,12 @@ dnl FEATURE(`relay_based_on_MX')dnl
 dnl # 
 dnl # Also accept email sent to "localhost.localdomain" as local email.
 dnl # 
-LOCAL_DOMAIN(`localhost.localdomain')dnl
+LOCAL_DOMAIN(`dataverse.c3.furg.br')dnl
 dnl #
 dnl # The following example makes mail from this host and any additional
 dnl # specified domains appear to be sent from mydomain.com
 dnl #
-dnl MASQUERADE_AS(`mydomain.com')dnl
+dnl MASQUERADE_AS(`dataverse.c3.furg.br')dnl
 dnl #
 dnl # masquerade not just the headers, but the envelope as well
 dnl #
@@ -173,8 +173,8 @@ dnl # masquerade not just @mydomainalias.com, but @*.mydomainalias.com as well
 dnl #
 dnl FEATURE(masquerade_entire_domain)dnl
 dnl #
-dnl MASQUERADE_DOMAIN(localhost)dnl
-dnl MASQUERADE_DOMAIN(localhost.localdomain)dnl
+dnl MASQUERADE_DOMAIN(dataverse)dnl
+dnl MASQUERADE_DOMAIN(dataverse.c3.furg.br)dnl
 FEATURE(`use_cw_file')dnl
 FEATURE(`use_ct_file')dnl
 FEATURE(`relay_hosts_only')dnl
