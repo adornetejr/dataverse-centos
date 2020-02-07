@@ -40,3 +40,5 @@ systemctl enable solr
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d server/solr/collection1/conf/
 sleep 30
 systemctl status solr
+echo "SOLR_LOCATION	127.0.0.1:8983" >> default.config
+echo "TWORAVENS_LOCATION	NOT INSTALLED" >> default.config

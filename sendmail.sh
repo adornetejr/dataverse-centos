@@ -8,10 +8,11 @@ echo "Confira as configurações dos arquivos /etc/hostname e /etc/hosts"
 echo "Pressione Enter para continuar!"
 read -e $X
 # CONFIGURA SENDMAIL
+hostname > /etc/mail/local-host-names
 hostname > /etc/mail/relay-domains
 rm -f /etc/mail/sendmail.mc
 cp $DIR/sendmail.mc /etc/mail/
 m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
-echo "ADMIN_EMAIL	root@$HOSTNAME" >> default.config
-echo "MAIL_SERVER	$HOSTNAME" >> default.config
 systemctl restart sendmail
+echo "ADMIN_EMAIL	root@$HOSTNAME" >> default.config
+echo "MAIL_SERVER	127.0.0.1" >> default.config

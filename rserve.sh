@@ -22,3 +22,7 @@ systemctl start rserve
 systemctl enable rserve
 # STATUS DO SERVICO RSERVE
 systemctl status rserve
+echo "RSERVE_HOST	127.0.0.1" >> default.config
+echo "RSERVE_PORT	6311" >> default.config
+echo "RSERVE_USER	rserve" >> default.config
+echo "RSERVE_PASSWORD	rserve" >> default.config

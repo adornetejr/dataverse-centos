@@ -32,3 +32,9 @@ rm -f /var/lib/pgsql/9.6/data/pg_hba.conf
 cp $DIR/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 systemctl start postgresql-9.6
 systemctl status postgresql-9.6
+echo "POSTGRES_ADMIN_PASSWORD	$PASSWORD" >> default.config
+echo "POSTGRES_SERVER	127.0.0.1" >> default.config
+echo "POSTGRES_PORT	5432" >> default.config
+echo "POSTGRES_DATABASE	dvndb" >> default.config
+echo "POSTGRES_USER	dvnapp" >> default.config
+echo "POSTGRES_PASSWORD	CREATE_USER_PASSWORD" >> default.config
