@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR=$PWD
-systemctl stop solr.service
+systemctl stop solr
 # DOWNLOAD DEPENDENCIA SOLR
 solr="/tmp/solr-7.3.1.tgz"
 link=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
@@ -34,9 +34,9 @@ rm -f /usr/lib/systemd/system/solr.service
 cp $DIR/solr.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "Starting solr!"
-systemctl start solr.service
-systemctl enable solr.service
+systemctl start solr
+systemctl enable solr
 # INICIA SOLR
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d server/solr/collection1/conf/
 sleep 30
-systemctl status solr.service
+systemctl status solr

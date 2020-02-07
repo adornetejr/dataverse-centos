@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR=$PWD
-systemctl stop glassfish.service
+systemctl stop glassfish
 # DOWNLOAD DEPENDENCIA GLASSFISH SERVER
 glassfish="/tmp/glassfish-4.1.zip"
 link=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
@@ -17,6 +17,7 @@ unzip glassfish-4.1.zip
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local
 rm -rf /usr/local/glassfish4
 mv glassfish4 /usr/local/
+echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >> default.config
 # ADICIONA USUARIO 
 cd /usr/local/glassfish4/glassfish/modules
 # ATUALIZA MODULO WELD-OSGI
@@ -32,6 +33,7 @@ rm -rf /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 # ALTERA PERMICOES PARA USUARIO glassfish
 useradd glassfish
+echo "GLASSFISH_USER	glassfish" >> default.config
 chown -R root:root /usr/local/glassfish4
 chown glassfish /usr/local/glassfish4/glassfish/lib
 chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
@@ -41,7 +43,7 @@ rm -f /usr/lib/systemd/system/glassfish.service
 cp $DIR/glassfish.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "Starting glassfish!"
-systemctl start glassfish.service
-systemctl enable glassfish.service
+systemctl start glassfish
+systemctl enable glassfish
 # STATUS DO SERVICO GLASSFISH
-systemctl status glassfish.service
+systemctl status glassfish

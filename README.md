@@ -45,7 +45,7 @@ Atualmente, o script suporta exclusivamente a versão 4.9.1 do Dataverse para o 
   * Local padrão de configuração: */etc/httpd/conf.d*
   * `$ systemctl {stop|start|restart|status} httpd.`
 * Shibboleth
-  * Fornece um provedor de autenticação adicional.
+  * Fornece um provedor de autenticação federada.
   * Arquivo padrão de configuração: */etc/shibboleth/shibboleth2.xml*
   * Serviço opcional, não configurado por padrão.
   * `$ systemctl {start|stop|restart|status} shibd`
