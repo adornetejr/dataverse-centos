@@ -10,15 +10,17 @@ dnl #
 include(`/usr/share/sendmail-cf/m4/cf.m4')dnl
 VERSIONID(`setup for linux')dnl
 OSTYPE(`linux')dnl
+define(`confDOMAIN_NAME',`smtp.dataverse.c3.furg.br')dnl
 dnl #
 dnl # Do not advertize sendmail version.
 dnl #
-dnl define(`confSMTP_LOGIN_MSG', `$j Sendmail; $b')dnl
+define(`confSMTP_LOGIN_MSG',`$j')dnl
+define(`confCF_VERSION',`0')dnl
 dnl #
 dnl # default logging level is 9, you might want to set it higher to
 dnl # debug the configuration
 dnl #
-dnl define(`confLOG_LEVEL', `9')dnl
+define(`confLOG_LEVEL',`1')dnl
 dnl #
 dnl # Uncomment and edit the following line if your outgoing mail needs to
 dnl # be sent out through an external mail server:
@@ -35,13 +37,13 @@ define(`ALIAS_FILE', `/etc/aliases')dnl
 define(`STATUS_FILE', `/var/log/mail/statistics')dnl
 define(`UUCP_MAILER_MAX', `2000000')dnl
 define(`confUSERDB_SPEC', `/etc/mail/userdb.db')dnl
-define(`confPRIVACY_FLAGS', `authwarnings,novrfy,noexpn,restrictqrun')dnl
-define(`confAUTH_OPTIONS', `A')dnl
+define(`confPRIVACY_FLAGS',`goaway,noexpn,novrfy,noetrn,noverb,nobodyreturn,needmailhelo,restrictmailq,restrictqrun,authwarnings')dnl
 dnl #
 dnl # The following allows relaying if the user authenticates, and disallows
 dnl # plaintext authentication (PLAIN/LOGIN) on non-TLS links
 dnl #
-dnl define(`confAUTH_OPTIONS', `A p')dnl
+define(`confAUTH_OPTIONS',`ABEX')dnl
+dnl # define(`confAUTH_OPTIONS', `A p')dnl
 dnl # 
 dnl # PLAIN is the preferred plaintext authentication method and used by
 dnl # Mozilla Mail and Evolution, though Outlook Express and other MUAs do
@@ -72,6 +74,7 @@ dnl define(`confTO_QUEUERETURN', `5d')dnl
 dnl define(`confQUEUE_LA', `12')dnl
 dnl define(`confREFUSE_LA', `18')dnl
 define(`confTO_IDENT', `0')dnl
+define(`confMAX_MESSAGE_SIZE',`2097152')dnl
 dnl # If you're operating in a DSCP/RFC-4594 environment with QoS
 dnl define(`confINET_QOS', `AF11')dnl
 dnl FEATURE(delay_checks)dnl
@@ -148,6 +151,7 @@ dnl # We strongly recommend not accepting unresolvable domains if you want to
 dnl # protect yourself from spam. However, the laptop and users on computers
 dnl # that do not have 24x7 DNS do need this.
 dnl #
+dnl DAEMON_OPTIONS(`M=AE')dnl
 FEATURE(`accept_unresolvable_domains')dnl
 dnl #
 dnl FEATURE(`relay_based_on_MX')dnl
@@ -171,8 +175,8 @@ dnl FEATURE(masquerade_entire_domain)dnl
 dnl #
 dnl MASQUERADE_DOMAIN(localhost)dnl
 dnl MASQUERADE_DOMAIN(localhost.localdomain)dnl
-dnl MASQUERADE_DOMAIN(mydomainalias.com)dnl
-dnl MASQUERADE_DOMAIN(mydomain.lan)dnl
+FEATURE(`use_cw_file')dnl
+FEATURE(`use_ct_file')dnl
 FEATURE(`relay_hosts_only')dnl
 MAILER(smtp)dnl
 MAILER(procmail)dnl

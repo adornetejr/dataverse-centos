@@ -18,7 +18,7 @@ rm -f /usr/lib/systemd/system/rserve.service
 cp $DIR/rserve.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "Starting rserve!"
-systemctl start rserve.service
-systemctl enable rserve.service
+systemctl start rserve
+systemctl enable rserve
 # STATUS DO SERVICO RSERVE
-systemctl status rserve.service
+systemctl status rserve

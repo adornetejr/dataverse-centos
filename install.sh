@@ -8,76 +8,69 @@ yum install -y epel-release
 yum update -y
 yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS
-yum install -y wget unzip curl mod_ssl lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R R-core R-core-devel jq python36
+yum install -y wget unzip curl java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R R-core R-core-devel jq python36 lsof httpd mod_ssl
 # INSTALA PACOTES OPCIONAIS
 yum install -y nano lynx net-tools git htop 
-# ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
-echo "IP Address"
-ip -f inet address | grep inet
-echo "Hostname"
-hostname
-echo "Altere os parametros do arquivo /etc/hosts com as informações acima!"
-echo "Após, pressione Enter para continuar!"
-read -e $X
-# CONFIGURA SENDMAIL
-hostname >> /etc/mail/relay-domains
-rm -f /etc/mail/sendmail.mc
-cp $DIR/sendmail.mc /etc/mail/
-m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
-systemctl restart sendmail.service
 # DOWNLOAD DOS PACOTES DE INSTALACAO DO DATAVERSE
 dvinstall="/tmp/dvinstall.zip"
 link=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
 cd /tmp/
-if [ -f "$dvinstall" ]
-then
-    ls $dvinstall
-    md5sum $dvinstall
-else
-    wget $link
-fi
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
 rm -rf /tmp/dvinstall
-unzip dvinstall.zip
-echo "Etapa (1/7) concluida!"
+if [ -f "$dvinstall" ]; then
+    ls $dvinstall
+    if [ md5sum $dvinstall == "de4f375f0c68c404e8adc52092cb8334  /tmp/dvinstall.zip" ]; then
+        unzip dvinstall.zip
+else
+    rm $dvinstall
+    wget $link
+    unzip dvinstall.zip
+fi
+echo "Etapa (1/8) concluida!"
+echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
+read -e $X
+cd $DIR
+chmod 744 sendmail.sh
+./sendmail.sh
+echo "Etapa (2/8) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 glassfish.sh
 ./glassfish.sh
-echo "Etapa (2/7) concluida!"
+echo "Etapa (3/8) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 solr.sh
 ./solr.sh
-echo "Etapa (3/7) concluida!"
+echo "Etapa (4/8) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 postgresql.sh
 ./postgresql.sh
-echo "Etapa (4/7) concluida!"
+echo "Etapa (5/8) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 rserve.sh
 ./rserve.sh
-echo "Etapa (5/7) concluida!"
+echo "Etapa (6/8) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 counter.sh
 ./counter.sh
 clear
-echo "Etapa (5/7) concluida!"
+echo "Etapa (7/8) concluida!"
 echo " "
 echo "ATENÇÃO!!"
 echo " "
 echo "Se a próxima etapa trancar em 'Updates Done. Retarting...' por mais de 30 segundos."
 echo " "
 echo "Abra outro terminal e execute o comando:"
-echo "# systemctl restart glassfish.service"
+echo "# systemctl restart glassfish"
 echo " "
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
@@ -85,15 +78,25 @@ read -e $X
 #
 # SE O SCRIPT TRANCAR EM 'Updates Done. Retarting...'
 # ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
-# $ systemctl restart glassfish.service
+# $ systemctl restart glassfish
 #
-HOST=hostname
-echo "HOST_DNS_ADDRESS    $HOST"
-echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4"
-echo "GLASSFISH_USER	glassfish"
-echo "ADMIN_EMAIL	root@$HOST"
-echo "MAIL_SERVER	$HOST"
-echo "POSTGRES_ADMIN_PASSWORD	ROOT_SECRET"
+POSTGRES_ADMIN_PASSWORD	YOUR_SECRET
+POSTGRES_SERVER	127.0.0.1
+POSTGRES_PORT	5432
+POSTGRES_DATABASE	dvndb
+POSTGRES_USER	dvnapp
+POSTGRES_PASSWORD	YOUR_SECRET
+SOLR_LOCATION	localhost:8983
+TWORAVENS_LOCATION	NOT INSTALLED
+RSERVE_HOST	localhost
+RSERVE_PORT	6311
+RSERVE_USER	rserve
+RSERVE_PASSWORD	rserve
+
+
+
+
+echo "POSTGRES_ADMIN_PASSWORD	ROOT_SECRET" >> default.config
 echo "POSTGRES_SERVER	127.0.0.1"
 echo "POSTGRES_PORT	5432"
 echo "POSTGRES_DATABASE	dvndb"
@@ -109,4 +112,4 @@ cd /tmp/dvinstall
 rm -rf default.config
 cp $DIR/default.config .
 ./install
-echo "Etapa (7/7) concluida!"
+echo "Etapa (8/8) concluida!"
