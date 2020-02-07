@@ -15,12 +15,9 @@ link=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
 cd /tmp/
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
 rm -rf /tmp/dvinstall
-if [ -f "$dvinstall" ]
-then
+if [ -f "$dvinstall" ]; then
     ls $dvinstall
-    MD5=md5sum $dvinstall
-    if [ "$MD5" == "de4f375f0c68c404e8adc52092cb8334  /tmp/dvinstall.zip" ]
-    then
+    if [ "$(md5sum $dvinstall)" == "de4f375f0c68c404e8adc52092cb8334  /tmp/dvinstall.zip" ]; then
         unzip dvinstall.zip
     fi
 else
