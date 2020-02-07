@@ -18,7 +18,8 @@ rm -rf /tmp/dvinstall
 if [ -f "$dvinstall" ]
 then
     ls $dvinstall
-    if [ md5sum $dvinstall == "de4f375f0c68c404e8adc52092cb8334  /tmp/dvinstall.zip" ]
+    MD5=md5sum $dvinstall
+    if [ "$MD5" == "de4f375f0c68c404e8adc52092cb8334  /tmp/dvinstall.zip" ]
     then
         unzip dvinstall.zip
     fi
