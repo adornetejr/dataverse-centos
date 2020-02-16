@@ -6,6 +6,7 @@ glassfish="/tmp/glassfish-4.1.zip"
 link=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
 cd /tmp/
 rm -rf glassfish-4.1
+rm -rf /usr/local/glassfish4
 if [ -f "$glassfish" ]; then
     ls $glassfish
     if [ "$(md5sum $glassfish)" == "de4f375f0c68c404e8adc52092cb8334  /tmp/glassfish-4.1.zip" ]; then
@@ -17,7 +18,6 @@ else
     unzip glassfish-4.1.zip
 fi
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local
-rm -rf /usr/local/glassfish4
 mv glassfish4 /usr/local/
 # ADICIONA USUARIO 
 cd /usr/local/glassfish4/glassfish/modules

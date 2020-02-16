@@ -10,7 +10,7 @@ yum install -y epel-release
 yum update -y
 yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS E RECOMENDADOS
-yum install -y nano htop wget git net-tools lynx unzip curl java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R R-core R-core-devel jq python36 lsof httpd mod_ssl shibboleth shibboleth-embedded-ds
+yum install -y nano htop wget git net-tools lynx unzip curl java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R R-core R-core-devel jq python36 lsof httpd mod_ssl
 # DOWNLOAD DO PACOTE DE INSTALACAO DO DATAVERSE
 dvinstall="/tmp/dvinstall.zip"
 link=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip

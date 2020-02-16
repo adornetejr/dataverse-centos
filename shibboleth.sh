@@ -3,6 +3,7 @@ DIR=$PWD
 systemctl stop shibd
 cd /etc/yum.repos.d
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo
+yum install -y shibboleth shibboleth-embedded-ds
 cd /usr/local/glassfish4/glassfish/modules/
 mv glassfish-grizzly-extra-all.jar glassfish-grizzly-extra-all.jar.bkp
 wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar
