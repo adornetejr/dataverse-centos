@@ -8,13 +8,13 @@ rm -rf counter-processor-0.0.1
 rm -rf /usr/local/counter-processor
 if [ -f "$counter" ]; then
     ls $counter
-    if [ "$(md5sum $counter)" == "de4f375f0c68c404e8adc52092cb8334  /tmp/v0.0.1.tar.gz" ]; then
+    if [ "$(md5sum $counter)" == "25ffe6a101675ec51439db40172f2424  /tmp/v0.0.1.tar.gz" ]; then
+        tar xvfz v0.0.1.tar.gz
+    else
+        rm $counter
+        wget $link
         tar xvfz v0.0.1.tar.gz
     fi
-else
-    rm $counter
-    wget $link
-    tar xvfz v0.0.1.tar.gz
 fi
 cp -R counter-processor-0.0.1 /usr/local/counter-processor
 cd /usr/local/counter-processor
