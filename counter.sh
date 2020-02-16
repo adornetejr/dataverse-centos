@@ -15,7 +15,7 @@ rm -rf counter-processor-0.0.1 /usr/local/counter-processor-0.0.1
 tar xvfz v0.0.1.tar.gz
 cp -R counter-processor-0.0.1 /usr/local
 cd /usr/local/counter-processor-0.0.1
-wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz
+cp $PWD/GeoLite2-Country GeoLite2-Country.tar.gz
 tar xvfz GeoLite2-Country.tar.gz
 cp GeoLite2-Country_*/GeoLite2-Country.mmdb maxmind_geoip
 # ADICIONA USUARIO COUNTER
