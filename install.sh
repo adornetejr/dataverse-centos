@@ -61,28 +61,12 @@ read -e $X
 cd $DIR
 chmod 744 counter.sh
 ./counter.sh
-clear
 echo "Etapa (7/10) concluida!"
-echo " "
-echo "ATENÇÃO!!"
-echo " "
-echo "Se a próxima etapa trancar em 'Updates Done. Retarting...' por mais de 30 segundos."
-echo " "
-echo "Abra outro terminal e execute o comando:"
-echo "# systemctl restart glassfish"
-echo " "
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
-# EXECUTA SCRIPT DE INSTALACAO DO DATAVERSE
-#
-# SE O SCRIPT TRANCAR EM 'Updates Done. Retarting...'
-# ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
-# $ systemctl restart glassfish
-#
-cd /tmp/dvinstall
-rm -rf default.config
-cp $DIR/default.config .
-./install
+cd $DIR
+chmod 744 dataverse.sh
+./dataverse.sh
 echo "Etapa (8/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
@@ -95,5 +79,6 @@ read -e $X
 cd $DIR
 chmod 744 shibboleth.sh
 ./shibboleth.sh
+echo "Etapa (10/10) concluida!"
 echo "Instalação concluida!"
 echo "Faça a relação de confiança para o login federado funcionar!"

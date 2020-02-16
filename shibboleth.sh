@@ -32,8 +32,15 @@ mv sp-key.pem sp-encrypt-key.pem
 ./keygen.sh -y 3 -f -u shibd -g shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
 mv sp-cert.pem sp-signing-cert.pem
 mv sp-key.pem sp-signing-key.pem
+rm -rf /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
+cp $DIR/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc
+cd /etc/selinux/targeted/src/policy/domains/misc
+checkmodule -M -m -o shibboleth.mod shibboleth.te
+semodule_package -o shibboleth.pp -m shibboleth.mod
+semodule -i shibboleth.pp
 cd $DIR
 curl -X POST -H 'Content-type: application/json' --upload-file shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 systemctl enable shibd
-systemctl start shibd
+systemctl restart httpd.service
+systemctl restart shibd
 systemctl status shibd
