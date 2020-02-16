@@ -9,13 +9,13 @@ rm -rf glassfish-4.1
 rm -rf /usr/local/glassfish4
 if [ -f "$glassfish" ]; then
     ls $glassfish
-    if [ "$(md5sum $glassfish)" == "de4f375f0c68c404e8adc52092cb8334  /tmp/glassfish-4.1.zip" ]; then
+    if [ "$(md5sum $glassfish)" == "2fd41ad9af8d41d1c721c1b25191f674  /tmp/glassfish-4.1.zip" ]; then
+        unzip glassfish-4.1.zip
+    else
+        rm $glassfish
+        wget $link
         unzip glassfish-4.1.zip
     fi
-else
-    rm $glassfish
-    wget $link
-    unzip glassfish-4.1.zip
 fi
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local
 mv glassfish4 /usr/local/

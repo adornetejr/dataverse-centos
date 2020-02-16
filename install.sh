@@ -21,11 +21,11 @@ if [ -f "$dvinstall" ]; then
     ls $dvinstall
     if [ "$(md5sum $dvinstall)" == "de4f375f0c68c404e8adc52092cb8334  /tmp/dvinstall.zip" ]; then
         unzip dvinstall.zip
+    else
+        rm $dvinstall
+        wget $link
+        unzip dvinstall.zip
     fi
-else
-    rm $dvinstall
-    wget $link
-    unzip dvinstall.zip
 fi
 echo "Etapa (1/9) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
