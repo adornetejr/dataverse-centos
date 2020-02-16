@@ -1,6 +1,7 @@
 #!/bin/bash
 DIR=$PWD
 systemctl stop rserve
+yum install -y R R-core R-core-devel
 # INSTALA DEPENDENCIAS RSERVE
 sudo R -e 'dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)'
 sudo R -e '.libPaths(Sys.getenv("R_LIBS_USER"))'

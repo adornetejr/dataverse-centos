@@ -1,6 +1,7 @@
 #!/bin/bash
 DIR=$PWD
 systemctl stop sendmail
+yum install -y sendmail sendmail-cf m4
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
 echo "IP Address"
 ip -f inet address | grep inet
