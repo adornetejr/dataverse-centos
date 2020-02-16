@@ -14,5 +14,5 @@ rm -f /etc/mail/sendmail.mc
 cp $DIR/sendmail.mc /etc/mail/
 m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail
-echo "ADMIN_EMAIL	root@$HOSTNAME" >> default.config
+echo "ADMIN_EMAIL	admin@$HOSTNAME" >> default.config
 echo "MAIL_SERVER	127.0.0.1" >> default.config

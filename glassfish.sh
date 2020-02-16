@@ -41,8 +41,8 @@ rm -f /usr/lib/systemd/system/glassfish.service
 cp $DIR/glassfish.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "Starting glassfish!"
-systemctl start glassfish
 systemctl enable glassfish
+systemctl start glassfish
 # STATUS DO SERVICO GLASSFISH
 systemctl status glassfish
 echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >> default.config

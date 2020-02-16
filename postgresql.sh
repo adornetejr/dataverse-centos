@@ -14,8 +14,8 @@ yum install -y postgresql96-server
 # INICIALIZA BANCO DE DADOS POSTGRESQL
 /usr/pgsql-9.6/bin/postgresql96-setup initdb
 echo "Starting postgresql-9.6!"
-systemctl start postgresql-9.6
 systemctl enable postgresql-9.6
+systemctl start postgresql-9.6
 systemctl stop postgresql-9.6
 # CONFIGURA POSTGRESQL PARA LIBERAR ACESSO AO BANCO
 rm -f /var/lib/pgsql/9.6/data/pg_hba.conf

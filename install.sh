@@ -1,5 +1,7 @@
 #!/bin/bash
 DIR=$PWD
+# REMOVE CONFIGURAÇÕES ANTIGAS
+yum remove -y sendmail httpd mod_ssl shibboleth shibboleth-embedded-ds
 # ATUALIZA PACOTES
 yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
@@ -8,7 +10,7 @@ yum install -y epel-release
 yum update -y
 yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS E RECOMENDADOS
-yum install -y nano htop wget git net-tools lynx unzip curl java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R R-core R-core-devel jq python36 lsof httpd mod_ssl
+yum install -y nano htop wget git net-tools lynx unzip curl java-1.8.0-openjdk java-1.8.0-openjdk-devel ImageMagick sendmail sendmail-cf m4 R R-core R-core-devel jq python36 lsof httpd mod_ssl shibboleth shibboleth-embedded-ds
 # DOWNLOAD DO PACOTE DE INSTALACAO DO DATAVERSE
 dvinstall="/tmp/dvinstall.zip"
 link=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
@@ -25,44 +27,50 @@ else
     wget $link
     unzip dvinstall.zip
 fi
-echo "Etapa (1/8) concluida!"
+echo "Etapa (1/9) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 sendmail.sh
 ./sendmail.sh
-echo "Etapa (2/8) concluida!"
+echo "Etapa (2/9) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 glassfish.sh
 ./glassfish.sh
-echo "Etapa (3/8) concluida!"
+echo "Etapa (3/9) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 solr.sh
 ./solr.sh
-echo "Etapa (4/8) concluida!"
+echo "Etapa (4/9) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 postgresql.sh
 ./postgresql.sh
-echo "Etapa (5/8) concluida!"
+echo "Etapa (5/9) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 rserve.sh
 ./rserve.sh
-echo "Etapa (6/8) concluida!"
+echo "Etapa (6/9) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 counter.sh
 ./counter.sh
+echo "Etapa (7/9) concluida!"
+echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
+read -e $X
+cd $DIR
+chmod 744 shibboleth.sh
+./shibboleth.sh
 clear
-echo "Etapa (7/8) concluida!"
+echo "Etapa (8/9) concluida!"
 echo " "
 echo "ATENÇÃO!!"
 echo " "
@@ -83,4 +91,4 @@ cd /tmp/dvinstall
 rm -rf default.config
 cp $DIR/default.config .
 ./install
-echo "Etapa (8/8) concluida!"
+echo "Etapa (9/9) concluida!"
