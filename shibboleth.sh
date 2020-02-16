@@ -1,5 +1,6 @@
 #!/bin/bash
 DIR=$PWD
+systemctl stop glassfish
 systemctl stop shibd
 rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 cd /etc/yum.repos.d
