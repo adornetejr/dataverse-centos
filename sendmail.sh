@@ -1,3 +1,6 @@
+#!/bin/bash
+DIR=$PWD
+systemctl stop sendmail
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
 echo "IP Address"
 ip -f inet address | grep inet
