@@ -6,6 +6,7 @@ solr="/tmp/solr-7.3.1.tgz"
 link=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
 cd /tmp/
 rm -rf solr-7.3.1
+rm -rf /usr/local/solr
 if [ -f "$solr" ]; then
     ls $solr
     if [ "$(md5sum $solr)" == "de4f375f0c68c404e8adc52092cb8334  /tmp/solr-7.3.1.tgz" ]; then
@@ -17,7 +18,6 @@ else
     tar xvzf solr-7.3.1.tgz
 fi
 # CRIA PASTA DE INSTALAÇÃO
-rm -rf /usr/local/solr
 mkdir /usr/local/solr
 cp -rf solr-7.3.1 /usr/local/solr
 # ADICIONA USUARIO solr

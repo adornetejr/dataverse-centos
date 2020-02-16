@@ -5,6 +5,7 @@ counter="/tmp/v0.0.1.tar.gz"
 link=https://github.com/CDLUC3/counter-processor/archive/v0.0.1.tar.gz
 cd /tmp/
 rm -rf counter-processor-0.0.1
+rm -rf /usr/local/counter-processor
 if [ -f "$counter" ]; then
     ls $counter
     if [ "$(md5sum $counter)" == "de4f375f0c68c404e8adc52092cb8334  /tmp/v0.0.1.tar.gz" ]; then
