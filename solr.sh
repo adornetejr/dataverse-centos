@@ -15,8 +15,8 @@ fi
 rm -rf solr-7.3.1
 tar xvzf solr-7.3.1.tgz
 # CRIA PASTA DE INSTALAÇÃO
+rm -rf /usr/local/solr
 mkdir /usr/local/solr
-rm -rf /usr/local/solr/solr-7.3.1
 cp -rf solr-7.3.1 /usr/local/solr
 # ADICIONA USUARIO solr
 useradd solr
