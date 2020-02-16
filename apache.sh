@@ -1,6 +1,8 @@
 #!/bin/bash
 DIR=$PWD
 systemctl stop httpd
+yum remove -y httpd mod_ssl
+rm -rf /etc/httpd
 yum install -y httpd mod_ssl
 sed 's/localdomain/'$HOSTNAME'/g' 080-default.conf > 080-default.conf
 rm -rf /etc/httpd/conf.d/080-default.conf
