@@ -5,15 +5,17 @@ systemctl stop solr
 solr="/tmp/solr-7.3.1.tgz"
 link=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
 cd /tmp/
-if [ -f "$solr" ]
-then
-    ls $solr
-    md5sum $solr
-else
-    wget $link
-fi
 rm -rf solr-7.3.1
-tar xvzf solr-7.3.1.tgz
+if [ -f "$solr" ]; then
+    ls $solr
+    if [ "$(md5sum $solr)" == "de4f375f0c68c404e8adc52092cb8334  /tmp/solr-7.3.1.tgz" ]; then
+        tar xvzf solr-7.3.1.tgz
+    fi
+else
+    rm $solr
+    wget $link
+    tar xvzf solr-7.3.1.tgz
+fi
 # CRIA PASTA DE INSTALAÇÃO
 rm -rf /usr/local/solr
 mkdir /usr/local/solr
