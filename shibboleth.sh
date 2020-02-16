@@ -19,10 +19,13 @@ mv shibboleth2.xml shibboleth2.xml.bkp
 cp $DIR/shibboleth2.xml .
 mv attribute-map.xml attribute-map.xml.bkp
 cp $DIR/attribute-map.xml .
-./keygen.sh -f -u _shibd -g _shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
+useradd shibd
+chown -R root:root /etc/shibboleth
+rm -rf *.pem
+./keygen.sh -f -u shibd -g shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
 mv sp-cert.pem sp-encrypt-cert.pem
 mv sp-key.pem sp-encrypt-key.pem
-./keygen.sh -f -u _shibd -g _shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
+./keygen.sh -f -u shibd -g shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
 mv sp-cert.pem sp-signing-cert.pem
 mv sp-key.pem sp-signing-key.pem
 systemctl enable shibd

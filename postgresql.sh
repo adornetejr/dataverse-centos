@@ -23,8 +23,7 @@ rm -f /var/lib/pgsql/9.6/data/pg_hba.conf
 cp $DIR/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 # DEFINE SENHA ADMIN DO POSTGRESQL
 echo "Alterando senha root do postgres"
-echo "Digite a nova senha:"
-read -e $PASSWORD
+read -s -p "Password: " PASSWORD
 systemctl start postgresql-9.6
 psql -U postgres -c "alter user postgres with password '$PASSWORD';"
 systemctl stop postgresql-9.6

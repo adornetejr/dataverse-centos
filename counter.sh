@@ -18,7 +18,7 @@ if [ -f "$counter" ]; then
 fi
 cp -R counter-processor-0.0.1 /usr/local/counter-processor
 cd /usr/local/counter-processor
-cp $PWD/GeoLite2-Country GeoLite2-Country.tar.gz
+cp $DIR/GeoLite2-Country GeoLite2-Country.tar.gz
 tar xvfz GeoLite2-Country.tar.gz
 cp GeoLite2-Country_*/GeoLite2-Country.mmdb maxmind_geoip
 # ADICIONA USUARIO COUNTER
@@ -26,4 +26,4 @@ useradd counter
 chown -R counter:counter /usr/local/counter-processor
 python3.6 -m ensurepip
 cd /usr/local/counter-processor
-pip3 install -r requirements.txt
+pip3 install --counter -r requirements.txt
