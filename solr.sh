@@ -34,8 +34,8 @@ rm -f /usr/lib/systemd/system/solr.service
 cp $DIR/solr.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "Starting solr!"
-systemctl start solr
 systemctl enable solr
+systemctl start solr
 # INICIA SOLR
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d server/solr/collection1/conf/
 sleep 30
