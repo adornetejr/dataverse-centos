@@ -1,6 +1,6 @@
 #!/bin/bash
-# INSTALA DEPENDENCIA COUNTER PROCESSOR
 DIR=$PWD
+# INSTALA DEPENDENCIA COUNTER PROCESSOR
 counter="/tmp/v0.0.1.tar.gz"
 link=https://github.com/CDLUC3/counter-processor/archive/v0.0.1.tar.gz
 cd /tmp/

@@ -1,7 +1,7 @@
 #!/bin/bash
 DIR=$PWD
 # REMOVE CONFIGURAÇÕES ANTIGAS
-yum remove -y sendmail httpd mod_ssl shibboleth shibboleth-embedded-ds
+yum remove -y sendmail sendmail-cf httpd mod_ssl shibboleth shibboleth-embedded-ds
 # ATUALIZA PACOTES
 yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7

@@ -1,5 +1,6 @@
 #!/bin/bash
 DIR=$PWD
+systemctl stop postgresql-9.6
 yum remove -y postgresql96-server
 yum autoremove -y
 rm -rf /usr/pgsql-9.6
