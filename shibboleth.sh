@@ -1,6 +1,7 @@
 #!/bin/bash
 DIR=$PWD
 systemctl stop shibd
+rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 cd /etc/yum.repos.d
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo
 yum install -y shibboleth shibboleth-embedded-ds
@@ -28,6 +29,8 @@ mv sp-key.pem sp-encrypt-key.pem
 ./keygen.sh -f -u shibd -g shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
 mv sp-cert.pem sp-signing-cert.pem
 mv sp-key.pem sp-signing-key.pem
+cd $DIR
+curl -X POST -H 'Content-type: application/json' --upload-file shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 systemctl enable shibd
 systemctl start shibd
 systemctl status shibd

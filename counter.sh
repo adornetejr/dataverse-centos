@@ -26,4 +26,4 @@ useradd counter
 chown -R counter:counter /usr/local/counter-processor
 python3.6 -m ensurepip
 cd /usr/local/counter-processor
-pip3 install --counter -r requirements.txt
+pip3 install --user counter -r requirements.txt
