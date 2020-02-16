@@ -2,6 +2,8 @@
 DIR=$PWD
 systemctl stop glassfish
 systemctl stop shibd
+yum remove -y shibboleth shibboleth-embedded-ds
+rm -rf /etc/shibboleth
 rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 cd /etc/yum.repos.d
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo
@@ -24,10 +26,10 @@ cp $DIR/attribute-map.xml .
 useradd shibd
 chown -R root:root /etc/shibboleth
 rm -rf *.pem
-./keygen.sh -f -u shibd -g shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
+./keygen.sh -y 3 -f -u shibd -g shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
 mv sp-cert.pem sp-encrypt-cert.pem
 mv sp-key.pem sp-encrypt-key.pem
-./keygen.sh -f -u shibd -g shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
+./keygen.sh -y 3 -f -u shibd -g shibd -h dataverse.c3.furg.br -e https://dataverse.c3.furg.br/shibboleth
 mv sp-cert.pem sp-signing-cert.pem
 mv sp-key.pem sp-signing-key.pem
 cd $DIR

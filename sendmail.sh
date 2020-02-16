@@ -1,23 +1,27 @@
 #!/bin/bash
 DIR=$PWD
+systemctl stop sendmail
+yum remove -y sendmail sendmail-cf
+rm -rf /etc/mail
+yum install -y sendmail sendmail-cf m4
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
-until $OP != "Y"
+until $OP != "y"
 do
     clear
     echo "IP Address"
     ip -f inet address | grep inet
-    echo "Hostname"
+    echo "Hostname FQDN"
     echo $HOSTNAME
-    read -p "Hostname está correto? (Y/n)" X
-    if [ "$OP" != "Y" ]; then
+    read -p "Hostname está correto? (y/n): " OP
+    if [ "$OP" == "n" ]; then
         echo "Corrija os arquivos /etc/hosts e /etc/hostname então!"
         echo "Precione Enter após ajustar"
         read -e $X
+    else
+        break
     fi
 done
 echo "HOST_DNS_ADDRESS    $HOSTNAME" > $DIR/default.config
-systemctl stop sendmail
-yum install -y sendmail sendmail-cf m4
 # CONFIGURA SENDMAIL
 hostname > /etc/mail/local-host-names
 hostname > /etc/mail/relay-domains
