@@ -43,10 +43,10 @@ chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
 rm -f /usr/lib/systemd/system/glassfish.service
 cp $DIR/glassfish.service /usr/lib/systemd/system/
 systemctl daemon-reload
+echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >> default.config
+echo "GLASSFISH_USER	glassfish" >> default.config
 echo "Starting glassfish!"
 systemctl enable glassfish
 systemctl start glassfish
 # STATUS DO SERVICO GLASSFISH
 systemctl status glassfish
-echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >> default.config
-echo "GLASSFISH_USER	glassfish" >> default.config
