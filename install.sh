@@ -33,48 +33,36 @@ chmod 744 sendmail.sh
 ./sendmail.sh
 echo "Etapa (2/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
-#read -e $X
+read -e $X
 cd $DIR
 chmod 744 glassfish.sh
-#./glassfish.sh
+./glassfish.sh
 echo "Etapa (3/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
-#read -e $X
+read -e $X
 cd $DIR
 chmod 744 solr.sh
-#./solr.sh
+./solr.sh
 echo "Etapa (4/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
-#read -e $X
+read -e $X
 cd $DIR
 chmod 744 postgresql.sh
-#./postgresql.sh
+./postgresql.sh
 echo "Etapa (5/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
-#read -e $X
+read -e $X
 cd $DIR
 chmod 744 rserve.sh
-#./rserve.sh
+./rserve.sh
 echo "Etapa (6/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
-#read -e $X
+read -e $X
 cd $DIR
 chmod 744 counter.sh
 ./counter.sh
-echo "Etapa (7/10) concluida!"
-echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
-read -e $X
-cd $DIR
-chmod 744 apache.sh
-./apache.sh
-echo "Etapa (8/10) concluida!"
-echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
-read -e $X
-cd $DIR
-chmod 744 shibboleth.sh
-./shibboleth.sh
 clear
-echo "Etapa (9/10) concluida!"
+echo "Etapa (7/10) concluida!"
 echo " "
 echo "ATENÇÃO!!"
 echo " "
@@ -95,4 +83,17 @@ cd /tmp/dvinstall
 rm -rf default.config
 cp $DIR/default.config .
 ./install
-echo "Etapa (10/10) concluida!"
+echo "Etapa (8/10) concluida!"
+echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
+read -e $X
+cd $DIR
+chmod 744 apache.sh
+./apache.sh
+echo "Etapa (9/10) concluida!"
+echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
+read -e $X
+cd $DIR
+chmod 744 shibboleth.sh
+./shibboleth.sh
+echo "Instalação concluida!"
+echo "Faça a relação de confiança para o login federado funcionar!"
