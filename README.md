@@ -26,7 +26,7 @@ O Dataverse é um aplicativo da Web de código-fonte aberto para compartilhar, p
 
 ### Versão
 
-Atualmente, o script suporta exclusivamente a versão 4.9.1 do Dataverse para o sistema CentOS 7 com todos os serviços em execução na mesma máquina. Recomenda-se o uso de um servidor dedicado para execução do script pois ele realizará alterações no sistema. 
+Atualmente, o script suporta exclusivamente a versão 4.19 do Dataverse para o sistema CentOS 7 com todos os serviços em execução na mesma máquina. Recomenda-se o uso de um servidor dedicado para execução do script pois ele realizará alterações no sistema. 
 
 ### Componentes principais
 
