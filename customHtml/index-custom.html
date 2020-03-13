@@ -1,0 +1,520 @@
+</div>
+<meta charset="utf-8"/>
+
+	<!--- CARROCEL -->
+	<div class="container-fluid" id="carocel">
+
+		<!--- texto de repositorio --->
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<p class="nome_repositorio"> Repositório de Dados de Pesquisa - C3 </p>
+				<p class="frase_efeito"> Publique, compartilhe e <br/> consulte dados de pesquisa!</p>
+			</div>
+		</div>
+		
+		<!--- Ícones para o texto ---> 
+		<div class="row">
+			<div class="col-sm-3 text-center"></div>
+
+			<div class="col-sm-1 text-center icones" >	
+				<a href="https://dataverse.c3.furg.br/" class="link_icones" target="_new"> 
+					<img src="https://dataverse.c3.furg.br/logos/1/bt_pesquisar.png" class="img-fluid" />  
+					<br/>
+					<p class="texto_icones"> Explore o Repositório </p>
+				</a>
+			</div>
+			
+			<div class="col-sm-1 text-center"></div>
+
+			<div class="col-sm-1 text-center icones" >	
+				<a href="#publique_seus_dados" class="link_icones">
+					<img src="https://dataverse.c3.furg.br/logos/1/bt_publicar.png" class="img-fluid"/> 
+					<br/>
+					<p class="texto_icones"> Publique seus dados </p>
+				</a>
+			</div>
+
+			<div class="col-sm-1 text-center"></div>
+
+			<div class="col-sm-1 text-center icones" >	
+				<a href="#saiba_mais" class="link_icones">
+					<img src="https://dataverse.c3.furg.br/logos/1/bt_saiba_mais.png" class="img-fluid"/> 
+					<br/>
+					<p class="texto_icones"> Saiba mais </p>
+				</a>
+			</div>
+		</div>
+
+		<!--- Formulario de busca no repositorio -->
+		<div class="row" style="margin-top: 40px;">
+			<div class="col-sm-3 text-center"></div>
+			<div class="col-sm-6">
+				<span class="legend">Busque no repositório</span>
+				
+				<div class="input-group">
+					<input type="text" class="form-control" id="SearchForm">
+					<div class="input-group-addon" style="padding: 0px">
+						<img src="https://dataverse.c3.furg.br/logos/1/lupa_busca.png" id="btn_submit" style="cursor: pointer; height: 32px;"/>
+					</div>					
+				</div>			
+			</div>
+			<div class="col-sm-3 text-center"></div>
+		</div>
+
+		<!-- SCRIPT PARA CONSULTA --->
+		<script>
+			$("#btn_submit").click(function () { 
+				enviarconsulta();				
+			});			
+
+			$('#SearchForm').keypress(function (e) {				
+				if (e.which == 13) {
+					enviarconsulta();
+				}
+			});			
+
+			function enviarconsulta()
+			{
+				var x=document.getElementById('SearchForm').value;				                
+				window.location.href ='https://dataverse.c3.furg.br/dataverse/root/?q='+x;
+			}
+		</script>		
+	</div>		
+
+	<!-- Links para os texto-->
+	<div class="container" id="topo">
+		<div class="row">
+			<div class="col-sm-12 text-justify">	
+				<a name="saiba_mais"> </a>
+
+				<!---------------- SOBRE --------------------------->
+				<h1> Sobre o Repositório C3 </h1>
+
+				<div id="texto_sobre">
+					<p>
+						Este Repositório é parte da iniciativa da Rede Nacional de Ensino e Pesquisa (RNP) de fornecer acesso a longo prazo e curadoria de dados de pesquisa. O repositório foi lançado em 2019 como um serviço para pesquisadores brasileiros vinculados a instituições de ensino e pesquisa com o objetivo de possibilitar a publicação, o compartilhamento e reuso de dados de pesquisa.
+					</p>
+				</div>
+
+				<div id="texto_sobre_leia_mais"> 
+					<button type="button" class="btn btn-outline-primary"> Leia Mais </button> 
+				</div>
+
+				<script>
+					$("#texto_sobre_leia_mais").click(function() {
+						$("#texto_sobre_leia_mais").toggle();
+						$("#texto_sobre_complemento").toggle( "slow", function() {
+    							// Animation complete.
+    						});;							
+					});
+				</script>
+
+				<div id="texto_sobre_complemento" style="display: none;">						
+					<h3> A Rede Nacional de Ensino e Pesquisa </h3>
+					<p>
+						O Repositório C3 é parte integrante dos projetos da Rede Nacional de Ensino e Pesquisa (RNP). A RNP é uma rede avançada de alcance nacional para educação superior, pesquisa e inovação. Em 1992, auxiliaram a trazer a internet para o Brasil e continuam a promover o uso inovador de Tecnologias da Informação e Comunicação, impulsionando ciência e educação para todos.
+					</p>
+					<h3> História </h3>
+					<p>
+						Em março de 2017, a Rede Nacional de Ensino e Pesquisa (RNP) e o Instituto Brasileiro de Informação em Ciência e Tecnologia (IBICT) lançaram edital com intuito de criar o Programa Nacional de Acesso Aberto a Dados de Pesquisa para promover o compartilhamento de dados entre pesquisadores e beneficiar a produção de conhecimento científico no Brasil. O Grupo de Trabalho Rede de Dados de Pesquisa Brasileira (GT-RDP Brasil) publicou os relatórios <a href="https://lume.ufrgs.br/handle/10183/185138" target="_new"> repositórios brasileiros de dados de pesquisa </a>, <a href="https://lume.ufrgs.br/handle/10183/185195" target="_new"> práticas e percepções dos pesquisadores </a>, e <a href="https://lume.ufrgs.br/handle/10183/185126" target="_new"> soluções tecnológicas para compartilhamento de dados no Brasil  </a> e prototipou um sistema para disseminação de informações científicas. O primeiro protótipo do repositório contemplou dados de pesquisa da Rede-Ipê. Dessa iniciativa, em 2019, surgiu o repositório RNP, para compartilhamento de dados de pesquisa no país. Além da RNP e do IBICT, o GT-RDP Brasil é formado também por pesquisadores da Faculdade de Biblioteconomia e Comunicação da Universidade Federal do Rio Grande do Sul (UFRGS) e do Centro de Ciências Computacionais da Fundação Universidade do Rio Grande (FURG).
+					</p>
+
+					<h3> Termos de Uso do Repositório RNP </h3>
+					<h5 class="subtitles"> 1. Aceite dos Termos </h5>
+					<p>	
+						Ao utilizar o serviço do Repositório do C3, você declara que concorda e aceita os termos e condições aqui estabelecidos e as demais regras, políticas e procedimentos dos serviços, além das leis aplicáveis.
+					</p>
+
+					<h5 class="subtitles"> 2. Regras de conduta </h5>
+					<p>
+						Como usuário registrado ou como convidado não registrado, você pode fazer o download do conteúdo disponível publicamente no Repositório de Dados. Você deve fornecer informações de registro precisas, completas e atualizadas. O Repositório de Dados tem o direito de recusar o registro ou cancelar uma conta.
+					</p>
+
+					<p>
+						Você é o único responsável pelas atividades que ocorrem em sua conta e será responsável por manter a confidencialidade da senha. Você nunca deve usar a conta de outro usuário sem permissão dele. Você notificará imediatamente o Repositório de Dados por escrito sobre qualquer uso não autorizado de sua conta, ou outra violação de segurança relacionada à conta.
+					</p>
+
+					<p>
+						Ao ter uma conta no Repositório, você reconhece que: 
+						<ol style="list-style-type: lower-latin;">
+							<li>os detalhes da sua conta (incluindo nome, sobrenome, endereço de e-mail e nome de usuário) são pesquisáveis ​​por outros usuários;</li>
+							<li>os detalhes da sua conta podem ser gravados quando você faz o download de conjuntos de dados e essas informações podem ser visualizadas pelo autor;</li> 
+							<li>seu primeiro nome, sobrenome e afiliação serão vinculados aos seus uploads.</li>
+						</ol>
+					</p>
+
+					<h5 class="subtitles"> 3. Upload pelo usuário </h5>
+					<p>
+						O Repositório do C3 não se responsabiliza por qualquer upload. Também não são de responsabilidade do Repositório RNP:
+						<ol style="list-style-type: lower-latin;">
+							<li> o conteúdo do Upload do Usuário, formato, metadados ou a falta deles;</li>
+							<li> representação legal do usuário em quaisquer circunstâncias referentes aos uploads;</li>
+							<li> qualquer perda ou dano aos uploads do usuário, no todo ou em parte, de qualquer causa.</li>
+						</ol>
+					</p>
+
+					<p> Ao fazer uploads, ou permitir que outros o façam, você endossa que:
+						<ol style="list-style-type: lower-latin;">
+							<li> os uploads não infringem os direitos autorais ou outros direitos de propriedade intelectual; </li>
+							<li> os uploads não violam a legislação relacionada ao dado publicado; </li>
+							<li> os uploads não contêm vírus ou quaisquer outros códigos de computador, arquivos ou programas projetados ou destinados a interromper, danificar, limitar ou interferir no funcionamento adequado de qualquer software, hardware ou equipamento de telecomunicações ou para danificar ou obter acesso não autorizado a qualquer sistema, arquivos de dados ou outras informações do Repositório  ou de terceiros;</li>
+							<li> os uploads receberam todas as aprovações necessárias, obrigatórias e aplicáveis​​, incluindo, mas não se limitando, às aprovações de comitês de revisão institucional ou de terceiros com os quais os usuários têm obrigações contratuais relevantes; </li>
+							<li> os uploads não devem conter informações sensíveis, de modo que a identificação de quaisquer sujeitos não seja possível. As únicas exceções são quando:
+								<ul>
+									<li> a informação foi previamente divulgada ao público; </li>
+									<li> a informação descreve figuras públicas, e os dados se relacionam com os seus papéis públicos ou outros assuntos não sensíveis; </li>
+									<li> acaba o embargo relacionado aos dados coletados;</li>
+									<li> odos os indivíduos identificados deram consentimento explícito e informado, permitindo a divulgação pública das informações no conjunto de dados.</li>
+								</ul>
+							</li>
+						</ol>
+					</p>
+
+					<p>
+						Você ainda se responsabiliza por notificar o Administrador do Repositório RNP caso tenha conhecimento de qualquer problema depois de enviar um upload, como por exemplo: inconsistências de confidencialidade, privacidade ou proteção de dados, licenciamento ou propriedade intelectual relacionados a ele.
+					</p>
+
+					<h3> Licenças de uso </h3>
+					<p>
+						O Repositório de Dados usa a opção Creative Commons CC BY como licença padrão. Essa opção permite que outras pessoas redistribuam, remixem, adaptem e criem novos materiais a partir do seu trabalho, até mesmo comercialmente, desde que seja atribuído o devido crédito.								
+					</p>
+
+					<p>
+						As restrições aplicadas ao uso dos dados referem-se a:
+						<ol style="list-style-type: lower-latin;">
+							<li> obter informações de terceiros sobre os materiais baixados, identificando dados de pesquisa com o auxílio de informações adquiridas em outro lugar; </li>
+							<li> produzir conexões ou links entre as informações incluídas nos conjuntos de dados e outras informações de terceiros que poderiam ser usadas para identificar indivíduos ou organizações, não se limitando a sujeitos de pesquisa; </li>
+							<li> extrair informações dos materiais que poderiam ajudar a obter conhecimento ou meio de contatar quaisquer sujeitos já conhecidos do usuário. </li>
+						</ol>
+					</p>
+
+					<p>
+						Os usuários do repositório devem fomentar o bom uso dos dados relacionados a seres humanos. Os dados com essas características não devem ser utilizados para:
+						<ol style="list-style-type: lower-latin;">
+							<li> obter informações que permitam, direta ou indiretamente, identificar quaisquer sujeitos da pesquisa;</li>
+							<li> produzir e/ou publicar conexões entre conjuntos de dados que possam identificar indivíduos ou organizações; </li>
+							<li> obter informações (adicionais) sobre, ou ainda, meios de contato (adicionais) para sujeitos já identificados. </li>
+						</ol>
+					</p>
+
+					<p>
+						Você concede ao Repositório da C3 todas as permissões e licenças necessárias para o arquivamento, a preservação e o acesso ao conteúdo depositado. Isso inclui, sem restrição, permissão para:
+						<ol style="list-style-type: lower-latin;">
+							<li> disseminar cópias do conteúdo em uma variedade de formatos de distribuição de acordo com o Termo de Uso; </li>
+							<li> promover e divulgar o conteúdo em qualquer forma de publicidade; </li>
+							<li> armazenar, traduzir, copiar ou reformatar o conteúdo de qualquer maneira para garantir sua preservação e acessibilidade no futuro, melhorar a usabilidade e/ou proteger a confidencialidade dos sujeitos; </li>
+							<li> incorporar metadados ou documentação sobre o conteúdo em catálogos de acesso público. </li>
+						</ol>
+					</p>
+
+					<p>
+						Você declara e garante que tem o direito e a autoridade para licenciar no Repositório de Dados o conteúdo depositado nas formas descritas neste Termo de Uso. Além disso, declara e garante que não existe qualquer obrigação ou restrição criada por lei, contrato ou outro que impeça que você concorde com esse Termo de Uso.
+					</p>
+
+					<h3> Dar crédito à fonte dos dados com citações </h3>
+					<p>
+						Ao baixar conjuntos de dados do Repositório você concorda em cumprir a seguinte norma: quaisquer materiais elaborados (livros, artigos, trabalhos de conferência, teses, dissertações, relatórios e outras publicações) que utilizem os dados do repositório (no todo ou em parte) coletados de conjuntos de dados depositados devem creditar a fonte dos dados utilizados. As citações incluem, necessariamente, os autores e as  informações sobre os dado, além de outras informações que forneçam acesso aos dados de pesquisa.
+					</p>	
+				</div>
+
+				<!---------------- PUBLIQUE SEUS DADOS --------------------------->
+
+				<a name="publique_seus_dados"> </a>
+				<h1> Publique seus dados </h1>
+
+				<div id="texto_publique_dados">
+					<p>
+						Em nosso repositório você pode depositar e publicar dados de pesquisa. Podem ser dados brutos, editados ou dados específicos que estejam associados com uma publicação. A RNP garante a disponibilidade e a qualidade dos dados a longo prazo, ajudando os pesquisadores a cumprir os princípios FAIR propostos pela ciência aberta, de tornar os dados de pesquisa localizáveis, acessíveis, interoperáveis e reutilizáveis ​​(Findable, Accessible, Interoperable and Reusable - FAIR, em inglês). Os dados depositados em nosso repositório possuem identificadores persistentes (Digital Object Identifier - DOI), podendo ser consultados e reaproveitados por meio de licenças que garantem abertura e reutilização.
+					</p>
+					<div>
+
+						<div id="texto_publique_leia_mais"> 
+							<button type="button" class="btn btn-outline-primary"> Leia Mais </button> 
+						</div>
+
+						<script>
+							$("#texto_publique_leia_mais").click(function() {
+								$("#texto_publique_leia_mais").toggle();
+								$("#texto_publique_complemento").toggle("slow", function() {
+    							// Animation complete.
+    						});;							
+							});
+						</script>
+
+						<div id="texto_publique_complemento" style="display: none;">		
+							<h3> Por que depositar? </h3>						
+							<h5 class="subtitles"> Você mantém seus dados seguros e disponíveis a longo prazo </h5>
+							<p>
+								À medida que os softwares e os hardwares evoluem com o avanço da tecnologia, torna-se difícil acompanhar o desenvolvimento dos suportes de leitura de dados. Como resultado, arquivos importantes geralmente se perdem ou ficam ilegíveis em alguns anos. O Repositório RNP manterá seus arquivos digitais e garante que eles permaneçam utilizáveis ​​ao longo do tempo.
+							</p>
+
+							<h5 class="subtitles"> Aumente o impacto de sua pesquisa </h5>
+							<p>
+								Ao depositar no Repositório RNP, você torna seus dados facilmente acessíveis e, quanto mais pessoas usarem e citarem seus dados, maior será o alcance de suas pesquisas o que poderá enriquecer seu campo de atuação e proporcionar novas descobertas.
+							</p>
+
+							<h5 class="subtitles"> Aumente sua visibilidade como pesquisador </h5>
+							<p>
+								Quanto mais outros pesquisadores citarem seus dados, maior será a visibilidade e notoriedade de seu trabalho. À medida que a tendência para o acesso aberto on-line aumenta, cresce o prestígio associado às citações de dados. Além disso, disponibilizar seus dados pode aumentar a credibilidade de suas análises.
+							</p>
+
+							<h3> Quem pode publicar? </h3>
+							<p>
+								Todo pesquisador que tem dados de pesquisa científicos pode publicá-los no repositório de dados. Uma visão geral dos critérios e práticas para o desenvolvimento da coleta pode ser encontrada no Termo de Uso - Upload pelo usuário. Para publicar, basta fazer o registro e login no sistema. Uma vez que tenha feito o login, uma página pessoal será criada e a partir dela você poderá carregar (fazer upload) um conjunto de dados.
+							</p>
+
+							<h3> Metadados </h3>
+							<p>
+								Os metadados são indispensáveis ​​para a preservação, recuperação e reutilização de conjuntos de dados. Eles fornecem informações sobre o criador dos dados, o assunto dos dados, o tipo de arquivo, informações geográficas e outros aspectos. Em outras palavras, os metadados são "dados sobre dados".
+							</p>
+
+							<p>
+								Os metadados fazem uso de padrões internacionais para troca de dados. Isso garante que as informações e o conjunto de dados associado possam ser encontrados pelos mecanismos de pesquisa.
+							</p>
+
+							<p>
+								Metadados são especialmente importantes para o usuário dos dados. Por exemplo, considere um livro de códigos que informa como os dados devem ser lidos ou interpretados. Em muitos casos, essas informações são adicionadas na forma de arquivos leia-me ou descrições semelhantes.
+							</p>
+
+							<p> 
+								Ao fazer o upload dos dados, você será solicitado a inserir os seguintes metadados:
+							</p>	
+							<table class="table_style table">
+								<thead class="table_head">
+									<tr>
+										<td> Metadado </td>
+										<td> Descrição </td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td> Title </td>
+										<td> Nome ou título pelo qual o dataset é conhecido </td>
+									</tr>
+									<tr>
+										<td> Author </td>
+										<td> Principais pesquisadores ou pesquisador ou grupo de pesquisa produtor/criador dos dados </td>
+									</tr>
+									<tr>
+										<td> Contact </td>
+										<td> Nome, filiação e e-mail do autor </td>
+									</tr>
+									<tr>
+										<td> Description </td>
+										<td> Descrição resumida do conteúdo do conjunto de dados/dataset, incluindo objetivos e tipo da pesquisa, metodologia utilizada para a coleta e os tipos de dados </td>
+									</tr>
+									<tr>
+										<td> Subject </td>
+										<td> Temática que descrevam o assunto dos dados </td>
+									</tr>
+									<tr>
+										<td> Keyword </td>
+										<td> Palavras-chave relacionadas ao assunto dos dados </td>
+									</tr>
+									<tr>
+										<td> Related publication </td>
+										<td> Link ou identificador persistente (DOI, handle) para publicações relacionadas ao conjunto de dados/dataset </td>
+									</tr>
+									<tr>
+										<td> Notas </td>
+										<td> Comentários sobre os dados </td>
+									</tr>
+									<tr>
+										<td> Depositante </td>
+										<td> Responsável pelo depósito dos dados </td>
+									</tr>
+									<tr>
+										<td> Data de depósito </td>
+										<td> Data da publicação dos dados </td>
+									</tr>
+								</tbody>
+							</table>
+						</div>		
+					</div>
+				</div>
+			</div>				
+		</div>
+	</div>
+
+	<!-- footer -->
+	<div class="container-fluid" id="footer_rnp">
+		<div class="row">
+
+			<div class="col-sm-4 text-center"> </div>
+
+			<div class="col-sm-1 text-center">
+				<a href="https://www.furg.br/" class="link_icones" target="_new"> 
+					<img src="https://dataverse.c3.furg.br/logos/1/logo-furg.png" class="img-fluid container_img_furg"/>
+				</a>
+			</div>
+
+			<div class="col-sm-1 text-center">
+				<a href="http://www.ufrgs.br/ufrgs/inicial" class="link_icones" target="_new"> 
+					<img src="https://dataverse.c3.furg.br/logos/1/logo_ufrgs.jpg" class="img-fluid container_img_ufrgs"/>
+				</a>
+			</div>
+
+			<div class="col-sm-1 text-center">
+				<a href="https://www.rnp.br/" class="link_icones" target="_new"> 
+					<img src="https://dataverse.c3.furg.br/logos/1/logo_rnp.png" class="img-fluid container_img_rnp"/>
+				</a>
+			</div>
+
+			<div class="col-sm-1 text-center">
+				<a href="http://www.ibict.br/" class="link_icones" target="_new"> 
+					<img src="https://dataverse.c3.furg.br/logos/1/logo_ibict.gif" class="img-fluid container_img_ibict"/>
+				</a>
+			</div>
+
+			<div class="col-sm-4 text-center"> </div>
+
+		</div>
+	</div>		
+
+<style>
+	#topo
+	{
+		margin-top: 30px;
+		padding-bottom: 20px;		
+	}
+
+	#carocel
+	{
+		background-image: url("https://dataverse.c3.furg.br/logos/1/fundo.png");
+		background-size: 100%;
+		padding-top: 50px;
+		padding-bottom: 100px;
+	}
+
+	#SearchForm
+	{
+		width: 100%;
+	}
+
+	.link_icones, .link_icones:hover, .link_icones:visited
+	{
+		color: white;
+	}
+
+	.nome_repositorio
+	{
+		font-weight: bold;
+		padding-top: 50px;
+		color: #ffb31a;
+		font-size: 40px;
+		text-align: center;
+	}
+
+	.frase_efeito
+	{
+		color: white;
+		font-size: 40px;
+		text-align: center;
+		padding-bottom: 50px;
+	}
+
+	.table_style
+	{
+		background-color: #cce5ff;
+		line-height: 28px;
+		border-style: dashed;
+		border-color: black;
+		text-align: left
+	}
+
+	.table_head
+	{
+		font-weight: bold;
+		font-size: 20px;
+	}
+
+	.icones a, .icones
+	{
+		color: #C0C0C0;
+		text-decoration: none;
+	}	
+
+	.icones:hover
+	{
+		color: #ffffff;
+	}	
+
+	.legend
+	{
+		color: #ffffff;
+		font-weight: bold;
+	}
+
+	#footer_rnp
+	{
+		margin-top: 25px;
+		margin-bottom: 10px;
+		background-color: #b3daff;
+		background-size: 100%;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	.container_img_rnp
+	{
+		max-width: 100px;
+		max-height: 100px;
+		width: auto;
+		height: auto;
+	}
+
+	.container_img_ufrgs
+	{
+		max-width: 65px;
+		max-height: 65px;
+		width: auto;
+		height: auto;
+	}
+
+	.container_img_furg
+	{
+		max-width: 50px;
+		max-height: 50px;
+		width: auto;
+		height: auto;
+	}
+
+	.container_img_ibict
+	{
+		max-width: 90px;
+		max-height: 90px;
+		width: auto;
+		height: auto;
+	}
+
+	.submit_form ,input[type="submit"]
+	{
+		background:url(https://dataverse.c3.furg.br/logos/1/lupa_busca.png) no-repeat;"
+	}
+
+	.texto_icones
+	{
+		font-size: 18px;
+	}
+
+	.subtitles
+	{
+		font-weight: bold;
+		font-size: 15px;
+		margin-top: 20px;
+	}
+
+$('a[href^="#"]').on('click', function(event) {
+
+    var target = $( $(this).attr('href') );
+
+    if( target.length ) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: target.offset().top
+        }, 500);
+    }
+
+});	
+
+</style>
