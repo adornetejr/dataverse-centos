@@ -1,0 +1,1 @@
+yum remove -y sendmail httpd mod_ssl shibboleth shibboleth-embedded-ds

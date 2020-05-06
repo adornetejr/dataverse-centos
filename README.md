@@ -26,7 +26,7 @@ O Dataverse é um aplicativo da Web de código-fonte aberto para compartilhar, p
 
 ### Versão
 
-Atualmente, o script suporta exclusivamente a versão 4.9.1 do Dataverse para o sistema CentOS 7 com todos os serviços em execução na mesma máquina. Recomenda-se o uso de um servidor dedicado para execução do script pois ele realizará alterações no sistema. 
+Atualmente, o script suporta exclusivamente a versão 4.19 do Dataverse para o sistema CentOS 7 com todos os serviços em execução na mesma máquina. Recomenda-se o uso de um servidor dedicado para execução do script pois ele realizará alterações no sistema. 
 
 ### Componentes principais
 
@@ -45,7 +45,7 @@ Atualmente, o script suporta exclusivamente a versão 4.9.1 do Dataverse para o 
   * Local padrão de configuração: */etc/httpd/conf.d*
   * `$ systemctl {stop|start|restart|status} httpd.`
 * Shibboleth
-  * Fornece um provedor de autenticação adicional.
+  * Fornece um provedor de autenticação federada.
   * Arquivo padrão de configuração: */etc/shibboleth/shibboleth2.xml*
   * Serviço opcional, não configurado por padrão.
   * `$ systemctl {start|stop|restart|status} shibd`

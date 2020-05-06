@@ -9,6 +9,7 @@ ExecStop = /usr/bin/java -jar /usr/local/glassfish4/glassfish/lib/client/appserv
 ExecReload = /usr/bin/java -jar /usr/local/glassfish4/glassfish/lib/client/appserver-cli.jar restart-domain
 LimitNOFILE=65000
 Type=forking
+Restart=on-failure
 
 [Install]
 WantedBy = multi-user.target
