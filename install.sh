@@ -29,56 +29,48 @@ echo "Etapa (1/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 sendmail.sh
-./sendmail.sh
+chmod 744 sh/*.sh
+sh/sendmail.sh
 echo "Etapa (2/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 glassfish.sh
-./glassfish.sh
+sh/glassfish.sh
 echo "Etapa (3/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 solr.sh
-./solr.sh
+sh/solr.sh
 echo "Etapa (4/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 postgresql.sh
-./postgresql.sh
+sh/postgresql.sh
 echo "Etapa (5/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 rserve.sh
-./rserve.sh
+sh/rserve.sh
 echo "Etapa (6/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 counter.sh
-./counter.sh
+sh/counter.sh
 echo "Etapa (7/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 dataverse.sh
-./dataverse.sh
+sh/dataverse.sh
 echo "Etapa (8/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 apache.sh
-./apache.sh
+sh/apache.sh
 echo "Etapa (9/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
-chmod 744 shibboleth.sh
-./shibboleth.sh
+sh/shibboleth.sh
 echo "Etapa (10/10) concluida!"
 echo "Instalação concluida!"
 echo "Faça a relação de confiança para o login federado funcionar!"

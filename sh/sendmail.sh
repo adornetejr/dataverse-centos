@@ -7,14 +7,17 @@ yum install -y sendmail sendmail-cf m4
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
 until $OP != "y"
 do
-    clear
-    echo "IP Address"
-    ip -f inet address | grep inet
-    echo "Hostname FQDN"
-    echo $HOSTNAME
-    read -p "Hostname está correto? (y/n): " OP
+clear
+echo "Redes disponiveis"
+ip -f inet address
+echo "Hostname FQDN"
+hostname --fqdn
+echo "IP de conexão com a rede externa precisa apontar pra FQDN"
+echo "Arquivo hosts:"
+cat /etc/hosts
+    read -p "Está correto? (y/n): " OP
     if [ "$OP" == "n" ]; then
-        echo "Corrija os arquivos /etc/hosts e /etc/hostname então!"
+        echo "Corrija os arquivos /etc/hosts e /etc/hostname"
         echo "Precione Enter após ajustar"
         read -e $X
     else
