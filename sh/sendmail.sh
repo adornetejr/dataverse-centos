@@ -38,9 +38,9 @@ echo "Starting sendmail!"
 echo "From: $USER@$(hostname --fqdn)" >> $DIR/mail/mail.txt
 echo " " >> $DIR/mail/mail.txt
 echo "Servidor:" >> $DIR/mail/mail.txt
-echo hostname --fqdn >> $DIR/mail/mail.txt
+echo $(hostname --fqdn) >> $DIR/mail/mail.txt
 echo "Hora:" >> $DIR/mail/mail.txt
-echo date >> $DIR/mail/mail.txt
+echo $(date) >> $DIR/mail/mail.txt
 systemctl enable sendmail
 systemctl start sendmail
 # EMAIL TEST DO SENDMAIL
