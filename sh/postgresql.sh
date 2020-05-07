@@ -6,10 +6,7 @@ yum autoremove -y
 rm -rf /usr/pgsql-9.6
 rm -rf /var/lib/pgsql
 # INSTALA DEPENDENCIA POSTGRESQL
-cd /tmp
-rm -rf pgdg-centos96-9.6-3.noarch.rpm
-wget https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
-yum install -y pgdg-centos96-9.6-3.noarch.rpm
+yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7.1-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 yum makecache fast
 yum install -y postgresql96-server
 # INICIALIZA BANCO DE DADOS POSTGRESQL
