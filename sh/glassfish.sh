@@ -17,6 +17,9 @@ if [ -f "$glassfish" ]; then
         wget $link
         unzip glassfish-4.1.zip
     fi
+else
+    wget $link
+    unzip glassfish-4.1.zip
 fi
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local
 mv glassfish4 /usr/local/
