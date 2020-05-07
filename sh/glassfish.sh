@@ -3,23 +3,24 @@ DIR=$PWD
 systemctl stop glassfish
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
 # DOWNLOAD DEPENDENCIA GLASSFISH SERVER
-glassfish="/tmp/glassfish-4.1.zip"
-link=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
+FILE="glassfish-4.1.zip"
+LOCATION="/tmp/glassfish-4.1.zip"
+LINK=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
 cd /tmp/
-rm -rf glassfish-4.1
+rm -rf $LOCATION
 rm -rf /usr/local/glassfish4
-if [ -f "$glassfish" ]; then
-    ls $glassfish
-    if [ "$(md5sum $glassfish)" == "2fd41ad9af8d41d1c721c1b25191f674  /tmp/glassfish-4.1.zip" ]; then
-        unzip glassfish-4.1.zip
+if [ -f "$LOCATION" ]; then
+    ls $LOCATION
+    if [ "$(md5sum $LOCATION)" == "2fd41ad9af8d41d1c721c1b25191f674  $LOCATION" ]; then
+        unzip $FILE
     else
-        rm $glassfish
-        wget $link
-        unzip glassfish-4.1.zip
+        rm $LOCATION
+        wget $LINK
+        unzip $FILE
     fi
 else
-    wget $link
-    unzip glassfish-4.1.zip
+    wget $LINK
+    unzip $FILE
 fi
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local
 mv glassfish4 /usr/local/
