@@ -4,7 +4,7 @@ systemctl stop glassfish
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
 # DOWNLOAD DEPENDENCIA GLASSFISH SERVER
 FILE="glassfish-4.1.zip"
-LOCATION="/tmp/glassfish-4.1.zip"
+LOCATION="/tmp/$FILE"
 LINK=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
 cd /tmp/
 rm -rf $LOCATION

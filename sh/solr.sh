@@ -3,21 +3,26 @@ DIR=$PWD
 systemctl stop solr
 yum install -y lsof
 # DOWNLOAD DEPENDENCIA SOLR
-solr="/tmp/solr-7.3.1.tgz"
-link=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
+FILE="solr-7.3.1.tgz"
+LOCATION="/tmp/$FILE"
+LINK=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
 cd /tmp/
-rm -rf solr-7.3.1
+rm -rf $LOCATION
 rm -rf /usr/local/solr
-if [ -f "$solr" ]; then
-    ls $solr
-    if [ "$(md5sum $solr)" == "042a6c0d579375be1a8886428f13755f  /tmp/solr-7.3.1.tgz" ]; then
-        tar xvzf solr-7.3.1.tgz
+if [ -f "$LOCATION" ]; then
+    ls $LOCATION
+    if [ "$(md5sum $LOCATION)" == "042a6c0d579375be1a8886428f13755f  $LOCATION" ]; then
+        tar xvzf $FILE
     else
-        rm $solr
-        wget $link
-        tar xvzf solr-7.3.1.tgz
+        rm $LOCATION
+        wget $LINK
+        tar xvzf $FILE
     fi
+else
+    wget $LINK
+    tar xvzf $FILE
 fi
+
 # CRIA PASTA DE INSTALAÇÃO
 mkdir /usr/local/solr
 cp -rf solr-7.3.1 /usr/local/solr
