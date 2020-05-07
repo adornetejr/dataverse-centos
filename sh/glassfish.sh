@@ -7,7 +7,7 @@ FILE="glassfish-4.1.zip"
 LOCATION="/tmp/$FILE"
 LINK=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
 cd /tmp/
-rm -rf $LOCATION
+rm -rf glassfish4
 rm -rf /usr/local/glassfish4
 if [ -f "$LOCATION" ]; then
     ls $LOCATION

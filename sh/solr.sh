@@ -7,7 +7,7 @@ FILE="solr-7.3.1.tgz"
 LOCATION="/tmp/$FILE"
 LINK=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
 cd /tmp/
-rm -rf $LOCATION
+rm -rf solr-7.3.1
 rm -rf /usr/local/solr
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
