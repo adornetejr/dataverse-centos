@@ -38,7 +38,7 @@ FEATURE(redirect)dnl
 FEATURE(always_add_domain)dnl
 FEATURE(use_cw_file)dnl
 FEATURE(use_ct_file)dnl
-DAEMON_OPTIONS(`Port=smtp,Addr=127.0.0.1, Name=MTA')dnl
+dnl # DAEMON_OPTIONS(`Port=smtp,Addr=192.168.1.31, Name=MTA')dnl
 dnl #
 dnl # The following causes sendmail to additionally listen to port 587 for
 dnl # mail from MUAs that authenticate. Roaming users who can't reach their
