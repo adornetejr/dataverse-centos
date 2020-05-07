@@ -20,7 +20,7 @@ systemctl start postgresql-9.6
 systemctl stop postgresql-9.6
 # CONFIGURA POSTGRESQL PARA LIBERAR ACESSO AO BANCO
 rm -f /var/lib/pgsql/9.6/data/pg_hba.conf
-cp $DIR/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+cp $DIR/conf/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 # DEFINE SENHA ADMIN DO POSTGRESQL
 echo "Alterando senha root do postgres"
 read -s -p "Password: " PASSWORD
@@ -29,7 +29,7 @@ psql -U postgres -c "alter user postgres with password '$PASSWORD';"
 systemctl stop postgresql-9.6
 # CONFIGURA POSTGRESQL PARA LIBERAR ACESSO AO BANCO
 rm -f /var/lib/pgsql/9.6/data/pg_hba.conf
-cp $DIR/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 echo "POSTGRES_ADMIN_PASSWORD	$PASSWORD" >> default.config
 echo "POSTGRES_SERVER	127.0.0.1" >> default.config
 echo "POSTGRES_PORT	5432" >> default.config

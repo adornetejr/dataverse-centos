@@ -19,7 +19,7 @@ if [ -f "$counter" ]; then
 fi
 cp -R counter-processor-0.0.1 /usr/local/counter-processor
 cd /usr/local/counter-processor
-cp $DIR/GeoLite2-Country GeoLite2-Country.tar.gz
+cp $DIR/bin/GeoLite2-Country GeoLite2-Country.tar.gz
 tar xvfz GeoLite2-Country.tar.gz
 cp GeoLite2-Country_*/GeoLite2-Country.mmdb maxmind_geoip
 # ADICIONA USUARIO COUNTER

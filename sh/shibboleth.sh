@@ -20,9 +20,9 @@ systemctl start glassfish
 ./asadmin list-network-listeners
 cd /etc/shibboleth
 mv shibboleth2.xml shibboleth2.xml.bkp
-cp $DIR/shibboleth2.xml .
+cp $DIR/xml/shibboleth2.xml .
 mv attribute-map.xml attribute-map.xml.bkp
-cp $DIR/attribute-map.xml .
+cp $DIR/xml/attribute-map.xml .
 useradd shibd
 chown -R root:root /etc/shibboleth
 rm -rf *.pem
@@ -33,7 +33,7 @@ mv sp-key.pem sp-encrypt-key.pem
 mv sp-cert.pem sp-signing-cert.pem
 mv sp-key.pem sp-signing-key.pem
 rm -rf /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
-cp $DIR/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc
+cp $DIR/shib/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc
 cd /etc/selinux/targeted/src/policy/domains/misc
 checkmodule -M -m -o shibboleth.mod shibboleth.te
 semodule_package -o shibboleth.pp -m shibboleth.mod

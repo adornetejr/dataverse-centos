@@ -31,10 +31,10 @@ cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.1/server/solr/collecti
 chown -R solr:solr /usr/local/solr
 # REMOVE LIMITS 
 rm -f /etc/security/limits.conf
-cp $DIR/limits.conf /etc/security/
+cp $DIR/conf/limits.conf /etc/security/
 # ATIVA SERVICO SOLR PARA INICIALIZAR COM SISTEMA
 rm -f /usr/lib/systemd/system/solr.service
-cp $DIR/solr.service /usr/lib/systemd/system/
+cp $DIR/service/solr.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "name=collection1" > /usr/local/solr/solr-7.3.1/server/solr/collection1/core.properties
 echo "SOLR_LOCATION	127.0.0.1:8983" >> default.config

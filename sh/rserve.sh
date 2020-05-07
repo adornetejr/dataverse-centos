@@ -18,7 +18,7 @@ sudo R -e 'install.packages(c("R2HTML", "rjson", "DescTools", "Rserve", "haven")
 # n
 useradd rserve
 rm -f /usr/lib/systemd/system/rserve.service
-cp $DIR/rserve.service /usr/lib/systemd/system/
+cp $DIR/service/rserve.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "RSERVE_HOST	127.0.0.1" >> default.config
 echo "RSERVE_PORT	6311" >> default.config
