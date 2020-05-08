@@ -1,4 +1,5 @@
 clear
+DIR=$PWD
 echo "ATENÇÃO!!"
 echo " "
 echo "Se a próxima etapa trancar em 'Updates Done. Retarting...' por mais de 30 segundos."
@@ -17,4 +18,6 @@ read -e $X
 cd /tmp/dvinstall
 rm -rf default.config
 cp $DIR/default.config .
+clear
+cat default.config
 ./install
