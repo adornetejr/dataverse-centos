@@ -10,20 +10,24 @@ yum makecache fast
 # INSTALA PACOTES OBRIGATORIOS E RECOMENDADOS
 yum install -y nano htop wget git net-tools lynx unzip curl
 # DOWNLOAD DO PACOTE DE INSTALACAO DO DATAVERSE
-dvinstall="/tmp/dvinstall.zip"
-link=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
+FILE="dvinstall.zip"
+LOCATION="/tmp/$FILE"
+LINK=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
 cd /tmp/
 # REMOVE AS PASTAS ANTES DE DESCOMPACTAR
 rm -rf /tmp/dvinstall
-if [ -f "$dvinstall" ]; then
-    ls $dvinstall
-    if [ "$(md5sum $dvinstall)" == "de4f375f0c68c404e8adc52092cb8334  /tmp/dvinstall.zip" ]; then
-        unzip dvinstall.zip
+if [ -f "$LOCATION" ]; then
+    ls $LOCATION
+    if [ "$(md5sum $LOCATION)" == "de4f375f0c68c404e8adc52092cb8334  $LOCATION" ]; then
+        unzip $FILE
     else
-        rm $dvinstall
-        wget $link
-        unzip dvinstall.zip
+        rm $LOCATION
+        wget $LINK
+        unzip $FILE
     fi
+else
+    wget $LINK
+    unzip $FILE
 fi
 echo "Etapa (1/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"

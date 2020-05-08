@@ -1,12 +1,14 @@
 #!/bin/bash
 DIR=$PWD
-HOST=$(hostname --fqdn)
 systemctl stop httpd
 yum remove -y httpd mod_ssl
 yum install -y httpd mod_ssl
 systemctl stop httpd
-rm -rf etc/httpd/conf.d/dataverse.conf
-cp $DIR/conf/dataverse.conf /etc/httpd/conf.d
+HOST=$(hostname --fqdn)
+echo "ServerName $HOST" >> $DIR/conf/dataverse.conf
+echo "</VirtualHost>" >> $DIR/conf/dataverse.conf
+rm -rf etc/httpd/conf.d/$HOST.conf
+cp $DIR/conf/dataverse.conf /etc/httpd/conf.d/$HOST.conf
 rm -rf etc/httpd/conf.d/ssl.conf
 cp $DIR/conf/ssl.conf /etc/httpd/conf.d
 rm -rf etc/httpd/conf/httpd.conf
