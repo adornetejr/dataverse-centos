@@ -16,5 +16,5 @@ read -e $X
 #
 cd /tmp/dvinstall
 rm -rf default.config
-cp $DIR/conf/default.config .
+cp $DIR/default.config .
 ./install

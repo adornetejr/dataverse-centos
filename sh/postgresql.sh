@@ -32,7 +32,7 @@ echo "POSTGRES_SERVER	127.0.0.1" >> default.config
 echo "POSTGRES_PORT	5432" >> default.config
 echo "POSTGRES_DATABASE	dvndb" >> default.config
 echo "POSTGRES_USER	dvnapp" >> default.config
-echo "POSTGRES_PASSWORD	CREATE_USER_PASSWORD" >> default.config
+echo "POSTGRES_PASSWORD	CREATE_DVNAPP_PASSWORD" >> default.config
 echo "Starting postgresql!"
 systemctl start postgresql-9.6
 # STATUS DO SERVICO POSTGRES
