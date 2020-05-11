@@ -20,10 +20,10 @@ useradd rserve
 rm -f /usr/lib/systemd/system/rserve.service
 cp $DIR/service/rserve.service /usr/lib/systemd/system/
 systemctl daemon-reload
-echo "RSERVE_HOST	127.0.0.1" >> default.config
-echo "RSERVE_PORT	6311" >> default.config
-echo "RSERVE_USER	rserve" >> default.config
-echo "RSERVE_PASSWORD	rserve" >> default.config
+echo "RSERVE_HOST	127.0.0.1" >> $DIR/default.config
+echo "RSERVE_PORT	6311" >> $DIR/default.config
+echo "RSERVE_USER	rserve" >> $DIR/default.config
+echo "RSERVE_PASSWORD	rserve" >> $DIR/default.config
 echo "Starting rserve!"
 systemctl enable rserve
 systemctl start rserve
