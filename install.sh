@@ -1,18 +1,24 @@
 #!/bin/bash
 DIR=$PWD
+echo "Removing old settings!"
 mv $DIR/default.config $DIR/default.config.bkp
 mv $DIR/logs/install.out $DIR/logs/install.out.bkp
 mv $DIR/logs/install.err $DIR/logs/install.err.bkp
 # UPDATE PACKAGES
+echo "Updating packages!"
 yum update -y
 # INSTALL FEDORA REPOSITORY
+echo "Installing Fedora repository!"
 yum install -y epel-release
 yum makecache fast
 # UPDATE PACKAGES
+echo "Updating packages!"
 yum update -y
 # INSTALL RECOMMENDED PACKAGES
+echo "Installing dependencies!"
 yum install -y nano htop wget git net-tools lynx unzip curl
 # DOWNLOAD DATAVERSE
+echo "Downloading Dataverse!"
 FILE="dvinstall.zip"
 LOCATION="/tmp/$FILE"
 LINK=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
@@ -92,5 +98,5 @@ echo " "
 echo "Stage (10/10) done!"
 echo "Installation completed!"
 echo " "
-echo "Atenção:"
+echo "Attention!!"
 echo "Faça a relação de confiança para o login federado funcionar!"

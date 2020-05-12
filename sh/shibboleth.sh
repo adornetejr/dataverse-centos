@@ -9,7 +9,7 @@ echo "Removing old settings!"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/shibboleth /etc/shibboleth-$TIMESTAMP
 # SHIBBOLETH REPOSITORY
-echo "Installing shibboleth repository"
+echo "Installing Shibboleth repository!"
 rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
 yum install -y shibboleth shibboleth-embedded-ds
