@@ -4,7 +4,8 @@ echo "Parando Sendmail!"
 systemctl stop sendmail
 echo "Removendo configurações antigas!"
 yum remove -y sendmail sendmail-cf
-rm -rf /etc/mail
+TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
+mv /etc/mail /etc/mail-$TIMESTAMP
 echo "Instalando Sendmail!"
 yum install -y sendmail sendmail-cf m4
 # ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
@@ -36,9 +37,9 @@ echo "Configurando Sendmail!"
 hostname >/etc/mail/local-host-names
 hostname >/etc/mail/relay-domains
 mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bkp
-sed '/^$/d' $DIR/mail/sendmail.config >$DIR/mail/sendmail.mc
 HOST=$(hostname --fqdn)
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/mail/sendmail.config >$DIR/mail/sendmail.mc
+sed '/^$/d' $DIR/mail/sendmail.config >$DIR/mail/sendmail.mc
 cp $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
 m4 /etc/mail/sendmail.mc >/etc/mail/sendmail.cf
 systemctl restart sendmail

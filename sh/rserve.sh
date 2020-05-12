@@ -3,7 +3,8 @@ DIR=$PWD
 echo "Parando Rserve!"
 systemctl stop rserve
 echo "Removendo configurações antigas!"
-rm -rf /home/rserve/R
+TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
+mv /home/rserve/R /home/rserve/R-$TIMESTAMP
 echo "Instalando R!"
 yum install -y R R-core R-core-devel
 echo "Configurando R!"

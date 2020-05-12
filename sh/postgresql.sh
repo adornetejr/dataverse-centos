@@ -5,9 +5,9 @@ systemctl stop postgresql-9.6
 echo "Removendo configurações antigas!"
 yum remove -y postgresql96-server
 yum autoremove -y
-rm -rf /usr/pgsql-9.6
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /var/lib/pgsql /var/lib/pgsql-$TIMESTAMP
+mv /usr/pgsql-9.6 /usr/pgsql-9.6-$TIMESTAMP
 # INSTALA DEPENDENCIA POSTGRESQL
 echo "Instalando Postgresql!"
 yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7.1-x86_64/pgdg-redhat-repo-latest.noarch.rpm
@@ -23,7 +23,7 @@ mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.bkp
 cp $DIR/conf/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 # DEFINE SENHA ADMIN DO POSTGRESQL
 echo "Alterando senha root do postgres"
-read -s "Password: " PASSWORD
+read -p "Password: " PASSWORD
 systemctl start postgresql-9.6
 psql -U postgres -c "alter user postgres with password '$PASSWORD';"
 systemctl stop postgresql-9.6
