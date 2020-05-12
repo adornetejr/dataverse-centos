@@ -1,13 +1,15 @@
 #!/bin/bash
 DIR=$PWD
+echo "Parando Solr!"
 systemctl stop solr
+echo "Instalando dependências!"
 yum install -y lsof
 echo "Baixando Solr!"
 # DOWNLOAD DEPENDENCIA SOLR
 FILE="solr-7.3.1.tgz"
 LOCATION="/tmp/$FILE"
 LINK=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
-rm -rf solr-7.3.1
+rm -rf /tmp/solr-7.3.1
 rm -rf /usr/local/solr
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
@@ -25,12 +27,12 @@ fi
 echo "Configurando Solr!"
 # CRIA PASTA DE INSTALAÇÃO
 mkdir /usr/local/solr
-cp -rf solr-7.3.1 /usr/local/solr
+cp -rf /tmp/solr-7.3.1 /usr/local/solr
 # ADICIONA USUARIO solr
 useradd solr
 # CONFIGURA ARQUIVOS SOLR DE ACORDO COM DATAVERSE
-# cd /usr/local/solr/solr-7.3.1
-cp -r server/solr/configsets/_default server/solr/collection1
+# cd /usr/local/solr/solr-7.3.1/
+cp -r /usr/local/solr/solr-7.3.1/server/solr/configsets/_default /usr/local/solr/solr-7.3.1/server/solr/collection1
 cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
 cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
 chown -R solr:solr /usr/local/solr
