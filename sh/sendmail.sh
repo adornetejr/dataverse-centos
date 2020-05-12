@@ -41,10 +41,10 @@ sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/mail/sendmail.config >$DIR/mail/sendma
 cp $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
 m4 /etc/mail/sendmail.mc >/etc/mail/sendmail.cf
 systemctl restart sendmail
-echo "To: ginfo@furg.br" >$DIR/default.config
-echo "Subject: [Dataverse Script] Test Sendmail" >>$DIR/default.config
 echo "ADMIN_EMAIL	admin@$HOSTNAME" >>$DIR/default.config
 echo "MAIL_SERVER	127.0.0.1" >>$DIR/default.config
+echo "To: ginfo@furg.br" >$DIR/mail/mail.txt
+echo "Subject: [Dataverse Script] Test Sendmail">>$DIR/mail/mail.txt
 echo "From: $USER@$HOST" >>$DIR/mail/mail.txt
 echo " " >>$DIR/mail/mail.txt
 echo "Servidor:" >>$DIR/mail/mail.txt

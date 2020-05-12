@@ -6,7 +6,8 @@ echo "Removendo configurações antigas!"
 yum remove -y postgresql96-server
 yum autoremove -y
 rm -rf /usr/pgsql-9.6
-rm -rf /var/lib/pgsql
+TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
+mv /var/lib/pgsql /var/lib/pgsql-$TIMESTAMP
 # INSTALA DEPENDENCIA POSTGRESQL
 echo "Instalando Postgresql"
 yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7.1-x86_64/pgdg-redhat-repo-latest.noarch.rpm
@@ -35,8 +36,8 @@ echo "POSTGRES_PORT	5432" >>$DIR/default.config
 echo "POSTGRES_DATABASE	dvndb" >>$DIR/default.config
 echo "POSTGRES_USER	dvnapp" >>$DIR/default.config
 echo "POSTGRES_PASSWORD	CREATE_DVNAPP_PASSWORD" >>$DIR/default.config
-echo "Habilitando Postgresql para iniciar com o sistema!"
 # START POSTGRES
+echo "Habilitando Postgresql para iniciar com o sistema!"
 systemctl enable postgresql-9.6
 echo "Iniciando Postgresql!"
 systemctl start postgresql-9.6
