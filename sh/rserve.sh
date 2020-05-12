@@ -10,6 +10,7 @@ yum install -y R R-core R-core-devel
 echo "Setting up R!"
 # RSERVE DEPENDENCIES
 useradd rserve
+usermod -s /sbin/nologin rserve
 sudo -S -u rserve R -e 'dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)'
 sudo -S -u rserve R -e '.libPaths(Sys.getenv("R_LIBS_USER"))'
 R -e 'install.packages(c("R2HTML", "rjson", "DescTools", "Rserve", "haven"), repos="https://cloud.r-project.org/")'

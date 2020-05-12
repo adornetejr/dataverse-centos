@@ -101,3 +101,6 @@ echo " "
 echo "Attention!!"
 echo "Faça a relação de confiança para o login federado funcionar!"
 echo " "
+echo "Saiba mais em http://hdl.handle.net/20.500.11959/1264"
+echo " "
+read -e $X

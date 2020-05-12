@@ -27,6 +27,7 @@ cp $DIR/xml/shibboleth2.xml /etc/shibboleth/shibboleth2.xml
 mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
 cp $DIR/xml/attribute-map.xml /etc/shibboleth/attribute-map.xml
 useradd shibd
+usermod -s /sbin/nologin shibd
 chown -R root:root /etc/shibboleth
 for FILE in $(find /etc/shibboleth -name '*.pem')
 do

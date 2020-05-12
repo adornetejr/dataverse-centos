@@ -40,6 +40,7 @@ mv /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks /usr/local
 cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 # USER GLASSFISH
 useradd glassfish
+usermod -s /sbin/nologin glassfish
 chown -R root:root /usr/local/glassfish4
 # chown -R glassfish:glassfish /usr/local/glassfish4
 chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib

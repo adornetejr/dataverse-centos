@@ -42,6 +42,7 @@ mv /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/solrconfig.xml /usr/l
 wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.3.1/solrconfig.xml -P /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
 # USER SOLR
 useradd solr
+usermod -s /sbin/nologin solr
 chown -R solr:solr /usr/local/solr
 # KERNEL LIMITS
 mv /etc/security/limits.conf /etc/security/limits.conf.bkp

@@ -30,6 +30,7 @@ tar xvfz /tmp/GeoLite2-Country.tar.gz -C /tmp
 cp /tmp/GeoLite2-Country_*/GeoLite2-Country.mmdb /usr/local/counter-processor/maxmind_geoip
 # USER COUNTER
 useradd counter
+usermod -s /sbin/nologin counter
 chown -R counter:counter /usr/local/counter-processor
 echo "Installing Counter-Processor!"
 # INSTALL PIP3
