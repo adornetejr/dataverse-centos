@@ -1,10 +1,14 @@
 #!/bin/bash
 DIR=$PWD
 HOST=$(hostname --fqdn)
+echo "Parando Glassfish"
 systemctl stop glassfish
+echo "Parando Shibboleth"
 systemctl stop shibd
-yum remove -y shibboleth shibboleth-embedded-ds
-rm -rf /etc/shibboleth
+echo "Removendo configurações antigas!"
+TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
+mv /etc/shibboleth /etc/shibboleth-$TIMESTAMP
+echo "Instalando dependências"
 rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
 yum install -y shibboleth shibboleth-embedded-ds

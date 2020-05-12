@@ -1,5 +1,6 @@
 #!/bin/bash
 DIR=$PWD
+HOST=$(hostname --fqdn)
 echo "Parando Apache!"
 systemctl stop httpd
 echo "Removendo configurações antigas!"
@@ -8,29 +9,19 @@ echo "Instalando Apache!"
 yum install -y httpd mod_ssl
 systemctl stop httpd
 echo "Configurando Apache!"
-HOST=$(hostname --fqdn)
-echo "ServerName $HOST" >>$DIR/conf/dataverse.conf
-echo "</VirtualHost>" >>$DIR/conf/dataverse.conf
 mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
-cp $DIR/conf/dataverse.conf /etc/httpd/conf.d/$HOST.conf
-cat $DIR/conf/shib.conf >>$DIR/conf/ssl.conf
-echo "ServerName $HOST:443" >>$DIR/conf/ssl.conf
-echo "SSLCertificateFile /etc/httpd/ssl/$HOST.cer" >>$DIR/conf/ssl.conf
-echo "SSLCertificateKeyFile /etc/httpd/ssl/$HOST.key" >>$DIR/conf/ssl.conf
-echo "SSLCertificateChainFile /etc/httpd/ssl/chain.$HOST.cer" >>$DIR/conf/ssl.conf
-echo "SSLCACertificateFile /etc/httpd/ssl/root.$HOST.cer" >>$DIR/conf/ssl.conf
-echo "</VirtualHost>" >>$DIR/conf/ssl.conf
-rm -rf etc/httpd/conf.d/ssl.conf
+sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
+mv etc/httpd/conf.d/ssl.conf etc/httpd/conf.d/ssl.conf.bkp
+sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
 cp $DIR/conf/ssl.conf /etc/httpd/conf.d
-rm -rf etc/httpd/conf/httpd.conf
-cp $DIR/httpd.conf /etc/conf
+mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkp
+sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/httpd.conf >/etc/httpd/conf/httpd.conf
+mv /etc/httpd/ssl /etc/httpd/ssl-bkp
 mkdir /etc/httpd/ssl
-rm -rf /etc/httpd/ssl/root.$HOST.cer /etc/httpd/ssl/chain.$HOST.cer
 cp $DIR/cert/chain.$HOST.cer /etc/httpd/ssl
 cp $DIR/cert/root.$HOST.cer /etc/httpd/ssl
-chown root:root /etc/httpd/ssl/*.cer
-chmod 600 /etc/httpd/ssl/*.cer
-rm -rf /etc/httpd/ssl/$HOST.cer /etc/httpd/ssl/$HOST.key
+chown root:root /etc/httpd/ssl/*
+chmod 600 /etc/httpd/ssl/*
 cd $DIR/cert
 ./keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
 mv sp-cert.pem /etc/httpd/ssl/$HOST.cer

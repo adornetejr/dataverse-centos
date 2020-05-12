@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR=$PWD
-echo "Instalando Python!"
+echo "Instalando dependências!"
 yum install -y python36
 echo "Baixando Counter-Processor!"
 # INSTALA DEPENDENCIA COUNTER PROCESSOR
