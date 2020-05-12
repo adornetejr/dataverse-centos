@@ -32,7 +32,7 @@ echo "POSTGRES_PORT	5432" >>$DIR/default.config
 echo "POSTGRES_DATABASE	dvndb" >>$DIR/default.config
 echo "POSTGRES_USER	dvnapp" >>$DIR/default.config
 echo "Crie senha usuário dvndb do postgres"
-read -p "Password: " PASSWORD
+read -ep "Password: " PASSWORD
 echo "POSTGRES_PASSWORD	CREATE_DVNAPP_PASSWORD" >>$DIR/default.config
 # POSTGRES SYSTEM START
 echo "Enabling Postgresql to start with the system!"
