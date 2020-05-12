@@ -33,7 +33,7 @@ echo "POSTGRES_DATABASE	dvndb" >>$DIR/default.config
 echo "POSTGRES_USER	dvnapp" >>$DIR/default.config
 echo "Crie senha usuário dvndb do postgres"
 read -ep "Password: " PASSWORD
-echo "POSTGRES_PASSWORD	CREATE_DVNAPP_PASSWORD" >>$DIR/default.config
+echo "POSTGRES_PASSWORD	$PASSWORD" >>$DIR/default.config
 # POSTGRES SYSTEM START
 echo "Enabling Postgresql to start with the system!"
 systemctl enable postgresql-9.6
