@@ -1,5 +1,6 @@
 #!/bin/bash
 DIR=$PWD
+echo $PWD
 systemctl stop glassfish
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
 # DOWNLOAD DEPENDENCIA GLASSFISH SERVER
