@@ -22,7 +22,7 @@ else
     wget $LINK -P /tmp
     tar xvfz $LOCATION -C /tmp
 fi
-echo "Setting Counter-Processor!"
+echo "Setting up Counter-Processor!"
 cp -R /tmp/counter-processor-0.0.1 /usr/local/counter-processor
 # cd /usr/local/counter-processor
 cp $DIR/bin/GeoLite2-Country /tmp/GeoLite2-Country.tar.gz

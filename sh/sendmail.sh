@@ -33,7 +33,7 @@ until $OP != "y"; do
 done
 echo "HOST_DNS_ADDRESS    $HOSTNAME" >$DIR/default.config
 # SETTING SENDMAIL
-echo "Setting Sendmail!"
+echo "Setting up Sendmail!"
 hostname >/etc/mail/local-host-names
 hostname >/etc/mail/relay-domains
 mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bkp

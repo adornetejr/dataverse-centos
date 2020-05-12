@@ -24,7 +24,7 @@ else
     wget $LINK -P /tmp
     unzip /tmp/$FILE -d /tmp
 fi
-echo "Setting Glassfish!"
+echo "Setting up Glassfish!"
 mv /tmp/glassfish4 /usr/local/
 # FIX MODULE WELD-OSGI
 mv /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar.bkp

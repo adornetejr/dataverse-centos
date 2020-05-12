@@ -7,7 +7,7 @@ TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /home/rserve/R /home/rserve/R-$TIMESTAMP
 echo "Installing R!"
 yum install -y R R-core R-core-devel
-echo "Setting R!"
+echo "Setting up R!"
 # RSERVE DEPENDENCIES
 useradd rserve
 sudo -S -u rserve R -e 'dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)'

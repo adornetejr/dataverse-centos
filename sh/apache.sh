@@ -8,7 +8,7 @@ yum remove -y httpd mod_ssl
 echo "Installing Apache!"
 yum install -y httpd mod_ssl
 systemctl stop httpd
-echo "Setting Apache!"
+echo "Setting up Apache!"
 mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
 mv etc/httpd/conf.d/ssl.conf etc/httpd/conf.d/ssl.conf.bkp

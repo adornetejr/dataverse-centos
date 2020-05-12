@@ -26,7 +26,7 @@ else
     wget $LINK -P /tmp
     tar xvfz $LOCATION -C /tmp
 fi
-echo "Setting Solr!"
+echo "Setting up Solr!"
 # INSTALLING SOLR
 mkdir /usr/local/solr
 cp -rf /tmp/solr-7.3.1 /usr/local/solr
