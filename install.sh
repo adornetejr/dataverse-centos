@@ -5,7 +5,7 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Removing old settings!${RESET}"
 mv $DIR/default.config $DIR/default.config.bkp
-mv $DIR/logs/install.out $DIR/logs/install.out.bkp
+mv $DIR/logs/install.log $DIR/logs/install.log.bkp
 mv $DIR/logs/install.err $DIR/logs/install.err.bkp
 # SERVICE FIREWALLD STOP
 systemctl stop firewalld

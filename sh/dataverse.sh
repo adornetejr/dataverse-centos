@@ -1,8 +1,8 @@
 clear
 DIR=$PWD
-RED=`tput setaf 1`
-GREEN=`tput setaf 2`
-RESET=`tput sgr0`
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+RESET=$(tput sgr0)
 # DOWNLOAD DATAVERSE
 echo "${GREEN}Downloading Dataverse!${RESET}"
 FILE="dvinstall.zip"
@@ -45,10 +45,10 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Installing.${RESET}"
-sudo -S -u glassfish ./install -y -f
-# sudo -S -u glassfish ./install -y -f > $DIR/logs/install.out 2> $DIR/logs/install.err
-# echo "Installer log file $DIR/logs/install.out"
-# echo "Installer error file $DIR/logs/install.err"
+./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
+# ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
+echo "Installer log file $DIR/logs/install.log"
+echo "Installer error file $DIR/logs/install.err"
 # SETTING UP POSTGRES ACCESS
 echo "${GREEN}Restart Postgresql!${RESET}"
 systemctl stop postgresql-9.6
@@ -61,6 +61,10 @@ systemctl start postgresql-9.6
 # RESTARTING GLASSFISH
 echo "${GREEN}Restarting Glassfish!${RESET}"
 systemctl stop glassfish
+# chown -R glassfish:glassfish /usr/local/glassfish4
+chown -R root:root /usr/local/glassfish4
+chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib
+chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
 systemctl start glassfish
 # SERVICE GLASSFISH STATUS
 systemctl status glassfish
