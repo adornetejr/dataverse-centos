@@ -31,7 +31,7 @@ systemctl stop postgresql-9.6
 rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
 cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 echo "POSTGRES_ADMIN_PASSWORD	$PASSWORD" >>$DIR/default.config
-echo "POSTGRES_SERVER	127.0.0.1" >>$DIR/default.config
+echo "POSTGRES_SERVER	localhost" >>$DIR/default.config
 echo "POSTGRES_PORT	5432" >>$DIR/default.config
 echo "POSTGRES_DATABASE	dvndb" >>$DIR/default.config
 echo "POSTGRES_USER	dvnapp" >>$DIR/default.config

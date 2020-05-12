@@ -23,7 +23,7 @@ R -e 'install.packages(c("R2HTML", "rjson", "DescTools", "Rserve", "haven"), rep
 # install.packages("haven", repos="https://cloud.r-project.org/" )
 # q()
 # n
-echo "RSERVE_HOST	127.0.0.1" >>$DIR/default.config
+echo "RSERVE_HOST	localhost" >>$DIR/default.config
 echo "RSERVE_PORT	6311" >>$DIR/default.config
 echo "RSERVE_USER	rserve" >>$DIR/default.config
 echo "RSERVE_PASSWORD	rserve" >>$DIR/default.config

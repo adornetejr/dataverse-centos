@@ -44,7 +44,7 @@ cp $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
 m4 /etc/mail/sendmail.mc >/etc/mail/sendmail.cf
 systemctl restart sendmail
 echo "ADMIN_EMAIL	admin@$HOSTNAME" >>$DIR/default.config
-echo "MAIL_SERVER	127.0.0.1" >>$DIR/default.config
+echo "MAIL_SERVER	localhost" >>$DIR/default.config
 echo "To: ginfo@furg.br" >$DIR/mail/mail.txt
 echo "Subject: [Dataverse Script] Test Sendmail">>$DIR/mail/mail.txt
 echo "From: $USER@$HOST" >>$DIR/mail/mail.txt
