@@ -1,5 +1,25 @@
 clear
 DIR=$PWD
+# DOWNLOAD DATAVERSE
+echo "Downloading Dataverse!"
+FILE="dvinstall.zip"
+LOCATION="/tmp/$FILE"
+LINK=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
+rm -rf /tmp/dvinstall
+if [ -f "$LOCATION" ]; then
+    ls $LOCATION
+    if [ "$(md5sum $LOCATION)" == "de4f375f0c68c404e8adc52092cb8334  $LOCATION" ]; then
+        unzip /tmp/$FILE -d /tmp
+    else
+        rm $LOCATION
+        wget $LINK -P /tmp
+        unzip /tmp/$FILE -d /tmp
+    fi
+else
+    wget $LINK -P /tmp
+    unzip /tmp/$FILE -d /tmp
+fi
+clear
 echo "Attention!!"
 echo " "
 echo "If the next step freeze in 'Updates Done. Retarting...'"
