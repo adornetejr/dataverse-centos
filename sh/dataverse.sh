@@ -55,7 +55,7 @@ systemctl start postgresql-9.6
 /usr/local/glassfish4/glassfish/bin/asadmin change-admin-password
 /usr/local/glassfish4/glassfish/bin/asadmin --host localhost --port 4848 enable-secure-admin
 # RESTARTING GLASSFISH
-echo "Restart Glassfish"
+echo "Restarting Glassfish!"
 systemctl stop glassfish
 systemctl start glassfish
 # SERVICE GLASSFISH STATUS

@@ -47,13 +47,15 @@ cd /etc/selinux/targeted/src/policy/domains/misc
 checkmodule -M -m -o shibboleth.mod shibboleth.te
 semodule_package -o shibboleth.pp -m shibboleth.mod
 semodule -i shibboleth.pp
-cd $DIR/shib
-curl -X POST -H 'Content-type: application/json' --upload-file shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
+curl -X POST -H 'Content-type: application/json' --upload-file $DIR/shib/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 # SHIBBOLETH SYSTEM START
 systemctl enable shibd
-echo "ReStarting Apache!"
-systemctl restart httpd.service
+echo "Restarting Apache!"
+systemctl stop httpd
+systemctl start httpd
+systemctl status httpd
 echo "Starting Shibboleth!"
-systemctl restart shibd
+systemctl stop shibd
+systemctl start shibd
 # SERVICE SHIBBOLETH STATUS
 systemctl status shibd

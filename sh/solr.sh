@@ -59,8 +59,9 @@ systemctl enable solr
 echo "Starting Solr!"
 systemctl start solr
 # SOLR COLLECTION
+echo "Creating collection!"
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/
-echo "ReStarting Solr!"
+echo "Restarting Solr!"
 systemctl stop solr
 systemctl start solr
 # SERVICE SOLR STATUS
