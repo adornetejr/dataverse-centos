@@ -52,9 +52,9 @@ Atualmente, o script suporta exclusivamente a versão 4.19 do Dataverse para o s
  
 ### Configurações extras
 
-Instalação, customização, administração e informações adicionais sobre o Dataverse podem ser encontradas nos [Guias](http://guides.dataverse.org/en/4.9.1/) do site.
+Especificações de [hardware](http://guides.dataverse.org/en/latest/installation/prep.html#hardware-requirements).
 
-[Especificações](http://guides.dataverse.org/en/latest/installation/prep.html#hardware-requirements) de hardware.
+Instalação, customização, administração e informações adicionais sobre o Dataverse podem ser encontradas nos [Guias](http://guides.dataverse.org/en/latest/) do site.
 
 [![Dataverse Project logo](https://raw.githubusercontent.com/IQSS/dataverse/develop/src/main/webapp/resources/images/dataverseproject_logo.jpg?raw=true "Dataverse Project")](http://dataverse.org)
 
