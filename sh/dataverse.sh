@@ -21,7 +21,7 @@ clear
 cat /tmp/dvinstall/default.config
 # INICIA INSTALADOR
 cd /tmp/dvinstall/
-./install
+sudo -S -u glassfish ./install
 # CONFIGURA POSTGRESQL PARA BLOQUEAR ACESSO AO BANCO
 systemctl stop postgresql-9.6
 rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
