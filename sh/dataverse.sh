@@ -45,10 +45,10 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Installing.${RESET}"
-./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
+./install -y -f
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
-echo "Installer log file $DIR/logs/install.log"
-echo "Installer error file $DIR/logs/install.err"
+#echo "Installer log file $DIR/logs/install.log"
+#echo "Installer error file $DIR/logs/install.err"
 # SETTING UP POSTGRES ACCESS
 #echo "${GREEN}Restart Postgresql!${RESET}"
 #systemctl stop postgresql-9.6
