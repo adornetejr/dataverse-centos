@@ -1,2 +1,1 @@
-To: ginfo@furg.br
-Subject: [Dataverse Script] Test Sendmail
+

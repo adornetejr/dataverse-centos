@@ -30,52 +30,62 @@ else
     wget $LINK
     unzip $FILE
 fi
+echo " "
 echo "Etapa (1/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 chmod 744 sh/*.sh
 sh/sendmail.sh
+echo " "
 echo "Etapa (2/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 sh/glassfish.sh
+echo " "
 echo "Etapa (3/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 sh/solr.sh
+echo " "
 echo "Etapa (4/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 sh/postgresql.sh
+echo " "
 echo "Etapa (5/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 sh/rserve.sh
+echo " "
 echo "Etapa (6/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 sh/counter.sh
+echo " "
 echo "Etapa (7/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 sh/dataverse.sh
+echo " "
 echo "Etapa (8/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 sh/apache.sh
+echo " "
 echo "Etapa (9/10) concluida!"
 echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
 read -e $X
 cd $DIR
 sh/shibboleth.sh
+echo " "
 echo "Etapa (10/10) concluida!"
 echo "Instalação concluida!"
 echo "Faça a relação de confiança para o login federado funcionar!"
