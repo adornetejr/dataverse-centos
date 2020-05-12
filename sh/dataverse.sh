@@ -44,28 +44,34 @@ read -e $X
 # START INSTALLER
 cd /tmp/dvinstall/
 echo " "
-echo "${GREEN}Wait... Installing.${RESET}"
+echo "${GREEN}Wait... Deploying.${RESET}"
 ./install -y -f
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
-#echo "Installer log file $DIR/logs/install.log"
-#echo "Installer error file $DIR/logs/install.err"
+echo "Installer log file $DIR/logs/install.log"
+echo "Installer error file $DIR/logs/install.err"
 # SETTING UP POSTGRES ACCESS
-#echo "${GREEN}Restart Postgres!${RESET}"
-#systemctl stop postgresql-9.6
-#rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
-#cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
-#systemctl start postgresql-9.6
-# SECURE GLASSFISH
-#/usr/local/glassfish4/glassfish/bin/asadmin change-admin-password
-#/usr/local/glassfish4/glassfish/bin/asadmin --host localhost --port 4848 enable-secure-admin
+echo "${GREEN}Restart Postgres!${RESET}"
+systemctl stop postgresql-9.6
+rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
+cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+systemctl start postgresql-9.6
 # RESTARTING GLASSFISH
-# echo "${GREEN}Restarting Glassfish!${RESET}"
-#systemctl stop glassfish
+ echo "${GREEN}Restarting Glassfish!${RESET}"
+systemctl stop glassfish
 # chown -R glassfish:glassfish /usr/local/glassfish4
-#chown -R root:root /usr/local/glassfish4
-#chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib
-#chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
-#systemctl start glassfish
+chown -R root:root /usr/local/glassfish4
+chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib
+chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
+systemctl restart glassfish
+/usr/local/glassfish4/bin/asadmin list-applications
+# SERVICE GLASSFISH STATUS
+echo "${GREEN}Glassfish status!${RESET}"
+systemctl status glassfish
+# SECURE GLASSFISH
+/usr/local/glassfish4/glassfish/bin/asadmin change-admin-password
+/usr/local/glassfish4/glassfish/bin/asadmin --host localhost --port 4848 enable-secure-admin
+ echo "${GREEN}Restarting Glassfish!${RESET}"
+systemctl restart glassfish
 # SERVICE GLASSFISH STATUS
 echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish

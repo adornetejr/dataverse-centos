@@ -63,7 +63,7 @@ echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 cd $DIR
 sh/dataverse.sh
 echo " "
-echo "${GREEN}Dataverse installed!${RESET}"
+echo "${GREEN}Dataverse deployed!${RESET}"
 echo "Stage (7/10) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X
