@@ -10,12 +10,14 @@ do
 clear
 echo "Redes disponiveis"
 ip -f inet address
+echo " "
 echo "Hostname FQDN"
 hostname --fqdn
-echo "IP de conexão com a rede externa precisa apontar pra FQDN"
+echo " "
+echo "Atenção: IP de conexão com a rede externa precisa apontar pra FQDN"
 echo "Arquivo hosts:"
 cat /etc/hosts
-    read -p "Está correto? (y/n): " OP
+    read -p "Configuração está correta? (y/n): " OP
     if [ "$OP" == "n" ]; then
         echo "Corrija os arquivos /etc/hosts e /etc/hostname"
         echo "Precione Enter após ajustar"
