@@ -24,62 +24,62 @@ sh/sendmail.sh
 echo " "
 echo "${GREEN}Sendmail installed!${RESET}"
 echo "Stage (1/10) done!"
-echo "${RED}Ctrl+C${RESET} to cancel or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+# read -e $X
 sh/glassfish.sh
 echo " "
 echo "${GREEN}Glassfish installed!${RESET}"
 echo "Stage (2/10) done!"
-echo "${RED}Ctrl+C${RESET} to cancel or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+# read -e $X
 cd $DIR
 sh/solr.sh
 echo " "
 echo "${GREEN}Solr installed!${RESET}"
 echo "Stage (3/10) done!"
-echo "${RED}Ctrl+C${RESET} to cancel or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+# read -e $X
 cd $DIR
 sh/postgresql.sh
 echo " "
 echo "${GREEN}Postgres installed!${RESET}"
 echo "Stage (4/10) done!"
-echo "${RED}Ctrl+C${RESET} to cancel or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+# read -e $X
 cd $DIR
 sh/rserve.sh
 echo " "
 echo "${GREEN}Rserve installed!${RESET}"
 echo "Stage (5/10) done!"
-echo "${RED}Ctrl+C${RESET} to cancel or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+# read -e $X
 cd $DIR
 sh/counter.sh
 echo " "
 echo "${GREEN}Counter-Processor installed!${RESET}"
 echo "Stage (6/10) done!"
-echo "${RED}Ctrl+C${RESET} to cancel or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+# read -e $X
 cd $DIR
 sh/dataverse.sh
 echo " "
 echo "${GREEN}Dataverse installed!${RESET}"
 echo "Stage (7/10) done!"
-echo "${RED}Ctrl+C${RESET} to cancel or ${GREEN}Enter${RESET} to continue!"
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X
 cd $DIR
 sh/apache.sh
 echo " "
 echo "${GREEN}Apache installed!${RESET}"
 echo "Stage (8/10) done!"
-echo "${RED}Ctrl+C${RESET} to cancel or ${GREEN}Enter${RESET} to continue!"
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X
 cd $DIR
 sh/shibboleth.sh
 echo " "
 echo "${GREEN}Shibboleth installed!${RESET}"
 echo "Stage (9/10) done!"
-echo "${RED}Ctrl+C${RESET} to cancel or ${GREEN}Enter${RESET} to continue!"
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X
 cd $DIR
 sh/firewalld.sh
@@ -97,4 +97,4 @@ echo "Faça a relação de confiança para o login federado funcionar!"
 echo " "
 echo "Saiba mais em ${RED}http://hdl.handle.net/20.500.11959/1264${RESET}"
 echo ""
-read -e $X
+# read -e $X
