@@ -28,8 +28,9 @@ echo "HOST_DNS_ADDRESS    $HOSTNAME" > $DIR/default.config
 # CONFIGURA SENDMAIL
 hostname > /etc/mail/local-host-names
 hostname > /etc/mail/relay-domains
-rm -f /etc/mail/sendmail.mc
-cp $DIR/mail/sendmail.mc /etc/mail/
+mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.1.bkp
+sed '/^$/d' $DIR/mail/sendmail.mc
+cp $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
 m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 systemctl restart sendmail
 echo "ADMIN_EMAIL	admin@$HOSTNAME" >> $DIR/default.config
