@@ -11,7 +11,7 @@ echo "Configurando R!"
 useradd rserve
 sudo -S -u rserve R -e 'dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)'
 sudo -S -u rserve R -e '.libPaths(Sys.getenv("R_LIBS_USER"))'
-sudo -S -u rserve R -e 'install.packages(c("R2HTML", "rjson", "DescTools", "Rserve", "haven"), repos="https://cloud.r-project.org/")'
+R -e 'install.packages(c("R2HTML", "rjson", "DescTools", "Rserve", "haven"), repos="https://cloud.r-project.org/")'
 # sudo -i R
 # dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
 # .libPaths(Sys.getenv("R_LIBS_USER"))
