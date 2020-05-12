@@ -20,6 +20,7 @@ mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/
 wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
 echo "${GREEN}Starting Glassfish!${RESET}"
 systemctl start glassfish
+echo "${GREEN}Setting up Shibboleth!${RESET}"
 /usr/local/glassfish4/glassfish/bin/asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
 /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
 /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-2.port=8181
@@ -53,14 +54,17 @@ semodule -i shibboleth.pp
 curl -X POST -H 'Content-type: application/json' --upload-file $DIR/shib/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 # SHIBBOLETH SYSTEM START
 systemctl enable shibd
-echo "${GREEN}Restarting Apache!${RESET}"
-systemctl stop httpd
-systemctl start httpd
-echo "${GREEN}Apache status!${RESET}"
-systemctl status httpd
 echo "${GREEN}Starting Shibboleth!${RESET}"
-systemctl stop shibd
 systemctl start shibd
 # SERVICE SHIBBOLETH STATUS
 echo "${GREEN}Shibboleth status!${RESET}"
 systemctl status shibd
+echo "${GREEN}Restarting Glassfish!${RESET}"
+systemctl restart glassfish
+# SERVICE SHIBBOLETH STATUS
+echo "${GREEN}Glassfish status!${RESET}"
+systemctl status glassfish
+echo "${GREEN}Restarting Apache!${RESET}"
+systemctl restart httpd
+echo "${GREEN}Apache status!${RESET}"
+systemctl status httpd
