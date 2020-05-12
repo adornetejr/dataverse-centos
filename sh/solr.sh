@@ -12,17 +12,16 @@ rm -rf /usr/local/solr
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "042a6c0d579375be1a8886428f13755f  $LOCATION" ]; then
-        tar -C /tmp xvfz $FILE
+        tar xvfz $FILE -C /tmp
     else
         rm $LOCATION
         wget $LINK -P /tmp
-        tar -C /tmp xvfz $FILE
+        tar xvfz $FILE -C /tmp
     fi
 else
     wget $LINK -P /tmp
-    tar -C /tmp xvfz $FILE
+    tar xvfz $FILE -C /tmp
 fi
-
 # CRIA PASTA DE INSTALAÇÃO
 mkdir /usr/local/solr
 cp -rf solr-7.3.1 /usr/local/solr
@@ -35,10 +34,10 @@ cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/
 cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
 chown -R solr:solr /usr/local/solr
 # REMOVE LIMITS
-rm -f /etc/security/limits.conf
-cp $DIR/conf/limits.conf /etc/security/
+mv /etc/security/limits.conf /etc/security/limits.conf.bkp
+cp $DIR/conf/limits.conf /etc/security/limits.conf
 # ATIVA SERVICO SOLR PARA INICIALIZAR COM SISTEMA
-rm -f /usr/lib/systemd/system/solr.service
+mv /usr/lib/systemd/system/solr.service /usr/lib/systemd/system/solr.service.bkp
 cp $DIR/service/solr.service /usr/lib/systemd/system/
 systemctl daemon-reload
 echo "name=collection1" >/usr/local/solr/solr-7.3.1/server/solr/collection1/core.properties
@@ -47,6 +46,4 @@ echo "TWORAVENS_LOCATION	NOT INSTALLED" >>$DIR/default.config
 echo "Starting solr!"
 systemctl enable solr
 systemctl start solr
-# INICIA SOLR
-sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d server/solr/collection1/conf/
 systemctl status solr

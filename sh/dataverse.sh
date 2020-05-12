@@ -21,3 +21,5 @@ cp $DIR/default.config .
 clear
 cat default.config
 ./install
+# INICIA SOLR
+sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d server/solr/collection1/conf/
