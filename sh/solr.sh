@@ -32,23 +32,25 @@ echo "Configurando Solr!"
 mkdir /usr/local/solr
 cp -rf /tmp/solr-7.3.1 /usr/local/solr
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr delete -c collection1
+rm -rf /usr/local/solr/solr-7.3.1/server/solr/collection1
 # CONFIGURA ARQUIVOS SOLR DE ACORDO COM DATAVERSE
 cp -rf /usr/local/solr/solr-7.3.1/server/solr/configsets/_default /usr/local/solr/solr-7.3.1/server/solr/collection1
+mv /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/schema.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/schema.xml.bkp
 wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.3.1/schema.xml -P /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
 wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.3.1/schema_dv_mdb_copies.xml -P /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
 wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.3.1/schema_dv_mdb_fields.xml -P /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
+mv /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/solrconfig.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/solrconfig.xml.bkp
 wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.3.1/solrconfig.xml -P /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
 # ADICIONA USUARIO solr
 useradd solr
 chown -R solr:solr /usr/local/solr
-# REMOVE LIMITS
+# REMOVE LIMITS DO 
 mv /etc/security/limits.conf /etc/security/limits.conf.bkp
 cp $DIR/conf/limits.conf /etc/security/limits.conf
-# ATIVA SERVICO SOLR PARA INICIALIZAR COM SISTEMA
+# SERVIÇO SOLR
 mv /usr/lib/systemd/system/solr.service /usr/lib/systemd/system/solr.service.bkp
 cp $DIR/service/solr.service /usr/lib/systemd/system/
 systemctl daemon-reload
-echo "name=collection1" >/usr/local/solr/solr-7.3.1/server/solr/collection1/core.properties
 echo "SOLR_LOCATION	localhost:8983" >>$DIR/default.config
 echo "TWORAVENS_LOCATION	NOT INSTALLED" >>$DIR/default.config
 # START SOLR
