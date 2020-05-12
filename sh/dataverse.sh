@@ -15,7 +15,7 @@ clear
 cat /tmp/dvinstall/default.config
 # START INSTALLER
 cd /tmp/dvinstall/
-sudo -S -u glassfish ./install
+sudo -S -u glassfish ./install -y -f > install.out 2> install.err
 # SETTING UP POSTGRES ACCESS
 systemctl stop postgresql-9.6
 rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
