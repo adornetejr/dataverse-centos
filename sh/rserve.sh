@@ -31,4 +31,5 @@ systemctl enable rserve
 echo "${GREEN}Starting Rserve!${RESET}"
 systemctl start rserve
 # SERVICE RSERVE STATUS
+echo "${GREEN}Rserve status!${RESET}"
 systemctl status rserve

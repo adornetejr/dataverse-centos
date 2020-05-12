@@ -68,4 +68,5 @@ echo "${GREEN}Restarting Solr!${RESET}"
 systemctl stop solr
 systemctl start solr
 # SERVICE SOLR STATUS
+echo "${GREEN}Solr status!${RESET}"
 systemctl status solr

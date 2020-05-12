@@ -36,4 +36,5 @@ systemctl enable httpd
 echo "${GREEN}Starting Apache!${RESET}"
 systemctl start httpd
 # HTTPD SERVICE
+echo "${GREEN}Apache status!${RESET}"
 systemctl status httpd

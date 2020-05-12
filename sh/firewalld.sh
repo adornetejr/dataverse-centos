@@ -17,4 +17,5 @@ firewall-cmd --permanent --add-port=8009/tcp
 firewall-cmd --reload
 systemctl restart firewalld
 # FIREWALLD STATUS
+echo "${GREEN}Firewalld status!${RESET}"
 systemctl status firewalld

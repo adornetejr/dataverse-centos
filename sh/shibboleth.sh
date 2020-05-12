@@ -56,9 +56,11 @@ systemctl enable shibd
 echo "${GREEN}Restarting Apache!${RESET}"
 systemctl stop httpd
 systemctl start httpd
+echo "${GREEN}Apache status!${RESET}"
 systemctl status httpd
 echo "${GREEN}Starting Shibboleth!${RESET}"
 systemctl stop shibd
 systemctl start shibd
 # SERVICE SHIBBOLETH STATUS
+echo "${GREEN}Shibboleth status!${RESET}"
 systemctl status shibd

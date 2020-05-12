@@ -60,4 +60,5 @@ systemctl enable glassfish
 echo "${GREEN}Starting Glassfish!${RESET}"
 systemctl start glassfish
 # SERVICE GLASSFISH
+echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish

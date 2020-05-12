@@ -65,4 +65,5 @@ systemctl start sendmail
 echo "${GREEN}Email test on Sendmail!${RESET}"
 sendmail -vt <$DIR/mail/mail.txt
 # SERVICE SENDMAIL STATUS
+echo "${GREEN}Sendmail status!${RESET}"
 systemctl status sendmail
