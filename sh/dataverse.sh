@@ -30,6 +30,9 @@ systemctl stop postgresql-9.6
 rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
 cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 systemctl start postgresql-9.6
+# SECURE GLASSFISH
+/usr/local/glassfish4/glassfish/bin/asadmin change-admin-password
+/usr/local/glassfish4/glassfish/bin/asadmin --host localhost --port 4848 enable-secure-admin
 # RESTARTING GLASSFISH
 echo "Restart Glassfish"
 systemctl stop glassfish
