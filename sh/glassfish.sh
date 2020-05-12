@@ -41,7 +41,7 @@ cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassf
 useradd glassfish
 chown -R root:root /usr/local/glassfish4
 # chown -R glassfish:glassfish /usr/local/glassfish4
-chown glassfish /usr/local/glassfish4/glassfish/lib
+chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib
 chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
 # ATIVA SERVICO GLASSFISH PARA INICIALIZAR COM SISTEMA
 mv /usr/lib/systemd/system/glassfish.service /usr/lib/systemd/system/glassfish.service.bkp

@@ -26,6 +26,4 @@ sudo -S -u glassfish ./install
 systemctl stop postgresql-9.6
 rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
 cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
-# INICIA COLEÇÃO SOLR
-sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/
 rm -rf $DIR/default.config /tmp/dvinstall/default.config
