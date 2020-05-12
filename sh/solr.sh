@@ -12,15 +12,15 @@ rm -rf /usr/local/solr
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "042a6c0d579375be1a8886428f13755f  $LOCATION" ]; then
-        tar xvzf $FILE
+        tar -C /tmp xvfz $FILE
     else
         rm $LOCATION
-        wget $LINK
-        tar xvzf $FILE
+        wget $LINK -P /tmp
+        tar -C /tmp xvfz $FILE
     fi
 else
-    wget $LINK
-    tar xvzf $FILE
+    wget $LINK -P /tmp
+    tar -C /tmp xvfz $FILE
 fi
 
 # CRIA PASTA DE INSTALAÇÃO

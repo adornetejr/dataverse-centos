@@ -1,5 +1,6 @@
 #!/bin/bash
 DIR=$PWD
+rm -rf $DIR/default.config
 # ATUALIZA PACOTES
 yum update -y
 # INSTALA REPOSITORIO EPEL FEDORA NO CENTOS 7
