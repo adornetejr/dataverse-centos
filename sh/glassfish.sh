@@ -5,12 +5,14 @@ systemctl stop glassfish
 # GLASSFISH DEPENDENCIES
 echo "Installing dependencies!"
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
+echo "Removing old settings!"
+TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
+mv /usr/local/glassfish4 /usr/local/glassfish4-$TIMESTAMP
+rm -rf /tmp/glassfish4
 echo "Baixando Glassfish!"
 FILE="glassfish-4.1.zip"
 LOCATION="/tmp/$FILE"
 LINK=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
-rm -rf /tmp/glassfish4
-rm -rf /usr/local/glassfish4
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "2fd41ad9af8d41d1c721c1b25191f674  $LOCATION" ]; then
@@ -25,7 +27,7 @@ else
     unzip /tmp/$FILE -d /tmp
 fi
 echo "Setting up Glassfish!"
-mv /tmp/glassfish4 /usr/local/
+cp -R /tmp/glassfish4 /usr/local/
 # FIX MODULE WELD-OSGI
 mv /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar.bkp
 curl -L -o /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld-osgi-bundle/2.2.10.Final/weld-osgi-bundle-2.2.10.Final-glassfish4.jar
