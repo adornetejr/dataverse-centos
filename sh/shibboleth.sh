@@ -1,20 +1,21 @@
 #!/bin/bash
 DIR=$PWD
 HOST=$(hostname --fqdn)
-echo "Parando Glassfish"
+echo "Stopping Glassfish"
 systemctl stop glassfish
-echo "Parando Shibboleth"
+echo "Stopping Shibboleth"
 systemctl stop shibd
-echo "Removendo configurações antigas!"
+echo "Removing old settings!"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/shibboleth /etc/shibboleth-$TIMESTAMP
-echo "Instalando dependências"
+# SHIBBOLETH REPOSITORY
+echo "Installing shibboleth repository"
 rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
 yum install -y shibboleth shibboleth-embedded-ds
 mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
 wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
-echo "Iniciando Glassfish!"
+echo "Starting Glassfish!"
 systemctl start glassfish
 /usr/local/glassfish4/glassfish/bin/asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
 /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
@@ -47,11 +48,11 @@ semodule_package -o shibboleth.pp -m shibboleth.mod
 semodule -i shibboleth.pp
 cd $DIR/shib
 curl -X POST -H 'Content-type: application/json' --upload-file shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
-# START SHIBBOLETH
+# SHIBBOLETH SYSTEM START
 systemctl enable shibd
-echo "Reiniciando Apache!"
+echo "ReStarting Apache!"
 systemctl restart httpd.service
-echo "Iniciando Shibboleth!"
+echo "Starting Shibboleth!"
 systemctl restart shibd
-# STATUS DO SERVICO SHIBBOLETH
+# SERVICE SHIBBOLETH STATUS
 systemctl status shibd

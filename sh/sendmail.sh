@@ -1,14 +1,14 @@
 #!/bin/bash
 DIR=$PWD
-echo "Parando Sendmail!"
+echo "Stopping Sendmail!"
 systemctl stop sendmail
-echo "Removendo configurações antigas!"
+echo "Removing old settings!"
 yum remove -y sendmail sendmail-cf
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/mail /etc/mail-$TIMESTAMP
-echo "Instalando Sendmail!"
+echo "Installing Sendmail!"
 yum install -y sendmail sendmail-cf m4
-# ALTERANDO ARQUIVO HOSTS PARA CONFIGURACAO LOCAL DO SENTMAIL
+# CHECKING HOST FILE
 until $OP != "y"; do
     clear
     echo "Redes disponíveis"
@@ -32,8 +32,8 @@ until $OP != "y"; do
     fi
 done
 echo "HOST_DNS_ADDRESS    $HOSTNAME" >$DIR/default.config
-# CONFIGURA SENDMAIL
-echo "Configurando Sendmail!"
+# SETTING SENDMAIL
+echo "Setting Sendmail!"
 hostname >/etc/mail/local-host-names
 hostname >/etc/mail/relay-domains
 mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bkp
@@ -49,18 +49,18 @@ echo "To: ginfo@furg.br" >$DIR/mail/mail.txt
 echo "Subject: [Dataverse Script] Test Sendmail">>$DIR/mail/mail.txt
 echo "From: $USER@$HOST" >>$DIR/mail/mail.txt
 echo " " >>$DIR/mail/mail.txt
-echo "Servidor:" >>$DIR/mail/mail.txt
+echo "Server:" >>$DIR/mail/mail.txt
 echo $HOST >>$DIR/mail/mail.txt
-echo "Hora:" >>$DIR/mail/mail.txt
+echo "Time:" >>$DIR/mail/mail.txt
 TIME=$(date)
 echo $TIME >>$DIR/mail/mail.txt
-# START SENDMAIL
-echo "Habilitando Sendmail para iniciar com o sistema!"
+# SENDMAIL SYSTEM START
+echo "Enabling Sendmail to start with the system!"
 systemctl enable sendmail
-echo "Iniciando Sendmail!"
+echo "Starting Sendmail!"
 systemctl start sendmail
-# EMAIL TEST DO SENDMAIL
-echo "Teste de email no Sendmail!"
+# SENDMAIL EMAIL TEST
+echo "Email test on Sendmail!"
 sendmail -vt <$DIR/mail/mail.txt
-# STATUS DO SERVICO SENDMAIL
+# SERVICE SENDMAIL STATUS
 systemctl status sendmail

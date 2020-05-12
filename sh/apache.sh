@@ -1,14 +1,14 @@
 #!/bin/bash
 DIR=$PWD
 HOST=$(hostname --fqdn)
-echo "Parando Apache!"
+echo "Stopping Apache!"
 systemctl stop httpd
-echo "Removendo configurações antigas!"
+echo "Removing old settings!"
 yum remove -y httpd mod_ssl
-echo "Instalando Apache!"
+echo "Installing Apache!"
 yum install -y httpd mod_ssl
 systemctl stop httpd
-echo "Configurando Apache!"
+echo "Setting Apache!"
 mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
 mv etc/httpd/conf.d/ssl.conf etc/httpd/conf.d/ssl.conf.bkp
@@ -27,10 +27,10 @@ cd $DIR/cert
 mv sp-cert.pem /etc/httpd/ssl/$HOST.cer
 mv sp-key.pem /etc/httpd/ssl/$HOST.key
 systemctl stop httpd
-# START APACHE
-echo "Habilitando Apache para iniciar com o sistema!"
+# APACHE SYSTEM START
+echo "Enabling Apache to start with the system!"
 systemctl enable httpd
-echo "Iniciando Apache!"
+echo "Starting Apache!"
 systemctl start httpd
-# STATUS DO SERVICO HTTPD
+# HTTPD SERVICE
 systemctl status httpd

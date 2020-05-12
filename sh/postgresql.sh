@@ -1,27 +1,27 @@
 #!/bin/bash
 DIR=$PWD
-echo "Parando Postgresql"
+echo "Stopping Postgresql"
 systemctl stop postgresql-9.6
-echo "Removendo configurações antigas!"
+echo "Removing old settings!"
 yum remove -y postgresql96-server
 yum autoremove -y
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /var/lib/pgsql /var/lib/pgsql-$TIMESTAMP
 mv /usr/pgsql-9.6 /usr/pgsql-9.6-$TIMESTAMP
-# INSTALA DEPENDENCIA POSTGRESQL
-echo "Instalando Postgresql!"
+#  POSTGRES REPOSITORY
+echo "Installing Postgresql!"
 yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7.1-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 yum makecache fast
 yum install -y postgresql96-server
-# INICIALIZA BANCO DE DADOS POSTGRESQL
+# STARTING DATABASE
 /usr/pgsql-9.6/bin/postgresql96-setup initdb
-echo "Iniciando Postgresql!"
+echo "Starting Postgresql!"
 systemctl start postgresql-9.6
 systemctl stop postgresql-9.6
-# CONFIGURA POSTGRESQL PARA LIBERAR ACESSO AO BANCO
+# SETTING UP POSTGRES ACCESS
 mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.bkp
 cp $DIR/conf/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
-# DEFINE SENHA ADMIN DO POSTGRESQL
+# CHANGE ROOT PASSWORD
 echo "Alterando senha usuário root do postgres"
 read -p "Password: " PASSWORD
 systemctl start postgresql-9.6
@@ -34,10 +34,10 @@ echo "POSTGRES_USER	dvnapp" >>$DIR/default.config
 echo "Crie senha usuário dvndb do postgres"
 read -p "Password: " PASSWORD
 echo "POSTGRES_PASSWORD	CREATE_DVNAPP_PASSWORD" >>$DIR/default.config
-# START POSTGRES
-echo "Habilitando Postgresql para iniciar com o sistema!"
+# POSTGRES SYSTEM START
+echo "Enabling Postgresql to start with the system!"
 systemctl enable postgresql-9.6
-echo "Iniciando Postgresql!"
+echo "Starting Postgresql!"
 systemctl start postgresql-9.6
-# STATUS DO SERVICO POSTGRES
+# SERVICE POSTGRES SERVICE
 systemctl status postgresql-9.6
