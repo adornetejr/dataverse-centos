@@ -6,7 +6,6 @@ yum install -y lsof
 FILE="solr-7.3.1.tgz"
 LOCATION="/tmp/$FILE"
 LINK=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
-cd /tmp/
 rm -rf solr-7.3.1
 rm -rf /usr/local/solr
 if [ -f "$LOCATION" ]; then
@@ -28,7 +27,7 @@ cp -rf solr-7.3.1 /usr/local/solr
 # ADICIONA USUARIO solr
 useradd solr
 # CONFIGURA ARQUIVOS SOLR DE ACORDO COM DATAVERSE
-cd /usr/local/solr/solr-7.3.1
+# cd /usr/local/solr/solr-7.3.1
 cp -r server/solr/configsets/_default server/solr/collection1
 cp /tmp/dvinstall/schema.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
 cp /tmp/dvinstall/solrconfig.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
