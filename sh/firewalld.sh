@@ -1,4 +1,7 @@
 #!/bin/bash
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
 # SERVICE FIREWALLD RESTART
 systemctl enable firewalld
 systemctl start firewalld

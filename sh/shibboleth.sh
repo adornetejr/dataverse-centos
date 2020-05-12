@@ -1,21 +1,24 @@
 #!/bin/bash
 DIR=$PWD
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
 HOST=$(hostname --fqdn)
-echo "Stopping Glassfish"
+echo "${GREEN}Stopping Glassfish!${RESET}"
 systemctl stop glassfish
-echo "Stopping Shibboleth"
+echo "${GREEN}Stopping Shibboleth!${RESET}"
 systemctl stop shibd
-echo "Removing old settings!"
+echo "${GREEN}Removing old settings!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/shibboleth /etc/shibboleth-$TIMESTAMP
 # SHIBBOLETH REPOSITORY
-echo "Installing Shibboleth repository!"
+echo "${GREEN}Installing Shibboleth repository!${RESET}"
 rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
 yum install -y shibboleth shibboleth-embedded-ds
 mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
 wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
-echo "Starting Glassfish!"
+echo "${GREEN}Starting Glassfish!${RESET}"
 systemctl start glassfish
 /usr/local/glassfish4/glassfish/bin/asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
 /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
@@ -50,11 +53,11 @@ semodule -i shibboleth.pp
 curl -X POST -H 'Content-type: application/json' --upload-file $DIR/shib/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 # SHIBBOLETH SYSTEM START
 systemctl enable shibd
-echo "Restarting Apache!"
+echo "${GREEN}Restarting Apache!${RESET}"
 systemctl stop httpd
 systemctl start httpd
 systemctl status httpd
-echo "Starting Shibboleth!"
+echo "${GREEN}Starting Shibboleth!${RESET}"
 systemctl stop shibd
 systemctl start shibd
 # SERVICE SHIBBOLETH STATUS

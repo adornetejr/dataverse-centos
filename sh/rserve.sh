@@ -1,13 +1,16 @@
 #!/bin/bash
 DIR=$PWD
-echo "Stopping Rserve!"
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
+echo "${GREEN}Stopping Rserve!${RESET}"
 systemctl stop rserve
-echo "Removing old settings!"
+echo "${GREEN}Removing old settings!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /home/rserve/R /home/rserve/R-$TIMESTAMP
-echo "Installing R!"
+echo "${GREEN}Installing R!${RESET}"
 yum install -y R R-core R-core-devel
-echo "Setting up R!"
+echo "${GREEN}Setting up R!${RESET}"
 # RSERVE DEPENDENCIES
 useradd rserve
 usermod -s /sbin/nologin rserve
@@ -23,9 +26,9 @@ mv /usr/lib/systemd/system/rserve.service /usr/lib/systemd/system/rserve.service
 cp $DIR/service/rserve.service /usr/lib/systemd/system/rserve.service
 systemctl daemon-reload
 # RSERVE SYSTEM START
-echo "Enabling Rserve to start with the system!"
+echo "${GREEN}Enabling Rserve to start with the system!${RESET}"
 systemctl enable rserve
-echo "Starting Rserve!"
+echo "${GREEN}Starting Rserve!${RESET}"
 systemctl start rserve
 # SERVICE RSERVE STATUS
 systemctl status rserve

@@ -1,15 +1,18 @@
 #!/bin/bash
 DIR=$PWD
-echo "Stopping Solr!"
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
+echo "${GREEN}Stopping Solr!${RESET}"
 systemctl stop solr
-echo "Installing dependencies!"
+echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y lsof
-echo "Removing old settings!"
+echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /tmp/solr-7.3.1
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /usr/local/solr /usr/local/solr-$TIMESTAMP
 # SOLR DEPENDENCIES
-echo "Baixando Solr!"
+echo "${GREEN}Downloading Solr!${RESET}"
 FILE="solr-7.3.1.tgz"
 LOCATION="/tmp/$FILE"
 LINK=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
@@ -26,7 +29,7 @@ else
     wget $LINK -P /tmp
     tar xvfz $LOCATION -C /tmp
 fi
-echo "Setting up Solr!"
+echo "${GREEN}Setting up Solr!${RESET}"
 # INSTALLING SOLR
 mkdir /usr/local/solr
 cp -R /tmp/solr-7.3.1 /usr/local/solr
@@ -54,14 +57,14 @@ systemctl daemon-reload
 echo "SOLR_LOCATION	localhost:8983" >>$DIR/default.config
 echo "TWORAVENS_LOCATION	NOT INSTALLED" >>$DIR/default.config
 # SOLR SYSTEM START
-echo "Enabling Solr to start with the system!"
+echo "${GREEN}Enabling Solr to start with the system!${RESET}"
 systemctl enable solr
-echo "Starting Solr!"
+echo "${GREEN}Starting Solr!${RESET}"
 systemctl start solr
 # SOLR COLLECTION
-echo "Creating collection!"
+echo "${GREEN}Creating collection!${RESET}"
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/
-echo "Restarting Solr!"
+echo "${GREEN}Restarting Solr!${RESET}"
 systemctl stop solr
 systemctl start solr
 # SERVICE SOLR STATUS

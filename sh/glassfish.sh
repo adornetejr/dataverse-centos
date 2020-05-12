@@ -1,15 +1,18 @@
 #!/bin/bash
 DIR=$PWD
-echo "Stopping Glassfish!"
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
+echo "${GREEN}Stopping Glassfish!${RESET}"
 systemctl stop glassfish
 # GLASSFISH DEPENDENCIES
-echo "Installing dependencies!"
+echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
-echo "Removing old settings!"
+echo "${GREEN}Removing old settings!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /usr/local/glassfish4 /usr/local/glassfish4-$TIMESTAMP
 rm -rf /tmp/glassfish4
-echo "Baixando Glassfish!"
+echo "${GREEN}Downloading Glassfish!${RESET}"
 FILE="glassfish-4.1.zip"
 LOCATION="/tmp/$FILE"
 LINK=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
@@ -26,10 +29,10 @@ else
     wget $LINK -P /tmp
     unzip /tmp/$FILE -d /tmp
 fi
-echo "Setting up Glassfish!"
+echo "${GREEN}Setting up Glassfish!${RESET}"
 cp -R /tmp/glassfish4 /usr/local/
 # FIX MODULE WELD-OSGI
-echo "Update Weld-OSGi Module!"
+echo "${GREEN}Updating Weld-OSGi Module!${RESET}"
 mv /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar.bkp
 curl -L -o /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld-osgi-bundle/2.2.10.Final/weld-osgi-bundle-2.2.10.Final-glassfish4.jar
 # wget http://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
@@ -53,9 +56,9 @@ systemctl daemon-reload
 echo "GLASSFISH_USER    glassfish" >>$DIR/default.config
 echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >>$DIR/default.config
 # GLASSFISH SYSTEM START
-echo "Enabling Glassfish to start with the system!"
+echo "${GREEN}Enabling Glassfish to start with the system!${RESET}"
 systemctl enable glassfish
-echo "Starting Glassfish!"
+echo "${GREEN}Starting Glassfish!${RESET}"
 systemctl start glassfish
 # SERVICE GLASSFISH
 systemctl status glassfish

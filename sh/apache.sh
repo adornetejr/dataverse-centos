@@ -1,14 +1,17 @@
 #!/bin/bash
 DIR=$PWD
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
 HOST=$(hostname --fqdn)
-echo "Stopping Apache!"
+echo "${GREEN}Stopping Apache!${RESET}"
 systemctl stop httpd
-echo "Removing old settings!"
+echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y httpd mod_ssl
-echo "Installing Apache!"
+echo "${GREEN}Installing Apache!${RESET}"
 yum install -y httpd mod_ssl
 systemctl stop httpd
-echo "Setting up Apache!"
+echo "${GREEN}Setting up Apache!${RESET}"
 mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
 mv etc/httpd/conf.d/ssl.conf etc/httpd/conf.d/ssl.conf.bkp
@@ -28,9 +31,9 @@ mv sp-cert.pem /etc/httpd/ssl/$HOST.cer
 mv sp-key.pem /etc/httpd/ssl/$HOST.key
 systemctl stop httpd
 # APACHE SYSTEM START
-echo "Enabling Apache to start with the system!"
+echo "${GREEN}Enabling Apache to start with the system!${RESET}"
 systemctl enable httpd
-echo "Starting Apache!"
+echo "${GREEN}Starting Apache!${RESET}"
 systemctl start httpd
 # HTTPD SERVICE
 systemctl status httpd

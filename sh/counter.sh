@@ -1,8 +1,11 @@
 #!/bin/bash
 DIR=$PWD
-echo "Installing dependencies!"
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
+echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y python36
-echo "Baixando Counter-Processor!"
+echo "${GREEN}Downloading Counter-Processor!${RESET}"
 # INSTALL COUNTER DEPENDENCIES
 FILE="v0.0.1.tar.gz"
 LOCATION="/tmp/$FILE"
@@ -22,7 +25,7 @@ else
     wget $LINK -P /tmp
     tar xvfz $LOCATION -C /tmp
 fi
-echo "Setting up Counter-Processor!"
+echo "${GREEN}Setting up Counter-Processor!${RESET}"
 cp -R /tmp/counter-processor-0.0.1 /usr/local/counter-processor
 # cd /usr/local/counter-processor
 cp $DIR/bin/GeoLite2-Country /tmp/GeoLite2-Country.tar.gz
@@ -32,7 +35,7 @@ cp /tmp/GeoLite2-Country_*/GeoLite2-Country.mmdb /usr/local/counter-processor/ma
 useradd counter
 usermod -s /sbin/nologin counter
 chown -R counter:counter /usr/local/counter-processor
-echo "Installing Counter-Processor!"
+echo "${GREEN}Installing Counter-Processor!${RESET}"
 # INSTALL PIP3
 sudo -S -u counter python3.6 -m ensurepip
 # INSTALL DEPENDENCIES

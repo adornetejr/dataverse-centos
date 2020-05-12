@@ -1,31 +1,34 @@
 #!/bin/bash
 DIR=$PWD
-echo "Stopping Sendmail!"
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
+echo "${GREEN}Stopping Sendmail!${RESET}"
 systemctl stop sendmail
-echo "Removing old settings!"
+echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y sendmail sendmail-cf
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/mail /etc/mail-$TIMESTAMP
-echo "Installing Sendmail!"
+echo "${GREEN}Installing Sendmail!${RESET}"
 yum install -y sendmail sendmail-cf m4
 # CHECKING HOST FILE
-until $OP != "y"; do
+until [ $OP != "y" ]; do
     clear
-    echo "Redes disponíveis"
+    echo "${GREEN}Available networks${RESET}"
     ip -f inet address
     echo " "
-    echo "Domínio FQDN"
+    echo "${GREEN}Fully Qualified Domain Name${RESET}"
     hostname --fqdn
     echo " "
-    echo "Arquivo hosts:"
+    echo "${GREEN}File /etc/hosts:${RESET}"
     cat /etc/hosts
     echo " "
-    echo "Atenção: IP de conexão com a rede externa precisa apontar pra FQDN"
+    echo "${RED}Attention: External IP needs to point to FQDN!${RESET}"
     echo " "
-    read -ep "Configuração está correta? (y/N): " OP
-    if [ "$OP" == "n" ]; then
-        echo "Corrija os arquivos /etc/hosts e /etc/hostname"
-        echo "Precione Enter após ajustar"
+    read -ep "Continue? (y/N): " OP
+    if [ "$OP" != "y" ]; then
+        echo "Correct the files /etc/hosts and /etc/hostname"
+        echo "Press Enter after ajust"
         read -e $X
     else
         break
@@ -33,7 +36,7 @@ until $OP != "y"; do
 done
 echo "HOST_DNS_ADDRESS    $HOSTNAME" >$DIR/default.config
 # SETTING SENDMAIL
-echo "Setting up Sendmail!"
+echo "${GREEN}Setting up Sendmail!${RESET}"
 hostname >/etc/mail/local-host-names
 hostname >/etc/mail/relay-domains
 mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bkp
@@ -54,12 +57,12 @@ echo "Time:" >>$DIR/mail/mail.txt
 TIME=$(date)
 echo $TIME >>$DIR/mail/mail.txt
 # SENDMAIL SYSTEM START
-echo "Enabling Sendmail to start with the system!"
+echo "${GREEN}Enabling Sendmail to start with the system!${RESET}"
 systemctl enable sendmail
-echo "Starting Sendmail!"
+echo "${GREEN}Starting Sendmail!${RESET}"
 systemctl start sendmail
 # SENDMAIL EMAIL TEST
-echo "Email test on Sendmail!"
+echo "${GREEN}Email test on Sendmail!${RESET}"
 sendmail -vt <$DIR/mail/mail.txt
 # SERVICE SENDMAIL STATUS
 systemctl status sendmail
