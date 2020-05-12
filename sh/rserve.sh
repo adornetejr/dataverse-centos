@@ -2,6 +2,8 @@
 DIR=$PWD
 echo "Parando Rserve!"
 systemctl stop rserve
+echo "Removendo configurações antigas!"
+rm -rf /home/rserve/R
 echo "Instalando R!"
 yum install -y R R-core R-core-devel
 echo "Configurando R!"
