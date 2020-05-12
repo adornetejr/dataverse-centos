@@ -1,42 +1,37 @@
 #!/bin/bash
 DIR=$PWD
-echo $PWD
 systemctl stop glassfish
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
 # DOWNLOAD DEPENDENCIA GLASSFISH SERVER
 FILE="glassfish-4.1.zip"
 LOCATION="/tmp/$FILE"
 LINK=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
-cd /tmp/
-rm -rf glassfish4
+rm -rf /tmp/glassfish4
 rm -rf /usr/local/glassfish4
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "2fd41ad9af8d41d1c721c1b25191f674  $LOCATION" ]; then
-        unzip $FILE
+        unzip /tmp/$FILE -d /tmp
     else
         rm $LOCATION
-        wget $LINK
-        unzip $FILE
+        wget $LINK -P /tmp
+        unzip /tmp/$FILE -d /tmp
     fi
 else
-    wget $LINK
-    unzip $FILE
+    wget $LINK -P /tmp
+    unzip /tmp/$FILE -d /tmp
 fi
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local
-mv glassfish4 /usr/local/
-# ADICIONA USUARIO
-cd /usr/local/glassfish4/glassfish/modules
+mv /tmp/glassfish4 /usr/local/
 # ATUALIZA MODULO WELD-OSGI
-rm -f weld-osgi-bundle.jar
-curl -L -O https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld-osgi-bundle/2.2.10.Final/weld-osgi-bundle-2.2.10.Final-glassfish4.jar
+mv /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar.1.bkp
+curl -L -O https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld-osgi-bundle/2.2.10.Final/weld-osgi-bundle-2.2.10.Final-glassfish4.jar /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar
 # wget http://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
 # CONFIGURA GLASSFISH DE CLIENTE PARA SERVIDOR
-cd /usr/local/glassfish4/glassfish/domains/domain1/config/
-rm -f domain.xml
-cp $DIR/xml/domain.xml .
+mv /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml.1.bkp
+cp $DIR/xml/domain.xml /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml
 # ATUALIZA CERTIFICADO SSL DO GLASSFISH
-rm -rf /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
+mv /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks.1.bkp
 cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 # ALTERA PERMICOES PARA USUARIO glassfish
 useradd glassfish
@@ -45,8 +40,8 @@ chown glassfish /usr/local/glassfish4/glassfish/lib
 chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
 # chown -R glassfish:glassfish /usr/local/glassfish4
 # ATIVA SERVICO GLASSFISH PARA INICIALIZAR COM SISTEMA
-rm -f /usr/lib/systemd/system/glassfish.service
-cp $DIR/service/glassfish.service /usr/lib/systemd/system/
+mv /usr/lib/systemd/system/glassfish.service /usr/lib/systemd/system/glassfish.service.bkp
+cp $DIR/service/glassfish.service /usr/lib/systemd/system/glassfish.service
 systemctl daemon-reload
 echo "GLASSFISH_USER    glassfish" >> $DIR/default.config
 echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >> $DIR/default.config
