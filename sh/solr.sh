@@ -4,13 +4,16 @@ echo "Parando Solr!"
 systemctl stop solr
 echo "Instalando dependências!"
 yum install -y lsof
-echo "Baixando Solr!"
+# REMOVENDO CONFIGURAÇÕES ANTIGAS SOLR
+echo "Removendo configurações antigas!"
+rm -rf /tmp/solr-7.3.1
+TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
+mv /usr/local/solr /usr/local/solr-$TIMESTAMP
 # DOWNLOAD DEPENDENCIA SOLR
+echo "Baixando Solr!"
 FILE="solr-7.3.1.tgz"
 LOCATION="/tmp/$FILE"
 LINK=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
-rm -rf /tmp/solr-7.3.1
-rm -rf /usr/local/solr
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "042a6c0d579375be1a8886428f13755f  $LOCATION" ]; then
