@@ -23,7 +23,7 @@ mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.bkp
 cp $DIR/conf/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 # CHANGE ROOT PASSWORD
 echo "Alterando senha usuário root do postgres"
-read -p "Password: " PASSWORD
+read -ep "Password: " PASSWORD
 systemctl start postgresql-9.6
 psql -U postgres -c "alter user postgres with password '$PASSWORD';"
 echo "POSTGRES_ADMIN_PASSWORD	$PASSWORD" >>$DIR/default.config
