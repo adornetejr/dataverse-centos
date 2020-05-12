@@ -42,7 +42,7 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "Wait... Installing."
-sudo -S -u glassfish ./install -y
+sudo -S -u glassfish ./install -y -f
 # sudo -S -u glassfish ./install -y -f > $DIR/logs/install.out 2> $DIR/logs/install.err
 # echo "Installer log file $DIR/logs/install.out"
 # echo "Installer error file $DIR/logs/install.err"
