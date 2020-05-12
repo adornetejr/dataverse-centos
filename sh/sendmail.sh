@@ -22,7 +22,7 @@ until $OP != "y"; do
     echo " "
     echo "Atenção: IP de conexão com a rede externa precisa apontar pra FQDN"
     echo " "
-    read -p "Configuração está correta? (y/n): " OP
+    read -p "Configuração está correta? (y/N): " OP
     if [ "$OP" == "n" ]; then
         echo "Corrija os arquivos /etc/hosts e /etc/hostname"
         echo "Precione Enter após ajustar"
