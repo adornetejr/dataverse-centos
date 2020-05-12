@@ -15,51 +15,56 @@ echo "Installing dependencies!"
 yum install -y nano htop wget git net-tools lynx unzip curl
 cd $DIR
 chmod 744 sh/*.sh
+sh/firewalld.sh
+echo " "
+echo "Stage (1/10) done!"
+echo "Ctrl+C to cancel or Enter to continue!"
+read -e $X
 sh/sendmail.sh
 echo " "
-echo "Stage (1/9) done!"
+echo "Stage (1/10) done!"
 echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 cd $DIR
 sh/glassfish.sh
 echo " "
-echo "Stage (2/9) done!"
+echo "Stage (2/10) done!"
 echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 cd $DIR
 sh/solr.sh
 echo " "
-echo "Stage (3/9) done!"
+echo "Stage (3/10) done!"
 echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 cd $DIR
 sh/postgresql.sh
 echo " "
-echo "Stage (4/9) done!"
+echo "Stage (4/10) done!"
 echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 cd $DIR
 sh/rserve.sh
 echo " "
-echo "Stage (5/9) done!"
+echo "Stage (5/10) done!"
 echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 cd $DIR
 sh/counter.sh
 echo " "
-echo "Stage (6/9) done!"
+echo "Stage (6/10) done!"
 echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 cd $DIR
 sh/dataverse.sh
 echo " "
-echo "Stage (7/9) done!"
+echo "Stage (7/10) done!"
 echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 cd $DIR
 sh/apache.sh
 echo " "
-echo "Stage (8/9) done!"
+echo "Stage (8/10) done!"
 echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 cd $DIR
@@ -67,7 +72,7 @@ sh/shibboleth.sh
 rm -rf $DIR/default.config /tmp/dvinstall/default.config
 clear
 echo " "
-echo "Stage (9/9) done!"
+echo "Stage (9/10) done!"
 echo "Installation completed!"
 echo " "
 echo "Attention!!"
