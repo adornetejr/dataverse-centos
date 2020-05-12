@@ -22,8 +22,8 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "Wait... Installing."
-sudo -S -u glassfish ./install -y -f > $DIR/install.out 2> $DIR/install.err
-echo "Install log file $DIR/install.out"
+sudo -S -u glassfish ./install -y -f > $DIR/logs/install.out 2> $DIR/logs/install.err
+echo "Install log file $DIR/logs/install.out"
 # SETTING UP POSTGRES ACCESS
 echo "Restart Postgresql"
 systemctl stop postgresql-9.6

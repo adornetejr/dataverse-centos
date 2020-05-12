@@ -1,6 +1,8 @@
 #!/bin/bash
 DIR=$PWD
-rm -rf $DIR/default.config
+mv $DIR/default.config $DIR/default.config.bkp
+mv $DIR/logs/install.out $DIR/logs/install.out.bkp
+mv $DIR/logs/install.err $DIR/logs/install.err.bkp
 # UPDATE PACKAGES
 yum update -y
 # INSTALL FEDORA REPOSITORY
