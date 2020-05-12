@@ -2,6 +2,7 @@
 DIR=$PWD
 systemctl stop solr
 yum install -y lsof
+echo "Baixando Solr!"
 # DOWNLOAD DEPENDENCIA SOLR
 FILE="solr-7.3.1.tgz"
 LOCATION="/tmp/$FILE"
@@ -21,6 +22,7 @@ else
     wget $LINK -P /tmp
     tar xvfz $FILE -C /tmp
 fi
+echo "Configurando Solr!"
 # CRIA PASTA DE INSTALAÇÃO
 mkdir /usr/local/solr
 cp -rf solr-7.3.1 /usr/local/solr
@@ -42,7 +44,10 @@ systemctl daemon-reload
 echo "name=collection1" >/usr/local/solr/solr-7.3.1/server/solr/collection1/core.properties
 echo "SOLR_LOCATION	127.0.0.1:8983" >>$DIR/default.config
 echo "TWORAVENS_LOCATION	NOT INSTALLED" >>$DIR/default.config
-echo "Starting solr!"
+# START SOLR
+echo "Habilitando Solr para iniciar com o sistema!"
 systemctl enable solr
+echo "Iniciando Solr!"
 systemctl start solr
+# STATUS SERVICE SOLR
 systemctl status solr

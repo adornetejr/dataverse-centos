@@ -15,11 +15,11 @@ read -e $X
 # ABRA OUTRO TERMINAL E REINICIE O GLASSFISH
 # $ systemctl restart glassfish
 #
-cd /tmp/dvinstall
-rm -rf default.config
-cp $DIR/default.config .
+mv /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
+cp $DIR/default.config /tmp/dvinstall
 clear
-cat default.config
-./install
-# INICIA SOLR
+cat /tmp/dvinstall/default.config
+# INICIA INSTALADOR
+/tmp/dvinstall/install
+# INICIA COLEÇÃO SOLR
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d server/solr/collection1/conf/

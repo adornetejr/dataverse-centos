@@ -30,5 +30,4 @@ cp GeoLite2-Country_*/GeoLite2-Country.mmdb maxmind_geoip
 useradd counter
 chown -R counter:counter /usr/local/counter-processor
 sudo -S -u counter python3.6 -m ensurepip
-cd /usr/local/counter-processor
-sudo -S -u counter pip3 install -r requirements.txt
+sudo -S -u counter pip3 install --user -r /usr/local/counter-processor/requirements.txt

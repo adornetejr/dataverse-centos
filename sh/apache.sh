@@ -1,13 +1,17 @@
 #!/bin/bash
 DIR=$PWD
+echo "Parando Apache!"
 systemctl stop httpd
+echo "Removendo configurações antigas!"
 yum remove -y httpd mod_ssl
+echo "Instalando Apache!"
 yum install -y httpd mod_ssl
 systemctl stop httpd
+echo "Configurando Apache!"
 HOST=$(hostname --fqdn)
 echo "ServerName $HOST" >>$DIR/conf/dataverse.conf
 echo "</VirtualHost>" >>$DIR/conf/dataverse.conf
-rm -rf etc/httpd/conf.d/$HOST.conf
+mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
 cp $DIR/conf/dataverse.conf /etc/httpd/conf.d/$HOST.conf
 cat $DIR/conf/shib.conf >>$DIR/conf/ssl.conf
 echo "ServerName $HOST:443" >>$DIR/conf/ssl.conf
@@ -27,13 +31,15 @@ cp $DIR/cert/root.$HOST.cer /etc/httpd/ssl
 chown root:root /etc/httpd/ssl/*.cer
 chmod 600 /etc/httpd/ssl/*.cer
 rm -rf /etc/httpd/ssl/$HOST.cer /etc/httpd/ssl/$HOST.key
-cd $DIR
-sh/keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
+cd $DIR/cert
+./keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
 mv sp-cert.pem /etc/httpd/ssl/$HOST.cer
 mv sp-key.pem /etc/httpd/ssl/$HOST.key
 systemctl stop httpd
-echo "Starting httpd!"
+# START APACHE
+echo "Habilitando Apache para iniciar com o sistema!"
 systemctl enable httpd
+echo "Iniciando Apache!"
 systemctl start httpd
 # STATUS DO SERVICO HTTPD
 systemctl status httpd

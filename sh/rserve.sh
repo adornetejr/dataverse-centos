@@ -2,6 +2,7 @@
 DIR=$PWD
 systemctl stop rserve
 yum install -y R R-core R-core-devel
+echo "Configurando Rserve!"
 # INSTALA DEPENDENCIAS RSERVE
 sudo R -e 'dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)'
 sudo R -e '.libPaths(Sys.getenv("R_LIBS_USER"))'
@@ -24,8 +25,10 @@ echo "RSERVE_HOST	127.0.0.1" >>$DIR/default.config
 echo "RSERVE_PORT	6311" >>$DIR/default.config
 echo "RSERVE_USER	rserve" >>$DIR/default.config
 echo "RSERVE_PASSWORD	rserve" >>$DIR/default.config
-echo "Starting rserve!"
+# START RSERVE
+echo "Habilitando Rserve para iniciar com o sistema!"
 systemctl enable rserve
+echo "Iniciando Rserve!"
 systemctl start rserve
 # STATUS DO SERVICO RSERVE
 systemctl status rserve

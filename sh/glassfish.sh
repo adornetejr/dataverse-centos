@@ -1,8 +1,11 @@
 #!/bin/bash
 DIR=$PWD
+echo "Parando Glassfish!"
 systemctl stop glassfish
+echo "Instalando dependências!"
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
 # DOWNLOAD DEPENDENCIA GLASSFISH SERVER
+echo "Baixando Glassfish!"
 FILE="glassfish-4.1.zip"
 LOCATION="/tmp/$FILE"
 LINK=https://dlc-cdn.sun.com/glassfish/4.1/release/glassfish-4.1.zip
@@ -21,6 +24,7 @@ else
     wget $LINK -P /tmp
     unzip /tmp/$FILE -d /tmp
 fi
+echo "Configurando Glassfish!"
 # INSTALA DEPENDENCIA GLASSFISH SERVER EM /usr/local
 mv /tmp/glassfish4 /usr/local/
 # ATUALIZA MODULO WELD-OSGI
@@ -45,8 +49,10 @@ cp $DIR/service/glassfish.service /usr/lib/systemd/system/glassfish.service
 systemctl daemon-reload
 echo "GLASSFISH_USER    glassfish" >>$DIR/default.config
 echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >>$DIR/default.config
-echo "Starting glassfish!"
+# START GLASSFISH
+echo "Habilitando Glassfish para iniciar com o sistema!"
 systemctl enable glassfish
+echo "Iniciando Glassfish!"
 systemctl start glassfish
 # STATUS DO SERVICO GLASSFISH
 systemctl status glassfish

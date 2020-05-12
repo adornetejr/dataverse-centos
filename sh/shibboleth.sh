@@ -10,6 +10,7 @@ wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/sec
 yum install -y shibboleth shibboleth-embedded-ds
 mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
 wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
+echo "Iniciando Glassfish!"
 systemctl start glassfish
 /usr/local/glassfish4/glassfish/bin/asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
 /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
@@ -27,13 +28,13 @@ do
   mv $FILE $(echo "$FILE" | sed -r 's|.pem|.pem.bkp|g')
 done
 cp $DIR/cert/keygen.sh /etc/shibboleth/keygen.sh
-cd /etc/shibboleth/
+cd $DIR/cert
 ./keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
-mv /etc/shibboleth/sp-cert.pem /etc/shibboleth/sp-encrypt-cert.pem
-mv /etc/shibboleth/sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
+mv sp-cert.pem /etc/shibboleth/sp-encrypt-cert.pem
+mv sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
 ./keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
-mv /etc/shibboleth/sp-cert.pem /etc/shibboleth/sp-signing-cert.pem
-mv /etc/shibboleth/sp-key.pem /etc/shibboleth/sp-signing-key.pem
+mv sp-cert.pem /etc/shibboleth/sp-signing-cert.pem
+mv sp-key.pem /etc/shibboleth/sp-signing-key.pem
 mv /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te.bkp
 cp $DIR/shib/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
 cd /etc/selinux/targeted/src/policy/domains/misc
@@ -42,7 +43,11 @@ semodule_package -o shibboleth.pp -m shibboleth.mod
 semodule -i shibboleth.pp
 cd $DIR/shib
 curl -X POST -H 'Content-type: application/json' --upload-file shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
+# START SHIBBOLETH
 systemctl enable shibd
+echo "Reiniciando Apache!"
 systemctl restart httpd.service
+echo "Iniciando Shibboleth!"
 systemctl restart shibd
+# STATUS DO SERVICO SHIBBOLETH
 systemctl status shibd
