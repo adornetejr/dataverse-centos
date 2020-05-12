@@ -5,9 +5,9 @@ rm -rf $DIR/default.config
 yum update -y
 # INSTALL FEDORA REPOSITORY
 yum install -y epel-release
+yum makecache fast
 # UPDATE PACKAGES
 yum update -y
-yum makecache fast
 # INSTALL RECOMMENDED PACKAGES
 yum install -y nano htop wget git net-tools lynx unzip curl
 # DOWNLOAD DATAVERSE
