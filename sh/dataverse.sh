@@ -25,10 +25,12 @@ echo "Wait... Installing."
 sudo -S -u glassfish ./install -y -f > $DIR/install.out 2> $DIR/install.err
 echo "Install log file $DIR/install.out"
 # SETTING UP POSTGRES ACCESS
+echo "Restart Postgresql"
 systemctl stop postgresql-9.6
 rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
 cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 systemctl start postgresql-9.6
 # RESTARTING GLASSFISH
+echo "Restart Glassfish"
 systemctl stop glassfish
 systemctl start glassfish
