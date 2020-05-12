@@ -1,13 +1,13 @@
 clear
 DIR=$PWD
-echo "ATENÇÃO!!"
+echo "Attention!!"
 echo " "
-echo "Se a próxima etapa trancar em 'Updates Done. Retarting...' por mais de 30 segundos."
+echo "If the next step freeze in 'Updates Done. Retarting...'"
 echo " "
-echo "Abra outro terminal e execute o comando:"
+echo "Open another terminal and run the command:"
 echo "# systemctl restart glassfish"
 echo " "
-echo "Pressione Ctrl+C para cancelar e Enter para continuar!"
+echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 mv /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
 cp $DIR/default.config /tmp/dvinstall/default.config
