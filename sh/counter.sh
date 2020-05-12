@@ -11,15 +11,15 @@ rm -rf /usr/local/counter-processor
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "25ffe6a101675ec51439db40172f2424  $LOCATION" ]; then
-        tar xvfz $FILE -C /tmp
+        tar xvfz $LOCATION -C /tmp
     else
         rm $LOCATION
         wget $LINK -P /tmp
-        tar xvfz $FILE -C /tmp
+        tar xvfz $LOCATION -C /tmp
     fi
 else
     wget $LINK -P /tmp
-    tar xvfz $FILE -C /tmp
+    tar xvfz $LOCATION -C /tmp
 fi
 cp -R counter-processor-0.0.1 /usr/local/counter-processor
 cd /usr/local/counter-processor

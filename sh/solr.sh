@@ -17,15 +17,15 @@ LINK=https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "042a6c0d579375be1a8886428f13755f  $LOCATION" ]; then
-        tar xvfz $FILE -C /tmp
+        tar xvfz $LOCATION -C /tmp
     else
         rm $LOCATION
         wget $LINK -P /tmp
-        tar xvfz $FILE -C /tmp
+        tar xvfz $LOCATION -C /tmp
     fi
 else
     wget $LINK -P /tmp
-    tar xvfz $FILE -C /tmp
+    tar xvfz $LOCATION -C /tmp
 fi
 echo "Configurando Solr!"
 # CRIA PASTA DE INSTALAÇÃO
