@@ -20,4 +20,3 @@ sudo -S -u glassfish ./install -y -f > install.out 2> install.err
 systemctl stop postgresql-9.6
 rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
 cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
-rm -rf $DIR/default.config /tmp/dvinstall/default.config

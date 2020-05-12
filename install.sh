@@ -85,6 +85,7 @@ echo "Ctrl+C to cancel or Enter to continue!"
 read -e $X
 cd $DIR
 sh/shibboleth.sh
+rm -rf $DIR/default.config /tmp/dvinstall/default.config
 echo " "
 echo "Stage (10/10) done!"
 echo "Installation completed!"
