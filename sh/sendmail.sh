@@ -39,7 +39,6 @@ hostname >/etc/mail/relay-domains
 mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bkp
 HOST=$(hostname --fqdn)
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/mail/sendmail.config >$DIR/mail/sendmail.mc
-sed '/^$/d' $DIR/mail/sendmail.mc >$DIR/mail/sendmail.mc
 cp $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
 m4 /etc/mail/sendmail.mc >/etc/mail/sendmail.cf
 systemctl restart sendmail
