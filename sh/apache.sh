@@ -5,17 +5,17 @@ yum remove -y httpd mod_ssl
 yum install -y httpd mod_ssl
 systemctl stop httpd
 HOST=$(hostname --fqdn)
-echo "ServerName $HOST" >> $DIR/conf/dataverse.conf
-echo "</VirtualHost>" >> $DIR/conf/dataverse.conf
+echo "ServerName $HOST" >>$DIR/conf/dataverse.conf
+echo "</VirtualHost>" >>$DIR/conf/dataverse.conf
 rm -rf etc/httpd/conf.d/$HOST.conf
 cp $DIR/conf/dataverse.conf /etc/httpd/conf.d/$HOST.conf
-cat $DIR/conf/shib.conf >> $DIR/conf/ssl.conf
-echo "ServerName $HOST:443" >> $DIR/conf/ssl.conf
-echo "SSLCertificateFile /etc/httpd/ssl/$HOST.cer" >> $DIR/conf/ssl.conf
-echo "SSLCertificateKeyFile /etc/httpd/ssl/$HOST.key" >> $DIR/conf/ssl.conf
-echo "SSLCertificateChainFile /etc/httpd/ssl/chain.$HOST.cer" >> $DIR/conf/ssl.conf
-echo "SSLCACertificateFile /etc/httpd/ssl/root.$HOST.cer" >> $DIR/conf/ssl.conf
-echo "</VirtualHost>" >> $DIR/conf/ssl.conf
+cat $DIR/conf/shib.conf >>$DIR/conf/ssl.conf
+echo "ServerName $HOST:443" >>$DIR/conf/ssl.conf
+echo "SSLCertificateFile /etc/httpd/ssl/$HOST.cer" >>$DIR/conf/ssl.conf
+echo "SSLCertificateKeyFile /etc/httpd/ssl/$HOST.key" >>$DIR/conf/ssl.conf
+echo "SSLCertificateChainFile /etc/httpd/ssl/chain.$HOST.cer" >>$DIR/conf/ssl.conf
+echo "SSLCACertificateFile /etc/httpd/ssl/root.$HOST.cer" >>$DIR/conf/ssl.conf
+echo "</VirtualHost>" >>$DIR/conf/ssl.conf
 rm -rf etc/httpd/conf.d/ssl.conf
 cp $DIR/conf/ssl.conf /etc/httpd/conf.d
 rm -rf etc/httpd/conf/httpd.conf

@@ -7,7 +7,7 @@ sudo R -e 'dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)'
 sudo R -e '.libPaths(Sys.getenv("R_LIBS_USER"))'
 sudo R -e 'install.packages(c("R2HTML", "rjson", "DescTools", "Rserve", "haven"), repos="https://cloud.r-project.org/")'
 # sudo -i R
-# dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE) 
+# dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
 # .libPaths(Sys.getenv("R_LIBS_USER"))
 # install.packages("R2HTML", repos="https://cloud.r-project.org/" )
 # install.packages("rjson", repos="https://cloud.r-project.org/" )
@@ -20,10 +20,10 @@ useradd rserve
 rm -f /usr/lib/systemd/system/rserve.service
 cp $DIR/service/rserve.service /usr/lib/systemd/system/
 systemctl daemon-reload
-echo "RSERVE_HOST	127.0.0.1" >> $DIR/default.config
-echo "RSERVE_PORT	6311" >> $DIR/default.config
-echo "RSERVE_USER	rserve" >> $DIR/default.config
-echo "RSERVE_PASSWORD	rserve" >> $DIR/default.config
+echo "RSERVE_HOST	127.0.0.1" >>$DIR/default.config
+echo "RSERVE_PORT	6311" >>$DIR/default.config
+echo "RSERVE_USER	rserve" >>$DIR/default.config
+echo "RSERVE_PASSWORD	rserve" >>$DIR/default.config
 echo "Starting rserve!"
 systemctl enable rserve
 systemctl start rserve
