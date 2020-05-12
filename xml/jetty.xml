@@ -40,10 +40,18 @@
   </Arg>
 
   <Get name="ThreadPool">
-    <Set name="minThreads" type="int"><Property name="solr.jetty.threads.min" default="10"/></Set>
-    <Set name="maxThreads" type="int"><Property name="solr.jetty.threads.max" default="10000"/></Set>
-    <Set name="idleTimeout" type="int"><Property name="solr.jetty.threads.idle.timeout" default="120000"/></Set>
-    <Set name="stopTimeout" type="int"><Property name="solr.jetty.threads.stop.timeout" default="60000"/></Set>
+    <Set name="minThreads" type="int">
+      <Property name="solr.jetty.threads.min" default="10"/>
+    </Set>
+    <Set name="maxThreads" type="int">
+      <Property name="solr.jetty.threads.max" default="10000"/>
+    </Set>
+    <Set name="idleTimeout" type="int">
+      <Property name="solr.jetty.threads.idle.timeout" default="120000"/>
+    </Set>
+    <Set name="stopTimeout" type="int">
+      <Property name="solr.jetty.threads.stop.timeout" default="60000"/>
+    </Set>
     <Set name="detailedDump">false</Set>
   </Get>
 
@@ -65,15 +73,33 @@
   <!-- =========================================================== -->
   <New id="httpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
     <Set name="secureScheme">https</Set>
-    <Set name="securePort"><Property name="solr.jetty.secure.port" default="8443" /></Set>
-    <Set name="outputBufferSize"><Property name="solr.jetty.output.buffer.size" default="32768" /></Set>
-    <Set name="outputAggregationSize"><Property name="solr.jetty.output.aggregation.size" default="8192" /></Set>
-    <Set name="requestHeaderSize"><Property name="solr.jetty.request.header.size" default="102400" /></Set>
-    <Set name="responseHeaderSize"><Property name="solr.jetty.response.header.size" default="8192" /></Set>
-    <Set name="sendServerVersion"><Property name="solr.jetty.send.server.version" default="false" /></Set>
-    <Set name="sendDateHeader"><Property name="solr.jetty.send.date.header" default="false" /></Set>
-    <Set name="headerCacheSize"><Property name="solr.jetty.header.cache.size" default="512" /></Set>
-    <Set name="delayDispatchUntilContent"><Property name="solr.jetty.delayDispatchUntilContent" default="false"/></Set>
+    <Set name="securePort">
+      <Property name="solr.jetty.secure.port" default="8443" />
+    </Set>
+    <Set name="outputBufferSize">
+      <Property name="solr.jetty.output.buffer.size" default="32768" />
+    </Set>
+    <Set name="outputAggregationSize">
+      <Property name="solr.jetty.output.aggregation.size" default="8192" />
+    </Set>
+    <Set name="requestHeaderSize">
+      <Property name="solr.jetty.request.header.size" default="102400" />
+    </Set>
+    <Set name="responseHeaderSize">
+      <Property name="solr.jetty.response.header.size" default="8192" />
+    </Set>
+    <Set name="sendServerVersion">
+      <Property name="solr.jetty.send.server.version" default="false" />
+    </Set>
+    <Set name="sendDateHeader">
+      <Property name="solr.jetty.send.date.header" default="false" />
+    </Set>
+    <Set name="headerCacheSize">
+      <Property name="solr.jetty.header.cache.size" default="512" />
+    </Set>
+    <Set name="delayDispatchUntilContent">
+      <Property name="solr.jetty.delayDispatchUntilContent" default="false"/>
+    </Set>
     <!-- Uncomment to enable handling of X-Forwarded- style headers
     <Call name="addCustomizer">
       <Arg><New class="org.eclipse.jetty.server.ForwardedRequestCustomizer"/></Arg>
@@ -81,73 +107,75 @@
     -->
   </New>
 
-    <!-- =========================================================== -->
-    <!-- RewriteHandle to redirect root to Solr                      -->
-    <!-- =========================================================== -->
-     <New id="RewriteHandler" class="org.eclipse.jetty.rewrite.handler.RewriteHandler">
-      <Set name="rewriteRequestURI">true</Set>
-      <Set name="rewritePathInfo">false</Set>
-      <Set name="originalPathAttribute">requestedPath</Set>
+  <!-- =========================================================== -->
+  <!-- RewriteHandle to redirect root to Solr                      -->
+  <!-- =========================================================== -->
+  <New id="RewriteHandler" class="org.eclipse.jetty.rewrite.handler.RewriteHandler">
+    <Set name="rewriteRequestURI">true</Set>
+    <Set name="rewritePathInfo">false</Set>
+    <Set name="originalPathAttribute">requestedPath</Set>
 
-      <Call name="addRule">
-        <Arg>
-          <New class="org.eclipse.jetty.rewrite.handler.RedirectRegexRule">
-            <Set name="regex">^/$</Set>
-            <Set name="replacement">/solr/</Set>
-          </New>
-        </Arg>
-      </Call>
-       <Call name="addRule">
-         <Arg>
-           <New class="org.eclipse.jetty.rewrite.handler.RewritePatternRule">
-             <Set name="pattern">/v2/*</Set>
-             <Set name="replacement">/solr/____v2</Set>
-           </New>
-         </Arg>
-       </Call>
-       <Call name="addRule">
-         <Arg>
-           <New class="org.eclipse.jetty.rewrite.handler.RewritePatternRule">
-             <Set name="pattern">/api/*</Set>
-             <Set name="replacement">/solr/____v2</Set>
-           </New>
-         </Arg>
-       </Call>
-       <Set name="handler">
-         <New id="Handlers" class="org.eclipse.jetty.server.handler.HandlerCollection">
-           <Set name="handlers">
-             <Array type="org.eclipse.jetty.server.Handler">
-               <Item>
-                 <New id="Contexts" class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/>
-               </Item>
-               <Item>
-                 <New id="InstrumentedHandler" class="com.codahale.metrics.jetty9.InstrumentedHandler">
-                   <Arg><Ref refid="solrJettyMetricRegistry"/></Arg>
-                   <Set name="handler">
-                     <New id="DefaultHandler" class="org.eclipse.jetty.server.handler.DefaultHandler"/>
-                   </Set>
-                 </New>
-               </Item>
-               <Item>
-                 <New id="RequestLog" class="org.eclipse.jetty.server.handler.RequestLogHandler"/>
-               </Item>
-             </Array>
-           </Set>
-         </New>
-       </Set>
-     </New>
-
-    <!-- =========================================================== -->
-    <!-- Set handler Collection Structure                            -->
-    <!-- =========================================================== -->
+    <Call name="addRule">
+      <Arg>
+        <New class="org.eclipse.jetty.rewrite.handler.RedirectRegexRule">
+          <Set name="regex">^/$</Set>
+          <Set name="replacement">/solr/</Set>
+        </New>
+      </Arg>
+    </Call>
+    <Call name="addRule">
+      <Arg>
+        <New class="org.eclipse.jetty.rewrite.handler.RewritePatternRule">
+          <Set name="pattern">/v2/*</Set>
+          <Set name="replacement">/solr/____v2</Set>
+        </New>
+      </Arg>
+    </Call>
+    <Call name="addRule">
+      <Arg>
+        <New class="org.eclipse.jetty.rewrite.handler.RewritePatternRule">
+          <Set name="pattern">/api/*</Set>
+          <Set name="replacement">/solr/____v2</Set>
+        </New>
+      </Arg>
+    </Call>
     <Set name="handler">
-      <Ref id="RewriteHandler"/>
+      <New id="Handlers" class="org.eclipse.jetty.server.handler.HandlerCollection">
+        <Set name="handlers">
+          <Array type="org.eclipse.jetty.server.Handler">
+            <Item>
+              <New id="Contexts" class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/>
+            </Item>
+            <Item>
+              <New id="InstrumentedHandler" class="com.codahale.metrics.jetty9.InstrumentedHandler">
+                <Arg>
+                  <Ref refid="solrJettyMetricRegistry"/>
+                </Arg>
+                <Set name="handler">
+                  <New id="DefaultHandler" class="org.eclipse.jetty.server.handler.DefaultHandler"/>
+                </Set>
+              </New>
+            </Item>
+            <Item>
+              <New id="RequestLog" class="org.eclipse.jetty.server.handler.RequestLogHandler"/>
+            </Item>
+          </Array>
+        </Set>
+      </New>
     </Set>
-    
-    <!-- =========================================================== -->
-    <!-- Configure Request Log                                       -->
-    <!-- =========================================================== -->
-    <!--
+  </New>
+
+  <!-- =========================================================== -->
+  <!-- Set handler Collection Structure                            -->
+  <!-- =========================================================== -->
+  <Set name="handler">
+    <Ref id="RewriteHandler"/>
+  </Set>
+
+  <!-- =========================================================== -->
+  <!-- Configure Request Log                                       -->
+  <!-- =========================================================== -->
+  <!--
     <Ref id="Handlers">
       <Call name="addHandler">
         <Arg>
@@ -171,35 +199,37 @@
     </Ref>
     -->
 
-    <!-- =========================================================== -->
-    <!-- extra options                                               -->
-    <!-- =========================================================== -->
-    <Set name="stopAtShutdown">true</Set>
-    <Set name="dumpAfterStart">false</Set>
-    <Set name="dumpBeforeStop">false</Set>
+  <!-- =========================================================== -->
+  <!-- extra options                                               -->
+  <!-- =========================================================== -->
+  <Set name="stopAtShutdown">true</Set>
+  <Set name="dumpAfterStart">false</Set>
+  <Set name="dumpBeforeStop">false</Set>
 
-    <Call name="addBean">
-      <Arg>
-        <New id="DeploymentManager" class="org.eclipse.jetty.deploy.DeploymentManager">
-          <Set name="contexts">
-            <Ref refid="Contexts" />
-          </Set>
-          <Call name="setContextAttribute">
-            <Arg>org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern</Arg>
-            <Arg>.*/servlet-api-[^/]*\.jar$</Arg>
-          </Call>
+  <Call name="addBean">
+    <Arg>
+      <New id="DeploymentManager" class="org.eclipse.jetty.deploy.DeploymentManager">
+        <Set name="contexts">
+          <Ref refid="Contexts" />
+        </Set>
+        <Call name="setContextAttribute">
+          <Arg>org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern</Arg>
+          <Arg>.*/servlet-api-[^/]*\.jar$</Arg>
+        </Call>
 
-          <Call name="addAppProvider">
-            <Arg>
-              <New class="org.eclipse.jetty.deploy.providers.WebAppProvider">
-                <Set name="monitoredDirName"><Property name="jetty.base" default="."/>/contexts</Set>
-                <Set name="scanInterval">0</Set>
-              </New>
-            </Arg>
-          </Call>
-          
-          <!-- Add a customize step to the deployment lifecycle -->
-          <!-- uncomment and replace DebugBinding with your extended AppLifeCycle.Binding class 
+        <Call name="addAppProvider">
+          <Arg>
+            <New class="org.eclipse.jetty.deploy.providers.WebAppProvider">
+              <Set name="monitoredDirName">
+                <Property name="jetty.base" default="."/>
+/contexts</Set>
+              <Set name="scanInterval">0</Set>
+            </New>
+          </Arg>
+        </Call>
+
+        <!-- Add a customize step to the deployment lifecycle -->
+        <!-- uncomment and replace DebugBinding with your extended AppLifeCycle.Binding class 
           <Call name="insertLifeCycleNode">
             <Arg>deployed</Arg>
             <Arg>starting</Arg>
@@ -213,9 +243,9 @@
             </Arg>
           </Call>
           -->
-          
-        </New>
-      </Arg>
-    </Call>
-    
+
+      </New>
+    </Arg>
+  </Call>
+
 </Configure>
