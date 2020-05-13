@@ -38,13 +38,12 @@ do
   mv $FILE $(echo "$FILE" | sed -r 's|.pem|.pem.bkp|g')
 done
 cp $DIR/cert/keygen.sh /etc/shibboleth/keygen.sh
-cd $DIR/cert
-./keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
-mv sp-cert.pem /etc/shibboleth/sp-encrypt-cert.pem
-mv sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
-./keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
-mv sp-cert.pem /etc/shibboleth/sp-signing-cert.pem
-mv sp-key.pem /etc/shibboleth/sp-signing-key.pem
+$DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
+mv $DIR/sp-cert.pem /etc/shibboleth/sp-encrypt-cert.pem
+mv $DIR/sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
+$DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
+mv $DIR/sp-cert.pem /etc/shibboleth/sp-signing-cert.pem
+mv $DIR/sp-key.pem /etc/shibboleth/sp-signing-key.pem
 mv /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te.bkp
 cp $DIR/shib/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
 cd /etc/selinux/targeted/src/policy/domains/misc

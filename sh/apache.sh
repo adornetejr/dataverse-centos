@@ -6,7 +6,8 @@ RESET=$(tput sgr0)
 echo "${GREEN}Stopping Apache!${RESET}"
 systemctl stop httpd
 echo "${GREEN}Backing up SSL Certificates!${RESET}"
-mv /etc/httpd/ssl /etc/httpd/ssl-bkp
+TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
+mv /etc/httpd/ssl /etc/httpd/ssl-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y httpd mod_ssl
 echo "${GREEN}Installing Apache!${RESET}"
