@@ -1,7 +1,7 @@
-<SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config" 
-        xmlns:conf="urn:mace:shibboleth:2.0:native:sp:config" 
-        xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" 
-        xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" 
+<SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
+        xmlns:conf="urn:mace:shibboleth:2.0:native:sp:config"
+        xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+        xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
         xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" clockSkew="180">
 
         <!--
@@ -19,7 +19,7 @@
     -->
 
         <!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. -->
-        <ApplicationDefaults entityID="https://dataverse.c3.furg.rnp.br/shibboleth" REMOTE_USER="eppn" cipherSuites="ECDHE+AESGCM:ECDHE:!aNULL:!eNULL:!LOW:!EXPORT:!RC4:!SHA:!SSLv2" attributePrefix="AJP_">
+        <ApplicationDefaults entityID="https://dataverse.c3.furg.br/shibboleth" REMOTE_USER="eppn" cipherSuites="ECDHE+AESGCM:ECDHE:!aNULL:!eNULL:!LOW:!EXPORT:!RC4:!SHA:!SSLv2" attributePrefix="AJP_">
 
                 <!--
         Controls session lifetimes, address checks, cookie handling, and the protocol handlers.
@@ -53,14 +53,14 @@
                                         <md:EmailAddress>ginfo@furg.br</md:EmailAddress>
                                 </md:ContactPerson>
                                 <!-- Requested Attributes for InCommon SPs -->
-                                <md:AttributeConsumingService index="1" 
-                                        xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" 
+                                <md:AttributeConsumingService index="1"
+                                        xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
                                         xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
                                         <md:ServiceName xml:lang="en">https://dataverse.c3.furg.br</md:ServiceName>
                                         <md:RequestedAttribute isRequired="true" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" FriendlyName="eduPersonPrincipalName"/>
                                         <md:RequestedAttribute NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="urn:oid:2.16.840.1.113730.3.1.241" FriendlyName="displayName"/>
                                 </md:AttributeConsumingService>
-                                <mdattr:EntityAttributes xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" 
+                                <mdattr:EntityAttributes xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute"
                                         xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
                                         <saml:Attribute Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
                                                 <saml:AttributeValue>http://refeds.org/category/research-and-scholarship</saml:AttributeValue>

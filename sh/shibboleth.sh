@@ -3,17 +3,19 @@ DIR=$PWD
 RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
-HOST=$(hostname --fqdn)
 echo "${GREEN}Stopping Glassfish!${RESET}"
 systemctl stop glassfish
 echo "${GREEN}Stopping Shibboleth!${RESET}"
 systemctl stop shibd
+echo "${GREEN}Stopping Apache!${RESET}"
+systemctl stop httpd
 echo "${GREEN}Removing old settings!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/shibboleth /etc/shibboleth-$TIMESTAMP
+rm -rf /etc/yum.repos.d/security:shibboleth.repo*
+yum remove -y shibboleth shibboleth-embedded-ds
 # SHIBBOLETH REPOSITORY
 echo "${GREEN}Installing Shibboleth repository!${RESET}"
-rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
 yum install -y shibboleth shibboleth-embedded-ds
 mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
@@ -27,8 +29,19 @@ echo "${GREEN}Setting up Shibboleth!${RESET}"
 /usr/local/glassfish4/glassfish/bin/asadmin create-network-listener --protocol http-listener-1 --listenerport 8009 --jkenabled true jk-connector
 /usr/local/glassfish4/glassfish/bin/asadmin list-network-listeners
 mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
-cp $DIR/xml/shibboleth2.xml /etc/shibboleth/shibboleth2.xml
 mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
+until [[ ! -z "$NAME" ] && [ ! -z "$SURNAME" ] && [ ! -z "$EMAIL" ]]; do
+  clear
+  echo "${GREEN}Support Contact${RESET}"
+  read -ep "First Name: " NAME
+  read -ep "Surname: " SURNAME
+  read -ep "Email: " EMAIL
+done
+HOST=$(hostname --fqdn)
+sed -i "s/Adornete/$NAME/g" $DIR/xml/shibboleth2.xml
+sed -i "s/Martins Jr/$SURNAME/g" $DIR/xml/shibboleth2.xml
+sed -i "s/ginfo@furg.br/$EMAIL/g" $DIR/xml/shibboleth2.xml
+sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/xml/shibboleth2.xml >/etc/shibboleth/shibboleth2.xml
 cp $DIR/xml/attribute-map.xml /etc/shibboleth/attribute-map.xml
 useradd shibd
 usermod -s /sbin/nologin shibd
