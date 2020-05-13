@@ -24,8 +24,8 @@ sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.c
 echo "${GREEN}Generating new SSL Certificates!${RESET}"
 mkdir /etc/httpd/ssl
 $DIR/cert/keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
-mv $DIR/sp-cert.pem /etc/httpd/ssl/$HOST.pem
-mv $DIR/sp-key.pem /etc/httpd/ssl/$HOST.key
+mv $DIR/sp-cert.pem /etc/pki/tls/certs/$HOST.cer
+mv $DIR/sp-key.pem /etc/pki/tls/private/$HOST.key
 #chown -R apache:apache /etc/httpd/ssl
 #chmod -R 600 /etc/httpd/ssl
 # APACHE SYSTEM START
