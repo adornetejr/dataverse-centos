@@ -19,12 +19,14 @@ mkdir /etc/httpd/ssl
 if [ -f "$DIR/cert/chain.$HOST.cer" ]; then
   cp $DIR/cert/chain.$HOST.cer /etc/httpd/ssl
 else
-  sed "s/'SSLCertificateChainFile /etc'/'# SSLCertificateChainFile /etc'/g" $DIR/conf/ssl.conf >$DIR/conf/ssl.conf
+  INSERT='# SSLCertificateChainFile'
+  sed "s/SSLCertificateChainFile/$INSERT/g" $DIR/conf/ssl.conf >$DIR/conf/ssl.conf
 fi
 if [ -f "$DIR/cert/root.$HOST.cer" ]; then
   cp $DIR/cert/root.$HOST.cer /etc/httpd/ssl
 else
-  sed "s/'SSLCACertificateFile /etc'/'# SSLCACertificateFile /etc'/g" $DIR/conf/ssl.conf >$DIR/conf/ssl.conf
+  INSERT='# SSLCACertificateFile'
+  sed "s/SSLCACertificateFile/$INSERT/g" $DIR/conf/ssl.conf >$DIR/conf/ssl.conf
 fi
 mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
