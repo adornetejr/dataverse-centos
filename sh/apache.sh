@@ -26,6 +26,8 @@ mkdir /etc/httpd/ssl
 $DIR/cert/keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
 mv $DIR/sp-cert.pem /etc/pki/tls/certs/$HOST.cer
 mv $DIR/sp-key.pem /etc/pki/tls/private/$HOST.key
+restorecon -Rv /etc/pki/tls/certs
+restorecon -Rv /etc/pki/tls/private
 #chown -R apache:apache /etc/httpd/ssl
 #chmod -R 600 /etc/httpd/ssl
 # APACHE SYSTEM START
