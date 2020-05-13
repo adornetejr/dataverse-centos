@@ -20,12 +20,14 @@ if [ -f "$DIR/cert/chain.$HOST.cer" ]; then
   cp $DIR/cert/chain.$HOST.cer /etc/httpd/ssl
 else
   INSERT="# SSLCertificateChainFile"
+  echo $INSERT
   sed -i "s/SSLCertificateChainFile/$INSERT/g" $DIR/conf/ssl.conf
 fi
 if [ -f "$DIR/cert/root.$HOST.cer" ]; then
   cp $DIR/cert/root.$HOST.cer /etc/httpd/ssl
 else
   INSERT="# SSLCACertificateFile"
+  echo $INSERT
   sed -i "s/SSLCACertificateFile/$INSERT/g" $DIR/conf/ssl.conf
 fi
 mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
