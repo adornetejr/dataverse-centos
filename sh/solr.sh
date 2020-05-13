@@ -7,10 +7,11 @@ echo "${GREEN}Stopping Solr!${RESET}"
 systemctl stop solr
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y lsof
-echo "${GREEN}Removing old settings!${RESET}"
-rm -rf /tmp/solr-7.3.1
+echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /usr/local/solr /usr/local/solr-$TIMESTAMP
+echo "/usr/local/solr-$TIMESTAMP"
+rm -rf /tmp/solr-7.3.1
 # SOLR DEPENDENCIES
 echo "${GREEN}Downloading Solr!${RESET}"
 FILE="solr-7.3.1.tgz"

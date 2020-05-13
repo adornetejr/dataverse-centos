@@ -8,9 +8,10 @@ systemctl stop glassfish
 # GLASSFISH DEPENDENCIES
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
-echo "${GREEN}Removing old settings!${RESET}"
+echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /usr/local/glassfish4 /usr/local/glassfish4-$TIMESTAMP
+echo "/usr/local/glassfish4-$TIMESTAMP"
 rm -rf /tmp/glassfish4
 echo "${GREEN}Downloading Glassfish!${RESET}"
 FILE="glassfish-4.1.zip"

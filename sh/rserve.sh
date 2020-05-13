@@ -5,9 +5,12 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Rserve!${RESET}"
 systemctl stop rserve
-echo "${GREEN}Removing old settings!${RESET}"
+echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /home/rserve/R /home/rserve/R-$TIMESTAMP
+echo "${GREEN}Removing old settings!${RESET}"
+yum remove -y R R-core R-core-devel
+yum autoremove -y
 echo "${GREEN}Installing R!${RESET}"
 yum install -y R R-core R-core-devel
 echo "${GREEN}Setting up R!${RESET}"

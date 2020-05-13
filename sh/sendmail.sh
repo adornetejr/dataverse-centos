@@ -5,9 +5,10 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Sendmail!${RESET}"
 systemctl stop sendmail
-echo "${GREEN}Removing old settings!${RESET}"
+echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/mail /etc/mail-$TIMESTAMP
+echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y sendmail sendmail-cf
 echo "${GREEN}Installing Sendmail!${RESET}"
 yum install -y sendmail sendmail-cf m4

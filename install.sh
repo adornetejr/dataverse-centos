@@ -3,7 +3,7 @@ DIR=$PWD
 RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
-echo "${GREEN}Removing old settings!${RESET}"
+echo "${GREEN}Backing up logs!${RESET}"
 mv $DIR/default.config $DIR/default.config.bkp
 mv $DIR/logs/install.log $DIR/logs/install.log.bkp
 mv $DIR/logs/install.err $DIR/logs/install.err.bkp

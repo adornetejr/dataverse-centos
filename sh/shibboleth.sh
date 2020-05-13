@@ -9,9 +9,11 @@ echo "${GREEN}Stopping Shibboleth!${RESET}"
 systemctl stop shibd
 echo "${GREEN}Stopping Apache!${RESET}"
 systemctl stop httpd
-echo "${GREEN}Removing old settings!${RESET}"
+echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/shibboleth /etc/shibboleth-$TIMESTAMP
+echo "/etc/shibboleth-$TIMESTAMP"
+echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 yum remove -y shibboleth shibboleth-embedded-ds
 # SHIBBOLETH REPOSITORY
@@ -32,7 +34,7 @@ mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
 mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
 until [[ ! -z "$NAME" && ! -z "$SURNAME" && ! -z "$EMAIL" ]]; do
   clear
-  echo "${GREEN}Support Contact${RESET}"
+  echo "${GREEN}Shibboleth Support Contact${RESET}"
   read -ep "First Name: " NAME
   read -ep "Surname: " SURNAME
   read -ep "Email: " EMAIL
@@ -58,7 +60,7 @@ mv $DIR/sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
 $DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
 mv $DIR/sp-cert.pem /etc/shibboleth/sp-signing-cert.pem
 mv $DIR/sp-key.pem /etc/shibboleth/sp-signing-key.pem
-echo "${GREEN}Setting up SELinux Module!${RESET}"
+echo "${GREEN}Setting up SELinux Module for Shibboleth!${RESET}"
 mkdir -p /etc/selinux/targeted/src/policy/domains/misc
 mv /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te.bkp
 cp $DIR/shib/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
