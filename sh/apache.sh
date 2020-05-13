@@ -7,17 +7,6 @@ echo "${GREEN}Stopping Apache!${RESET}"
 systemctl stop httpd
 echo "${GREEN}Backing up SSL Certificates!${RESET}"
 mv /etc/httpd/ssl /etc/httpd/ssl-bkp
-mkdir /etc/httpd/ssl
-if [ -f "$DIR/cert/chain.$HOST.cer" ]; then
-  cp $DIR/cert/chain.$HOST.cer /etc/httpd/ssl
-else
-  sed "s/'SSLCertificateChainFile /etc'/'# SSLCertificateChainFile /etc'/g" $DIR/conf/ssl.conf >$DIR/conf/ssl.conf
-fi
-if [ -f "$DIR/cert/root.$HOST.cer" ]; then
-  cp $DIR/cert/root.$HOST.cer /etc/httpd/ssl
-else
-  sed "s/'SSLCACertificateFile /etc'/'# SSLCACertificateFile /etc'/g" $DIR/conf/ssl.conf >$DIR/conf/ssl.conf
-fi
 echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y httpd mod_ssl
 echo "${GREEN}Installing Apache!${RESET}"
@@ -31,13 +20,24 @@ mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/httpd.conf >/etc/httpd/conf/httpd.conf
 mv etc/httpd/conf.d/ssl.conf etc/httpd/conf.d/ssl.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
+echo "${GREEN}Generating new SSL Certificates!${RESET}"
+mkdir /etc/httpd/ssl
+if [ -f "$DIR/cert/chain.$HOST.cer" ]; then
+  cp $DIR/cert/chain.$HOST.cer /etc/httpd/ssl
+else
+  sed "s/'SSLCertificateChainFile /etc'/'# SSLCertificateChainFile /etc'/g" $DIR/conf/ssl.conf >$DIR/conf/ssl.conf
+fi
+if [ -f "$DIR/cert/root.$HOST.cer" ]; then
+  cp $DIR/cert/root.$HOST.cer /etc/httpd/ssl
+else
+  sed "s/'SSLCACertificateFile /etc'/'# SSLCACertificateFile /etc'/g" $DIR/conf/ssl.conf >$DIR/conf/ssl.conf
+fi
+$DIR/cert/keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
+mkdir /etc/httpd/ssl
+mv $DIR/sp-cert.pem /etc/httpd/ssl/$HOST.cer
+mv $DIR/sp-key.pem /etc/httpd/ssl/$HOST.key
 chown root:root /etc/httpd/ssl/*
 chmod 600 /etc/httpd/ssl/*
-echo "${GREEN}Generating new SSL Certificates!${RESET}"
-cd $DIR/cert
-./keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
-mv sp-cert.pem /etc/httpd/ssl/$HOST.cer
-mv sp-key.pem /etc/httpd/ssl/$HOST.key
 systemctl stop httpd
 # APACHE SYSTEM START
 echo "${GREEN}Enabling Apache to start with the system!${RESET}"
