@@ -71,9 +71,6 @@ systemctl start shibd
 # SERVICE SHIBBOLETH STATUS
 echo "${GREEN}Shibboleth status!${RESET}"
 systemctl status shibd
-# SECURE GLASSFISH
-/usr/local/glassfish4/glassfish/bin/asadmin change-admin-password
-/usr/local/glassfish4/glassfish/bin/asadmin --host localhost --port 4848 enable-secure-admin
 echo "${GREEN}Restarting Glassfish!${RESET}"
 systemctl restart glassfish
 # SERVICE GLASSFISH STATUS
