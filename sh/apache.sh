@@ -27,7 +27,6 @@ $DIR/cert/keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
 mv $DIR/sp-cert.pem /etc/httpd/ssl/$HOST.cer
 mv $DIR/sp-key.pem /etc/httpd/ssl/$HOST.key
 chown root:root /etc/httpd/ssl/*
-chmod 600 /etc/httpd/ssl/*
 # APACHE SYSTEM START
 echo "${GREEN}Enabling Apache to start with the system!${RESET}"
 systemctl enable httpd
