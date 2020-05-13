@@ -15,13 +15,6 @@ yum install -y httpd mod_ssl
 systemctl stop httpd
 echo "${GREEN}Setting up Apache!${RESET}"
 HOST=$(hostname --fqdn)
-mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
-sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
-mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkp
-sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/httpd.conf >/etc/httpd/conf/httpd.conf
-mv etc/httpd/conf.d/ssl.conf etc/httpd/conf.d/ssl.conf.bkp
-sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
-echo "${GREEN}Generating new SSL Certificates!${RESET}"
 mkdir /etc/httpd/ssl
 if [ -f "$DIR/cert/chain.$HOST.cer" ]; then
   cp $DIR/cert/chain.$HOST.cer /etc/httpd/ssl
@@ -33,8 +26,14 @@ if [ -f "$DIR/cert/root.$HOST.cer" ]; then
 else
   sed "s/'SSLCACertificateFile /etc'/'# SSLCACertificateFile /etc'/g" $DIR/conf/ssl.conf >$DIR/conf/ssl.conf
 fi
+mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
+sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
+mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkp
+sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/httpd.conf >/etc/httpd/conf/httpd.conf
+mv etc/httpd/conf.d/ssl.conf etc/httpd/conf.d/ssl.conf.bkp
+sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
+echo "${GREEN}Generating new SSL Certificates!${RESET}"
 $DIR/cert/keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
-mkdir /etc/httpd/ssl
 mv $DIR/sp-cert.pem /etc/httpd/ssl/$HOST.cer
 mv $DIR/sp-key.pem /etc/httpd/ssl/$HOST.key
 chown root:root /etc/httpd/ssl/*
