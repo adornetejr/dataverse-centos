@@ -67,11 +67,3 @@ systemctl restart glassfish
 # SERVICE GLASSFISH STATUS
 echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish
-# SECURE GLASSFISH
-/usr/local/glassfish4/glassfish/bin/asadmin change-admin-password
-/usr/local/glassfish4/glassfish/bin/asadmin --host localhost --port 4848 enable-secure-admin
- echo "${GREEN}Restarting Glassfish!${RESET}"
-systemctl restart glassfish
-# SERVICE GLASSFISH STATUS
-echo "${GREEN}Glassfish status!${RESET}"
-systemctl status glassfish
