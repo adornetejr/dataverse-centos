@@ -48,7 +48,7 @@ usermod -s /sbin/nologin shibd
 chown -R root:root /etc/shibboleth
 for FILE in $(find /etc/shibboleth -name '*.pem')
 do
-  mv $FILE $(echo "$FILE" | sed -r 's|.pem|.pem.bkp|g')
+  mv $FILE $(echo "$FILE" | sed -r 's/.pem/.pem.bkp/g')
 done
 cp $DIR/cert/keygen.sh /etc/shibboleth/keygen.sh
 $DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
