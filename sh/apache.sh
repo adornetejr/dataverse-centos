@@ -14,8 +14,8 @@ echo "${GREEN}Installing Apache!${RESET}"
 yum install -y httpd mod_ssl
 systemctl stop httpd
 echo "${GREEN}Setting up Apache!${RESET}"
-HOST=$(hostname --fqdn)
 mkdir /etc/httpd/ssl
+HOST=$(hostname --fqdn)
 if [ -f "$DIR/cert/chain.$HOST.cer" ]; then
   cp $DIR/cert/chain.$HOST.cer /etc/httpd/ssl
 else
