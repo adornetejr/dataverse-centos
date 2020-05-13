@@ -28,7 +28,6 @@ mv $DIR/sp-cert.pem /etc/httpd/ssl/$HOST.cer
 mv $DIR/sp-key.pem /etc/httpd/ssl/$HOST.key
 chown root:root /etc/httpd/ssl/*
 chmod 600 /etc/httpd/ssl/*
-systemctl stop httpd
 # APACHE SYSTEM START
 echo "${GREEN}Enabling Apache to start with the system!${RESET}"
 systemctl enable httpd
