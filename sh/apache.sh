@@ -16,20 +16,6 @@ systemctl stop httpd
 echo "${GREEN}Setting up Apache!${RESET}"
 mkdir /etc/httpd/ssl
 HOST=$(hostname --fqdn)
-if [ -f "$DIR/cert/chain.$HOST.cer" ]; then
-  cp $DIR/cert/chain.$HOST.cer /etc/httpd/ssl
-else
-  INSERT="# SSLCertificateChainFile"
-  echo $INSERT
-  sed -i "s/SSLCertificateChainFile/$INSERT/g" $DIR/conf/ssl.conf
-fi
-if [ -f "$DIR/cert/root.$HOST.cer" ]; then
-  cp $DIR/cert/root.$HOST.cer /etc/httpd/ssl
-else
-  INSERT="# SSLCACertificateFile"
-  echo $INSERT
-  sed -i "s/SSLCACertificateFile/$INSERT/g" $DIR/conf/ssl.conf
-fi
 mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
 mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkp
