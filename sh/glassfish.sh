@@ -40,6 +40,7 @@ curl -L -o /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar https://
 mv /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml.bkp
 cp $DIR/xml/domain.xml /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml
 # GLASSFISH SSL CERTIFICATE
+echo "${GREEN}Updating SSL Certificates!${RESET}"
 mv /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks.bkp
 cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 # USER GLASSFISH

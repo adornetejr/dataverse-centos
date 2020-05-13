@@ -46,6 +46,7 @@ cp $DIR/xml/attribute-map.xml /etc/shibboleth/attribute-map.xml
 useradd shibd
 usermod -s /sbin/nologin shibd
 chown -R root:root /etc/shibboleth
+echo "${GREEN}Generating new SSL Certificates!${RESET}"
 for FILE in $(find /etc/shibboleth -name '*.pem')
 do
   mv $FILE $(echo "$FILE" | sed -r 's/.pem/.pem.bkp/g')
@@ -57,6 +58,7 @@ mv $DIR/sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
 $DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
 mv $DIR/sp-cert.pem /etc/shibboleth/sp-signing-cert.pem
 mv $DIR/sp-key.pem /etc/shibboleth/sp-signing-key.pem
+echo "${GREEN}Setting up SELinux Module!${RESET}"
 mkdir -p /etc/selinux/targeted/src/policy/domains/misc
 mv /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te.bkp
 cp $DIR/shib/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
@@ -64,6 +66,7 @@ cd /etc/selinux/targeted/src/policy/domains/misc
 checkmodule -M -m -o shibboleth.mod shibboleth.te
 semodule_package -o shibboleth.pp -m shibboleth.mod
 semodule -i shibboleth.pp
+echo "${GREEN}Setting up login button!${RESET}"
 curl -X POST -H 'Content-type: application/json' --upload-file $DIR/shib/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 # SHIBBOLETH SYSTEM START
 systemctl enable shibd

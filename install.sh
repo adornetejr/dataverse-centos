@@ -8,7 +8,9 @@ mv $DIR/default.config $DIR/default.config.bkp
 mv $DIR/logs/install.log $DIR/logs/install.log.bkp
 mv $DIR/logs/install.err $DIR/logs/install.err.bkp
 # SERVICE FIREWALLD STOP
+echo "${GREEN}Stopping Firewalld!${RESET}"
 systemctl stop firewalld
+systemctl disable firewalld
 # INSTALL FEDORA REPOSITORY
 echo "${GREEN}Installing Fedora repository!${RESET}"
 yum install -y epel-release
