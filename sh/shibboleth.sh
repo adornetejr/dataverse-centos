@@ -30,7 +30,7 @@ echo "${GREEN}Setting up Shibboleth!${RESET}"
 /usr/local/glassfish4/glassfish/bin/asadmin list-network-listeners
 mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
 mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
-until [[ ! -z "$NAME" ] && [ ! -z "$SURNAME" ] && [ ! -z "$EMAIL" ]]; do
+until [[ ! -z "$NAME" && ! -z "$SURNAME" && ! -z "$EMAIL" ]]; do
   clear
   echo "${GREEN}Support Contact${RESET}"
   read -ep "First Name: " NAME
