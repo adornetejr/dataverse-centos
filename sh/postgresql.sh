@@ -15,7 +15,7 @@ echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y postgresql96-server
 yum autoremove -y
 #  POSTGRES REPOSITORY
-echo "${GREEN}Installing Postgres!${RESET}"
+echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7.1-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 yum makecache fast
 yum install -y postgresql96-server
@@ -54,3 +54,8 @@ systemctl start postgresql-9.6
 # SERVICE POSTGRES SERVICE
 echo "${GREEN}Postgres status!${RESET}"
 systemctl status postgresql-9.6
+echo " "
+echo "${GREEN}Postgres installed!${RESET}"
+echo "Stage (4/10) done!"
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+# read -e $X

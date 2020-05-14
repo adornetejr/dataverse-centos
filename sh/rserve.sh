@@ -10,7 +10,7 @@ TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /home/rserve/R /home/rserve/R-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 yum autoremove -y
-echo "${GREEN}Installing R!${RESET}"
+echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y R R-core R-core-devel
 echo "${GREEN}Setting up R!${RESET}"
 # RSERVE DEPENDENCIES
@@ -35,3 +35,8 @@ systemctl start rserve
 # SERVICE RSERVE STATUS
 echo "${GREEN}Rserve status!${RESET}"
 systemctl status rserve
+echo " "
+echo "${GREEN}Rserve installed!${RESET}"
+echo "Stage (5/10) done!"
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+# read -e $X

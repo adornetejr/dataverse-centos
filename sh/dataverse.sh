@@ -29,9 +29,6 @@ echo "${GREEN}Dataverse Install Settings:${RESET}"
 echo " "
 cat /tmp/dvinstall/default.config
 echo " "
-echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
-read -e $X
-clear
 echo "${RED}Attention!${RESET}"
 echo " "
 echo "If the next step freeze in 'Updates Done. Retarting...'"
@@ -63,7 +60,14 @@ chown -R root:root /usr/local/glassfish4
 chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib
 chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
 systemctl restart glassfish
-/usr/local/glassfish4/bin/asadmin list-applications
 # SERVICE GLASSFISH STATUS
 echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish
+echo " "
+echo "${GREEN}Glassfish deployed applications:${RESET}"
+/usr/local/glassfish4/bin/asadmin list-applications
+echo " "
+echo "${GREEN}Dataverse deployed!${RESET}"
+echo "Stage (7/10) done!"
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+read -e $X

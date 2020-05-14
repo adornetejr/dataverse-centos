@@ -64,3 +64,8 @@ systemctl start glassfish
 # SERVICE GLASSFISH
 echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish
+echo " "
+echo "${GREEN}Glassfish installed!${RESET}"
+echo "Stage (2/10) done!"
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+# read -e $X

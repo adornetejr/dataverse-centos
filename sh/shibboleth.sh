@@ -5,10 +5,10 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Glassfish!${RESET}"
 systemctl stop glassfish
-echo "${GREEN}Stopping Shibboleth!${RESET}"
-systemctl stop shibd
 echo "${GREEN}Stopping Apache!${RESET}"
 systemctl stop httpd
+echo "${GREEN}Stopping Shibboleth!${RESET}"
+systemctl stop shibd
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/shibboleth /etc/shibboleth-$TIMESTAMP
@@ -72,13 +72,6 @@ semodule_package -o shibboleth.pp -m shibboleth.mod
 semodule -i shibboleth.pp
 echo "${GREEN}Setting up login button!${RESET}"
 curl -X POST -H 'Content-type: application/json' --upload-file $DIR/json/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
-# SHIBBOLETH SYSTEM START
-systemctl enable shibd
-echo "${GREEN}Starting Shibboleth!${RESET}"
-systemctl start shibd
-# SERVICE SHIBBOLETH STATUS
-echo "${GREEN}Shibboleth status!${RESET}"
-systemctl status shibd
 echo "${GREEN}Restarting Glassfish!${RESET}"
 systemctl restart glassfish
 # SERVICE GLASSFISH STATUS
@@ -88,3 +81,16 @@ echo "${GREEN}Restarting Apache!${RESET}"
 systemctl restart httpd
 echo "${GREEN}Apache status!${RESET}"
 systemctl status httpd
+# SHIBBOLETH SYSTEM START
+echo "${GREEN}Enabling Shibboleth to start with the system!${RESET}"
+systemctl enable shibd
+echo "${GREEN}Starting Shibboleth!${RESET}"
+systemctl start shibd
+# SERVICE SHIBBOLETH STATUS
+echo "${GREEN}Shibboleth status!${RESET}"
+systemctl status shibd
+echo " "
+echo "${GREEN}Shibboleth installed!${RESET}"
+echo "Stage (9/10) done!"
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+read -e $X

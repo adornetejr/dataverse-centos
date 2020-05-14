@@ -10,7 +10,7 @@ TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/httpd /etc/httpd-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y httpd mod_ssl
-echo "${GREEN}Installing Apache!${RESET}"
+echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y httpd mod_ssl
 systemctl stop httpd
 echo "${GREEN}Setting up Apache!${RESET}"
@@ -36,3 +36,8 @@ systemctl start httpd
 # HTTPD SERVICE
 echo "${GREEN}Apache status!${RESET}"
 systemctl status httpd
+echo " "
+echo "${GREEN}Apache installed!${RESET}"
+echo "Stage (8/10) done!"
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+read -e $X
