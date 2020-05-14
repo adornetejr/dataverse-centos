@@ -43,12 +43,13 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Deploying.${RESET}"
-mv /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log.bkp
+mv /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log /usr/local/glassfish4/glassfish/domains/domain1/logs/glassfish.log
 sudo -S -u glassfish ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
-/bin/cp -rf /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/server.log
+/bin/cp -rf /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
 echo "Installer log file $DIR/logs/install.log"
 echo "Installer error file $DIR/logs/install.err"
+echo "Dataverse deploy log file $DIR/logs/dataverse.log"
 # SETTING UP POSTGRES ACCESS
 echo "${GREEN}Restart Postgres!${RESET}"
 systemctl stop postgresql-9.6
