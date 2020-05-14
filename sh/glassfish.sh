@@ -10,7 +10,7 @@ echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-cp -R /usr/local/glassfish4 $DIR/backup/glassfish4-$TIMESTAMP
+/bin/cp -R /usr/local/glassfish4 $DIR/backup/glassfish4-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /tmp/glassfish4
 echo "${GREEN}Downloading Glassfish!${RESET}"
@@ -31,7 +31,7 @@ else
     unzip /tmp/$FILE -d /tmp
 fi
 echo "${GREEN}Setting up Glassfish!${RESET}"
-cp -R /tmp/glassfish4 /usr/local/
+/bin/cp -R /tmp/glassfish4 /usr/local/
 # FIX MODULE WELD-OSGI
 echo "${GREEN}Updating Weld-OSGi Module!${RESET}"
 mv /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar.bkp
@@ -43,7 +43,7 @@ cp $DIR/xml/domain.xml /usr/local/glassfish4/glassfish/domains/domain1/config/do
 # GLASSFISH SSL CERTIFICATE
 echo "${GREEN}Updating SSL Certificates!${RESET}"
 mv /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks.bkp
-cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
+/bin/cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 # USER GLASSFISH
 useradd glassfish
 usermod -s /sbin/nologin glassfish

@@ -33,13 +33,13 @@ fi
 echo "${GREEN}Setting up Solr!${RESET}"
 # INSTALLING SOLR
 mkdir /usr/local/solr
-cp -R /tmp/solr-7.3.1 /usr/local/solr
+/bin/cp -R /tmp/solr-7.3.1 /usr/local/solr
 echo "${GREEN}Cleaning Solr collection!${RESET}"
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr delete -c collection1
 rm -rf /usr/local/solr/solr-7.3.1/server/solr/collection1
 # SETTING SOLR
 echo "${GREEN}Setting up Solr collection!${RESET}"
-cp -R /usr/local/solr/solr-7.3.1/server/solr/configsets/_default /usr/local/solr/solr-7.3.1/server/solr/collection1
+/bin/cp -Rf /usr/local/solr/solr-7.3.1/server/solr/configsets/_default /usr/local/solr/solr-7.3.1/server/solr/collection1
 mv /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/schema.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/schema.xml.bkp
 wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.3.1/schema.xml -P /usr/local/solr/solr-7.3.1/server/solr/collection1/conf
 wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.3.1/schema_dv_mdb_copies.xml -P /usr/local/solr/solr-7.3.1/server/solr/collection1/conf

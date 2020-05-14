@@ -5,7 +5,7 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-cp -R /usr/local/counter-processor $DIR/backup/counter-processor-$TIMESTAMP
+/bin/cp -R /usr/local/counter-processor $DIR/backup/counter-processor-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /tmp/counter-processor-0.0.1
 # INSTALL COUNTER DEPENDENCIES
@@ -29,7 +29,7 @@ else
     tar xvfz $LOCATION -C /tmp
 fi
 echo "${GREEN}Setting up Counter-Processor!${RESET}"
-cp -R /tmp/counter-processor-0.0.1 /usr/local/counter-processor
+/bin/cp -R /tmp/counter-processor-0.0.1 /usr/local/counter-processor
 cp $DIR/bin/GeoLite2-Country /tmp/GeoLite2-Country.tar.gz
 tar xvfz /tmp/GeoLite2-Country.tar.gz -C /tmp
 cp /tmp/GeoLite2-Country_*/GeoLite2-Country.mmdb /usr/local/counter-processor/maxmind_geoip
