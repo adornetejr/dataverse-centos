@@ -6,13 +6,23 @@ RESET=`tput sgr0`
 systemctl enable firewalld
 systemctl start firewalld
 # FIREWALLD PORTS
+# SENDMAIL
 firewall-cmd --permanent --add-port=25/tcp
+# GLASSFISH HTTP
 firewall-cmd --permanent --add-port=8080/tcp
+# GLASSFISH HTTPS
 firewall-cmd --permanent --add-port=8181/tcp
+# GLASSFISH ADMIN
 firewall-cmd --permanent --add-port=4848/tcp
+# SOLR
 firewall-cmd --permanent --add-port=8983/tcp
+# RSERVE
+firewall-cmd --permanent --add-port=6311/tcp
+# APACHE PROXY HTTP
 firewall-cmd --permanent --add-port=80/tcp
+# APACHE PROXY HTTPS
 firewall-cmd --permanent --add-port=443/tcp
+# AJP CONNECTOR
 firewall-cmd --permanent --add-port=8009/tcp
 firewall-cmd --reload
 systemctl restart firewalld
