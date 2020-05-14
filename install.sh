@@ -14,7 +14,7 @@ until [ $OP != "y" ]; do
     ip -f inet address
     echo " "
     echo "${GREEN}File /etc/hostname:${RESET}"
-    cat /etc/hosts
+    cat /etc/hostname
     echo " "
     echo "${GREEN}File /etc/hosts:${RESET}"
     cat /etc/hosts
