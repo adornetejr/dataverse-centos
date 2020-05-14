@@ -43,7 +43,7 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Deploying.${RESET}"
-./install -y -f
+sudo -S -u glassfish ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
 echo "Installer log file $DIR/logs/install.log"
 echo "Installer error file $DIR/logs/install.err"
