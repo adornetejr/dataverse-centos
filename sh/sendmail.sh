@@ -12,30 +12,6 @@ echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y sendmail sendmail-cf
 echo "${GREEN}Installing Sendmail!${RESET}"
 yum install -y sendmail sendmail-cf m4
-# CHECKING HOST FILE
-until [ $OP != "y" ]; do
-    clear
-    echo "${GREEN}Available networks${RESET}"
-    ip -f inet address
-    echo " "
-    echo "${GREEN}Fully Qualified Domain Name${RESET}"
-    hostname --fqdn
-    echo " "
-    echo "${GREEN}File /etc/hosts:${RESET}"
-    cat /etc/hosts
-    echo " "
-    echo "${RED}Attention: External IP needs to point to FQDN!${RESET}"
-    echo " "
-    read -ep "Continue? (y/N): " OP
-    if [ "$OP" != "y" ]; then
-        echo "Correct the files /etc/hosts and /etc/hostname"
-        echo "Press Enter after ajust"
-        read -e $X
-    else
-        break
-    fi
-done
-echo "HOST_DNS_ADDRESS    $HOSTNAME" >$DIR/default.config
 # SETTING SENDMAIL
 echo "${GREEN}Setting up Sendmail!${RESET}"
 hostname >/etc/mail/local-host-names

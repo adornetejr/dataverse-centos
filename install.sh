@@ -7,6 +7,34 @@ echo "${GREEN}Backing up logs!${RESET}"
 mv $DIR/default.config $DIR/default.config.bkp
 mv $DIR/logs/install.log $DIR/logs/install.log.bkp
 mv $DIR/logs/install.err $DIR/logs/install.err.bkp
+# CHECKING HOST FILE
+until [ $OP != "y" ]; do
+    clear
+    echo "${GREEN}Available networks${RESET}"
+    ip -f inet address
+    echo " "
+    echo "${GREEN}File /etc/hostname:${RESET}"
+    cat /etc/hosts
+    echo " "
+    echo "${GREEN}File /etc/hosts:${RESET}"
+    cat /etc/hosts
+    echo " "
+    echo "${RED}Attention!!${RESET}"
+    echo " "
+    echo "1. /etc/hostname: Needs Fully Qualified Domain Name"
+    echo "2. /etc/hosts: External IP needs to point to FQDN!"
+    echo " "
+    read -ep "${GREEN}Confirm and continue? (y/N): ${RESET}" OP
+    if [ "$OP" != "y" ]; then
+        echo "Correct the files /etc/hosts and /etc/hostname"
+        echo "Press Enter after ajust"
+        read -e $X
+    else
+        break
+    fi
+done
+HOST=$(hostname --fqdn)
+echo "HOST_DNS_ADDRESS    $HOST" >$DIR/default.config
 # SERVICE FIREWALLD STOP
 echo "${GREEN}Stopping Firewalld!${RESET}"
 systemctl stop firewalld

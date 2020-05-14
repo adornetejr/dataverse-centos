@@ -22,6 +22,15 @@ else
     wget $LINK -P /tmp
     unzip /tmp/$FILE -d /tmp
 fi
+mv /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
+cp $DIR/default.config /tmp/dvinstall/default.config
+clear
+echo "${GREEN}Dataverse Install Settings:${RESET}"
+echo " "
+cat /tmp/dvinstall/default.config
+echo " "
+echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
+read -e $X
 clear
 echo "${RED}Attention!${RESET}"
 echo " "
@@ -29,15 +38,6 @@ echo "If the next step freeze in 'Updates Done. Retarting...'"
 echo " "
 echo "Open another terminal and run the command:"
 echo "# systemctl restart glassfish"
-echo " "
-echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
-read -e $X
-mv /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
-cp $DIR/default.config /tmp/dvinstall/default.config
-clear
-echo "${GREEN}Dataverse Install Settings:${RESET}"
-echo " "
-cat /tmp/dvinstall/default.config
 echo " "
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X
@@ -56,7 +56,7 @@ rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
 cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 systemctl start postgresql-9.6
 # RESTARTING GLASSFISH
- echo "${GREEN}Restarting Glassfish!${RESET}"
+echo "${GREEN}Restarting Glassfish!${RESET}"
 systemctl stop glassfish
 # chown -R glassfish:glassfish /usr/local/glassfish4
 chown -R root:root /usr/local/glassfish4
