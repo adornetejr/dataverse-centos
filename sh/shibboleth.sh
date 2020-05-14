@@ -11,10 +11,8 @@ echo "${GREEN}Stopping Shibboleth!${RESET}"
 systemctl stop shibd
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /etc/shibboleth /etc/shibboleth-$TIMESTAMP
-echo "/etc/shibboleth-$TIMESTAMP"
+mv /etc/shibboleth $DIR/backup/shibboleth-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
-rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 yum remove -y shibboleth shibboleth-embedded-ds
 # SHIBBOLETH REPOSITORY
 echo "${GREEN}Installing Shibboleth repository!${RESET}"

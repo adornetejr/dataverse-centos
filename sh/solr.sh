@@ -9,8 +9,8 @@ echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y lsof
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /usr/local/solr /usr/local/solr-$TIMESTAMP
-echo "/usr/local/solr-$TIMESTAMP"
+mv /usr/local/solr $DIR/backup/solr-$TIMESTAMP
+echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /tmp/solr-7.3.1
 # SOLR DEPENDENCIES
 echo "${GREEN}Downloading Solr!${RESET}"
@@ -34,9 +34,11 @@ echo "${GREEN}Setting up Solr!${RESET}"
 # INSTALLING SOLR
 mkdir /usr/local/solr
 cp -R /tmp/solr-7.3.1 /usr/local/solr
+echo "${GREEN}Cleaning Solr collection!${RESET}"
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr delete -c collection1
 rm -rf /usr/local/solr/solr-7.3.1/server/solr/collection1
 # SETTING SOLR
+echo "${GREEN}Setting up Solr collection!${RESET}"
 cp -R /usr/local/solr/solr-7.3.1/server/solr/configsets/_default /usr/local/solr/solr-7.3.1/server/solr/collection1
 mv /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/schema.xml /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/schema.xml.bkp
 wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.3.1/schema.xml -P /usr/local/solr/solr-7.3.1/server/solr/collection1/conf

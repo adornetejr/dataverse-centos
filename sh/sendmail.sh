@@ -7,7 +7,7 @@ echo "${GREEN}Stopping Sendmail!${RESET}"
 systemctl stop sendmail
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /etc/mail /etc/mail-$TIMESTAMP
+mv /etc/mail $DIR/backup/mail-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y sendmail sendmail-cf
 echo "${GREEN}Installing dependencies!${RESET}"

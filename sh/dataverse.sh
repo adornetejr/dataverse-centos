@@ -3,12 +3,13 @@ DIR=$PWD
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 RESET=$(tput sgr0)
+echo "${GREEN}Removing old settings!${RESET}"
+rm -rf /tmp/dvinstall
 # DOWNLOAD DATAVERSE
 echo "${GREEN}Downloading Dataverse!${RESET}"
 FILE="dvinstall.zip"
 LOCATION="/tmp/$FILE"
 LINK=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
-rm -rf /tmp/dvinstall
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "de4f375f0c68c404e8adc52092cb8334  $LOCATION" ]; then
@@ -49,7 +50,7 @@ echo "Installer error file $DIR/logs/install.err"
 # SETTING UP POSTGRES ACCESS
 echo "${GREEN}Restart Postgres!${RESET}"
 systemctl stop postgresql-9.6
-rm -rf /var/lib/pgsql/9.6/data/pg_hba.conf
+mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.2.bkp
 cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 systemctl start postgresql-9.6
 # RESTARTING GLASSFISH

@@ -1,15 +1,13 @@
 #!/bin/bash
 DIR=$PWD
-RED=`tput setaf 1`
-GREEN=`tput setaf 2`
-RESET=`tput sgr0`
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+RESET=$(tput sgr0)
 echo "${GREEN}Stopping Rserve!${RESET}"
 systemctl stop rserve
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /home/rserve/R /home/rserve/R-$TIMESTAMP
-echo "${GREEN}Removing old settings!${RESET}"
-yum autoremove -y
+mv /home/rserve/R $DIR/backup/R-$TIMESTAMP
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y R R-core R-core-devel
 echo "${GREEN}Setting up R!${RESET}"

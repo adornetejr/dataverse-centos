@@ -7,13 +7,10 @@ echo "${GREEN}Stopping Postgres!${RESET}"
 systemctl stop postgresql-9.6
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /var/lib/pgsql /var/lib/pgsql-$TIMESTAMP
-echo "/var/lib/pgsql-$TIMESTAMP"
-mv /usr/pgsql-9.6 /usr/pgsql-9.6-$TIMESTAMP
-echo "/usr/pgsql-9.6-$TIMESTAMP"
+mv /var/lib/pgsql $DIR/backup/pgsql-$TIMESTAMP
+mv /usr/pgsql-9.6 $DIR/backup/pgsql-9.6-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y postgresql96-server
-yum autoremove -y
 #  POSTGRES REPOSITORY
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7.1-x86_64/pgdg-redhat-repo-latest.noarch.rpm

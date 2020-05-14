@@ -3,15 +3,18 @@ DIR=$PWD
 RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
+echo "${GREEN}Backing up old installation!${RESET}"
+TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
+mv /etc/shibboleth/usr/local/counter-processor $DIR/backup/counter-processor-$TIMESTAMP
+echo "${GREEN}Removing old settings!${RESET}"
+rm -rf /tmp/counter-processor-0.0.1
+# INSTALL COUNTER DEPENDENCIES
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y python36
 echo "${GREEN}Downloading Counter-Processor!${RESET}"
-# INSTALL COUNTER DEPENDENCIES
 FILE="v0.0.1.tar.gz"
 LOCATION="/tmp/$FILE"
 LINK=https://github.com/CDLUC3/counter-processor/archive/v0.0.1.tar.gz
-rm -rf /tmp/counter-processor-0.0.1
-rm -rf /usr/local/counter-processor
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "25ffe6a101675ec51439db40172f2424  $LOCATION" ]; then
