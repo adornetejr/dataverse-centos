@@ -13,6 +13,7 @@ systemctl disable firewalld
 # SERVICE FIREWALLD STOP
 echo "${GREEN}Setting up permissions!${RESET}"
 chown -R root:root $DIR
+chown -R $USER:$USER .git
 # INSTALL FEDORA REPOSITORY
 echo "${GREEN}Installing Fedora repository!${RESET}"
 yum install -y epel-release
