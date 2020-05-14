@@ -65,13 +65,13 @@ mv $DIR/sp-key.pem /etc/shibboleth/sp-signing-key.pem
 echo "${GREEN}Setting up SELinux Module for Shibboleth!${RESET}"
 mkdir -p /etc/selinux/targeted/src/policy/domains/misc
 mv /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te.bkp
-cp $DIR/shib/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
+cp $DIR/semodule/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
 cd /etc/selinux/targeted/src/policy/domains/misc
 checkmodule -M -m -o shibboleth.mod shibboleth.te
 semodule_package -o shibboleth.pp -m shibboleth.mod
 semodule -i shibboleth.pp
 echo "${GREEN}Setting up login button!${RESET}"
-curl -X POST -H 'Content-type: application/json' --upload-file $DIR/shib/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
+curl -X POST -H 'Content-type: application/json' --upload-file $DIR/json/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 # SHIBBOLETH SYSTEM START
 systemctl enable shibd
 echo "${GREEN}Starting Shibboleth!${RESET}"
