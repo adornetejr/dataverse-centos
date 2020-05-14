@@ -27,8 +27,8 @@ HOST=$(hostname --fqdn)
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/mail/sendmail.config >$DIR/mail/sendmail.mc
 cp $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
 m4 /etc/mail/sendmail.mc >/etc/mail/sendmail.cf
-echo "ADMIN_EMAIL	admin@$HOSTNAME" >>$DIR/default.config
-echo "MAIL_SERVER	localhost" >>$DIR/default.config
+echo "ADMIN_EMAIL	root@$HOST" >>$DIR/default.config
+echo "MAIL_SERVER	127.0.0.1" >>$DIR/default.config
 # SENDMAIL SYSTEM START
 echo "${GREEN}Enabling Sendmail to start with the system!${RESET}"
 systemctl enable sendmail
