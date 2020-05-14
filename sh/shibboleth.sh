@@ -12,13 +12,14 @@ systemctl stop shibd
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /etc/shibboleth $DIR/backup/shibboleth-$TIMESTAMP
-echo "${GREEN}Removing old settings!${RESET}"
 # SHIBBOLETH REPOSITORY
 echo "${GREEN}Installing Shibboleth repository!${RESET}"
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
 yum reinstall -y shibboleth shibboleth-embedded-ds policycoreutils-python log4shib xerces-c xml-security-c curl-openssl xmltooling opensaml
 mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
 wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
+mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
+mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
 echo "${GREEN}Starting Glassfish!${RESET}"
 systemctl start glassfish
 echo "${GREEN}Setting up Shibboleth!${RESET}"
@@ -42,8 +43,6 @@ sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/xml/shibboleth2.xml >/etc/shibboleth/s
 cp $DIR/xml/attribute-map.xml /etc/shibboleth/attribute-map.xml
 mv /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
-mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
-mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
 useradd shibd
 usermod -s /sbin/nologin shibd
 chown -R root:root /etc/shibboleth
@@ -67,13 +66,15 @@ cd /etc/selinux/targeted/src/policy/domains/misc
 checkmodule -M -m -o shibboleth.mod shibboleth.te
 semodule_package -o shibboleth.pp -m shibboleth.mod
 semodule -i shibboleth.pp
-echo "${GREEN}Setting up login button!${RESET}"
-curl -X POST -H 'Content-type: application/json' --upload-file $DIR/json/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
+# SERVICE GLASSFISH RESTART
 echo "${GREEN}Restarting Glassfish!${RESET}"
 systemctl restart glassfish
+echo "${GREEN}Setting up login button!${RESET}"
+curl -X POST -H 'Content-type: application/json' --upload-file $DIR/json/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 # SERVICE GLASSFISH STATUS
 echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish
+# SERVICE APACHE RESTART
 echo "${GREEN}Restarting Apache!${RESET}"
 systemctl restart httpd
 echo "${GREEN}Apache status!${RESET}"
