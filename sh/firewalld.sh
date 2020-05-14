@@ -6,6 +6,11 @@ RESET=`tput sgr0`
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install firewalld nmap
 systemctl start firewalld
+# SSHD
+echo "${GREEN}Opening up port 22 for sshd!${RESET}"
+firewall-cmd --permanent --add-port=22/tcp
+echo "${GREEN}Opening up port 2022 for sshd!${RESET}"
+firewall-cmd --permanent --add-port=2022/tcp
 # SENDMAIL
 echo "${GREEN}Opening up port 25 for Sendmail!${RESET}"
 firewall-cmd --permanent --add-port=25/tcp
