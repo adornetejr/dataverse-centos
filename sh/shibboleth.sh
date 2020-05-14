@@ -30,10 +30,6 @@ echo "${GREEN}Setting up Shibboleth!${RESET}"
 /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-2.port=8181
 /usr/local/glassfish4/glassfish/bin/asadmin create-network-listener --protocol http-listener-1 --listenerport 8009 --jkenabled true jk-connector
 /usr/local/glassfish4/glassfish/bin/asadmin list-network-listeners
-mv /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.bkp
-sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
-mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
-mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
 until [[ ! -z "$NAME" && ! -z "$SURNAME" && ! -z "$EMAIL" ]]; do
   clear
   echo "${GREEN}Shibboleth Support Contact${RESET}"
@@ -47,6 +43,10 @@ sed -i "s/Martins Jr/$SURNAME/g" $DIR/xml/shibboleth2.xml
 sed -i "s/ginfo@furg.br/$EMAIL/g" $DIR/xml/shibboleth2.xml
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/xml/shibboleth2.xml >/etc/shibboleth/shibboleth2.xml
 cp $DIR/xml/attribute-map.xml /etc/shibboleth/attribute-map.xml
+mv /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.bkp
+sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
+mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
+mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
 useradd shibd
 usermod -s /sbin/nologin shibd
 chown -R root:root /etc/shibboleth
