@@ -44,8 +44,6 @@ until [ $OP != "y" ]; do
         echo "Correct the files /etc/hosts and /etc/hostname"
         echo "Press Enter after ajust"
         read -e $X
-    else
-        break
     fi
 done
 HOST=$(hostname --fqdn)
