@@ -73,14 +73,18 @@ sh/shibboleth.sh
 cd $DIR
 sh/firewalld.sh
 rm -rf $DIR/default.config /tmp/dvinstall/default.config
+echo "Backup Metadata"
+META="https://$HOST/Shibboleth.sso/Metadata"
+wget $META -P $DIR
+echo "$DIR/Metadata"
 clear
-echo " "
 echo "${RED}Attention!!${RESET}"
 echo " "
-echo "To complete te installation reboot the system!"
+echo "${GREEN}Installation completed, reboot the system!${RESET}"
 echo " "
-echo "Lembre-se de fazer a relação de confiança para o login federado funcionar!"
+echo "Link: $META"
+echo "Now send this file to atendimento@rnp.br"
 echo " "
-echo "Saiba mais em ${RED}http://hdl.handle.net/20.500.11959/1264${RESET}"
-echo ""
+echo "Read more ${RED}http://hdl.handle.net/20.500.11959/1264${RESET}"
+echo " "
 read -e $X
