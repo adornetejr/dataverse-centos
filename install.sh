@@ -1,12 +1,25 @@
 #!/bin/bash
 DIR=$PWD
-RED=`tput setaf 1`
-GREEN=`tput setaf 2`
-RESET=`tput sgr0`
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+RESET=$(tput sgr0)
 echo "${GREEN}Backing up logs!${RESET}"
 mv $DIR/default.config $DIR/default.config.bkp
 mv $DIR/logs/install.log $DIR/logs/install.log.bkp
 mv $DIR/logs/install.err $DIR/logs/install.err.bkp
+# SERVICE FIREWALLD STOP
+echo "${GREEN}Stopping Firewalld!${RESET}"
+systemctl stop firewalld
+systemctl disable firewalld
+# INSTALL FEDORA REPOSITORY
+echo "${GREEN}Installing Fedora repository!${RESET}"
+yum install -y epel-release
+# UPDATE PACKAGES
+echo "${GREEN}Updating installed packages!${RESET}"
+yum update -y
+# INSTALL RECOMMENDED PACKAGES
+echo "${GREEN}Installing dependencies!${RESET}"
+yum install -y nano htop wget git net-tools lynx unzip curl libcurl nmap
 # CHECKING HOST FILE
 until [ $OP != "y" ]; do
     clear
@@ -35,19 +48,6 @@ until [ $OP != "y" ]; do
 done
 HOST=$(hostname --fqdn)
 echo "HOST_DNS_ADDRESS    $HOST" >$DIR/default.config
-# SERVICE FIREWALLD STOP
-echo "${GREEN}Stopping Firewalld!${RESET}"
-systemctl stop firewalld
-systemctl disable firewalld
-# INSTALL FEDORA REPOSITORY
-echo "${GREEN}Installing Fedora repository!${RESET}"
-yum install -y epel-release
-# UPDATE PACKAGES
-echo "${GREEN}Updating installed packages!${RESET}"
-yum update -y
-# INSTALL RECOMMENDED PACKAGES
-echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y nano htop wget git net-tools lynx unzip curl libcurl nmap
 cd $DIR
 chmod 744 sh/*.sh
 sh/sendmail.sh
@@ -127,4 +127,4 @@ echo "Faça a relação de confiança para o login federado funcionar!"
 echo " "
 echo "Saiba mais em ${RED}http://hdl.handle.net/20.500.11959/1264${RESET}"
 echo ""
-# read -e $X
+read -e $X
