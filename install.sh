@@ -73,7 +73,7 @@ cd $DIR
 sh/firewalld.sh
 echo "${GREEN}Backing up Metadata${RESET}"
 META="https://$HOST/Shibboleth.sso/Metadata"
-wget $META -P $DIR
+wget $META -P $DIR --no-check-certificate
 echo "$DIR/Metadata"
 rm -rf $DIR/default.config /tmp/dvinstall/default.config
 clear
