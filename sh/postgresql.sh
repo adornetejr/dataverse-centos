@@ -30,8 +30,8 @@ cp $DIR/conf/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 # CHANGE ROOT PASSWORD
 until [[ ! -z "$PASSWORD" ]]; do
   clear
-  echo "${GREEN}Change user postgres password!${RESET}"
-  read -ep "New password: " PASSWORD
+  echo "${GREEN}Change postgres password!${RESET}"
+  read -ep "New root password: " PASSWORD
 done
 systemctl start postgresql-9.6
 psql -U postgres -c "alter user postgres with password '$PASSWORD';"
@@ -42,8 +42,8 @@ echo "POSTGRES_DATABASE	dvndb" >>$DIR/default.config
 echo "POSTGRES_USER	dvnapp" >>$DIR/default.config
 until [[ ! -z "$USERPASS" ]]; do
   clear
-  echo "${GREEN}Create user dvndb password!${RESET}"
-  read -ep "New password: " USERPASS
+  echo "${GREEN}Create dvndb password!${RESET}"
+  read -ep "New user password: " USERPASS
 done
 echo "POSTGRES_PASSWORD	$USERPASS" >>$DIR/default.config
 # POSTGRES SYSTEM START

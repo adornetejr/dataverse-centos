@@ -4,7 +4,6 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 RESET=$(tput sgr0)
 echo "${GREEN}Backing up logs!${RESET}"
-mv $DIR/default.config $DIR/default.config.bkp
 mv $DIR/logs/install.log $DIR/logs/install.log.bkp
 mv $DIR/logs/install.err $DIR/logs/install.err.bkp
 # SERVICE FIREWALLD STOP
@@ -72,19 +71,20 @@ cd $DIR
 sh/shibboleth.sh
 cd $DIR
 sh/firewalld.sh
-rm -rf $DIR/default.config /tmp/dvinstall/default.config
-echo "Backup Metadata"
+echo "${GREEN}Backing up Metadata${RESET}"
 META="https://$HOST/Shibboleth.sso/Metadata"
 wget $META -P $DIR
 echo "$DIR/Metadata"
+rm -rf $DIR/default.config /tmp/dvinstall/default.config
 clear
 echo "${RED}Attention!!${RESET}"
 echo " "
-echo "${GREEN}Installation completed, reboot the system!${RESET}"
+echo "${GREEN}Installation completed!${RESET}"
 echo " "
 echo "Link: $META"
-echo "Now send this file to atendimento@rnp.br"
+echo "Send this file to atendimento@rnp.br"
 echo " "
 echo "Read more ${RED}http://hdl.handle.net/20.500.11959/1264${RESET}"
 echo " "
+echo "Reboot the system to test services startup!"
 read -e $X
