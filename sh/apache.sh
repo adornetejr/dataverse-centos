@@ -19,8 +19,6 @@ mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
 mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/httpd.conf >/etc/httpd/conf/httpd.conf
-mv /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.bkp
-sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
 echo "${GREEN}Generating new SSL Certificates!${RESET}"
 mkdir /etc/httpd/ssl
 $DIR/cert/keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
