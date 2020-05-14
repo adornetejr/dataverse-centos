@@ -53,6 +53,13 @@ systemctl restart glassfish
 # SERVICE GLASSFISH STATUS
 echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish
+echo "${GREEN}Securing Apache!${RESET}"
+yum install -y mod_security
+echo "${GREEN}Restarting Apache!${RESET}"
+systemctl restart httpd
+# SERVICE GLASSFISH STATUS
+echo "${GREEN}Apache status!${RESET}"
+systemctl status httpd
 # FIREWALLD SYSTEM START
 echo "${GREEN}Enabling Firewalld to start with the system!${RESET}"
 systemctl enable firewalld
