@@ -47,6 +47,13 @@ echo "${GREEN}Wait... Deploying.${RESET}"
 sudo -S -u glassfish ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
 /bin/cp -rf /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
+# FIX "EJB Timer Service" ERROR ON DEPLOY
+/usr/local/glassfish4/bin/asadmin stop-domain
+rm -rf /usr/local/glassfish4/glassfish/domains/domain1/generated/
+rm -rf /usr/local/glassfish4/glassfish/domains/domain1/osgi-cache/felix
+DV_DB=dvndb
+DB_USER=postgres
+sudo -u ${DB_USER} psql ${DV_DB} -c 'delete from "EJB__TIMER__TBL"';
 echo "Installer log file $DIR/logs/install.log"
 echo "Installer error file $DIR/logs/install.err"
 echo "Dataverse deploy log file $DIR/logs/dataverse.log"
