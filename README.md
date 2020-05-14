@@ -1,6 +1,8 @@
 # Shell Script de instalação do Dataverse
 
-Este script foi criado para faciliar a instalação e configuração inicial do Dataverse e suas dependências, GlassFish, Solr, PostgreSQL e Rserve, entre outros ajustes no sistema. 
+Este script foi criado para faciliar a instalação e configuração inicial do Dataverse e suas dependências, GlassFish, Solr, PostgreSQL e Rserve, entre outros ajustes no sistema.
+
+[Documentação de Apoio](http://hdl.handle.net/20.500.11959/1264)
 
 ## Início rápido
 
@@ -17,8 +19,8 @@ Segundo passo é mudar as permições de execução do script e executa-lo como 
 ### Shell script
 
 ``` bash
-# chmod 744 install.sh
-# ./install.sh
+cd dataverse-centos
+sudo bash install.sh
 ```
 ## O Dataverse
 
