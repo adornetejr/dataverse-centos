@@ -13,11 +13,10 @@ echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/shibboleth $DIR/backup/shibboleth-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
-yum remove -y shibboleth shibboleth-embedded-ds
 # SHIBBOLETH REPOSITORY
 echo "${GREEN}Installing Shibboleth repository!${RESET}"
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
-yum install -y shibboleth shibboleth-embedded-ds policycoreutils-python log4shib xerces-c xml-security-c curl-openssl xmltooling opensaml
+yum reinstall -y shibboleth shibboleth-embedded-ds policycoreutils-python log4shib xerces-c xml-security-c curl-openssl xmltooling opensaml
 mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
 wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
 echo "${GREEN}Starting Glassfish!${RESET}"

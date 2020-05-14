@@ -9,9 +9,8 @@ echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 mv /etc/mail $DIR/backup/mail-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
-yum remove -y sendmail sendmail-cf
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y sendmail sendmail-cf m4 ntp
+yum reinstall -y sendmail sendmail-cf m4 ntp
 # SETTING NTP
 echo "${GREEN}Setting up ntpd!${RESET}"
 systemctl stop ntpd
