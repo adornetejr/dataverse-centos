@@ -43,7 +43,7 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Deploying.${RESET}"
-mv /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log /usr/local/glassfish4/glassfish/domains/domain1/logs/glassfish.log
+/bin/cp -rf /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/glassfish.log
 sudo -S -u glassfish ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
 /bin/cp -rf /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
