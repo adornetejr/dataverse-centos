@@ -5,7 +5,7 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /etc/shibboleth/usr/local/counter-processor $DIR/backup/counter-processor-$TIMESTAMP
+cp -R /usr/local/counter-processor $DIR/backup/counter-processor-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /tmp/counter-processor-0.0.1
 # INSTALL COUNTER DEPENDENCIES

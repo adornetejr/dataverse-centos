@@ -7,8 +7,8 @@ echo "${GREEN}Stopping Apache!${RESET}"
 systemctl stop httpd
 echo "${GREEN}Backing up SSL Certificates!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /etc/httpd $DIR/backup/httpd-$TIMESTAMP
-mv /etc/pki/tls $DIR/backup/tls-$TIMESTAMP
+cp -R /etc/httpd $DIR/backup/httpd-$TIMESTAMP
+cp -R /etc/pki/tls $DIR/backup/tls-$TIMESTAMP
 echo "${GREEN}Installing dependencies!${RESET}"
 yum reinstall -y httpd mod_ssl
 systemctl stop httpd

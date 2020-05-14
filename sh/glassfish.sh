@@ -10,7 +10,7 @@ echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /usr/local/glassfish4 $DIR/backup/glassfish4-$TIMESTAMP
+cp -R /usr/local/glassfish4 $DIR/backup/glassfish4-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /tmp/glassfish4
 echo "${GREEN}Downloading Glassfish!${RESET}"
