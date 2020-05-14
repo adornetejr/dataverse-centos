@@ -13,9 +13,9 @@ echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y postgresql96-server
 #  POSTGRES REPOSITORY
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7.1-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 yum makecache fast
-yum install -y postgresql96-server
+yum install -y postgresql96 postgresql96-server
 # STARTING DATABASE
 /usr/pgsql-9.6/bin/postgresql96-setup initdb
 echo "${GREEN}Starting Postgres!${RESET}"
