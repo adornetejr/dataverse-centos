@@ -14,6 +14,7 @@ TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /etc/shibboleth $DIR/backup/shibboleth-$TIMESTAMP
 # SHIBBOLETH REPOSITORY
 echo "${GREEN}Installing Shibboleth repository!${RESET}"
+rm -rf /etc/yum.repos.d/security:shibboleth.repo.*
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
 yum reinstall -y shibboleth shibboleth-embedded-ds policycoreutils-python log4shib xerces-c xml-security-c curl-openssl xmltooling opensaml
 mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
