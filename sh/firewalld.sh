@@ -7,32 +7,36 @@ echo "${GREEN}Installing dependencies!${RESET}"
 yum install firewalld nmap
 systemctl start firewalld
 # SENDMAIL
-echo "${GREEN}Opening up port 25!${RESET}"
+echo "${GREEN}Opening up port 25 for Sendmail!${RESET}"
 firewall-cmd --permanent --add-port=25/tcp
+# NTPD
+echo "${GREEN}Opening up port 123 for ntpd!${RESET}"
+firewall-cmd --permanent --add-port=123/tcp
 # GLASSFISH HTTP
-echo "${GREEN}Opening up port 8080!${RESET}"
+echo "${GREEN}Opening up port 8080 for Glassfish!${RESET}"
 firewall-cmd --permanent --add-port=8080/tcp
 # GLASSFISH HTTPS
-echo "${GREEN}Opening up port 8181!${RESET}"
+echo "${GREEN}Opening up port 8181 for Glassfish!${RESET}"
 firewall-cmd --permanent --add-port=8181/tcp
 # GLASSFISH ADMIN
-echo "${GREEN}Opening up port 4848!${RESET}"
+echo "${GREEN}Opening up port 4848 for Glassfish Admin!${RESET}"
 firewall-cmd --permanent --add-port=4848/tcp
 # SOLR
-echo "${GREEN}Opening up port 8983!${RESET}"
+echo "${GREEN}Opening up port 8983 for Solr Indexing!${RESET}"
 firewall-cmd --permanent --add-port=8983/tcp
 # RSERVE
-echo "${GREEN}Opening up port 6311!${RESET}"
+echo "${GREEN}Opening up port 6311 for Rserve!${RESET}"
 firewall-cmd --permanent --add-port=6311/tcp
+# AJP CONNECTOR
+echo "${GREEN}Opening up port 8009 for Apache Jserve Proxy!${RESET}"
+firewall-cmd --permanent --add-port=8009/tcp
 # APACHE PROXY HTTP
-echo "${GREEN}Opening up port 80!${RESET}"
+echo "${GREEN}Opening up port 80 for Apache HTTP Proxy!${RESET}"
 firewall-cmd --permanent --add-port=80/tcp
 # APACHE PROXY HTTPS
-echo "${GREEN}Opening up port 443!${RESET}"
+echo "${GREEN}Opening up port 443 for Apache HTTPs Proxy!${RESET}"
 firewall-cmd --permanent --add-port=443/tcp
-# AJP CONNECTOR
-echo "${GREEN}Opening up port 8009!${RESET}"
-firewall-cmd --permanent --add-port=8009/tcp
+# RELOAD CONFIG
 echo "${GREEN}Firewalld reload configurations!${RESET}"
 firewall-cmd --reload
 # SECURE GLASSFISH
