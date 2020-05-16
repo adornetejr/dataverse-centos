@@ -61,7 +61,7 @@ echo "${GREEN}Enabling Glassfish to start with the system!${RESET}"
 systemctl enable glassfish
 echo "${GREEN}Starting Glassfish!${RESET}"
 systemctl start glassfish
-sleep 4
+sleep 10
 # SERVICE GLASSFISH
 echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish
