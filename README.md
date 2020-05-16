@@ -39,13 +39,16 @@ Atualmente, o script suporta exclusivamente a versão 4.19 do Dataverse para o s
 * Solr (indexing)
   * Arquivo padrão de configuração: */usr/local/solr/example/solr/collection1/conf/schema.xml*
   * `$ systemctl {start|stop|restart|status} solr`
+* Rserve (tabular data)
+  * Arquivo padrão de configuração: */home/rserve/r*
+  * `$ systemctl {start|stop|restart|status} rserve`
 * Postgres (database)
   * Local padrão de configuração: */var/lib/pgsql/9.6/data/*
   * `$ systemctl {start|stop|restart|status} postgresql-9.6`
 * Apache httpd 
   * Usado como proxy front-end para o Glassfish (e Shibboleth, se abilitado).
   * Local padrão de configuração: */etc/httpd/conf.d*
-  * `$ systemctl {stop|start|restart|status} httpd.`
+  * `$ systemctl {stop|start|restart|status} httpd`
 * Shibboleth
   * Fornece um provedor de autenticação federada.
   * Arquivo padrão de configuração: */etc/shibboleth/shibboleth2.xml*
