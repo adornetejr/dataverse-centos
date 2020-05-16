@@ -7,7 +7,7 @@ echo "${GREEN}Stopping Postgres!${RESET}"
 systemctl stop postgresql-9.6
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /var/lib/pgsql $DIR/backup/pgsql-$TIMESTAMP
+/bin/cp -R /var/lib/pgsql $DIR/backup/pgsql-$TIMESTAMP
 /bin/cp -R /usr/pgsql-9.6 $DIR/backup/pgsql-9.6-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y postgresql96 postgresql96-server postgresql96-libs

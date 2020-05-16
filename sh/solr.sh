@@ -9,7 +9,7 @@ echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y lsof
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /usr/local/solr $DIR/backup/solr-$TIMESTAMP
+/bin/cp -R /usr/local/solr $DIR/backup/solr-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /tmp/solr-7.3.1
 # SOLR DEPENDENCIES
