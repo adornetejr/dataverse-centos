@@ -18,7 +18,7 @@ yum remove -y shibboleth shibboleth-embedded-ds
 echo "${GREEN}Installing Shibboleth repository!${RESET}"
 rm -rf /etc/yum.repos.d/security:shibboleth.repo.*
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
-yum install -y shibboleth shibboleth-embedded-ds log4shib xerces-c xml-security-c xmltooling opensaml
+yum install -y shibboleth shibboleth-embedded-ds opensaml log4shib xerces-c xml-security-c xmltooling unixODBC
 mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
 wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
 mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
