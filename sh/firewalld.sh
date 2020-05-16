@@ -6,6 +6,7 @@ RESET=`tput sgr0`
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install firewalld nmap
 systemctl start firewalld
+sleep 2
 # SSHD
 # echo "${GREEN}Opening up port 22 for sshd!${RESET}"
 # firewall-cmd --permanent --add-port=22/tcp

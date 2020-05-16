@@ -47,6 +47,7 @@ echo "${GREEN}Enabling Postgres to start with the system!${RESET}"
 systemctl enable postgresql-9.6
 echo "${GREEN}Starting Postgres!${RESET}"
 systemctl start postgresql-9.6
+sleep 2
 # SERVICE POSTGRES SERVICE
 echo "${GREEN}Postgres status!${RESET}"
 systemctl status postgresql-9.6

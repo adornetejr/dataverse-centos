@@ -18,6 +18,7 @@ systemctl stop ntpd
 mv /etc/ntp.conf /etc/ntp.conf.bkp
 cp $DIR/conf/ntp.conf /etc/ntp.conf
 systemctl start ntpd
+sleep 2
 # SETTING SENDMAIL
 echo "${GREEN}Setting up Sendmail!${RESET}"
 hostname >/etc/mail/local-host-names
@@ -34,6 +35,7 @@ echo "${GREEN}Enabling Sendmail to start with the system!${RESET}"
 systemctl enable sendmail
 echo "${GREEN}Starting Sendmail!${RESET}"
 systemctl start sendmail
+sleep 2
 # SENDMAIL EMAIL TEST
 echo "${GREEN}Email test on Sendmail!${RESET}"
 echo "To: dataverse@furg.br" >$DIR/mail/mail.txt

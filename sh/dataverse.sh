@@ -61,6 +61,7 @@ systemctl stop postgresql-9.6
 mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.2.bkp
 cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 systemctl start postgresql-9.6
+sleep 2
 # GLASSFISH PERMISSIONS
 # chown -R glassfish:glassfish /usr/local/glassfish4
 chown -R root:root /usr/local/glassfish4

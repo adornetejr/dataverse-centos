@@ -19,6 +19,7 @@ yum update -y
 # INSTALL RECOMMENDED PACKAGES
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y nano htop wget git net-tools nmap unzip curl libcurl curl-openssl policycoreutils-python
+echo "${GREEN}Setting SELinux open ports!${RESET}"
 # SETTING SELINUX
 sudo semanage port -m -t http_port_t -p tcp 123
 sudo semanage port -m -t http_port_t -p tcp 80

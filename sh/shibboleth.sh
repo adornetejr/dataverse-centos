@@ -82,18 +82,20 @@ systemctl restart httpd
 sleep 10
 echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish
+sleep 2
 # SERVICE APACHE RESTART
 echo "${GREEN}Restarting Apache!${RESET}"
 systemctl restart httpd
 sleep 2
 echo "${GREEN}Apache status!${RESET}"
 systemctl status httpd
+sleep 2
 # SHIBBOLETH SYSTEM START
 echo "${GREEN}Enabling Shibboleth to start with the system!${RESET}"
 systemctl enable shibd
 echo "${GREEN}Starting Shibboleth!${RESET}"
 systemctl start shibd
-sleep 2
+sleep 4
 # SERVICE SHIBBOLETH STATUS
 echo "${GREEN}Shibboleth status!${RESET}"
 systemctl status shibd
