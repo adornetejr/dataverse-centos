@@ -50,6 +50,7 @@ sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.c
 useradd shibd
 usermod -s /sbin/nologin shibd
 chown -R root:root /etc/shibboleth
+touch /etc/shibboleth/sys.logger
 echo "${GREEN}Generating new SSL Certificates!${RESET}"
 for FILE in $(find /etc/shibboleth -name '*.pem')
 do
