@@ -74,6 +74,8 @@ systemctl restart firewalld
 echo "${GREEN}Firewalld status!${RESET}"
 systemctl status firewalld
 echo " "
+echo "${GREEN}Checking open ports!${RESET}"
+nmap -v $HOST
 echo "${GREEN}Firewalld installed!${RESET}"
 echo "Stage (10/10) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
