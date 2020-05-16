@@ -18,7 +18,17 @@ echo "${GREEN}Updating installed packages!${RESET}"
 yum update -y
 # INSTALL RECOMMENDED PACKAGES
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y nano htop wget git net-tools unzip curl libcurl nmap
+yum install -y nano htop wget git net-tools nmap unzip curl libcurl curl-openssl policycoreutils-python
+# SETTING SELINUX
+sudo semanage port -m -t http_port_t -p tcp 123
+sudo semanage port -m -t http_port_t -p tcp 80
+sudo semanage port -m -t http_port_t -p tcp 443
+sudo semanage port -a -t http_port_t -p tcp 4848
+sudo semanage port -m -t http_port_t -p tcp 8080
+sudo semanage port -a -t http_port_t -p tcp 8181
+sudo semanage port -a -t http_port_t -p tcp 8983
+sudo semanage port -a -t http_port_t -p tcp 6311
+sudo semanage port -a -t http_port_t -p tcp 8009
 # CHECKING HOST FILE
 until [ $OP != "y" ]; do
     clear

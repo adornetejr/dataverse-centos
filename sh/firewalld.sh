@@ -18,11 +18,11 @@ systemctl start firewalld
 echo "${GREEN}Opening up port 123 for ntpd!${RESET}"
 firewall-cmd --permanent --add-port=123/tcp
 # GLASSFISH HTTP
-# echo "${GREEN}Opening up port 8080 for Glassfish!${RESET}"
-# firewall-cmd --permanent --add-port=8080/tcp
+echo "${GREEN}Opening up port 8080 for Glassfish!${RESET}"
+firewall-cmd --permanent --add-port=8080/tcp
 # GLASSFISH HTTPS
-# echo "${GREEN}Opening up port 8181 for Glassfish!${RESET}"
-# firewall-cmd --permanent --add-port=8181/tcp
+echo "${GREEN}Opening up port 8181 for Glassfish!${RESET}"
+firewall-cmd --permanent --add-port=8181/tcp
 # GLASSFISH ADMIN
 echo "${GREEN}Opening up port 4848 for Glassfish Admin!${RESET}"
 firewall-cmd --permanent --add-port=4848/tcp
