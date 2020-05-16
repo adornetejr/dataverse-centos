@@ -9,8 +9,10 @@ echo "${GREEN}Backing up SSL Certificates!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /etc/httpd $DIR/backup/httpd-$TIMESTAMP
 /bin/cp -R /etc/pki/tls $DIR/backup/tls-$TIMESTAMP
+echo "${GREEN}Removing old settings!${RESET}"
+yum remove -y httpd mod_ssl
 echo "${GREEN}Installing dependencies!${RESET}"
-yum reinstall -y httpd mod_ssl
+yum install -y httpd mod_ssl
 systemctl stop httpd
 echo "${GREEN}Setting up Apache!${RESET}"
 HOST=$(hostname --fqdn)

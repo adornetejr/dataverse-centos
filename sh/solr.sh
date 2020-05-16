@@ -64,12 +64,14 @@ echo "${GREEN}Enabling Solr to start with the system!${RESET}"
 systemctl enable solr
 echo "${GREEN}Starting Solr!${RESET}"
 systemctl start solr
+sleep 4
 # SOLR COLLECTION
 echo "${GREEN}Creating collection!${RESET}"
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/
 echo "${GREEN}Restarting Solr!${RESET}"
 systemctl stop solr
 systemctl start solr
+sleep 4
 # SERVICE SOLR STATUS
 echo "${GREEN}Solr status!${RESET}"
 systemctl status solr

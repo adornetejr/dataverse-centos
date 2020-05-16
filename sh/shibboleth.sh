@@ -12,17 +12,20 @@ systemctl stop shibd
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /etc/shibboleth $DIR/backup/shibboleth-$TIMESTAMP
+echo "${GREEN}Removing old settings!${RESET}"
+yum remove -y shibboleth shibboleth-embedded-ds
 # SHIBBOLETH REPOSITORY
 echo "${GREEN}Installing Shibboleth repository!${RESET}"
 rm -rf /etc/yum.repos.d/security:shibboleth.repo.*
 wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
-yum reinstall -y shibboleth shibboleth-embedded-ds policycoreutils-python log4shib xerces-c xml-security-c curl-openssl xmltooling opensaml
+yum install -y shibboleth shibboleth-embedded-ds policycoreutils-python log4shib xerces-c xml-security-c curl-openssl xmltooling opensaml
 mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
 wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
 mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
 mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
 echo "${GREEN}Starting Glassfish!${RESET}"
 systemctl start glassfish
+sleep 4
 echo "${GREEN}Setting up Shibboleth!${RESET}"
 /usr/local/glassfish4/glassfish/bin/asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
 /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
