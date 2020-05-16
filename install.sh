@@ -55,11 +55,11 @@ sh/glassfish.sh
 cd $DIR
 sh/solr.sh
 cd $DIR
-sh/postgresql.sh
-cd $DIR
 sh/rserve.sh
 cd $DIR
 sh/counter.sh
+cd $DIR
+sh/postgresql.sh
 cd $DIR
 sh/dataverse.sh
 cd $DIR
