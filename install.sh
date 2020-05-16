@@ -74,12 +74,15 @@ wget $META -P $DIR --no-check-certificate
 echo "$DIR/Metadata"
 rm -rf $DIR/default.config /tmp/dvinstall/default.config
 clear
-echo "${RED}Attention!!${RESET}"
-echo " "
 echo "${GREEN}Installation completed!${RESET}"
 echo " "
-echo "Link: $META"
+echo "Execute letsencrypt command to create a SSL certificate"
+echo "$ sudo bash sh/letsencrypt.sh"
+echo " "
+echo "${RED}Attention!!${RESET}"
+echo " "
 echo "Send this file to atendimento@rnp.br"
+echo "Link: $META"
 echo " "
 echo "Read more ${RED}http://hdl.handle.net/20.500.11959/1264${RESET}"
 echo " "

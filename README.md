@@ -45,11 +45,11 @@ Atualmente, o script suporta exclusivamente a versão 4.19 do Dataverse para o s
 * Postgres (database)
   * Local padrão de configuração: */var/lib/pgsql/9.6/data/*
   * `$ systemctl {start|stop|restart|status} postgresql-9.6`
-* Apache httpd 
+* Apache (httpd)
   * Usado como proxy front-end para o Glassfish (e Shibboleth, se abilitado).
   * Local padrão de configuração: */etc/httpd/conf.d*
   * `$ systemctl {stop|start|restart|status} httpd`
-* Shibboleth
+* Shibboleth (shibd)
   * Fornece um provedor de autenticação federada.
   * Arquivo padrão de configuração: */etc/shibboleth/shibboleth2.xml*
   * Serviço opcional, não configurado por padrão.
