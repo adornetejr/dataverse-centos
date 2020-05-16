@@ -44,7 +44,7 @@ cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Deploying.${RESET}"
 /bin/cp -rf /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/glassfish.log
-./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
+./install -y -f
 /bin/cp -rf /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
 # FIX "EJB Timer Service" ERROR ON DEPLOY
