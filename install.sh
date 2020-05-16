@@ -18,7 +18,7 @@ echo "${GREEN}Updating installed packages!${RESET}"
 yum update -y
 # INSTALL RECOMMENDED PACKAGES
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y nano htop wget git net-tools lynx unzip curl libcurl nmap
+yum install -y nano htop wget git net-tools unzip curl libcurl nmap
 # CHECKING HOST FILE
 until [ $OP != "y" ]; do
     clear
