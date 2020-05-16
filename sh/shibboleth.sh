@@ -63,6 +63,7 @@ mv $DIR/sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
 $DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
 mv $DIR/sp-cert.pem /etc/shibboleth/sp-signing-cert.pem
 mv $DIR/sp-key.pem /etc/shibboleth/sp-signing-key.pem
+chmod 644 /etc/shibboleth/*pem
 echo "${GREEN}Setting up SELinux Module for Shibboleth!${RESET}"
 mkdir -p /etc/selinux/targeted/src/policy/domains/misc
 mv /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te.bkp

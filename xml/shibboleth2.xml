@@ -105,11 +105,11 @@
                 -->
 
                 <!-- GIDLAB Dataverse documentation -->
+                <MetadataProvider type="XML" validate="true" url="https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml" backingFilePath="/var/cache/shibboleth/ds-metadata.xml" maxRefreshDelay="7200"/>
                 <!--                
                 <MetadataProvider type="XML" uri="https://idp1.cafeexpresso.rnp.br/idp/shibboleth" backingFilePath="/var/cache/shibboleth/idp1.xml" legacyOrgNames="true" reloadInterval="7200" />
                 <MetadataProvider type="XML" validate="true" url="https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml" backingFilePath="/var/cache/shibboleth/ds-metadata.xml" maxRefreshDelay="7200"/>
                 -->
-                <MetadataProvider type="XML" validate="true" url="https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml" backingFilePath="/var/cache/shibboleth/ds-metadata.xml" maxRefreshDelay="7200"/>
                 <!-- 
                 <MetadataProvider type="Chaining">
                 <MetadataProvider type="XML" validate="true" url="https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml" backingFilePath="/var/cache/shibboleth/ds-metadata.xml" reloadInterval="7200" />
