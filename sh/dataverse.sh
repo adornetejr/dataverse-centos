@@ -55,13 +55,6 @@ sudo -u postgres psql dvndb -c 'delete from "EJB__TIMER__TBL"';
 echo "Installer log file $DIR/logs/install.log"
 echo "Installer error file $DIR/logs/install.err"
 echo "Dataverse deploy log file $DIR/logs/dataverse.log"
-# SETTING UP POSTGRES ACCESS
-echo "${GREEN}Restart Postgres!${RESET}"
-systemctl stop postgresql-9.6
-mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.2.bkp
-cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
-systemctl start postgresql-9.6
-sleep 2
 # GLASSFISH PERMISSIONS
 # chown -R glassfish:glassfish /usr/local/glassfish4
 chown -R root:root /usr/local/glassfish4

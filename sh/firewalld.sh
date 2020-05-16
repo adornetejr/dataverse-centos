@@ -48,6 +48,14 @@ firewall-cmd --reload
 # firewall-cmd --list-ports
 # sudo firewall-cmd --remove-port=port-number/port-type
 # sudo firewall-cmd --runtime-to-permanent
+# SETTING UP POSTGRES ACCESS
+echo "${GREEN}Securing Postgres!${RESET}"
+systemctl stop postgresql-9.6
+mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.2.bkp
+cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+echo "${GREEN}Restarting Postgres!${RESET}"
+systemctl start postgresql-9.6
+sleep 2
 # SECURE GLASSFISH
 echo "${GREEN}Securing Glassfish!${RESET}"
 HOST=$(hostname --fqdn)
