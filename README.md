@@ -78,9 +78,9 @@ Instalação, customização, administração e informações adicionais sobre o
 
 [![Dataverse Project](https://raw.githubusercontent.com/IQSS/dataverse/develop/src/main/webapp/resources/images/dataverseproject_logo.jpg?raw=true "Dataverse Project")](http://dataverse.org)
 
-[![C3](http://www.c3.furg.br/images/logo.png =100px "Centro de Ciências Computacionais")](http://c3.furg.br)
+[![C3](http://www.c3.furg.br/images/logo.png "Centro de Ciências Computacionais")](http://c3.furg.br)
 
-[![FURG](https://www.furg.br/arquivos/logo-furg.png "Universidade Federal do Rio Grande")](http://furg.br){: width="100px"}
+[![FURG](https://www.furg.br/arquivos/logo-furg.png "Universidade Federal do Rio Grande")](http://furg.br){width=100px}
 
 [![UFRGS](http://www.ufrgs.br/ufrgs/logo.jpg "Universidade Federal do Rio Grande do Sul")](http://ufrgs.br)
 
