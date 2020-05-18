@@ -9,8 +9,10 @@ echo "${GREEN}Backing up SSL Certificates!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /etc/httpd $DIR/backup/httpd-$TIMESTAMP
 /bin/cp -R /etc/pki/tls $DIR/backup/tls-$TIMESTAMP
+echo "${GREEN}Removing old settings!${RESET}"
+yum remove -y httpd mod_ssl
 echo "${GREEN}Installing dependencies!${RESET}"
-yum reinstall -y httpd mod_ssl
+yum install -y httpd mod_ssl
 systemctl stop httpd
 echo "${GREEN}Setting up Apache!${RESET}"
 HOST=$(hostname --fqdn)
@@ -32,11 +34,11 @@ restorecon -Rv /etc/pki/tls/private
 # APACHE SYSTEM START
 echo "${GREEN}Enabling Apache to start with the system!${RESET}"
 systemctl enable httpd
-echo "${GREEN}Starting Apache!${RESET}"
-systemctl start httpd
+# systemctl start httpd
 # HTTPD SERVICE
 echo "${GREEN}Apache status!${RESET}"
 systemctl status httpd
+echo "${GREEN}Apache will start with Shibboleth!${RESET}"
 echo " "
 echo "${GREEN}Apache installed!${RESET}"
 echo "Stage (8/10) done!"

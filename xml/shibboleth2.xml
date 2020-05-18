@@ -1,8 +1,15 @@
-<SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config" 
+<SPConfig xmlns="urn:mace:shibboleth:3.0:native:sp:config" 
+        xmlns:conf="urn:mace:shibboleth:3.0:native:sp:config" 
+        xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" 
+        xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" 
+        xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" logger="syslog.logger" clockSkew="180">
+        <!--
+        <SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config" 
         xmlns:conf="urn:mace:shibboleth:2.0:native:sp:config" 
         xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" 
         xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" 
         xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" logger="syslog.logger" clockSkew="180">
+        -->
 
         <OutOfProcess tranLogFormat="%u|%s|%IDP|%i|%ac|%t|%attr|%n|%b|%E|%S|%SS|%L|%UA|%a" />
 
@@ -33,7 +40,7 @@
                 Note that while we default checkAddress to "false", this has a negative impact on the
                 security of your site. Stealing sessions via cookie theft is much easier with this disabled.
                 -->
-                <Sessions lifetime="28800" timeout="3600" relayState="ss:mem" checkAddress="false" handlerSSL="false" cookieProps="https">
+                <Sessions lifetime="28800" timeout="3600" relayState="ss:mem" checkAddress="false" handlerSSL="true" cookieProps="https">
 
                         <!--
                         Configures SSO for a default IdP. To allow for >1 IdP, remove
@@ -105,11 +112,11 @@
                 -->
 
                 <!-- GIDLAB Dataverse documentation -->
+                <MetadataProvider type="XML" validate="true" url="https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml" backingFilePath="/var/cache/shibboleth/ds-metadata.xml" maxRefreshDelay="7200"/>
                 <!--                
                 <MetadataProvider type="XML" uri="https://idp1.cafeexpresso.rnp.br/idp/shibboleth" backingFilePath="/var/cache/shibboleth/idp1.xml" legacyOrgNames="true" reloadInterval="7200" />
                 <MetadataProvider type="XML" validate="true" url="https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml" backingFilePath="/var/cache/shibboleth/ds-metadata.xml" maxRefreshDelay="7200"/>
                 -->
-                <MetadataProvider type="XML" validate="true" url="https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml" backingFilePath="/var/cache/shibboleth/ds-metadata.xml" maxRefreshDelay="7200"/>
                 <!-- 
                 <MetadataProvider type="Chaining">
                 <MetadataProvider type="XML" validate="true" url="https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml" backingFilePath="/var/cache/shibboleth/ds-metadata.xml" reloadInterval="7200" />

@@ -9,7 +9,7 @@ echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y lsof
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-mv /usr/local/solr $DIR/backup/solr-$TIMESTAMP
+/bin/cp -R /usr/local/solr $DIR/backup/solr-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /tmp/solr-7.3.1
 # SOLR DEPENDENCIES
@@ -64,12 +64,14 @@ echo "${GREEN}Enabling Solr to start with the system!${RESET}"
 systemctl enable solr
 echo "${GREEN}Starting Solr!${RESET}"
 systemctl start solr
+sleep 4
 # SOLR COLLECTION
 echo "${GREEN}Creating collection!${RESET}"
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/
 echo "${GREEN}Restarting Solr!${RESET}"
 systemctl stop solr
 systemctl start solr
+sleep 4
 # SERVICE SOLR STATUS
 echo "${GREEN}Solr status!${RESET}"
 systemctl status solr
@@ -77,4 +79,4 @@ echo " "
 echo "${GREEN}Solr installed!${RESET}"
 echo "Stage (3/10) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+# read -e $X

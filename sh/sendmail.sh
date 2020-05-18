@@ -9,14 +9,16 @@ echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /etc/mail $DIR/backup/mail-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
+yum remove -y sendmail sendmail-c4
 echo "${GREEN}Installing dependencies!${RESET}"
-yum reinstall -y sendmail sendmail-cf m4 ntp
+yum install -y sendmail sendmail-cf m4 ntp
 # SETTING NTP
 echo "${GREEN}Setting up ntpd!${RESET}"
 systemctl stop ntpd
 mv /etc/ntp.conf /etc/ntp.conf.bkp
 cp $DIR/conf/ntp.conf /etc/ntp.conf
 systemctl start ntpd
+sleep 2
 # SETTING SENDMAIL
 echo "${GREEN}Setting up Sendmail!${RESET}"
 hostname >/etc/mail/local-host-names
@@ -33,6 +35,7 @@ echo "${GREEN}Enabling Sendmail to start with the system!${RESET}"
 systemctl enable sendmail
 echo "${GREEN}Starting Sendmail!${RESET}"
 systemctl start sendmail
+sleep 2
 # SENDMAIL EMAIL TEST
 echo "${GREEN}Email test on Sendmail!${RESET}"
 echo "To: dataverse@furg.br" >$DIR/mail/mail.txt
@@ -52,4 +55,4 @@ echo " "
 echo "${GREEN}Sendmail installed!${RESET}"
 echo "Stage (1/10) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+# read -e $X

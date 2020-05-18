@@ -6,6 +6,7 @@ RESET=`tput sgr0`
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install firewalld nmap
 systemctl start firewalld
+sleep 2
 # SSHD
 # echo "${GREEN}Opening up port 22 for sshd!${RESET}"
 # firewall-cmd --permanent --add-port=22/tcp
@@ -18,11 +19,11 @@ systemctl start firewalld
 echo "${GREEN}Opening up port 123 for ntpd!${RESET}"
 firewall-cmd --permanent --add-port=123/tcp
 # GLASSFISH HTTP
-# echo "${GREEN}Opening up port 8080 for Glassfish!${RESET}"
-# firewall-cmd --permanent --add-port=8080/tcp
+echo "${GREEN}Opening up port 8080 for Glassfish!${RESET}"
+firewall-cmd --permanent --add-port=8080/tcp
 # GLASSFISH HTTPS
-# echo "${GREEN}Opening up port 8181 for Glassfish!${RESET}"
-# firewall-cmd --permanent --add-port=8181/tcp
+echo "${GREEN}Opening up port 8181 for Glassfish!${RESET}"
+firewall-cmd --permanent --add-port=8181/tcp
 # GLASSFISH ADMIN
 echo "${GREEN}Opening up port 4848 for Glassfish Admin!${RESET}"
 firewall-cmd --permanent --add-port=4848/tcp
@@ -47,6 +48,14 @@ firewall-cmd --reload
 # firewall-cmd --list-ports
 # sudo firewall-cmd --remove-port=port-number/port-type
 # sudo firewall-cmd --runtime-to-permanent
+# SETTING UP POSTGRES ACCESS
+echo "${GREEN}Securing Postgres!${RESET}"
+systemctl stop postgresql-9.6
+mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.2.bkp
+cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+echo "${GREEN}Restarting Postgres!${RESET}"
+systemctl start postgresql-9.6
+sleep 2
 # SECURE GLASSFISH
 echo "${GREEN}Securing Glassfish!${RESET}"
 HOST=$(hostname --fqdn)
@@ -55,6 +64,7 @@ HOST=$(hostname --fqdn)
 /usr/local/glassfish4/glassfish/bin/asadmin --host $HOST --port 4848 enable-secure-admin
 echo "${GREEN}Restarting Glassfish!${RESET}"
 systemctl restart glassfish
+sleep 10
 # SERVICE GLASSFISH STATUS
 echo "${GREEN}Glassfish status!${RESET}"
 systemctl status glassfish

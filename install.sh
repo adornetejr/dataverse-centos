@@ -18,7 +18,19 @@ echo "${GREEN}Updating installed packages!${RESET}"
 yum update -y
 # INSTALL RECOMMENDED PACKAGES
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y nano htop wget git net-tools lynx unzip curl libcurl nmap
+yum install -y nano htop wget git net-tools nmap unzip curl libcurl curl-openssl policycoreutils-python
+echo "${GREEN}Setting SELinux open ports!${RESET}"
+# SETTING SELINUX
+sudo semanage port -a -t ntp_port_t -p udp 123
+sudo semanage port -a -t postgresql_port_t -p tcp 5432
+sudo semanage port -a -t solr_port_t -p tcp 8983
+sudo semanage port -a -t rserve_port_t -p tcp 6311
+sudo semanage port -a -t ajp_port_t -p tcp 8009
+sudo semanage port -a -t glassfish_port_t -p tcp 8080
+sudo semanage port -a -t glassfish_port_t -p tcp 8181
+sudo semanage port -a -t glassfish_port_t -p tcp 4848
+sudo semanage port -a -t http_port_t -p tcp 80
+sudo semanage port -a -t http_port_t -p tcp 443
 # CHECKING HOST FILE
 until [ $OP != "y" ]; do
     clear
@@ -55,11 +67,11 @@ sh/glassfish.sh
 cd $DIR
 sh/solr.sh
 cd $DIR
-sh/postgresql.sh
-cd $DIR
 sh/rserve.sh
 cd $DIR
 sh/counter.sh
+cd $DIR
+sh/postgresql.sh
 cd $DIR
 sh/dataverse.sh
 cd $DIR
@@ -74,12 +86,15 @@ wget $META -P $DIR --no-check-certificate
 echo "$DIR/Metadata"
 rm -rf $DIR/default.config /tmp/dvinstall/default.config
 clear
-echo "${RED}Attention!!${RESET}"
-echo " "
 echo "${GREEN}Installation completed!${RESET}"
 echo " "
-echo "Link: $META"
+echo "Execute letsencrypt command to create a SSL certificate"
+echo "$ sudo bash sh/letsencrypt.sh"
+echo " "
+echo "${RED}Attention!!${RESET}"
+echo " "
 echo "Send this file to atendimento@rnp.br"
+echo "Link: $META"
 echo " "
 echo "Read more ${RED}http://hdl.handle.net/20.500.11959/1264${RESET}"
 echo " "
