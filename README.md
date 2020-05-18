@@ -8,7 +8,6 @@ Com o objetivo de faciliar a instalação e configuração inicial de um ambient
 
 ## Início rápido
 
-Primeiro passo é clonar o repositório.
 Primeiro passo é clonar o repositório e atualizar os submodulos.
 
 ### Clone
@@ -20,14 +19,11 @@ $ git submodule init
 $ git submodule update
 ```
 
-Segundo passo é mudar as permições de execução do script e executa-lo como root.
 Segundo passo é a execução do script como sudo ou root.
 
 ### Shell script
 
 ``` bash
-cd dataverse-centos
-sudo bash install.sh
 chmod +x install.sh
 sudo /bin/bash install.sh
 ```
@@ -78,6 +74,15 @@ Especificações de [hardware](http://guides.dataverse.org/en/latest/installatio
 
 Instalação, customização, administração e informações adicionais sobre o Dataverse podem ser encontradas nos [Guias](http://guides.dataverse.org/en/latest/) do site.
 
-[![Dataverse Project logo](https://raw.githubusercontent.com/IQSS/dataverse/develop/src/main/webapp/resources/images/dataverseproject_logo.jpg?raw=true "Dataverse Project")](http://dataverse.org)
-
 [![Build Status](https://travis-ci.org/IQSS/dataverse.svg?branch=develop)](https://travis-ci.org/IQSS/dataverse)
+
+[![Dataverse Project](https://raw.githubusercontent.com/IQSS/dataverse/develop/src/main/webapp/resources/images/dataverseproject_logo.jpg?raw=true "Dataverse Project")](http://dataverse.org)
+
+[![C3](http://www.c3.furg.br/images/logo.png "Centro de Ciências Computacionais")](http://c3.furg.br)
+
+[![FURG](https://www.furg.br/arquivos/logo-furg.png "Universidade Federal do Rio Grande")](http://furg.br)
+
+[![UFRGS](http://www.ufrgs.br/ufrgs/logo.jpg "Universidade Federal do Rio Grande do Sul")](http://ufrgs.br)
+
+[![RNP](https://www.rnp.br/sites/site-publico/themes/bootstrap_barrio/sitepublico/logo.png "Rede Nacional de Ensino e Pesquisa")](http://rnp.br)
+
