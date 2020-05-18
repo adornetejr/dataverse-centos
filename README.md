@@ -78,11 +78,11 @@ Instalação, customização, administração e informações adicionais sobre o
 
 [![Dataverse Project](https://raw.githubusercontent.com/IQSS/dataverse/develop/src/main/webapp/resources/images/dataverseproject_logo.jpg?raw=true "Dataverse Project")](http://dataverse.org)
 
-[![C3](http://www.c3.furg.br/images/logo.png "Centro de Ciências Computacionais")](http://c3.furg.br)
+[![C3](http://www.c3.furg.br/images/logo.png "Centro de Ciências Computacionais"{width=100px})](http://c3.furg.br)
 
-[![FURG](https://www.furg.br/arquivos/logo-furg.png "Universidade Federal do Rio Grande")](http://furg.br){width=100px}
+[![FURG](https://www.furg.br/arquivos/logo-furg.png "Universidade Federal do Rio Grande"){width=100px}](http://furg.br)
 
-[![UFRGS](http://www.ufrgs.br/ufrgs/logo.jpg "Universidade Federal do Rio Grande do Sul")](http://ufrgs.br)
+[![UFRGS](http://www.ufrgs.br/ufrgs/logo.jpg "Universidade Federal do Rio Grande do Sul"{width=100px})](http://ufrgs.br)
 
-[![RNP](https://www.rnp.br/sites/site-publico/themes/bootstrap_barrio/sitepublico/logo.png "Rede Nacional de Ensino e Pesquisa")](http://rnp.br)
+[![RNP](https://www.rnp.br/sites/site-publico/themes/bootstrap_barrio/sitepublico/logo.png "Rede Nacional de Ensino e Pesquisa"{width=100px})](http://rnp.br)
 
