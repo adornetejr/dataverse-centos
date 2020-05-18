@@ -16,17 +16,17 @@ sleep 2
 # echo "${GREEN}Opening up port 25 for Sendmail!${RESET}"
 # sudo firewall-cmd --permanent --add-port=25/tcp
 # NTPD
-echo "${GREEN}Opening up port 123 for ntpd!${RESET}"
-sudo firewall-cmd --permanent --add-port=123/tcp
+# echo "${GREEN}Opening up port 123 for ntpd!${RESET}"
+# sudo firewall-cmd --permanent --add-port=123/tcp
 # GLASSFISH HTTP
-echo "${GREEN}Opening up port 8080 for Glassfish!${RESET}"
-sudo firewall-cmd --permanent --add-port=8080/tcp
+# echo "${GREEN}Opening up port 8080 for Glassfish!${RESET}"
+# sudo firewall-cmd --permanent --add-port=8080/tcp
 # GLASSFISH HTTPS
-echo "${GREEN}Opening up port 8181 for Glassfish!${RESET}"
-sudo firewall-cmd --permanent --add-port=8181/tcp
+# echo "${GREEN}Opening up port 8181 for Glassfish!${RESET}"
+# sudo firewall-cmd --permanent --add-port=8181/tcp
 # GLASSFISH ADMIN
-echo "${GREEN}Opening up port 4848 for Glassfish Admin!${RESET}"
-sudo firewall-cmd --permanent --add-port=4848/tcp
+# echo "${GREEN}Opening up port 4848 for Glassfish Admin!${RESET}"
+# sudo firewall-cmd --permanent --add-port=4848/tcp
 # SOLR
 # echo "${GREEN}Opening up port 8983 for Solr Indexing!${RESET}"
 # sudo firewall-cmd --permanent --add-port=8983/tcp
@@ -46,12 +46,16 @@ sudo firewall-cmd --permanent --add-port=443/tcp
 echo "${GREEN}Firewalld reload configurations!${RESET}"
 sudo firewall-cmd --reload
 sudo firewall-cmd --list-ports
-sudo firewall-cmd --remove-port=22/tcp
-sudo firewall-cmd --remove-port=25/tcp
-sudo firewall-cmd --remove-port=8009/tcp
-sudo firewall-cmd --remove-port=6311/tcp
-sudo firewall-cmd --remove-port=8983/tcp
-sudo firewall-cmd --runtime-to-permanent
+# sudo firewall-cmd --remove-port=22/tcp
+# sudo firewall-cmd --remove-port=25/tcp
+# sudo firewall-cmd --remove-port=123/tcp
+# sudo firewall-cmd --remove-port=4848/tcp
+# sudo firewall-cmd --remove-port=6311/tcp
+# sudo firewall-cmd --remove-port=8009/tcp
+# sudo firewall-cmd --remove-port=8080/tcp
+# sudo firewall-cmd --remove-port=8181/tcp
+# sudo firewall-cmd --remove-port=8983/tcp
+# sudo firewall-cmd --runtime-to-permanent
 # SETTING UP POSTGRES ACCESS
 echo "${GREEN}Securing Postgres!${RESET}"
 sudo systemctl stop postgresql-9.6
