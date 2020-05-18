@@ -78,9 +78,9 @@ Instalação, customização, administração e informações adicionais sobre o
 [![Build Status](https://travis-ci.org/IQSS/dataverse.svg?branch=develop)](https://travis-ci.org/IQSS/dataverse)
 
 <div flex="left" style="vertical-align: middle;">
-  <img style="margin-right:10px;" src="https://dataverse.org/files/dataverseorg/files/dataverse_r_project.png" alt="Dataverse Project" width="150" />
-  <img style="margin-right:10px;" src="http://www.c3.furg.br/images/logo.png" alt="Centro de Ciências Computacionais" width="170" />
-  <img style="margin-right:10px;" src="https://api.furg.br/account/assets/furg-logo.png" alt="Universidade Federal do Rio Grande" width="150" />
-  <img style="margin-right:10px;" src="http://www.ufrgs.br/ufrgs/logo.jpg" alt="Universidade Federal do Rio Grande do Sul" width="140" />
-  <img style="margin-right:10px;" src="https://www.rnp.br/sites/site-publico/themes/bootstrap_barrio/sitepublico/logo.png" alt="Rede Nacional de Ensino e Pesquisa" width="150" />
+  <img style="dysplay:block; padding-right:10px;" src="https://dataverse.org/files/dataverseorg/files/dataverse_r_project.png" alt="Dataverse Project" width="150" />
+  <img style="dysplay:block; padding-right:10px;" src="http://www.c3.furg.br/images/logo.png" alt="Centro de Ciências Computacionais" width="170" />
+  <img style="dysplay:block; padding-right:10px;" src="https://api.furg.br/account/assets/furg-logo.png" alt="Universidade Federal do Rio Grande" width="150" />
+  <img style="dysplay:block; padding-right:10px;" src="http://www.ufrgs.br/ufrgs/logo.jpg" alt="Universidade Federal do Rio Grande do Sul" width="140" />
+  <img style="dysplay:block; padding-right:10px;" src="https://www.rnp.br/sites/site-publico/themes/bootstrap_barrio/sitepublico/logo.png" alt="Rede Nacional de Ensino e Pesquisa" width="150" />
 </div>
