@@ -77,10 +77,10 @@ Instalação, customização, administração e informações adicionais sobre o
 
 [![Build Status](https://travis-ci.org/IQSS/dataverse.svg?branch=develop)](https://travis-ci.org/IQSS/dataverse)
 
-<p flex="left">
-  <img src="https://dataverse.org/files/dataverseorg/files/dataverse_r_project.png" alt="Dataverse Project" width="100"/>
-  <img src="http://www.c3.furg.br/images/logo.png" alt="Centro de Ciências Computacionais" width="100"/>
-  <img src="https://www.furg.br/arquivos/logo-furg.png" alt="Universidade Federal do Rio Grande" width="100"/>
-  <img src="http://www.ufrgs.br/ufrgs/logo.jpg" alt="Universidade Federal do Rio Grande do Sul" width="100"/>
-  <img src="https://www.rnp.br/sites/site-publico/themes/bootstrap_barrio/sitepublico/logo.png" alt="Rede Nacional de Ensino e Pesquisa" width="100"/>
+<p flex="left" style="vertical-align: middle;">
+  <img src="https://dataverse.org/files/dataverseorg/files/dataverse_r_project.png" alt="Dataverse Project" width="150"/>
+  <img src="http://www.c3.furg.br/images/logo.png" alt="Centro de Ciências Computacionais" width="150"/>
+  <img src="https://www.furg.br/arquivos/logo-furg.png" alt="Universidade Federal do Rio Grande" width="150"/>
+  <img src="http://www.ufrgs.br/ufrgs/logo.jpg" alt="Universidade Federal do Rio Grande do Sul" width="150"/>
+  <img src="https://www.rnp.br/sites/site-publico/themes/bootstrap_barrio/sitepublico/logo.png" alt="Rede Nacional de Ensino e Pesquisa" width="150"/>
 </p>
