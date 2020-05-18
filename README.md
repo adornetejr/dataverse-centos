@@ -75,7 +75,7 @@ Especificações de [hardware](http://guides.dataverse.org/en/latest/installatio
 
 Instalação, customização, administração e informações adicionais sobre o Dataverse podem ser encontradas nos [Guias](http://guides.dataverse.org/en/latest/) do site.
 
-[![Build Status](https://travis-ci.org/IQSS/dataverse.svg?branch=develop =100)](https://travis-ci.org/IQSS/dataverse)
+[![Build Status](https://travis-ci.org/IQSS/dataverse.svg?branch=develop)](https://travis-ci.org/IQSS/dataverse)
 
 <div flex="left" style="vertical-align: middle;">
   <a href="https://dataverse.org/"><img src="https://dataverse.org/files/dataverseorg/files/dataverse_r_project.png" alt="Dataverse Project" width="150" /></a>
