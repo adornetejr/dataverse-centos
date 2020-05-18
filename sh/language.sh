@@ -2,21 +2,24 @@
 DIR=$PWD
 echo "${GREEN}Starting Glassfish!${RESET}"
 sudo systemctl start glassfish
+git submodule init
+git submodule update
 echo "${GREEN}Setting up multiple languages support!${RESET}"
 curl http://localhost:8080/api/admin/settings/:Languages -X PUT -d '[{"locale":"en","title":"English"},{"locale":"br","title":"Português"}]'
+sleep 2
 sudo -u glassfish mkdir /home/glassfish/langBundles
 echo "${GREEN}Creating languages folder!${RESET}"
 echo "/home/glassfish/langBundles"
 /usr/local/glassfish4/glassfish/bin/asadmin create-jvm-options '-Ddataverse.lang.directory=/home/glassfish/langBundles'
 mkdir /tmp/languages
-cd $DIR/lang
-cp -R en_US/*.properties /tmp/languages
-cp -R pt_BR/*.properties /tmp/languages
+cp -R $DIR/lang/en_US/*.properties /tmp/languages
+cp -R $DIR/lang/pt_BR/*.properties /tmp/languages
 cd /tmp/languages
 chown glassfish:glassfish *.properties
 zip languages.zip *.properties
 echo "${GREEN}Uploading languages!${RESET}"
 curl http://localhost:8080/api/admin/datasetfield/loadpropertyfiles -X POST --upload-file /tmp/languages/languages.zip -H "Content-Type: application/zip"
+sleep 2
 echo "${GREEN}Restarting Glassfish!${RESET}"
 sudo systemctl restart glassfish
 sleep 10
