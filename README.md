@@ -8,22 +8,26 @@ Com o objetivo de faciliar a instalação e configuração inicial de um ambient
 
 ## Início rápido
 
-Primeiro passo é clonar o repositório.
+Primeiro passo é clonar o repositório e atualizar os submodulos.
 
 ### Clone
 
-``` bash
+```bash
 $ git clone https://github.com/ginfo-cflex/dataverse-centos.git
+$ cd dataverse-centos
+$ git submodule init
+$ git submodule update
 ```
 
-Segundo passo é mudar as permições de execução do script e executa-lo como root.
+Segundo passo é a execução do script como sudo ou root.
 
 ### Shell script
 
-``` bash
-cd dataverse-centos
-sudo bash install.sh
+```bash
+chmod +x install.sh
+sudo /bin/bash install.sh
 ```
+
 ## O Dataverse
 
 O Dataverse é um aplicativo da Web de código-fonte aberto para compartilhar, preservar, citar, explorar e analisar dados de pesquisa. Desenvolvido em sua maior parte na linguagem Java, utiliza o servidor de aplicação Glassfish como serviço de back-end.
@@ -42,35 +46,41 @@ O script não roda em máquinas virtualizadas no VirtualBox devido ao Glassfish 
 
 ## Componentes principais
 
-* GlassFish server (Java EE application server)
-  * Local padrão: */user/local/glassfish4*
-  * Arquivo padrão de configuração: */usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml*
-  * `$ systemctl {start|stop|restart|status} glassfish`
-* Solr (indexing)
-  * Arquivo padrão de configuração: */usr/local/solr/example/solr/collection1/conf/schema.xml*
-  * `$ systemctl {start|stop|restart|status} solr`
-* Rserve (tabular data)
-  * Arquivo padrão de configuração: */home/rserve/r*
-  * `$ systemctl {start|stop|restart|status} rserve`
-* Postgres (database)
-  * Local padrão de configuração: */var/lib/pgsql/9.6/data/*
-  * `$ systemctl {start|stop|restart|status} postgresql-9.6`
-* Apache (httpd)
-  * Usado como proxy front-end para o Glassfish (e Shibboleth, se abilitado).
-  * Local padrão de configuração: */etc/httpd/conf.d*
-  * `$ systemctl {stop|start|restart|status} httpd`
-* Shibboleth (shibd)
-  * Fornece um provedor de autenticação federada.
-  * Arquivo padrão de configuração: */etc/shibboleth/shibboleth2.xml*
-  * Serviço opcional, não configurado por padrão.
-  * `$ systemctl {start|stop|restart|status} shibd`
- 
+- GlassFish server (Java EE application server)
+  - Local padrão: _/user/local/glassfish4_
+  - Arquivo padrão de configuração: _/usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml_
+  - `$ systemctl {start|stop|restart|status} glassfish`
+- Solr (indexing)
+  - Arquivo padrão de configuração: _/usr/local/solr/example/solr/collection1/conf/schema.xml_
+  - `$ systemctl {start|stop|restart|status} solr`
+- Rserve (tabular data)
+  - Arquivo padrão de configuração: _/home/rserve/r_
+  - `$ systemctl {start|stop|restart|status} rserve`
+- Postgres (database)
+  - Local padrão de configuração: _/var/lib/pgsql/9.6/data/_
+  - `$ systemctl {start|stop|restart|status} postgresql-9.6`
+- Apache (httpd)
+  - Usado como proxy front-end para o Glassfish (e Shibboleth, se abilitado).
+  - Local padrão de configuração: _/etc/httpd/conf.d_
+  - `$ systemctl {stop|start|restart|status} httpd`
+- Shibboleth (shibd)
+  - Fornece um provedor de autenticação federada.
+  - Arquivo padrão de configuração: _/etc/shibboleth/shibboleth2.xml_
+  - Serviço opcional, não configurado por padrão.
+  - `$ systemctl {start|stop|restart|status} shibd`
+
 ## Configurações extras
 
 Especificações de [hardware](http://guides.dataverse.org/en/latest/installation/prep.html#hardware-requirements).
 
 Instalação, customização, administração e informações adicionais sobre o Dataverse podem ser encontradas nos [Guias](http://guides.dataverse.org/en/latest/) do site.
 
-[![Dataverse Project logo](https://raw.githubusercontent.com/IQSS/dataverse/develop/src/main/webapp/resources/images/dataverseproject_logo.jpg?raw=true "Dataverse Project")](http://dataverse.org)
-
 [![Build Status](https://travis-ci.org/IQSS/dataverse.svg?branch=develop)](https://travis-ci.org/IQSS/dataverse)
+
+<div flex="left">
+  <a href="https://www.rnp.br/"><img src="https://www.rnp.br/sites/site-publico/themes/bootstrap_barrio/sitepublico/logo.png" alt="Rede Nacional de Ensino e Pesquisa" width="160" /></a>
+  <a href="http://www.ufrgs.br/"><img src="http://www.ufrgs.br/ufrgs/logo.jpg" alt="Universidade Federal do Rio Grande do Sul" width="125" /></a>
+  <a href="https://furg.br/"><img src="https://api.furg.br/account/assets/furg-logo.png" alt="Universidade Federal do Rio Grande" width="150" /></a>
+  <a href="http://www.c3.furg.br"><img src="http://www.c3.furg.br/images/logo.png" alt="Centro de Ciências Computacionais" width="200" /></a>
+  <a href="https://dataverse.org/"><img src="https://dataverse.org/files/dataverseorg/files/dataverse_r_project.png" alt="Dataverse Project" width="150" /></a>
+</div>

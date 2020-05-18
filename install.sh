@@ -3,6 +3,10 @@ DIR=$PWD
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 RESET=$(tput sgr0)
+echo "${GREEN}Updating submodules!${RESET}"
+git fetch
+git submodule init
+git submodule update
 echo "${GREEN}Backing up logs!${RESET}"
 mv $DIR/logs/install.log $DIR/logs/install.log.bkp
 mv $DIR/logs/install.err $DIR/logs/install.err.bkp
@@ -80,6 +84,8 @@ cd $DIR
 sh/shibboleth.sh
 cd $DIR
 sh/firewalld.sh
+cd $DIR
+sh/language.sh
 echo "${GREEN}Backing up Metadata${RESET}"
 META="https://$HOST/Shibboleth.sso/Metadata"
 wget $META -P $DIR --no-check-certificate

@@ -53,6 +53,6 @@ echo "${GREEN}Postgres status!${RESET}"
 systemctl status postgresql-9.6
 echo " "
 echo "${GREEN}Postgres installed!${RESET}"
-echo "Stage (4/10) done!"
+echo "Stage (4/11) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 # read -e $X

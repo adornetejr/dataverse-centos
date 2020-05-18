@@ -47,6 +47,6 @@ echo "${GREEN}Rserve status!${RESET}"
 systemctl status rserve
 echo " "
 echo "${GREEN}Rserve installed!${RESET}"
-echo "Stage (5/10) done!"
+echo "Stage (5/11) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 # read -e $X

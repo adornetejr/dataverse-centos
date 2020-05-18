@@ -72,6 +72,6 @@ echo "${GREEN}Glassfish deployed applications:${RESET}"
 /usr/local/glassfish4/bin/asadmin list-applications
 echo " "
 echo "${GREEN}Dataverse deployed!${RESET}"
-echo "Stage (7/10) done!"
+echo "Stage (7/11) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X
