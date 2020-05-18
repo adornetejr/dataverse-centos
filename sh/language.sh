@@ -1,5 +1,8 @@
 #!/bin/bash
 DIR=$PWD
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+RESET=$(tput sgr0)
 echo "${GREEN}Starting Glassfish!${RESET}"
 sudo systemctl start glassfish
 git submodule init
@@ -20,11 +23,12 @@ zip languages.zip *.properties
 echo "${GREEN}Uploading languages!${RESET}"
 curl http://localhost:8080/api/admin/datasetfield/loadpropertyfiles -X POST --upload-file /tmp/languages/languages.zip -H "Content-Type: application/zip"
 sleep 2
+echo " "
 echo "${GREEN}Restarting Glassfish!${RESET}"
 sudo systemctl restart glassfish
 sleep 10
 echo " "
-echo "${GREEN}Language pt_BR installed!${RESET}"
+echo "${GREEN}Languages en_US and pt_BR installed!${RESET}"
 echo "Stage (10/11) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 # read -e $X
