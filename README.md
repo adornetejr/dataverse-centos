@@ -78,19 +78,19 @@ Instalação, customização, administração e informações adicionais sobre o
 [![Build Status](https://travis-ci.org/IQSS/dataverse.svg?branch=develop)](https://travis-ci.org/IQSS/dataverse)
 
 <div flex="left" style="vertical-align: middle;">
-  <a href="https://dataverse.org/">
+  <a href="https://dataverse.org/" style="margin:5px;">
     <img src="https://dataverse.org/files/dataverseorg/files/dataverse_r_project.png" alt="Dataverse Project" width="150" />
   </a>
-  <a href="http://www.c3.furg.br">
+  <a href="http://www.c3.furg.br" style="margin:5px;">
     <img src="http://www.c3.furg.br/images/logo.png" alt="Centro de Ciências Computacionais" width="180" />
   </a>
-  <a href="https://furg.br/">
+  <a href="https://furg.br/" style="margin:5px;">
     <img src="https://api.furg.br/account/assets/furg-logo.png" alt="Universidade Federal do Rio Grande" width="150" />
   </a>
-  <a href="http://www.ufrgs.br/">
+  <a href="http://www.ufrgs.br/" style="margin:5px;">
     <img src="http://www.ufrgs.br/ufrgs/logo.jpg" alt="Universidade Federal do Rio Grande do Sul" width="130" />
   </a>
-  <a href="https://www.rnp.br/">
+  <a href="https://www.rnp.br/" style="margin:5px;">
     <img src="https://www.rnp.br/sites/site-publico/themes/bootstrap_barrio/sitepublico/logo.png" alt="Rede Nacional de Ensino e Pesquisa" width="150" />
   </a>
 </div>
