@@ -1,6 +1,8 @@
-# Shell Script de instalação do Dataverse
+# Dataverse e Shibboleth para Autenticação Federada
 
-Este script foi criado para faciliar a instalação e configuração inicial do Dataverse e suas dependências, GlassFish, Solr, PostgreSQL e Rserve, entre outros ajustes no sistema.
+Este script foi criado durante um [estudo](http://hdl.handle.net/20.500.11959/1204) de planejamento para implantação de uma Comunidade Produtora de Dados para o [Repositório Rede de Dados da Pesquisa](https://dadosabertos.rnp.br/) - [RDP Brasil](https://dadosdepesquisa.rnp.br/).
+
+Com o objetivo de faciliar a instalação e configuração inicial de um ambiente de testes do Dataverse e suas dependências, GlassFish, Solr, PostgreSQL, Rserve, Apache e Shibboleth, entre outros ajustes no sistema possibilitando o login acadêmico da Federação CAFe Expresso.
 
 [Documentação de Apoio](http://hdl.handle.net/20.500.11959/1264)
 
@@ -24,13 +26,21 @@ sudo bash install.sh
 ```
 ## O Dataverse
 
-O Dataverse é um aplicativo da Web de código-fonte aberto para compartilhar, preservar, citar, explorar e analisar dados de pesquisa. Desenvolvido em sua maior parte na linguagem Java, utiliza o servidor de aplicação Glassfish como serviço de back-end. Várias dependências são necessárias para a sua instalação funcionar corretamente, logo criamos um Shell script que ajuda na instalação destas.
+O Dataverse é um aplicativo da Web de código-fonte aberto para compartilhar, preservar, citar, explorar e analisar dados de pesquisa. Desenvolvido em sua maior parte na linguagem Java, utiliza o servidor de aplicação Glassfish como serviço de back-end.
 
-### Versão
+## O Shibboleth
 
-Atualmente, o script suporta exclusivamente a versão 4.19 do Dataverse para o sistema CentOS 7 com todos os serviços em execução na mesma máquina. Recomenda-se o uso de um servidor dedicado para execução do script pois ele realizará alterações no sistema. 
+O Shibboleth é um projeto de código aberto que fornece recursos de Single Sign On e permite que os sites tomem decisões de autorização informadas para acesso individual a recursos online protegidos de maneira a preservar a privacidade.
 
-### Componentes principais
+## Versões
+
+Atualmente, o script funciona apenas em CentOS 7 e implementa o Dataverse v4.19 e Shibboleth v3 com SAML2 com todos os serviços e dependências em execução na mesma máquina. Recomenda-se o uso de um servidor dedicado para execução do script pois ele realizará alterações de funcionamento do sistema.
+
+## Problemas
+
+O script não roda em máquinas virtualizadas no VirtualBox devido ao Glassfish criar JVM's para rodar o Dataverse.
+
+## Componentes principais
 
 * GlassFish server (Java EE application server)
   * Local padrão: */user/local/glassfish4*
@@ -55,7 +65,7 @@ Atualmente, o script suporta exclusivamente a versão 4.19 do Dataverse para o s
   * Serviço opcional, não configurado por padrão.
   * `$ systemctl {start|stop|restart|status} shibd`
  
-### Configurações extras
+## Configurações extras
 
 Especificações de [hardware](http://guides.dataverse.org/en/latest/installation/prep.html#hardware-requirements).
 
