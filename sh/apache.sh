@@ -4,7 +4,7 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 RESET=$(tput sgr0)
 echo "${GREEN}Stopping Apache!${RESET}"
-systemctl stop httpd
+sudo systemctl stop httpd
 echo "${GREEN}Backing up SSL Certificates!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /etc/httpd $DIR/backup/httpd-$TIMESTAMP
@@ -13,7 +13,7 @@ echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y httpd mod_ssl
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y httpd mod_ssl
-systemctl stop httpd
+sudo systemctl stop httpd
 echo "${GREEN}Setting up Apache!${RESET}"
 HOST=$(hostname --fqdn)
 mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
@@ -33,11 +33,11 @@ restorecon -Rv /etc/pki/tls/private
 #chmod -R 600 /etc/httpd/ssl
 # APACHE SYSTEM START
 echo "${GREEN}Enabling Apache to start with the system!${RESET}"
-systemctl enable httpd
-# systemctl start httpd
+sudo systemctl enable httpd
+# sudo systemctl start httpd
 # HTTPD SERVICE
 echo "${GREEN}Apache status!${RESET}"
-systemctl status httpd
+sudo systemctl status httpd
 echo "${GREEN}Apache will start with Shibboleth!${RESET}"
 echo " "
 echo "${GREEN}Apache installed!${RESET}"

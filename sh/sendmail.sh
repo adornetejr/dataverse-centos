@@ -4,7 +4,7 @@ RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Sendmail!${RESET}"
-systemctl stop sendmail
+sudo systemctl stop sendmail
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /etc/mail $DIR/backup/mail-$TIMESTAMP
@@ -14,10 +14,10 @@ echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y sendmail sendmail-cf m4 ntp
 # SETTING NTP
 echo "${GREEN}Setting up ntpd!${RESET}"
-systemctl stop ntpd
+sudo systemctl stop ntpd
 mv /etc/ntp.conf /etc/ntp.conf.bkp
 cp $DIR/conf/ntp.conf /etc/ntp.conf
-systemctl start ntpd
+sudo systemctl start ntpd
 sleep 2
 # SETTING SENDMAIL
 echo "${GREEN}Setting up Sendmail!${RESET}"
@@ -32,9 +32,9 @@ echo "ADMIN_EMAIL	root@$HOST" >>$DIR/default.config
 echo "MAIL_SERVER	127.0.0.1" >>$DIR/default.config
 # SENDMAIL SYSTEM START
 echo "${GREEN}Enabling Sendmail to start with the system!${RESET}"
-systemctl enable sendmail
+sudo systemctl enable sendmail
 echo "${GREEN}Starting Sendmail!${RESET}"
-systemctl start sendmail
+sudo systemctl start sendmail
 sleep 2
 # SENDMAIL EMAIL TEST
 echo "${GREEN}Email test on Sendmail!${RESET}"
@@ -50,7 +50,7 @@ echo $TIME >>$DIR/mail/mail.txt
 sendmail -vt <$DIR/mail/mail.txt
 # SERVICE SENDMAIL STATUS
 echo "${GREEN}Sendmail status!${RESET}"
-systemctl status sendmail
+sudo systemctl status sendmail
 echo " "
 echo "${GREEN}Sendmail installed!${RESET}"
 echo "Stage (1/11) done!"

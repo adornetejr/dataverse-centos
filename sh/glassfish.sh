@@ -4,7 +4,7 @@ RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Glassfish!${RESET}"
-systemctl stop glassfish
+sudo systemctl stop glassfish
 # GLASSFISH DEPENDENCIES
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
@@ -53,18 +53,18 @@ chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
 # GLASSFISH SERVICE
 mv /usr/lib/systemd/system/glassfish.service /usr/lib/systemd/system/glassfish.service.bkp
 cp $DIR/service/glassfish.service /usr/lib/systemd/system/glassfish.service
-systemctl daemon-reload
+sudo systemctl daemon-reload
 echo "GLASSFISH_USER    glassfish" >>$DIR/default.config
 echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >>$DIR/default.config
 # GLASSFISH SYSTEM START
 echo "${GREEN}Enabling Glassfish to start with the system!${RESET}"
-systemctl enable glassfish
+sudo systemctl enable glassfish
 echo "${GREEN}Starting Glassfish!${RESET}"
-systemctl start glassfish
+sudo systemctl start glassfish
 sleep 10
 # SERVICE GLASSFISH
 echo "${GREEN}Glassfish status!${RESET}"
-systemctl status glassfish
+sudo systemctl status glassfish
 echo " "
 echo "${GREEN}Glassfish installed!${RESET}"
 echo "Stage (2/11) done!"

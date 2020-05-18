@@ -4,7 +4,7 @@ RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Postgres!${RESET}"
-systemctl stop postgresql-9.6
+sudo systemctl stop postgresql-9.6
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /var/lib/pgsql $DIR/backup/pgsql-$TIMESTAMP
@@ -28,7 +28,7 @@ until [[ ! -z "$PASSWORD" ]]; do
   read -ep "New root password: " PASSWORD
 done
 echo "${GREEN}Starting Postgres!${RESET}"
-systemctl start postgresql-9.6
+sudo systemctl start postgresql-9.6
 sleep 4
 psql -U postgres -c "alter user postgres with password '$PASSWORD';"
 echo "POSTGRES_ADMIN_PASSWORD	$PASSWORD" >>$DIR/default.config
@@ -44,13 +44,13 @@ done
 echo "POSTGRES_PASSWORD	$USERPASS" >>$DIR/default.config
 # POSTGRES SYSTEM START
 echo "${GREEN}Enabling Postgres to start with the system!${RESET}"
-systemctl enable postgresql-9.6
+sudo systemctl enable postgresql-9.6
 echo "${GREEN}Starting Postgres!${RESET}"
-systemctl start postgresql-9.6
+sudo systemctl start postgresql-9.6
 sleep 2
 # SERVICE POSTGRES SERVICE
 echo "${GREEN}Postgres status!${RESET}"
-systemctl status postgresql-9.6
+sudo systemctl status postgresql-9.6
 echo " "
 echo "${GREEN}Postgres installed!${RESET}"
 echo "Stage (4/11) done!"

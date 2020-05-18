@@ -4,7 +4,7 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 RESET=$(tput sgr0)
 echo "${GREEN}Stopping Rserve!${RESET}"
-systemctl stop rserve
+sudo systemctl stop rserve
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 # mv /home/rserve/R $DIR/backup/R-$TIMESTAMP
@@ -35,16 +35,16 @@ echo "RSERVE_PASSWORD	rserve" >>$DIR/default.config
 # RSERVE SERVICE
 mv /usr/lib/systemd/system/rserve.service /usr/lib/systemd/system/rserve.service.bkp
 cp $DIR/service/rserve.service /usr/lib/systemd/system/rserve.service
-systemctl daemon-reload
+sudo systemctl daemon-reload
 # RSERVE SYSTEM START
 echo "${GREEN}Enabling Rserve to start with the system!${RESET}"
-systemctl enable rserve
+sudo systemctl enable rserve
 echo "${GREEN}Starting Rserve!${RESET}"
-systemctl start rserve
+sudo systemctl start rserve
 sleep 4
 # SERVICE RSERVE STATUS
 echo "${GREEN}Rserve status!${RESET}"
-systemctl status rserve
+sudo systemctl status rserve
 echo " "
 echo "${GREEN}Rserve installed!${RESET}"
 echo "Stage (5/11) done!"

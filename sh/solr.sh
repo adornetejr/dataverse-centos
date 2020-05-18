@@ -4,7 +4,7 @@ RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Solr!${RESET}"
-systemctl stop solr
+sudo systemctl stop solr
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y lsof
 echo "${GREEN}Backing up old installation!${RESET}"
@@ -56,25 +56,25 @@ cp $DIR/conf/limits.conf /etc/security/limits.conf
 # SOLR SERVICE
 mv /usr/lib/systemd/system/solr.service /usr/lib/systemd/system/solr.service.bkp
 cp $DIR/service/solr.service /usr/lib/systemd/system/
-systemctl daemon-reload
+sudo systemctl daemon-reload
 echo "SOLR_LOCATION	localhost:8983" >>$DIR/default.config
 echo "TWORAVENS_LOCATION	NOT INSTALLED" >>$DIR/default.config
 # SOLR SYSTEM START
 echo "${GREEN}Enabling Solr to start with the system!${RESET}"
-systemctl enable solr
+sudo systemctl enable solr
 echo "${GREEN}Starting Solr!${RESET}"
-systemctl start solr
+sudo systemctl start solr
 sleep 4
 # SOLR COLLECTION
 echo "${GREEN}Creating collection!${RESET}"
 sudo -u solr /usr/local/solr/solr-7.3.1/bin/solr create_core -c collection1 -d /usr/local/solr/solr-7.3.1/server/solr/collection1/conf/
 echo "${GREEN}Restarting Solr!${RESET}"
-systemctl stop solr
-systemctl start solr
+sudo systemctl stop solr
+sudo systemctl start solr
 sleep 4
 # SERVICE SOLR STATUS
 echo "${GREEN}Solr status!${RESET}"
-systemctl status solr
+sudo systemctl status solr
 echo " "
 echo "${GREEN}Solr installed!${RESET}"
 echo "Stage (3/11) done!"

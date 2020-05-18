@@ -49,25 +49,25 @@ O script não roda em máquinas virtualizadas no VirtualBox devido ao Glassfish 
 - GlassFish server (Java EE application server)
   - Local padrão: _/user/local/glassfish4_
   - Arquivo padrão de configuração: _/usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml_
-  - `$ systemctl {start|stop|restart|status} glassfish`
+  - `$ sudo systemctl {start|stop|restart|status} glassfish`
 - Solr (indexing)
   - Arquivo padrão de configuração: _/usr/local/solr/example/solr/collection1/conf/schema.xml_
-  - `$ systemctl {start|stop|restart|status} solr`
+  - `$ sudo systemctl {start|stop|restart|status} solr`
 - Rserve (tabular data)
   - Arquivo padrão de configuração: _/home/rserve/r_
-  - `$ systemctl {start|stop|restart|status} rserve`
+  - `$ sudo systemctl {start|stop|restart|status} rserve`
 - Postgres (database)
   - Local padrão de configuração: _/var/lib/pgsql/9.6/data/_
-  - `$ systemctl {start|stop|restart|status} postgresql-9.6`
+  - `$ sudo systemctl {start|stop|restart|status} postgresql-9.6`
 - Apache (httpd)
   - Usado como proxy front-end para o Glassfish (e Shibboleth, se abilitado).
   - Local padrão de configuração: _/etc/httpd/conf.d_
-  - `$ systemctl {stop|start|restart|status} httpd`
+  - `$ sudo systemctl {stop|start|restart|status} httpd`
 - Shibboleth (shibd)
   - Fornece um provedor de autenticação federada.
   - Arquivo padrão de configuração: _/etc/shibboleth/shibboleth2.xml_
   - Serviço opcional, não configurado por padrão.
-  - `$ systemctl {start|stop|restart|status} shibd`
+  - `$ sudo systemctl {start|stop|restart|status} shibd`
 
 ## Configurações extras
 
