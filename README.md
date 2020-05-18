@@ -9,20 +9,27 @@ Com o objetivo de faciliar a instalação e configuração inicial de um ambient
 ## Início rápido
 
 Primeiro passo é clonar o repositório.
+Primeiro passo é clonar o repositório e atualizar os submodulos.
 
 ### Clone
 
 ``` bash
 $ git clone https://github.com/ginfo-cflex/dataverse-centos.git
+$ cd dataverse-centos
+$ git submodule init
+$ git submodule update
 ```
 
 Segundo passo é mudar as permições de execução do script e executa-lo como root.
+Segundo passo é a execução do script como sudo ou root.
 
 ### Shell script
 
 ``` bash
 cd dataverse-centos
 sudo bash install.sh
+chmod +x install.sh
+sudo /bin/bash install.sh
 ```
 ## O Dataverse
 
