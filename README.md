@@ -1,4 +1,4 @@
-# Shell Script de instalação do Dataverse
+# Dataverse e Shibboleth para Autenticação Federada
 
 Este script foi criado durante um [estudo](http://hdl.handle.net/20.500.11959/1204) de planejamento para implantação de uma Comunidade Produtora de Dados para o [Repositório Rede de Dados da Pesquisa](https://dadosabertos.rnp.br/) - [RDP Brasil](https://dadosdepesquisa.rnp.br/).
 
