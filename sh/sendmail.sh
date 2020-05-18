@@ -53,6 +53,6 @@ echo "${GREEN}Sendmail status!${RESET}"
 systemctl status sendmail
 echo " "
 echo "${GREEN}Sendmail installed!${RESET}"
-echo "Stage (1/10) done!"
+echo "Stage (1/11) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 # read -e $X

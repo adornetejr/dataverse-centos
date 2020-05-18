@@ -103,6 +103,6 @@ echo "${GREEN}Shibboleth status!${RESET}"
 systemctl status shibd
 echo " "
 echo "${GREEN}Shibboleth installed!${RESET}"
-echo "Stage (9/10) done!"
+echo "Stage (9/11) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X
