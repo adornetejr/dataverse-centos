@@ -16,7 +16,7 @@ yum install -y sendmail sendmail-cf m4 ntp
 echo "${GREEN}Setting up ntpd!${RESET}"
 sudo systemctl stop ntpd
 mv /etc/ntp.conf /etc/ntp.conf.bkp
-cp $DIR/conf/ntp.conf /etc/ntp.conf
+/bin/cp -f $DIR/conf/ntp.conf /etc/ntp.conf
 sudo systemctl start ntpd
 sleep 2
 # SETTING SENDMAIL
@@ -26,7 +26,7 @@ hostname >/etc/mail/relay-domains
 mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bkp
 HOST=$(hostname --fqdn)
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/mail/sendmail.config >$DIR/mail/sendmail.mc
-cp $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
+/bin/cp -f $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
 m4 /etc/mail/sendmail.mc >/etc/mail/sendmail.cf
 echo "ADMIN_EMAIL	root@$HOST" >>$DIR/default.config
 echo "MAIL_SERVER	127.0.0.1" >>$DIR/default.config

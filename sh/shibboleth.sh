@@ -44,7 +44,7 @@ sed -i "s/Adornete/$NAME/g" $DIR/xml/shibboleth2.xml
 sed -i "s/Martins Jr/$SURNAME/g" $DIR/xml/shibboleth2.xml
 sed -i "s/ginfo@furg.br/$EMAIL/g" $DIR/xml/shibboleth2.xml
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/xml/shibboleth2.xml >/etc/shibboleth/shibboleth2.xml
-cp $DIR/xml/attribute-map.xml /etc/shibboleth/attribute-map.xml
+/bin/cp -f $DIR/xml/attribute-map.xml /etc/shibboleth/attribute-map.xml
 mv /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.bkp
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
 useradd shibd
@@ -56,7 +56,7 @@ for FILE in $(find /etc/shibboleth -name '*.pem')
 do
   mv $FILE $(echo "$FILE" | sed -r 's/.pem/.pem.bkp/g')
 done
-cp $DIR/cert/keygen.sh /etc/shibboleth/keygen.sh
+/bin/cp -f $DIR/cert/keygen.sh /etc/shibboleth/keygen.sh
 $DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
 mv $DIR/sp-cert.pem /etc/shibboleth/sp-encrypt-cert.pem
 mv $DIR/sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
@@ -67,7 +67,7 @@ chmod 644 /etc/shibboleth/*pem
 echo "${GREEN}Setting up SELinux Module for Shibboleth!${RESET}"
 mkdir -p /etc/selinux/targeted/src/policy/domains/misc
 mv /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te.bkp
-cp $DIR/semodule/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
+/bin/cp -f $DIR/semodule/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
 cd /etc/selinux/targeted/src/policy/domains/misc
 checkmodule -M -m -o shibboleth.mod shibboleth.te
 semodule_package -o shibboleth.pp -m shibboleth.mod

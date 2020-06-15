@@ -19,8 +19,8 @@ yum install -y postgresql96 postgresql96-server postgresql96-libs
 # STARTING DATABASE
 /usr/pgsql-9.6/bin/postgresql96-setup initdb
 # SETTING UP POSTGRES ACCESS
-mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.bkp
-cp $DIR/conf/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+/bin/cp -f /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.bkp
+/bin/cp -f $DIR/conf/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 # CHANGE ROOT PASSWORD
 until [[ ! -z "$PASSWORD" ]]; do
   clear

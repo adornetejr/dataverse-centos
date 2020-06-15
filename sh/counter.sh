@@ -30,9 +30,9 @@ else
 fi
 echo "${GREEN}Setting up Counter-Processor!${RESET}"
 /bin/cp -R /tmp/counter-processor-0.0.1 /usr/local/counter-processor
-cp $DIR/bin/GeoLite2-Country /tmp/GeoLite2-Country.tar.gz
+/bin/cp -f $DIR/bin/GeoLite2-Country /tmp/GeoLite2-Country.tar.gz
 tar xvfz /tmp/GeoLite2-Country.tar.gz -C /tmp
-cp /tmp/GeoLite2-Country_*/GeoLite2-Country.mmdb /usr/local/counter-processor/maxmind_geoip
+/bin/cp -f /tmp/GeoLite2-Country_*/GeoLite2-Country.mmdb /usr/local/counter-processor/maxmind_geoip
 # USER COUNTER
 useradd counter
 usermod -s /sbin/nologin counter

@@ -52,10 +52,10 @@ usermod -s /sbin/nologin solr
 chown -R solr:solr /usr/local/solr
 # KERNEL LIMITS
 mv /etc/security/limits.conf /etc/security/limits.conf.bkp
-cp $DIR/conf/limits.conf /etc/security/limits.conf
+/bin/cp -f $DIR/conf/limits.conf /etc/security/limits.conf
 # SOLR SERVICE
 mv /usr/lib/systemd/system/solr.service /usr/lib/systemd/system/solr.service.bkp
-cp $DIR/service/solr.service /usr/lib/systemd/system/
+/bin/cp -f $DIR/service/solr.service /usr/lib/systemd/system/
 sudo systemctl daemon-reload
 echo "SOLR_LOCATION	localhost:8983" >>$DIR/default.config
 echo "TWORAVENS_LOCATION	NOT INSTALLED" >>$DIR/default.config

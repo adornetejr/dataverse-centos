@@ -59,8 +59,8 @@ sudo firewall-cmd --list-ports
 # SETTING UP POSTGRES ACCESS
 echo "${GREEN}Securing Postgres!${RESET}"
 sudo systemctl stop postgresql-9.6
-mv /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.2.bkp
-cp $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+/bin/cp -f /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.2.bkp
+/bin/cp -f $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 echo "${GREEN}Restarting Postgres!${RESET}"
 sudo systemctl start postgresql-9.6
 sleep 2

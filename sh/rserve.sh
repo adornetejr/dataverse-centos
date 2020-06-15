@@ -34,7 +34,7 @@ echo "RSERVE_USER	rserve" >>$DIR/default.config
 echo "RSERVE_PASSWORD	rserve" >>$DIR/default.config
 # RSERVE SERVICE
 mv /usr/lib/systemd/system/rserve.service /usr/lib/systemd/system/rserve.service.bkp
-cp $DIR/service/rserve.service /usr/lib/systemd/system/rserve.service
+/bin/cp -f $DIR/service/rserve.service /usr/lib/systemd/system/rserve.service
 sudo systemctl daemon-reload
 # RSERVE SYSTEM START
 echo "${GREEN}Enabling Rserve to start with the system!${RESET}"

@@ -39,7 +39,7 @@ curl -L -o /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar https://
 # wget http://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
 # SETTING GLASSFISH
 mv /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml.bkp
-cp $DIR/xml/domain.xml /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml
+/bin/cp -f $DIR/xml/domain.xml /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml
 # GLASSFISH SSL CERTIFICATE
 echo "${GREEN}Updating SSL Certificates!${RESET}"
 mv /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks.bkp
@@ -52,7 +52,7 @@ chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib
 chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
 # GLASSFISH SERVICE
 mv /usr/lib/systemd/system/glassfish.service /usr/lib/systemd/system/glassfish.service.bkp
-cp $DIR/service/glassfish.service /usr/lib/systemd/system/glassfish.service
+/bin/cp -f $DIR/service/glassfish.service /usr/lib/systemd/system/glassfish.service
 sudo systemctl daemon-reload
 echo "GLASSFISH_USER    glassfish" >>$DIR/default.config
 echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >>$DIR/default.config

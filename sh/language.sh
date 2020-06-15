@@ -15,8 +15,8 @@ echo "${GREEN}Creating languages folder!${RESET}"
 echo "/home/glassfish/langBundles"
 /usr/local/glassfish4/glassfish/bin/asadmin create-jvm-options '-Ddataverse.lang.directory=/home/glassfish/langBundles'
 mkdir /tmp/languages
-cp -R $DIR/lang/en_US/*.properties /tmp/languages
-cp -R $DIR/lang/pt_BR/*.properties /tmp/languages
+/bin/cp -Rf $DIR/lang/en_US/*.properties /tmp/languages
+/bin/cp -Rf $DIR/lang/pt_BR/*.properties /tmp/languages
 cd /tmp/languages
 chown glassfish:glassfish *.properties
 zip languages.zip *.properties
