@@ -41,11 +41,11 @@ rm -rf /usr/local/solr/solr-7.7.2/server/solr/collection1
 echo "${GREEN}Setting up Solr collection!${RESET}"
 /bin/cp -Rf /usr/local/solr/solr-7.7.2/server/solr/configsets/_default /usr/local/solr/solr-7.7.2/server/solr/collection1
 mv /usr/local/solr/solr-7.7.2/server/solr/collection1/conf/schema.xml /usr/local/solr/solr-7.7.2/server/solr/collection1/conf/schema.xml.bkp
-wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.7.2/schema.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
-wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.7.2/schema_dv_mdb_copies.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
-wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.7.2/schema_dv_mdb_fields.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
+wget https://raw.githubusercontent.com/IQSS/dataverse/v4.20/conf/solr/7.7.2/schema.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
+wget https://raw.githubusercontent.com/IQSS/dataverse/v4.20/conf/solr/7.7.2/schema_dv_mdb_copies.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
+wget https://raw.githubusercontent.com/IQSS/dataverse/v4.20/conf/solr/7.7.2/schema_dv_mdb_fields.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
 mv /usr/local/solr/solr-7.7.2/server/solr/collection1/conf/solrconfig.xml /usr/local/solr/solr-7.7.2/server/solr/collection1/conf/solrconfig.xml.bkp
-wget https://raw.githubusercontent.com/IQSS/dataverse/v4.19/conf/solr/7.7.2/solrconfig.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
+wget https://raw.githubusercontent.com/IQSS/dataverse/v4.20/conf/solr/7.7.2/solrconfig.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
 # USER SOLR
 useradd solr
 usermod -s /sbin/nologin solr
