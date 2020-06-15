@@ -1,4 +1,5 @@
 #!/bin/bash
+DIR=$PWD
 RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
@@ -45,7 +46,9 @@ sudo firewall-cmd --permanent --add-port=443/tcp
 # RELOAD CONFIG
 echo "${GREEN}Firewalld reload configurations!${RESET}"
 sudo firewall-cmd --reload
-sudo firewall-cmd --list-ports
+echo "${GREEN}Firewalld configuration:${RESET}"
+sudo firewall-cmd --list-all
+read -e $X
 # sudo firewall-cmd --remove-port=22/tcp
 # sudo firewall-cmd --remove-port=25/tcp
 # sudo firewall-cmd --remove-port=123/tcp
