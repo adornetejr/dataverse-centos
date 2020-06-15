@@ -11,6 +11,7 @@ TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /usr/pgsql-9.6 $DIR/backup/pgsql-9.6-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 yum remove -y postgresql96 postgresql96-server postgresql96-libs
+rm -rf /var/lib/pgsql
 #  POSTGRES REPOSITORY
 echo "${GREEN}Installing dependencies!${RESET}"
 yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
