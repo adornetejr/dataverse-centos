@@ -3,8 +3,12 @@ DIR=$PWD
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 RESET=$(tput sgr0)
+echo "${GREEN}Removing old settings!${RESET}"
+rm -rf /home/glassfish/langBundles
+rm -rf /tmp/languages
 echo "${GREEN}Starting Glassfish!${RESET}"
-sudo systemctl start glassfish
+sudo systemctl restart glassfish
+echo "${GREEN}Downloading submodules!${RESET}"
 git submodule init
 git submodule update
 echo "${GREEN}Setting up multiple languages support!${RESET}"
