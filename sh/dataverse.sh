@@ -12,7 +12,7 @@ LOCATION="/tmp/$FILE"
 LINK=https://github.com/IQSS/dataverse/releases/download/v4.20/dvinstall.zip
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
-    if [ "$(md5sum $LOCATION)" == "de4f375f0c68c404e8adc52092cb8334  $LOCATION" ]; then
+    if [ "$(md5sum $LOCATION)" == "84ca1867f9dc8f8ce51dd3d055b7b275  $LOCATION" ]; then
         unzip /tmp/$FILE -d /tmp
     else
         rm $LOCATION

@@ -19,7 +19,7 @@ LOCATION="/tmp/$FILE"
 LINK=https://archive.apache.org/dist/lucene/solr/7.7.2/solr-7.7.2.tgz
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
-    if [ "$(md5sum $LOCATION)" == "042a6c0d579375be1a8886428f13755f  $LOCATION" ]; then
+    if [ "$(md5sum $LOCATION)" == "00421a08940f110e8cf3bb0d67aea1a5  $LOCATION" ]; then
         tar xvfz $LOCATION -C /tmp
     else
         rm $LOCATION
