@@ -9,7 +9,7 @@ rm -rf /tmp/dvinstall
 echo "${GREEN}Downloading Dataverse!${RESET}"
 FILE="dvinstall.zip"
 LOCATION="/tmp/$FILE"
-LINK=https://github.com/IQSS/dataverse/releases/download/v4.19/dvinstall.zip
+LINK=https://github.com/IQSS/dataverse/releases/download/v4.20/dvinstall.zip
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "de4f375f0c68c404e8adc52092cb8334  $LOCATION" ]; then
