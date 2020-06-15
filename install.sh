@@ -27,12 +27,12 @@ echo "${GREEN}Setting SELinux open ports!${RESET}"
 # SETTING SELINUX
 sudo semanage port -a -t ntp_port_t -p udp 123
 sudo semanage port -a -t postgresql_port_t -p tcp 5432
-sudo semanage port -a -t solr_port_t -p tcp 8983
-sudo semanage port -a -t rserve_port_t -p tcp 6311
-sudo semanage port -a -t ajp_port_t -p tcp 8009
-sudo semanage port -a -t glassfish_port_t -p tcp 8080
-sudo semanage port -a -t glassfish_port_t -p tcp 8181
-sudo semanage port -a -t glassfish_port_t -p tcp 4848
+sudo semanage port -a -t http_port_t -p tcp 8983
+sudo semanage port -a -t http_port_t -p tcp 6311
+sudo semanage port -a -t http_port_t -p tcp 8009
+sudo semanage port -a -t http_port_t -p tcp 8080
+sudo semanage port -a -t http_port_t -p tcp 8181
+sudo semanage port -a -t http_port_t -p tcp 4848
 sudo semanage port -a -t http_port_t -p tcp 80
 sudo semanage port -a -t http_port_t -p tcp 443
 # CHECKING HOST FILE
