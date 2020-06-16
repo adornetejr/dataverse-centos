@@ -22,9 +22,9 @@ yum install -y postgresql96 postgresql96-server postgresql96-libs
 # SETTING UP POSTGRES ACCESS
 /bin/cp -f /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.bkp
 /bin/cp -f $DIR/conf/pg_hba_trust.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+echo " "
 # CHANGE ROOT PASSWORD
 until [[ ! -z "$PASSWORD" ]]; do
-  clear
   echo "${GREEN}Change postgres password!${RESET}"
   read -ep "New root password: " PASSWORD
 done
@@ -37,8 +37,8 @@ echo "POSTGRES_SERVER	127.0.0.1" >>$DIR/default.config
 echo "POSTGRES_PORT	5432" >>$DIR/default.config
 echo "POSTGRES_DATABASE	dvndb" >>$DIR/default.config
 echo "POSTGRES_USER	dvnapp" >>$DIR/default.config
+echo " "
 until [[ ! -z "$USERPASS" ]]; do
-  clear
   echo "${GREEN}Create dvndb password!${RESET}"
   read -ep "New user password: " USERPASS
 done
