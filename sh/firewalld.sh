@@ -48,7 +48,7 @@ echo "${GREEN}Firewalld reload configurations!${RESET}"
 sudo firewall-cmd --reload
 echo "${GREEN}Firewalld configuration:${RESET}"
 sudo firewall-cmd --list-all
-read -e $X
+sleep 10
 # sudo firewall-cmd --remove-port=22/tcp
 # sudo firewall-cmd --remove-port=25/tcp
 # sudo firewall-cmd --remove-port=123/tcp
