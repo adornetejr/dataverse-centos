@@ -5,3 +5,5 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Glassfish!${RESET}"
 sudo systemctl stop glassfish
+echo "${GREEN}Installing AWS CLI!${RESET}"
+pip install awscli

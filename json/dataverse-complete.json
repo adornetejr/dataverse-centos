@@ -1,0 +1,12 @@
+{
+  "name": "Dados de Pesquisa",
+  "alias": "root",
+  "dataverseContacts": [
+    {
+      "contactEmail": "dataverse@furg.br"
+    }
+  ],
+  "affiliation": "Universidade",
+  "description": "Repositório de Dados de Pesquisa.",
+  "dataverseType": "LABORATORY"
+}
