@@ -25,13 +25,13 @@ until [[ ! -z "$SHOULDER" ]]; do
   read -ep "New Shoulder: " SHOULDER
 done
 curl -X PUT -d "$SHOULDER" localhost:8080/api/admin/settings/:Shoulder
-until [[ ! -z "$USER" ]]; do
-  read -ep "${GREEN}DOI User:${RESET} " USER
+until [[ ! -z "$DOIUSER" ]]; do
+  read -ep "${GREEN}DOI User:${RESET} " DOIUSER
 done
-curl -X PUT -d "$USER" localhost:8080/api/admin/settings/:doi.username
-until [[ ! -z "$PASSWORD" ]]; do
-  read -ep "${GREEN}DOI Password:${RESET} " PASSWORD
+curl -X PUT -d "$DOIUSER" localhost:8080/api/admin/settings/:doi.username
+until [[ ! -z "$DOIPASSWORD" ]]; do
+  read -ep "${GREEN}DOI Password:${RESET} " DOIPASSWORD
 done
-curl -X PUT -d "$PASSWORD" localhost:8080/api/admin/settings/:doi.password
+curl -X PUT -d "$DOIPASSWORD" localhost:8080/api/admin/settings/:doi.password
 echo "${GREEN}Restarting Glassfish!${RESET}"
 sudo systemctl restart glassfish
