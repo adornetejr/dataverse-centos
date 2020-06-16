@@ -83,9 +83,13 @@ sh/apache.sh
 cd $DIR
 sh/shibboleth.sh
 cd $DIR
-sh/firewalld.sh
+sh/letsencrypt.sh
 cd $DIR
 sh/language.sh
+cd $DIR
+sh/doi.sh
+cd $DIR
+sh/firewalld.sh
 echo "${GREEN}Backing up Metadata${RESET}"
 META="https://$HOST/Shibboleth.sso/Metadata"
 wget $META -P $DIR --no-check-certificate

@@ -36,6 +36,6 @@ sudo systemctl restart glassfish
 sleep 10
 echo " "
 echo "${GREEN}Languages en_US and pt_BR installed!${RESET}"
-echo "Stage (10/11) done!"
+echo "Stage (11/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X

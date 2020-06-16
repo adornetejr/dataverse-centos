@@ -98,6 +98,6 @@ echo " "
 echo "${GREEN}Checking open ports!${RESET}"
 nmap -v $HOST
 echo "${GREEN}Firewalld installed!${RESET}"
-echo "Stage (10/11) done!"
+echo "Stage (13/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X

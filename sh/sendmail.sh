@@ -53,6 +53,6 @@ echo "${GREEN}Sendmail status!${RESET}"
 sudo systemctl status sendmail
 echo " "
 echo "${GREEN}Sendmail installed!${RESET}"
-echo "Stage (1/11) done!"
+echo "Stage (1/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 # read -e $X

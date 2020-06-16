@@ -41,6 +41,6 @@ sudo systemctl status httpd
 echo "${GREEN}Apache will start with Shibboleth!${RESET}"
 echo " "
 echo "${GREEN}Apache installed!${RESET}"
-echo "Stage (8/11) done!"
+echo "Stage (8/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X

@@ -44,6 +44,6 @@ sudo -S -u counter python3.6 -m ensurepip
 sudo -S -u counter pip3 install --user -r /usr/local/counter-processor/requirements.txt
 echo " "
 echo "${GREEN}Counter-Processor installed!${RESET}"
-echo "Stage (6/11) done!"
+echo "Stage (5/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 # read -e $X
