@@ -23,9 +23,9 @@ R -e 'install.packages(c("R2HTML"), repos="https://cloud.r-project.org/")'
 echo "${GREEN}Installing rjson${RESET}"
 R -e 'install.packages(c("rjson"), repos="https://cloud.r-project.org/")'
 echo "${GREEN}Installing DescTools${RESET}"
-R -e 'install.packages(c(DescTools"), repos="https://cloud.r-project.org/")'
+R -e 'install.packages(c("DescTools"), repos="https://cloud.r-project.org/")'
 echo "${GREEN}Installing haven${RESET}"
-R -e 'install.packages(c(haven"), repos="https://cloud.r-project.org/")'
+R -e 'install.packages(c("haven"), repos="https://cloud.r-project.org/")'
 echo "${GREEN}Installing Rserve${RESET}"
 R -e 'install.packages(c("Rserve"), repos="https://cloud.r-project.org/")'
 echo "RSERVE_HOST	localhost" >>$DIR/default.config
