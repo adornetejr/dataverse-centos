@@ -7,11 +7,11 @@ echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /home/glassfish/langBundles
 rm -rf /tmp/languages
 echo "${GREEN}Starting Glassfish!${RESET}"
-sudo systemctl restart glassfish
+sudo systemctl start glassfish
 sleep 10
 echo "${GREEN}Downloading submodules!${RESET}"
 git submodule init
-git submodule update
+git submodule update --force
 echo "${GREEN}Setting up multiple languages support!${RESET}"
 curl http://localhost:8080/api/admin/settings/:Languages -X PUT -d '[{"locale":"en","title":"English"},{"locale":"br","title":"Português"}]'
 sleep 4
