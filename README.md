@@ -38,7 +38,7 @@ O Shibboleth é um projeto de código aberto que fornece recursos de Single Sign
 
 ## Versões
 
-Atualmente, o script funciona apenas em CentOS 7 e implementa o Dataverse v4.19 e Shibboleth v3 com SAML2 com todos os serviços e dependências em execução na mesma máquina. Recomenda-se o uso de um servidor dedicado para execução do script pois ele realizará alterações de funcionamento do sistema.
+Atualmente, o script funciona apenas em CentOS 7 e implementa o Dataverse v4.20 e Shibboleth v3 com SAML2 com todos os serviços e dependências em execução na mesma máquina. Recomenda-se o uso de um servidor dedicado para execução do script pois ele realizará alterações de funcionamento do sistema.
 
 ## Problemas
 
