@@ -4,16 +4,13 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 RESET=$(tput sgr0)
 echo "${GREEN}Updating submodules!${RESET}"
+git reset --hard
 git fetch
 git submodule init
-git submodule update
+git submodule update --force
 echo "${GREEN}Backing up logs!${RESET}"
 mv $DIR/logs/install.log $DIR/logs/install.log.bkp
 mv $DIR/logs/install.err $DIR/logs/install.err.bkp
-# SERVICE FIREWALLD STOP
-echo "${GREEN}Stopping Firewalld!${RESET}"
-sudo systemctl stop firewalld
-sudo systemctl disable firewalld
 # INSTALL FEDORA REPOSITORY
 echo "${GREEN}Installing Fedora repository!${RESET}"
 yum install -y epel-release
@@ -27,12 +24,12 @@ echo "${GREEN}Setting SELinux open ports!${RESET}"
 # SETTING SELINUX
 sudo semanage port -a -t ntp_port_t -p udp 123
 sudo semanage port -a -t postgresql_port_t -p tcp 5432
-sudo semanage port -a -t http_port_t -p tcp 8983
-sudo semanage port -a -t http_port_t -p tcp 6311
-sudo semanage port -a -t http_port_t -p tcp 8009
-sudo semanage port -a -t http_port_t -p tcp 8080
-sudo semanage port -a -t http_port_t -p tcp 8181
-sudo semanage port -a -t http_port_t -p tcp 4848
+# sudo semanage port -a -t http_port_t -p tcp 8983
+# sudo semanage port -a -t http_port_t -p tcp 6311
+# sudo semanage port -a -t http_port_t -p tcp 8009
+# sudo semanage port -a -t http_port_t -p tcp 8080
+# sudo semanage port -a -t http_port_t -p tcp 8181
+# sudo semanage port -a -t http_port_t -p tcp 4848
 sudo semanage port -a -t http_port_t -p tcp 80
 sudo semanage port -a -t http_port_t -p tcp 443
 # CHECKING HOST FILE
