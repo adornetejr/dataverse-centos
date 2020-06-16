@@ -14,6 +14,7 @@ echo "${GREEN}Setting up Authority!${RESET}"
 until [[ ! -z "$AUTHORITY" ]]; do
   echo "${GREEN}Authority is the red part of this example link:${RESET}"
   echo "https://doi.org/${RED}10.7910${RESET}/DVN/OQ64S8/"
+  echo " "
   read -ep "New Authority: " AUTHORITY
 done
 curl -X PUT -d "$AUTHORITY" localhost:8080/api/admin/settings/:Authority
@@ -22,14 +23,17 @@ echo "${GREEN}Setting up Shoulder!${RESET}"
 until [[ ! -z "$SHOULDER" ]]; do
   echo "${GREEN}Shoulder is the red part of this example link:${RESET}"
   echo "https://doi.org/10.7910/${RED}DVN/${RESET}OQ64S8/"
+  echo " "
   read -ep "New Shoulder: " SHOULDER
 done
 curl -X PUT -d "$SHOULDER" localhost:8080/api/admin/settings/:Shoulder
 until [[ ! -z "$DOIUSER" ]]; do
+  echo " "
   read -ep "${GREEN}DOI User:${RESET} " DOIUSER
 done
 curl -X PUT -d "$DOIUSER" localhost:8080/api/admin/settings/:doi.username
 until [[ ! -z "$DOIPASSWORD" ]]; do
+  echo " "
   read -ep "${GREEN}DOI Password:${RESET} " DOIPASSWORD
 done
 curl -X PUT -d "$DOIPASSWORD" localhost:8080/api/admin/settings/:doi.password
