@@ -37,5 +37,6 @@ until [[ ! -z "$DOIPASSWORD" ]]; do
   read -ep "${GREEN}DOI Password:${RESET} " DOIPASSWORD
 done
 curl -X PUT -d "$DOIPASSWORD" localhost:8080/api/admin/settings/:doi.password
+echo " "
 echo "${GREEN}Restarting Glassfish!${RESET}"
 sudo systemctl restart glassfish
