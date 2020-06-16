@@ -1,3 +1,4 @@
 #!/bin/bash
 echo '##################>/home/glassfish/customHtml/'$1
-        curl -X PUT -d '' http://localhost:8080/api/admin/settings/:HomePageCustomizationFile
+curl -X PUT -d '' http://localhost:8080/api/admin/settings/:HomePageCustomizationFile
+echo " "
