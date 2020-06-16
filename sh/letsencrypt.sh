@@ -8,7 +8,7 @@ echo "${GREEN}Installing dependencies!${RESET}"
 sudo yum install -y yum-utils
 sudo yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
 echo "${GREEN}Installing Certbot!${RESET}"
-sudo yum install -y certbot python2-certbot-apache
+sudo yum install -y certbot python2-certbot-apache python-requests python-six python-urllib3
 echo "${GREEN}Setting up Certificate!${RESET}"
 sudo certbot --apache
 echo "${GREEN}Setting up cronjob!${RESET}"
