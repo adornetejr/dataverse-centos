@@ -106,4 +106,4 @@ echo " "
 echo "Read more ${RED}http://hdl.handle.net/20.500.11959/1264${RESET}"
 echo " "
 echo "Reboot the system to test services startup!"
-read -e $X
+echo " "
