@@ -5,7 +5,7 @@ GREEN=$(tput setaf 2)
 RESET=$(tput sgr0)
 echo "${GREEN}Updating submodules!${RESET}"
 git reset --hard
-git fetch
+git pull
 git submodule init
 git submodule update --force
 echo "${GREEN}Backing up logs!${RESET}"
