@@ -7,28 +7,28 @@ echo "${GREEN}Stopping Apache!${RESET}"
 sudo systemctl stop httpd
 echo "${GREEN}Backing up SSL Certificates!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-/bin/cp -R /etc/httpd $DIR/backup/httpd-$TIMESTAMP
-/bin/cp -R /etc/pki/tls $DIR/backup/tls-$TIMESTAMP
+sudo /bin/cp -R /etc/httpd $DIR/backup/httpd-$TIMESTAMP
+sudo /bin/cp -R /etc/pki/tls $DIR/backup/tls-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
-yum remove -y httpd mod_ssl
+sudo yum remove -y httpd mod_ssl
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y httpd mod_ssl
+sudo yum install -y httpd mod_ssl
 sudo systemctl stop httpd
 echo "${GREEN}Setting up Apache!${RESET}"
 HOST=$(hostname --fqdn)
-mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
-sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
-mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkp
-sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/httpd.conf >/etc/httpd/conf/httpd.conf
+sudo /bin/mv /etc/httpd/conf.d/$HOST.conf /etc/httpd/conf.d/$HOST.conf.bkp
+sudo sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/dataverse.conf >/etc/httpd/conf.d/$HOST.conf
+sudo /bin/mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bkp
+sudo sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/httpd.conf >/etc/httpd/conf/httpd.conf
 echo "${GREEN}Generating new SSL Certificates!${RESET}"
-mkdir /etc/httpd/ssl
+sudo mkdir /etc/httpd/ssl
 $DIR/cert/keygen.sh -y 3 -f -u root -g root -h $HOST -e https://$HOST/
-mv /etc/pki/tls/certs/$HOST.cer /etc/pki/tls/certs/$HOST.cer.bkp
-mv /etc/pki/tls/private/$HOST.key /etc/pki/tls/private/$HOST.key.bkp
-mv $DIR/sp-cert.pem /etc/pki/tls/certs/$HOST.cer
-mv $DIR/sp-key.pem /etc/pki/tls/private/$HOST.key
-restorecon -Rv /etc/pki/tls/certs
-restorecon -Rv /etc/pki/tls/private
+sudo /bin/mv /etc/pki/tls/certs/$HOST.cer /etc/pki/tls/certs/$HOST.cer.bkp
+sudo /bin/mv /etc/pki/tls/private/$HOST.key /etc/pki/tls/private/$HOST.key.bkp
+sudo /bin/mv $DIR/sp-cert.pem /etc/pki/tls/certs/$HOST.cer
+sudo /bin/mv $DIR/sp-key.pem /etc/pki/tls/private/$HOST.key
+sudo restorecon -Rv /etc/pki/tls/certs
+sudo restorecon -Rv /etc/pki/tls/private
 #chown -R apache:apache /etc/httpd/ssl
 #chmod -R 600 /etc/httpd/ssl
 # APACHE SYSTEM START

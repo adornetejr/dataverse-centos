@@ -10,13 +10,13 @@ TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 /bin/cp -R /var/lib/pgsql $DIR/backup/pgsql-$TIMESTAMP
 /bin/cp -R /usr/pgsql-9.6 $DIR/backup/pgsql-9.6-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
-yum remove -y postgresql96 postgresql96-server postgresql96-libs
+sudo yum remove -y postgresql96 postgresql96-server postgresql96-libs
 rm -rf /var/lib/pgsql
 #  POSTGRES REPOSITORY
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-yum makecache fast
-yum install -y postgresql96 postgresql96-server postgresql96-libs
+sudo yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+sudo yum makecache fast
+sudo yum install -y postgresql96 postgresql96-server postgresql96-libs
 # STARTING DATABASE
 /usr/pgsql-9.6/bin/postgresql96-setup initdb
 # SETTING UP POSTGRES ACCESS

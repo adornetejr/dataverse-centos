@@ -10,7 +10,7 @@ echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /tmp/counter-processor-0.0.1
 # INSTALL COUNTER DEPENDENCIES
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y python36
+sudo yum install -y python36
 echo "${GREEN}Downloading Counter-Processor!${RESET}"
 FILE="v0.0.1.tar.gz"
 LOCATION="/tmp/$FILE"

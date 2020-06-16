@@ -5,7 +5,7 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 # INSTALL FIREWALLD
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install firewalld nmap
+sudo yum install firewalld nmap
 sudo systemctl start firewalld
 sleep 2
 # SSHD
@@ -80,7 +80,7 @@ sleep 10
 echo "${GREEN}Glassfish status!${RESET}"
 sudo systemctl status glassfish
 echo "${GREEN}Securing Apache!${RESET}"
-yum install -y mod_security
+sudo yum install -y mod_security
 echo "${GREEN}Restarting Apache!${RESET}"
 sudo systemctl restart httpd
 # SERVICE GLASSFISH STATUS

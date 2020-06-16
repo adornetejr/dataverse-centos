@@ -7,27 +7,27 @@ echo "${GREEN}Stopping Sendmail!${RESET}"
 sudo systemctl stop sendmail
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-/bin/cp -R /etc/mail $DIR/backup/mail-$TIMESTAMP
+sudo /bin/cp -R /etc/mail $DIR/backup/mail-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
-yum remove -y sendmail sendmail-c4
+sudo yum remove -y sendmail sendmail-c4
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y sendmail sendmail-cf m4 ntp
+sudo yum install -y sendmail sendmail-cf m4 ntp
 # SETTING NTP
 echo "${GREEN}Setting up ntpd!${RESET}"
 sudo systemctl stop ntpd
-mv /etc/ntp.conf /etc/ntp.conf.bkp
-/bin/cp -f $DIR/conf/ntp.conf /etc/ntp.conf
+sudo /bin/cp -f /etc/ntp.conf /etc/ntp.conf.bkp
+sudo /bin/cp -f $DIR/conf/ntp.conf /etc/ntp.conf
 sudo systemctl start ntpd
 sleep 2
 # SETTING SENDMAIL
 echo "${GREEN}Setting up Sendmail!${RESET}"
-hostname >/etc/mail/local-host-names
-hostname >/etc/mail/relay-domains
-mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bkp
+sudo hostname >/etc/mail/local-host-names
+sudo hostname >/etc/mail/relay-domains
+sudo /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bkp
 HOST=$(hostname --fqdn)
 sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/mail/sendmail.config >$DIR/mail/sendmail.mc
-/bin/cp -f $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
-m4 /etc/mail/sendmail.mc >/etc/mail/sendmail.cf
+sudo /bin/cp -f $DIR/mail/sendmail.mc /etc/mail/sendmail.mc
+sudo m4 /etc/mail/sendmail.mc >/etc/mail/sendmail.cf
 echo "ADMIN_EMAIL	root@$HOST" >>$DIR/default.config
 echo "MAIL_SERVER	127.0.0.1" >>$DIR/default.config
 # SENDMAIL SYSTEM START
@@ -47,7 +47,7 @@ echo $HOST >>$DIR/mail/mail.txt
 echo "Time:" >>$DIR/mail/mail.txt
 TIME=$(date)
 echo $TIME >>$DIR/mail/mail.txt
-sendmail -vt <$DIR/mail/mail.txt
+sudo sendmail -vt <$DIR/mail/mail.txt
 # SERVICE SENDMAIL STATUS
 echo "${GREEN}Sendmail status!${RESET}"
 sudo systemctl status sendmail

@@ -9,17 +9,17 @@ git pull
 git submodule init
 git submodule update --force
 echo "${GREEN}Backing up logs!${RESET}"
-mv $DIR/logs/install.log $DIR/logs/install.log.bkp
-mv $DIR/logs/install.err $DIR/logs/install.err.bkp
+/bin/mv  $DIR/logs/install.log $DIR/logs/install.log.bkp
+/bin/mv  $DIR/logs/install.err $DIR/logs/install.err.bkp
 # INSTALL FEDORA REPOSITORY
 echo "${GREEN}Installing Fedora repository!${RESET}"
-yum install -y epel-release
+sudo yum install -y epel-release
 # UPDATE PACKAGES
 echo "${GREEN}Updating installed packages!${RESET}"
-yum update -y
+sudo yum update -y
 # INSTALL RECOMMENDED PACKAGES
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install -y nano htop wget git net-tools nmap unzip curl libcurl curl-openssl policycoreutils-python
+sudo yum install -y nano htop wget git net-tools nmap unzip curl libcurl curl-openssl policycoreutils-python
 echo "${GREEN}Setting SELinux open ports!${RESET}"
 # SETTING SELINUX
 sudo semanage port -a -t ntp_port_t -p udp 123
@@ -91,8 +91,8 @@ echo "${GREEN}Backing up Metadata${RESET}"
 META="https://$HOST/Shibboleth.sso/Metadata"
 wget $META -P $DIR --no-check-certificate
 echo "$DIR/Metadata"
-rm -rf $DIR/default.config /tmp/dvinstall/default.config
-clear
+sudo rm -rf $DIR/default.config /tmp/dvinstall/default.config
+sleep 4
 echo "${GREEN}Installation completed!${RESET}"
 echo " "
 echo "Execute letsencrypt command to create a SSL certificate"
