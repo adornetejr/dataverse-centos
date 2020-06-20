@@ -52,6 +52,6 @@ echo "${GREEN}Glassfish status!${RESET}"
 sudo systemctl status glassfish
 echo " "
 echo "${GREEN}DOI Configured!${RESET}"
-echo "Stage (11/11) done!"
+echo "Stage (12/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X

@@ -23,8 +23,8 @@ else
     wget $LINK -P /tmp
     unzip /tmp/$FILE -d /tmp
 fi
-mv /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
-cp $DIR/default.config /tmp/dvinstall/default.config
+/bin/mv /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
+/bin/cp -f $DIR/default.config /tmp/dvinstall/default.config
 clear
 echo "${GREEN}Dataverse Install Settings:${RESET}"
 echo " "
@@ -43,23 +43,23 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Deploying.${RESET}"
-/bin/cp -rf /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/glassfish.log
-./install -y -f
-/bin/cp -rf /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
+/bin/cp -f /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/glassfish.log
+sudo ./install -y -f
+/bin/cp -f /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
 # FIX "EJB Timer Service" ERROR ON DEPLOY
-/usr/local/glassfish4/bin/asadmin stop-domain
-rm -rf /usr/local/glassfish4/glassfish/domains/domain1/generated/
-rm -rf /usr/local/glassfish4/glassfish/domains/domain1/osgi-cache/felix
+sudo /usr/local/glassfish4/bin/asadmin stop-domain
+sudo rm -rf /usr/local/glassfish4/glassfish/domains/domain1/generated/
+sudo rm -rf /usr/local/glassfish4/glassfish/domains/domain1/osgi-cache/felix
 sudo -u postgres psql dvndb -c 'delete from "EJB__TIMER__TBL"';
 echo "Installer log file $DIR/logs/install.log"
 echo "Installer error file $DIR/logs/install.err"
 echo "Dataverse deploy log file $DIR/logs/dataverse.log"
 # GLASSFISH PERMISSIONS
 # chown -R glassfish:glassfish /usr/local/glassfish4
-chown -R root:root /usr/local/glassfish4
-chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib
-chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
+sudo chown -R root:root /usr/local/glassfish4
+sudo chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib
+sudo chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
 # RESTARTING GLASSFISH
 echo "${GREEN}Restarting Glassfish!${RESET}"
 sudo systemctl restart glassfish
@@ -69,9 +69,9 @@ echo "${GREEN}Glassfish status!${RESET}"
 sudo systemctl status glassfish
 echo " "
 echo "${GREEN}Glassfish deployed applications:${RESET}"
-/usr/local/glassfish4/bin/asadmin list-applications
+sudo /usr/local/glassfish4/bin/asadmin list-applications
 echo " "
 echo "${GREEN}Dataverse deployed!${RESET}"
-echo "Stage (7/11) done!"
+echo "Stage (7/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X

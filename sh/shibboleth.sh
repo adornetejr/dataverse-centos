@@ -11,27 +11,27 @@ echo "${GREEN}Stopping Shibboleth!${RESET}"
 sudo systemctl stop shibd
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-/bin/cp -R /etc/shibboleth $DIR/backup/shibboleth-$TIMESTAMP
+sudo /bin/cp -R /etc/shibboleth $DIR/backup/shibboleth-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
-yum remove -y shibboleth shibboleth-embedded-ds
+sudo yum remove -y shibboleth shibboleth-embedded-ds
 # SHIBBOLETH REPOSITORY
 echo "${GREEN}Installing Shibboleth repository!${RESET}"
-rm -rf /etc/yum.repos.d/security:shibboleth.repo.*
-wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
-yum install -y shibboleth shibboleth-embedded-ds opensaml log4shib xerces-c xml-security-c xmltooling unixODBC
-mv /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
-wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
-mv /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
-mv /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
+sudo rm -rf /etc/yum.repos.d/security:shibboleth.repo*
+sudo wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
+sudo yum install -y shibboleth shibboleth-embedded-ds opensaml log4shib xerces-c xml-security-c xmltooling unixODBC
+sudo /bin/cp -f /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
+sudo wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
+sudo /bin/cp -f /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
+sudo /bin/cp -f /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
 echo "${GREEN}Starting Glassfish!${RESET}"
 sudo systemctl start glassfish
 sleep 10
 echo "${GREEN}Setting up Shibboleth!${RESET}"
-/usr/local/glassfish4/glassfish/bin/asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
-/usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
-/usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-2.port=8181
-/usr/local/glassfish4/glassfish/bin/asadmin create-network-listener --protocol http-listener-1 --listenerport 8009 --jkenabled true jk-connector
-/usr/local/glassfish4/glassfish/bin/asadmin list-network-listeners
+sudo /usr/local/glassfish4/glassfish/bin/asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
+sudo /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
+sudo /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-2.port=8181
+sudo /usr/local/glassfish4/glassfish/bin/asadmin create-network-listener --protocol http-listener-1 --listenerport 8009 --jkenabled true jk-connector
+sudo /usr/local/glassfish4/glassfish/bin/asadmin list-network-listeners
 until [[ ! -z "$NAME" && ! -z "$SURNAME" && ! -z "$EMAIL" ]]; do
   clear
   echo "${GREEN}Shibboleth Support Contact${RESET}"
@@ -43,39 +43,41 @@ HOST=$(hostname --fqdn)
 sed -i "s/Adornete/$NAME/g" $DIR/xml/shibboleth2.xml
 sed -i "s/Martins Jr/$SURNAME/g" $DIR/xml/shibboleth2.xml
 sed -i "s/ginfo@furg.br/$EMAIL/g" $DIR/xml/shibboleth2.xml
-sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/xml/shibboleth2.xml >/etc/shibboleth/shibboleth2.xml
-/bin/cp -f $DIR/xml/attribute-map.xml /etc/shibboleth/attribute-map.xml
-mv /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.bkp
-sed "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf >/etc/httpd/conf.d/ssl.conf
-useradd shibd
-usermod -s /sbin/nologin shibd
-chown -R root:root /etc/shibboleth
-touch /etc/shibboleth/sys.logger
+sed -i "s/dataverse.c3.furg.br/$HOST/g" $DIR/xml/shibboleth2.xml
+sudo /bin/cp -f $DIR/xml/shibboleth2.xml /etc/shibboleth/shibboleth2.xml
+sudo /bin/cp -f $DIR/xml/attribute-map.xml /etc/shibboleth/attribute-map.xml
+sudo /bin/cp -f /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.bkp
+sed -i "s/dataverse.c3.furg.br/$HOST/g" $DIR/conf/ssl.conf
+sudo /bin/cp -f $DIR/conf/ssl.conf /etc/httpd/conf.d/ssl.conf
+sudo useradd shibd
+sudo usermod -s /sbin/nologin shibd
+sudo chown -R root:root /etc/shibboleth
+sudo touch /etc/shibboleth/sys.logger
 echo "${GREEN}Generating new SSL Certificates!${RESET}"
 for FILE in $(find /etc/shibboleth -name '*.pem')
 do
-  mv $FILE $(echo "$FILE" | sed -r 's/.pem/.pem.bkp/g')
+  sudo /bin/mv $FILE $(echo "$FILE" | sed -r 's/.pem/.pem.bkp/g')
 done
-/bin/cp -f $DIR/cert/keygen.sh /etc/shibboleth/keygen.sh
-$DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
-mv $DIR/sp-cert.pem /etc/shibboleth/sp-encrypt-cert.pem
-mv $DIR/sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
-$DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
-mv $DIR/sp-cert.pem /etc/shibboleth/sp-signing-cert.pem
-mv $DIR/sp-key.pem /etc/shibboleth/sp-signing-key.pem
-chmod 644 /etc/shibboleth/*pem
+sudo /bin/cp -f $DIR/cert/keygen.sh /etc/shibboleth/keygen.sh
+sudo $DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
+sudo /bin/mv $DIR/sp-cert.pem /etc/shibboleth/sp-encrypt-cert.pem
+sudo /bin/mv $DIR/sp-key.pem /etc/shibboleth/sp-encrypt-key.pem
+sudo $DIR/cert/keygen.sh -y 3 -f -u shibd -g shibd -h $HOST -e "https://$HOST/shibboleth"
+sudo /bin/mv $DIR/sp-cert.pem /etc/shibboleth/sp-signing-cert.pem
+sudo /bin/mv $DIR/sp-key.pem /etc/shibboleth/sp-signing-key.pem
+sudo chmod 644 /etc/shibboleth/*pem
 echo "${GREEN}Setting up SELinux Module for Shibboleth!${RESET}"
-mkdir -p /etc/selinux/targeted/src/policy/domains/misc
-mv /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te.bkp
-/bin/cp -f $DIR/semodule/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
+sudo mkdir -p /etc/selinux/targeted/src/policy/domains/misc
+sudo /bin/cp -f /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te.bkp
+sudo /bin/cp -f $DIR/semodule/shibboleth.te /etc/selinux/targeted/src/policy/domains/misc/shibboleth.te
 cd /etc/selinux/targeted/src/policy/domains/misc
-checkmodule -M -m -o shibboleth.mod shibboleth.te
-semodule_package -o shibboleth.pp -m shibboleth.mod
-semodule -i shibboleth.pp
+sudo checkmodule -M -m -o shibboleth.mod shibboleth.te
+sudo semodule_package -o shibboleth.pp -m shibboleth.mod
+sudo semodule -i shibboleth.pp
 # SERVICE GLASSFISH RESTART
 echo "${GREEN}Restarting Glassfish!${RESET}"
 sudo systemctl restart glassfish
-sleep 10
+sleep 15
 echo "${GREEN}Setting up login button!${RESET}"
 curl -X POST -H 'Content-type: application/json' --upload-file $DIR/json/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 echo " "
@@ -104,6 +106,6 @@ echo "${GREEN}Shibboleth status!${RESET}"
 sudo systemctl status shibd
 echo " "
 echo "${GREEN}Shibboleth installed!${RESET}"
-echo "Stage (9/11) done!"
+echo "Stage (9/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X

@@ -5,7 +5,7 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 # INSTALL FIREWALLD
 echo "${GREEN}Installing dependencies!${RESET}"
-yum install firewalld nmap
+sudo yum install firewalld nmap
 sudo systemctl start firewalld
 sleep 2
 # SSHD
@@ -48,7 +48,7 @@ echo "${GREEN}Firewalld reload configurations!${RESET}"
 sudo firewall-cmd --reload
 echo "${GREEN}Firewalld configuration:${RESET}"
 sudo firewall-cmd --list-all
-read -e $X
+sleep 10
 # sudo firewall-cmd --remove-port=22/tcp
 # sudo firewall-cmd --remove-port=25/tcp
 # sudo firewall-cmd --remove-port=123/tcp
@@ -80,7 +80,7 @@ sleep 10
 echo "${GREEN}Glassfish status!${RESET}"
 sudo systemctl status glassfish
 echo "${GREEN}Securing Apache!${RESET}"
-yum install -y mod_security
+sudo yum install -y mod_security
 echo "${GREEN}Restarting Apache!${RESET}"
 sudo systemctl restart httpd
 # SERVICE GLASSFISH STATUS
@@ -98,6 +98,6 @@ echo " "
 echo "${GREEN}Checking open ports!${RESET}"
 nmap -v $HOST
 echo "${GREEN}Firewalld installed!${RESET}"
-echo "Stage (10/11) done!"
+echo "Stage (13/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X
