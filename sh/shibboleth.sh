@@ -19,7 +19,7 @@ echo "${GREEN}Installing Shibboleth repository!${RESET}"
 sudo rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 sudo wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
 sudo yum install -y shibboleth shibboleth-embedded-ds opensaml log4shib xerces-c xml-security-c xmltooling unixODBC
-sudo /bin/cp -f /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
+sudo /bin/mv -f /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
 sudo wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
 sudo /bin/cp -f /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
 sudo /bin/cp -f /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
