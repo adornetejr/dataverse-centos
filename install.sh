@@ -84,7 +84,7 @@ sh/letsencrypt.sh
 cd $DIR
 sh/language.sh
 cd $DIR
-sh/doi.sh
+# sh/doi.sh
 cd $DIR
 sh/firewalld.sh
 echo "${GREEN}Backing up Metadata${RESET}"
