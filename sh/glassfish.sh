@@ -43,8 +43,9 @@ sudo /bin/mv /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml /
 sudo /bin/cp -f $DIR/xml/domain.xml /usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml
 # GLASSFISH SSL CERTIFICATE
 echo "${GREEN}Updating SSL Certificates!${RESET}"
+sudo update-ca-trust
 sudo /bin/mv /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks.bkp
-sudo /bin/cp -f /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
+sudo /bin/cp -f /etc/pki/java/cacerts /usr/local/glassfish4/glassfish/domains/domain1/config/cacerts.jks
 # USER GLASSFISH
 sudo useradd glassfish
 sudo usermod -s /sbin/nologin glassfish
