@@ -32,7 +32,7 @@ echo " "
 sleep 4
 echo " "
 echo "${GREEN}Restarting Glassfish!${RESET}"
-sudo systemctl restart glassfish
+sudo systemctl restart payara.service
 sleep 10
 echo " "
 echo "${GREEN}Languages en_US and pt_BR installed!${RESET}"

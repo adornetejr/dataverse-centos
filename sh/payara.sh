@@ -19,7 +19,7 @@ LOCATION="/tmp/$FILE"
 LINK=https://github.com/payara/Payara/releases/download/payara-server-5.2020.2/payara-5.2020.2.zip
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
-    if [ "$(md5sum $LOCATION)" == "2fd41ad9af8d41d1c721c1b25191f674  $LOCATION" ]; then
+    if [ "$(md5sum $LOCATION)" == "98b42b1313be4252403c9ca0d8f7e776  $LOCATION" ]; then
         sudo unzip /tmp/$FILE -d /tmp
     else
         sudo rm -rf $LOCATION
@@ -57,18 +57,18 @@ sudo /bin/cp -f /usr/lib/systemd/system/payara.service /usr/lib/systemd/system/p
 sudo /bin/cp -f $DIR/service/payara.service /usr/lib/systemd/system/payara.service
 sudo systemctl daemon-reload
 echo "GLASSFISH_USER    glassfish" >>$DIR/default.config
-echo "GLASSFISH_DIRECTORY	/usr/local/glassfish4" >>$DIR/default.config
+echo "GLASSFISH_DIRECTORY	/usr/local/payara5" >>$DIR/default.config
 # GLASSFISH SYSTEM START
-echo "${GREEN}Enabling Glassfish to start with the system!${RESET}"
+echo "${GREEN}Enabling Payara to start with the system!${RESET}"
 sudo systemctl enable payara.service
-echo "${GREEN}Starting Glassfish!${RESET}"
+echo "${GREEN}Starting Payara!${RESET}"
 sudo systemctl start payara.service
 sleep 10
 # SERVICE GLASSFISH
-echo "${GREEN}Glassfish status!${RESET}"
+echo "${GREEN}Payara status!${RESET}"
 sudo systemctl status payara.service
 echo " "
-echo "${GREEN}Glassfish installed!${RESET}"
+echo "${GREEN}Payara installed!${RESET}"
 echo "Stage (2/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X

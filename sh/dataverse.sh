@@ -35,7 +35,7 @@ echo " "
 echo "If the next step freeze in 'Updates Done. Retarting...'"
 echo " "
 echo "Open another terminal and run the command:"
-echo "# sudo systemctl restart glassfish"
+echo "# sudo systemctl restart payara.service"
 echo " "
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
 read -e $X
@@ -62,7 +62,7 @@ sudo chown -R glassfish:glassfish /usr/local/payara5/glassfish/lib
 sudo chown -R glassfish:glassfish /usr/local/payara5/glassfish/domains/domain1
 # RESTARTING GLASSFISH
 echo "${GREEN}Restarting Glassfish!${RESET}"
-sudo systemctl restart glassfish
+sudo systemctl restart payara.service
 sleep 10
 # SERVICE GLASSFISH STATUS
 echo "${GREEN}Glassfish status!${RESET}"

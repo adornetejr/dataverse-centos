@@ -47,7 +47,7 @@ done
 curl -X PUT -d "$DOIPASSWORD" localhost:8080/api/admin/settings/:doi.password
 echo " "
 echo "${GREEN}Restarting Glassfish!${RESET}"
-sudo systemctl restart glassfish
+sudo systemctl restart payara.service
 echo "${GREEN}Glassfish status!${RESET}"
 sudo systemctl status glassfish
 echo " "

@@ -76,7 +76,7 @@ sudo semodule_package -o shibboleth.pp -m shibboleth.mod
 sudo semodule -i shibboleth.pp
 # SERVICE GLASSFISH RESTART
 echo "${GREEN}Restarting Glassfish!${RESET}"
-sudo systemctl restart glassfish
+sudo systemctl restart payara.service
 sleep 15
 echo "${GREEN}Setting up login button!${RESET}"
 curl -X POST -H 'Content-type: application/json' --upload-file $DIR/json/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
