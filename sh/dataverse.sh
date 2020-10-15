@@ -9,7 +9,7 @@ rm -rf /tmp/dvinstall
 echo "${GREEN}Downloading Dataverse!${RESET}"
 FILE="dvinstall.zip"
 LOCATION="/tmp/$FILE"
-LINK=https://github.com/IQSS/dataverse/releases/download/v4.20/dvinstall.zip
+LINK=https://github.com/IQSS/dataverse/releases/download/v5.1.1/dvinstall.zip
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "84ca1867f9dc8f8ce51dd3d055b7b275  $LOCATION" ]; then
@@ -43,23 +43,23 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Deploying.${RESET}"
-/bin/cp -f /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/glassfish.log
+/bin/cp -f /usr/local/payara5/glassfish/domains/domain1/logs/server.log $DIR/logs/glassfish.log
 sudo ./install -y -f
-/bin/cp -f /usr/local/glassfish4/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
+/bin/cp -f /usr/local/payara5/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
 # FIX "EJB Timer Service" ERROR ON DEPLOY
-sudo /usr/local/glassfish4/bin/asadmin stop-domain
-sudo rm -rf /usr/local/glassfish4/glassfish/domains/domain1/generated/
-sudo rm -rf /usr/local/glassfish4/glassfish/domains/domain1/osgi-cache/felix
+sudo /usr/local/payara5/bin/asadmin stop-domain
+sudo rm -rf /usr/local/payara5/glassfish/domains/domain1/generated/
+sudo rm -rf /usr/local/payara5/glassfish/domains/domain1/osgi-cache/felix
 sudo -u postgres psql dvndb -c 'delete from "EJB__TIMER__TBL"';
 echo "Installer log file $DIR/logs/install.log"
 echo "Installer error file $DIR/logs/install.err"
 echo "Dataverse deploy log file $DIR/logs/dataverse.log"
 # GLASSFISH PERMISSIONS
-# chown -R glassfish:glassfish /usr/local/glassfish4
-sudo chown -R root:root /usr/local/glassfish4
-sudo chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/lib
-sudo chown -R glassfish:glassfish /usr/local/glassfish4/glassfish/domains/domain1
+# chown -R glassfish:glassfish /usr/local/payara5
+sudo chown -R root:root /usr/local/payara5
+sudo chown -R glassfish:glassfish /usr/local/payara5/glassfish/lib
+sudo chown -R glassfish:glassfish /usr/local/payara5/glassfish/domains/domain1
 # RESTARTING GLASSFISH
 echo "${GREEN}Restarting Glassfish!${RESET}"
 sudo systemctl restart glassfish
@@ -69,7 +69,7 @@ echo "${GREEN}Glassfish status!${RESET}"
 sudo systemctl status glassfish
 echo " "
 echo "${GREEN}Glassfish deployed applications:${RESET}"
-sudo /usr/local/glassfish4/bin/asadmin list-applications
+sudo /usr/local/payara5/bin/asadmin list-applications
 echo " "
 echo "${GREEN}Dataverse deployed!${RESET}"
 echo "Stage (7/13) done!"
