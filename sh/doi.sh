@@ -3,7 +3,7 @@ DIR=$PWD
 RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
-echo "${GREEN}Starting Glassfish!${RESET}"
+echo "${GREEN}Starting Payara!${RESET}"
 sudo systemctl start glassfish
 sleep 10
 /usr/local/glassfish4/glassfish/bin/asadmin create-jvm-options '-Ddoi.baseurlstring=https\://mds.test.datacite.org'
@@ -46,9 +46,9 @@ until [[ ! -z "$DOIPASSWORD" ]]; do
 done
 curl -X PUT -d "$DOIPASSWORD" localhost:8080/api/admin/settings/:doi.password
 echo " "
-echo "${GREEN}Restarting Glassfish!${RESET}"
+echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart payara.service
-echo "${GREEN}Glassfish status!${RESET}"
+echo "${GREEN}Payara status!${RESET}"
 sudo systemctl status glassfish
 echo " "
 echo "${GREEN}DOI Configured!${RESET}"

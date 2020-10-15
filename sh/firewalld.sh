@@ -20,13 +20,13 @@ sleep 2
 # echo "${GREEN}Opening up port 123 for ntpd!${RESET}"
 # sudo firewall-cmd --permanent --add-port=123/tcp
 # GLASSFISH HTTP
-# echo "${GREEN}Opening up port 8080 for Glassfish!${RESET}"
+# echo "${GREEN}Opening up port 8080 for Payara!${RESET}"
 # sudo firewall-cmd --permanent --add-port=8080/tcp
 # GLASSFISH HTTPS
-# echo "${GREEN}Opening up port 8181 for Glassfish!${RESET}"
+# echo "${GREEN}Opening up port 8181 for Payara!${RESET}"
 # sudo firewall-cmd --permanent --add-port=8181/tcp
 # GLASSFISH ADMIN
-# echo "${GREEN}Opening up port 4848 for Glassfish Admin!${RESET}"
+# echo "${GREEN}Opening up port 4848 for Payara Admin!${RESET}"
 # sudo firewall-cmd --permanent --add-port=4848/tcp
 # SOLR
 # echo "${GREEN}Opening up port 8983 for Solr Indexing!${RESET}"
@@ -68,16 +68,16 @@ echo "${GREEN}Restarting Postgres!${RESET}"
 sudo systemctl start postgresql-9.6
 sleep 2
 # SECURE GLASSFISH
-echo "${GREEN}Securing Glassfish!${RESET}"
+echo "${GREEN}Securing Payara!${RESET}"
 HOST=$(hostname --fqdn)
 /usr/local/glassfish4/glassfish/bin/asadmin change-admin-password
 /usr/local/glassfish4/glassfish/bin/asadmin --host localhost --port 4848 enable-secure-admin
 /usr/local/glassfish4/glassfish/bin/asadmin --host $HOST --port 4848 enable-secure-admin
-echo "${GREEN}Restarting Glassfish!${RESET}"
+echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart payara.service
 sleep 10
 # SERVICE GLASSFISH STATUS
-echo "${GREEN}Glassfish status!${RESET}"
+echo "${GREEN}Payara status!${RESET}"
 sudo systemctl status glassfish
 echo "${GREEN}Securing Apache!${RESET}"
 sudo yum install -y mod_security

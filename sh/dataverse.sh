@@ -61,14 +61,14 @@ sudo chown -R root:root /usr/local/payara5
 sudo chown -R glassfish:glassfish /usr/local/payara5/glassfish/lib
 sudo chown -R glassfish:glassfish /usr/local/payara5/glassfish/domains/domain1
 # RESTARTING GLASSFISH
-echo "${GREEN}Restarting Glassfish!${RESET}"
+echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart payara.service
 sleep 10
 # SERVICE GLASSFISH STATUS
-echo "${GREEN}Glassfish status!${RESET}"
+echo "${GREEN}Payara status!${RESET}"
 sudo systemctl status glassfish
 echo " "
-echo "${GREEN}Glassfish deployed applications:${RESET}"
+echo "${GREEN}Payara deployed applications:${RESET}"
 sudo /usr/local/payara5/bin/asadmin list-applications
 echo " "
 echo "${GREEN}Dataverse deployed!${RESET}"

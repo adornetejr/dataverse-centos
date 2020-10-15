@@ -14,9 +14,9 @@ sudo /bin/cp -R /usr/local/payara5 $DIR/backup/payara5-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 sudo rm -rf /tmp/payara5
 echo "${GREEN}Downloading Payara!${RESET}"
-FILE="payara-5.2020.2.zip"
+FILE="payara-5.2020.5.zip"
 LOCATION="/tmp/$FILE"
-LINK=https://github.com/payara/Payara/releases/download/payara-server-5.2020.2/payara-5.2020.2.zip
+LINK=https://github.com/payara/Payara/releases/download/payara-server-5.2020.5/payara-5.2020.5.zip
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
     if [ "$(md5sum $LOCATION)" == "98b42b1313be4252403c9ca0d8f7e776  $LOCATION" ]; then
@@ -39,24 +39,24 @@ sudo /bin/cp -R /tmp/payara5 /usr/local/
 # echo " "
 # wget http://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
 # SETTING GLASSFISH
-sudo /bin/mv /usr/local/payara5/glassfish/domains/domain1/config/domain.xml /usr/local/payara5/glassfish/domains/domain1/config/domain.xml.bkp
-sudo /bin/cp -f $DIR/xml/domain.xml /usr/local/payara5/glassfish/domains/domain1/config/domain.xml
+# sudo /bin/mv /usr/local/payara5/glassfish/domains/domain1/config/domain.xml /usr/local/payara5/glassfish/domains/domain1/config/domain.xml.bkp
+# sudo /bin/cp -f $DIR/xml/domain.xml /usr/local/payara5/glassfish/domains/domain1/config/domain.xml
 # GLASSFISH SSL CERTIFICATE
 echo "${GREEN}Updating SSL Certificates!${RESET}"
 sudo update-ca-trust
 sudo /bin/mv /usr/local/payara5/glassfish/domains/domain1/config/cacerts.jks /usr/local/payara5/glassfish/domains/domain1/config/cacerts.jks.bkp
 sudo /bin/cp -f /etc/pki/java/cacerts /usr/local/payara5/glassfish/domains/domain1/config/cacerts.jks
 # USER GLASSFISH
-sudo useradd payara
-sudo usermod -s /sbin/nologin payara
+sudo useradd dataverse
+sudo usermod -s /sbin/nologin dataverse
 sudo chown -R root:root /usr/local/payara5
-sudo chown -R payara:payara /usr/local/payara5/glassfish/lib
-sudo chown -R payara:payara /usr/local/payara5/glassfish/domains/domain1
+sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/lib
+sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/domains/domain1
 # GLASSFISH SERVICE
 sudo /bin/cp -f /usr/lib/systemd/system/payara.service /usr/lib/systemd/system/payara.service.bkp
 sudo /bin/cp -f $DIR/service/payara.service /usr/lib/systemd/system/payara.service
 sudo systemctl daemon-reload
-echo "GLASSFISH_USER    glassfish" >>$DIR/default.config
+echo "GLASSFISH_USER    dataverse" >>$DIR/default.config
 echo "GLASSFISH_DIRECTORY	/usr/local/payara5" >>$DIR/default.config
 # GLASSFISH SYSTEM START
 echo "${GREEN}Enabling Payara to start with the system!${RESET}"

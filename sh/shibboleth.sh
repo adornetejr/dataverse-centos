@@ -3,7 +3,7 @@ DIR=$PWD
 RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
-echo "${GREEN}Stopping Glassfish!${RESET}"
+echo "${GREEN}Stopping Payara!${RESET}"
 sudo systemctl stop glassfish
 echo "${GREEN}Stopping Apache!${RESET}"
 sudo systemctl stop httpd
@@ -23,7 +23,7 @@ sudo /bin/mv -f /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-
 sudo wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
 sudo /bin/cp -f /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
 sudo /bin/cp -f /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
-echo "${GREEN}Starting Glassfish!${RESET}"
+echo "${GREEN}Starting Payara!${RESET}"
 sudo systemctl start glassfish
 sleep 10
 echo "${GREEN}Setting up Shibboleth!${RESET}"
@@ -75,17 +75,17 @@ sudo checkmodule -M -m -o shibboleth.mod shibboleth.te
 sudo semodule_package -o shibboleth.pp -m shibboleth.mod
 sudo semodule -i shibboleth.pp
 # SERVICE GLASSFISH RESTART
-echo "${GREEN}Restarting Glassfish!${RESET}"
+echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart payara.service
 sleep 15
 echo "${GREEN}Setting up login button!${RESET}"
 curl -X POST -H 'Content-type: application/json' --upload-file $DIR/json/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 echo " "
 # SERVICE GLASSFISH STATUS
-echo "${GREEN}Restarting Glassfish!${RESET}"
+echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart httpd
 sleep 10
-echo "${GREEN}Glassfish status!${RESET}"
+echo "${GREEN}Payara status!${RESET}"
 sudo systemctl status glassfish
 sleep 2
 # SERVICE APACHE RESTART
