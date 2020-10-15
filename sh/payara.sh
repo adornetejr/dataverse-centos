@@ -13,13 +13,14 @@ TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
 sudo /bin/cp -R /usr/local/payara5 $DIR/backup/payara5-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 sudo rm -rf /tmp/payara5
+sudo rm -rf /usr/local/payara5
 echo "${GREEN}Downloading Payara!${RESET}"
 FILE="payara-5.2020.5.zip"
 LOCATION="/tmp/$FILE"
 LINK=https://github.com/payara/Payara/releases/download/payara-server-5.2020.5/payara-5.2020.5.zip
 if [ -f "$LOCATION" ]; then
     ls $LOCATION
-    if [ "$(md5sum $LOCATION)" == "98b42b1313be4252403c9ca0d8f7e776  $LOCATION" ]; then
+    if [ "$(md5sum $LOCATION)" == "07ec22637c939db66ede8fe13443469b  $LOCATION" ]; then
         sudo unzip /tmp/$FILE -d /tmp
     else
         sudo rm -rf $LOCATION
@@ -49,9 +50,10 @@ sudo /bin/cp -f /etc/pki/java/cacerts /usr/local/payara5/glassfish/domains/domai
 # USER GLASSFISH
 sudo useradd dataverse
 sudo usermod -s /sbin/nologin dataverse
-sudo chown -R root:root /usr/local/payara5
-sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/lib
-sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/domains/domain1
+sudo chown -R dataverse:dataverse /usr/local/payara5
+#sudo chown -R root:root /usr/local/payara5
+#sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/lib
+#sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/domains/domain1
 # GLASSFISH SERVICE
 sudo /bin/cp -f /usr/lib/systemd/system/payara.service /usr/lib/systemd/system/payara.service.bkp
 sudo /bin/cp -f $DIR/service/payara.service /usr/lib/systemd/system/payara.service
