@@ -64,7 +64,7 @@ cd $DIR
 chmod 744 sh/*.sh
 sh/sendmail.sh
 cd $DIR
-sh/glassfish.sh
+sh/payara.sh
 cd $DIR
 sh/solr.sh
 cd $DIR

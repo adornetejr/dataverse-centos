@@ -1,0 +1,18 @@
+[Unit]
+Description = Payara Server
+After = syslog.target network.target
+
+[Service]
+Type = forking
+ExecStart = /usr/bin/java -jar /usr/local/payara5/glassfish/lib/client/appserver-cli.jar start-domain
+ExecStop = /usr/bin/java -jar /usr/local/payara5/glassfish/lib/client/appserver-cli.jar stop-domain
+ExecReload = /usr/bin/java -jar /usr/local/payara5/glassfish/lib/client/appserver-cli.jar restart-domain
+User=payara
+LimitNOFILE=32768
+Environment="LANG=en_US.UTF-8"
+TimeoutStartSec=120s
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy = multi-user.target

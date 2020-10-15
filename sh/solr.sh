@@ -46,6 +46,7 @@ sudo wget https://raw.githubusercontent.com/IQSS/dataverse/v4.20/conf/solr/7.7.2
 sudo wget https://raw.githubusercontent.com/IQSS/dataverse/v4.20/conf/solr/7.7.2/schema_dv_mdb_fields.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
 sudo /bin/mv /usr/local/solr/solr-7.7.2/server/solr/collection1/conf/solrconfig.xml /usr/local/solr/solr-7.7.2/server/solr/collection1/conf/solrconfig.xml.bkp
 sudo wget https://raw.githubusercontent.com/IQSS/dataverse/v4.20/conf/solr/7.7.2/solrconfig.xml -P /usr/local/solr/solr-7.7.2/server/solr/collection1/conf
+sudo echo "name=collection1" > /usr/local/solr/solr-7.7.2/server/solr/collection1/core.properties
 # USER SOLR
 sudo useradd solr
 sudo usermod -s /sbin/nologin solr
