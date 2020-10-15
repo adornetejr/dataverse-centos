@@ -5,7 +5,7 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Payara!${RESET}"
 sudo systemctl stop payara
-# GLASSFISH DEPENDENCIES
+# PAYARA DEPENDENCIES
 echo "${GREEN}Installing dependencies!${RESET}"
 sudo yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
 echo "${GREEN}Backing up old installation!${RESET}"
@@ -39,34 +39,34 @@ sudo /bin/cp -R /tmp/payara5 /usr/local/
 # sudo curl -L -o /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld-osgi-bundle/2.2.10.Final/weld-osgi-bundle-2.2.10.Final-glassfish4.jar
 # echo " "
 # wget http://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
-# SETTING GLASSFISH
+# SETTING PAYARA
 # sudo /bin/mv /usr/local/payara5/glassfish/domains/domain1/config/domain.xml /usr/local/payara5/glassfish/domains/domain1/config/domain.xml.bkp
 # sudo /bin/cp -f $DIR/xml/domain.xml /usr/local/payara5/glassfish/domains/domain1/config/domain.xml
-# GLASSFISH SSL CERTIFICATE
+# PAYARA SSL CERTIFICATE
 echo "${GREEN}Updating SSL Certificates!${RESET}"
 sudo update-ca-trust
 sudo /bin/mv /usr/local/payara5/glassfish/domains/domain1/config/cacerts.jks /usr/local/payara5/glassfish/domains/domain1/config/cacerts.jks.bkp
 sudo /bin/cp -f /etc/pki/java/cacerts /usr/local/payara5/glassfish/domains/domain1/config/cacerts.jks
-# USER GLASSFISH
+# USER PAYARA
 sudo useradd dataverse
 sudo usermod -s /sbin/nologin dataverse
 sudo chown -R dataverse:dataverse /usr/local/payara5
 #sudo chown -R root:root /usr/local/payara5
 #sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/lib
 #sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/domains/domain1
-# GLASSFISH SERVICE
+# PAYARA SERVICE
 sudo /bin/cp -f /usr/lib/systemd/system/payara.service /usr/lib/systemd/system/payara.service.bkp
 sudo /bin/cp -f $DIR/service/payara.service /usr/lib/systemd/system/payara.service
 sudo systemctl daemon-reload
 echo "GLASSFISH_USER    dataverse" >>$DIR/default.config
 echo "GLASSFISH_DIRECTORY	/usr/local/payara5" >>$DIR/default.config
-# GLASSFISH SYSTEM START
+# PAYARA SYSTEM START
 echo "${GREEN}Enabling Payara to start with the system!${RESET}"
 sudo systemctl enable payara.service
 echo "${GREEN}Starting Payara!${RESET}"
 sudo systemctl start payara.service
 sleep 10
-# SERVICE GLASSFISH
+# SERVICE PAYARA
 echo "${GREEN}Payara status!${RESET}"
 sudo systemctl status payara.service
 echo " "

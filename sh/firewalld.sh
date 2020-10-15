@@ -19,13 +19,13 @@ sleep 2
 # NTPD
 # echo "${GREEN}Opening up port 123 for ntpd!${RESET}"
 # sudo firewall-cmd --permanent --add-port=123/tcp
-# GLASSFISH HTTP
+# PAYARA HTTP
 # echo "${GREEN}Opening up port 8080 for Payara!${RESET}"
 # sudo firewall-cmd --permanent --add-port=8080/tcp
-# GLASSFISH HTTPS
+# PAYARA HTTPS
 # echo "${GREEN}Opening up port 8181 for Payara!${RESET}"
 # sudo firewall-cmd --permanent --add-port=8181/tcp
-# GLASSFISH ADMIN
+# PAYARA ADMIN
 # echo "${GREEN}Opening up port 4848 for Payara Admin!${RESET}"
 # sudo firewall-cmd --permanent --add-port=4848/tcp
 # SOLR
@@ -67,7 +67,7 @@ sudo systemctl stop postgresql-9.6
 echo "${GREEN}Restarting Postgres!${RESET}"
 sudo systemctl start postgresql-9.6
 sleep 2
-# SECURE GLASSFISH
+# SECURE PAYARA
 echo "${GREEN}Securing Payara!${RESET}"
 HOST=$(hostname --fqdn)
 /usr/local/glassfish4/glassfish/bin/asadmin change-admin-password
@@ -76,14 +76,14 @@ HOST=$(hostname --fqdn)
 echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart payara.service
 sleep 10
-# SERVICE GLASSFISH STATUS
+# SERVICE PAYARA STATUS
 echo "${GREEN}Payara status!${RESET}"
 sudo systemctl status glassfish
 echo "${GREEN}Securing Apache!${RESET}"
 sudo yum install -y mod_security
 echo "${GREEN}Restarting Apache!${RESET}"
 sudo systemctl restart httpd
-# SERVICE GLASSFISH STATUS
+# SERVICE PAYARA STATUS
 echo "${GREEN}Apache status!${RESET}"
 sudo systemctl status httpd
 # FIREWALLD SYSTEM START

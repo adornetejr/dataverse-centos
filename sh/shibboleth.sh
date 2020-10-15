@@ -74,14 +74,14 @@ cd /etc/selinux/targeted/src/policy/domains/misc
 sudo checkmodule -M -m -o shibboleth.mod shibboleth.te
 sudo semodule_package -o shibboleth.pp -m shibboleth.mod
 sudo semodule -i shibboleth.pp
-# SERVICE GLASSFISH RESTART
+# SERVICE PAYARA RESTART
 echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart payara.service
 sleep 15
 echo "${GREEN}Setting up login button!${RESET}"
 curl -X POST -H 'Content-type: application/json' --upload-file $DIR/json/shibAuthProvider.json http://127.0.0.1:8080/api/admin/authenticationProviders
 echo " "
-# SERVICE GLASSFISH STATUS
+# SERVICE PAYARA STATUS
 echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart httpd
 sleep 10

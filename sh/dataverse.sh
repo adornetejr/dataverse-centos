@@ -55,16 +55,16 @@ sudo -u postgres psql dvndb -c 'delete from "EJB__TIMER__TBL"';
 echo "Installer log file $DIR/logs/install.log"
 echo "Installer error file $DIR/logs/install.err"
 echo "Dataverse deploy log file $DIR/logs/dataverse.log"
-# GLASSFISH PERMISSIONS
-# chown -R glassfish:glassfish /usr/local/payara5
-sudo chown -R root:root /usr/local/payara5
-sudo chown -R glassfish:glassfish /usr/local/payara5/glassfish/lib
-sudo chown -R glassfish:glassfish /usr/local/payara5/glassfish/domains/domain1
-# RESTARTING GLASSFISH
+# PAYARA PERMISSIONS
+sudo chown -R dataverse:dataverse /usr/local/payara5
+# sudo chown -R root:root /usr/local/payara5
+# sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/lib
+# sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/domains/domain1
+# RESTARTING PAYARA
 echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart payara.service
 sleep 10
-# SERVICE GLASSFISH STATUS
+# SERVICE PAYARA STATUS
 echo "${GREEN}Payara status!${RESET}"
 sudo systemctl status glassfish
 echo " "
