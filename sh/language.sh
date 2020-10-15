@@ -7,7 +7,7 @@ echo "${GREEN}Removing old settings!${RESET}"
 rm -rf /home/dataverse/langBundles
 rm -rf /tmp/languages
 echo "${GREEN}Starting Payara!${RESET}"
-sudo systemctl start glassfish
+sudo systemctl start payara.service
 sleep 10
 echo "${GREEN}Downloading submodules!${RESET}"
 git submodule init
@@ -18,7 +18,7 @@ echo " "
 sleep 4
 sudo -u dataverse mkdir /home/dataverse/langBundles
 echo "${GREEN}Creating languages folder!${RESET}"
-echo "/home/glassfish/langBundles"
+echo "/home/dataverse/langBundles"
 /usr/local/payara5/glassfish/bin/asadmin create-jvm-options '-Ddataverse.lang.directory=/home/dataverse/langBundles'
 mkdir /tmp/languages
 /bin/cp -Rf $DIR/lang/en_US/*.properties /tmp/languages

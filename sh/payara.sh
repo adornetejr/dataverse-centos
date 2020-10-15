@@ -35,10 +35,10 @@ echo "${GREEN}Setting up Payara!${RESET}"
 sudo /bin/cp -R /tmp/payara5 /usr/local/
 # FIX MODULE WELD-OSGI
 # echo "${GREEN}Updating Weld-OSGi Module!${RESET}"
-# sudo /bin/mv /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar.bkp
-# sudo curl -L -o /usr/local/glassfish4/glassfish/modules/weld-osgi-bundle.jar https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld-osgi-bundle/2.2.10.Final/weld-osgi-bundle-2.2.10.Final-glassfish4.jar
+# sudo /bin/mv /usr/local/payara5/glassfish/modules/weld-osgi-bundle.jar /usr/local/payara5/glassfish/modules/weld-osgi-bundle.jar.bkp
+# sudo curl -L -o /usr/local/payara5/glassfish/modules/weld-osgi-bundle.jar https://search.maven.org/remotecontent?filepath=org/jboss/weld/weld-osgi-bundle/2.2.10.Final/weld-osgi-bundle-2.2.10.Final-payara5.jar
 # echo " "
-# wget http://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-glassfish4.jar
+# wget http://central.maven.org/maven2/org/jboss/weld/weld-osgi-bundle/2.2.10.SP1/weld-osgi-bundle-2.2.10.SP1-payara5.jar
 # SETTING PAYARA
 # sudo /bin/mv /usr/local/payara5/glassfish/domains/domain1/config/domain.xml /usr/local/payara5/glassfish/domains/domain1/config/domain.xml.bkp
 # sudo /bin/cp -f $DIR/xml/domain.xml /usr/local/payara5/glassfish/domains/domain1/config/domain.xml

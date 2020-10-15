@@ -70,15 +70,15 @@ sleep 2
 # SECURE PAYARA
 echo "${GREEN}Securing Payara!${RESET}"
 HOST=$(hostname --fqdn)
-/usr/local/glassfish4/glassfish/bin/asadmin change-admin-password
-/usr/local/glassfish4/glassfish/bin/asadmin --host localhost --port 4848 enable-secure-admin
-/usr/local/glassfish4/glassfish/bin/asadmin --host $HOST --port 4848 enable-secure-admin
+/usr/local/payara5/glassfish/bin/asadmin change-admin-password
+/usr/local/payara5/glassfish/bin/asadmin --host localhost --port 4848 enable-secure-admin
+/usr/local/payara5/glassfish/bin/asadmin --host $HOST --port 4848 enable-secure-admin
 echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart payara.service
 sleep 10
 # SERVICE PAYARA STATUS
 echo "${GREEN}Payara status!${RESET}"
-sudo systemctl status glassfish
+sudo systemctl status payara.service
 echo "${GREEN}Securing Apache!${RESET}"
 sudo yum install -y mod_security
 echo "${GREEN}Restarting Apache!${RESET}"

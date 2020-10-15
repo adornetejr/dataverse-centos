@@ -4,7 +4,7 @@ RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Stopping Payara!${RESET}"
-sudo systemctl stop glassfish
+sudo systemctl stop payara.service
 echo "${GREEN}Stopping Apache!${RESET}"
 sudo systemctl stop httpd
 echo "${GREEN}Stopping Shibboleth!${RESET}"
@@ -19,19 +19,19 @@ echo "${GREEN}Installing Shibboleth repository!${RESET}"
 sudo rm -rf /etc/yum.repos.d/security:shibboleth.repo*
 sudo wget http://download.opensuse.org/repositories/security:/shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d
 sudo yum install -y shibboleth shibboleth-embedded-ds opensaml log4shib xerces-c xml-security-c xmltooling unixODBC
-sudo /bin/mv -f /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/glassfish4/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
-sudo wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/glassfish4/glassfish/modules/
+# sudo /bin/mv -f /usr/local/payara5/glassfish/modules/glassfish-grizzly-extra-all.jar /usr/local/payara5/glassfish/modules/glassfish-grizzly-extra-all.jar.bkp
+# sudo wget http://guides.dataverse.org/en/latest/_downloads/glassfish-grizzly-extra-all.jar -P /usr/local/payara5/glassfish/modules/
 sudo /bin/cp -f /etc/shibboleth/shibboleth2.xml /etc/shibboleth/shibboleth2.xml.bkp
 sudo /bin/cp -f /etc/shibboleth/attribute-map.xml /etc/shibboleth/attribute-map.xml.bkp
 echo "${GREEN}Starting Payara!${RESET}"
-sudo systemctl start glassfish
+sudo systemctl start payara.service
 sleep 10
 echo "${GREEN}Setting up Shibboleth!${RESET}"
-sudo /usr/local/glassfish4/glassfish/bin/asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
-sudo /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
-sudo /usr/local/glassfish4/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-2.port=8181
-sudo /usr/local/glassfish4/glassfish/bin/asadmin create-network-listener --protocol http-listener-1 --listenerport 8009 --jkenabled true jk-connector
-sudo /usr/local/glassfish4/glassfish/bin/asadmin list-network-listeners
+sudo /usr/local/payara5/glassfish/bin/asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
+sudo /usr/local/payara5/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
+sudo /usr/local/payara5/glassfish/bin/asadmin set server-config.network-config.network-listeners.network-listener.http-listener-2.port=8181
+sudo /usr/local/payara5/glassfish/bin/asadmin create-network-listener --protocol http-listener-1 --listenerport 8009 --jkenabled true jk-connector
+sudo /usr/local/payara5/glassfish/bin/asadmin list-network-listeners
 until [[ ! -z "$NAME" && ! -z "$SURNAME" && ! -z "$EMAIL" ]]; do
   clear
   echo "${GREEN}Shibboleth Support Contact${RESET}"
@@ -86,7 +86,7 @@ echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart httpd
 sleep 10
 echo "${GREEN}Payara status!${RESET}"
-sudo systemctl status glassfish
+sudo systemctl status payara.service
 sleep 2
 # SERVICE APACHE RESTART
 echo "${GREEN}Restarting Apache!${RESET}"

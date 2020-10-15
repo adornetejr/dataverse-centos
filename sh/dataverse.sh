@@ -43,7 +43,7 @@ read -e $X
 cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Deploying.${RESET}"
-/bin/cp -f /usr/local/payara5/glassfish/domains/domain1/logs/server.log $DIR/logs/glassfish.log
+/bin/cp -f /usr/local/payara5/glassfish/domains/domain1/logs/server.log $DIR/logs/payara.log
 sudo ./install -y -f
 /bin/cp -f /usr/local/payara5/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
@@ -66,7 +66,7 @@ sudo systemctl restart payara.service
 sleep 10
 # SERVICE PAYARA STATUS
 echo "${GREEN}Payara status!${RESET}"
-sudo systemctl status glassfish
+sudo systemctl status payara.service
 echo " "
 echo "${GREEN}Payara deployed applications:${RESET}"
 sudo /usr/local/payara5/bin/asadmin list-applications

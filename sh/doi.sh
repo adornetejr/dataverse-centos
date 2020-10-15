@@ -4,9 +4,9 @@ RED=`tput setaf 1`
 GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 echo "${GREEN}Starting Payara!${RESET}"
-sudo systemctl start glassfish
+sudo systemctl start payara.service
 sleep 10
-/usr/local/glassfish4/glassfish/bin/asadmin create-jvm-options '-Ddoi.baseurlstring=https\://mds.test.datacite.org'
+/usr/local/payara5/glassfish/bin/asadmin create-jvm-options '-Ddoi.baseurlstring=https\://mds.test.datacite.org'
 echo " "
 curl -X PUT -d 'doi' localhost:8080/api/admin/settings/:Protocol
 echo " "
@@ -49,7 +49,7 @@ echo " "
 echo "${GREEN}Restarting Payara!${RESET}"
 sudo systemctl restart payara.service
 echo "${GREEN}Payara status!${RESET}"
-sudo systemctl status glassfish
+sudo systemctl status payara.service
 echo " "
 echo "${GREEN}DOI Configured!${RESET}"
 echo "Stage (12/13) done!"

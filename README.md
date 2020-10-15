@@ -46,9 +46,9 @@ O script não roda em máquinas virtualizadas no VirtualBox devido ao Glassfish 
 
 ## Componentes principais
 
-- GlassFish server (Java EE application server)
-  - Local padrão: _/user/local/glassfish4_
-  - Arquivo padrão de configuração: _/usr/local/glassfish4/glassfish/domains/domain1/config/domain.xml_
+- Payara server (Java EE application server)
+  - Local padrão: _/user/local/payara5_
+  - Arquivo padrão de configuração: _/usr/local/payara5/glassfish/domains/domain1/config/domain.xml_
   - `$ sudo systemctl {start|stop|restart|status} glassfish`
 - Solr (indexing)
   - Arquivo padrão de configuração: _/usr/local/solr/example/solr/collection1/conf/schema.xml_
