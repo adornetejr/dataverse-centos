@@ -24,4 +24,4 @@ echo " "
 echo "${GREEN}SSL Certificate installed!${RESET}"
 echo "Stage (10/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+# read -e $X

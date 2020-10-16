@@ -43,4 +43,4 @@ echo " "
 echo "${GREEN}Apache installed!${RESET}"
 echo "Stage (8/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+# read -e $X

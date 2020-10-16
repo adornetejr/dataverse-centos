@@ -38,4 +38,4 @@ echo " "
 echo "${GREEN}Languages en_US and pt_BR installed!${RESET}"
 echo "Stage (11/13) done!"
 echo "${RED}Ctrl+C${RESET} to stop or ${GREEN}Enter${RESET} to continue!"
-read -e $X
+# read -e $X
