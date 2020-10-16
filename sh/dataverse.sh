@@ -29,7 +29,6 @@ clear
 echo "${GREEN}Dataverse Install Settings:${RESET}"
 echo " "
 cat /tmp/dvinstall/default.config
-sudo pip3 install psycopg2-binary
 echo " "
 echo "${RED}Attention!${RESET}"
 echo " "

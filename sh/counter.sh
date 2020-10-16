@@ -42,6 +42,7 @@ echo "${GREEN}Installing Counter-Processor!${RESET}"
 sudo -S -u counter python3.6 -m ensurepip
 # INSTALL DEPENDENCIES
 sudo -S -u counter pip3 install --user -r /usr/local/counter-processor/requirements.txt
+sudo -S -u dataverse pip3 install --user psycopg2-binary
 echo " "
 echo "${GREEN}Counter-Processor installed!${RESET}"
 echo "Stage (5/13) done!"
