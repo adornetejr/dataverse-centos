@@ -62,8 +62,8 @@ sleep 10
 # SETTING UP POSTGRES ACCESS
 echo "${GREEN}Securing Postgres!${RESET}"
 sudo systemctl stop postgresql-9.6
-/bin/cp -f /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.2.bkp
-/bin/cp -f $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
+sudo /bin/cp -f /var/lib/pgsql/9.6/data/pg_hba.conf /var/lib/pgsql/9.6/data/pg_hba.conf.2.bkp
+sudo /bin/cp -f $DIR/conf/pg_hba_md5.conf /var/lib/pgsql/9.6/data/pg_hba.conf
 echo "${GREEN}Restarting Postgres!${RESET}"
 sudo systemctl start postgresql-9.6
 sleep 2
