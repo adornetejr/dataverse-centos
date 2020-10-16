@@ -32,17 +32,20 @@ echo "${GREEN}Starting Postgres!${RESET}"
 sudo systemctl start postgresql-9.6
 sleep 4
 psql -U postgres -c "alter user postgres with password '$PASSWORD';"
-echo "POSTGRES_ADMIN_PASSWORD	$PASSWORD" >>$DIR/default.config
-echo "POSTGRES_SERVER	127.0.0.1" >>$DIR/default.config
-echo "POSTGRES_PORT	5432" >>$DIR/default.config
-echo "POSTGRES_DATABASE	dvndb" >>$DIR/default.config
-echo "POSTGRES_USER	dvnapp" >>$DIR/default.config
+# echo " " >>$DIR/default.config
+# echo "[database]" >>$DIR/default.config
+# echo "POSTGRES_ONLY = false" >>$DIR/default.config
+# echo "POSTGRES_ADMIN_PASSWORD	$PASSWORD" >>$DIR/default.config
+# echo "POSTGRES_SERVER	127.0.0.1" >>$DIR/default.config
+# echo "POSTGRES_PORT	5432" >>$DIR/default.config
+# echo "POSTGRES_DATABASE	dvndb" >>$DIR/default.config
+# echo "POSTGRES_USER	dvnapp" >>$DIR/default.config
 echo " "
 until [[ ! -z "$USERPASS" ]]; do
   echo "${GREEN}Create dvndb password!${RESET}"
   read -ep "New user password: " USERPASS
 done
-echo "POSTGRES_PASSWORD	$USERPASS" >>$DIR/default.config
+# echo "POSTGRES_PASSWORD	$USERPASS" >>$DIR/default.config
 # POSTGRES SYSTEM START
 echo "${GREEN}Enabling Postgres to start with the system!${RESET}"
 sudo systemctl enable postgresql-9.6

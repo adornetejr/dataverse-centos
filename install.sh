@@ -58,8 +58,6 @@ until [ $OP != "y" ]; do
         break
     fi
 done
-HOST=$(hostname --fqdn)
-echo "HOST_DNS_ADDRESS    $HOST" >$DIR/default.config
 cd $DIR
 chmod 744 sh/*.sh
 sh/sendmail.sh

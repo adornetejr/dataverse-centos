@@ -58,8 +58,8 @@ sudo /bin/cp -f $DIR/conf/limits.conf /etc/security/limits.conf
 sudo /bin/cp -f /usr/lib/systemd/system/solr.service /usr/lib/systemd/system/solr.service.bkp
 sudo /bin/cp -f $DIR/service/solr.service /usr/lib/systemd/system/
 sudo systemctl daemon-reload
-echo "SOLR_LOCATION	localhost:8983" >>$DIR/default.config
-echo "TWORAVENS_LOCATION	NOT INSTALLED" >>$DIR/default.config
+# echo "SOLR_LOCATION	localhost:8983" >>$DIR/default.config
+# echo "TWORAVENS_LOCATION	NOT INSTALLED" >>$DIR/default.config
 # SOLR SYSTEM START
 echo "${GREEN}Enabling Solr to start with the system!${RESET}"
 sudo systemctl enable solr

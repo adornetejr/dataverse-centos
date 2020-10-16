@@ -28,10 +28,10 @@ echo "${GREEN}Installing haven${RESET}"
 sudo R -e 'install.packages(c("haven"), repos="https://cloud.r-project.org/")'
 echo "${GREEN}Installing Rserve${RESET}"
 sudo R -e 'install.packages(c("Rserve"), repos="https://cloud.r-project.org/")'
-echo "RSERVE_HOST	localhost" >>$DIR/default.config
-echo "RSERVE_PORT	6311" >>$DIR/default.config
-echo "RSERVE_USER	rserve" >>$DIR/default.config
-echo "RSERVE_PASSWORD	rserve" >>$DIR/default.config
+# echo "RSERVE_HOST	localhost" >>$DIR/default.config
+# echo "RSERVE_PORT	6311" >>$DIR/default.config
+# echo "RSERVE_USER	rserve" >>$DIR/default.config
+# echo "RSERVE_PASSWORD	rserve" >>$DIR/default.config
 # RSERVE SERVICE
 sudo /bin/cp -f /usr/lib/systemd/system/rserve.service /usr/lib/systemd/system/rserve.service.bkp
 sudo /bin/cp -f $DIR/service/rserve.service /usr/lib/systemd/system/rserve.service
