@@ -27,6 +27,8 @@ fi
 clear
 echo "${GREEN}Dataverse Install Settings:${RESET}"
 sudo /bin/cp /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
+sudo mkdir /home/dataverse
+sudo chown -R dataverse:dataverse /home/dataverse
 echo " "
 DEF="POSTGRES_SERVER = localhost"
 PASS="POSTGRES_SERVER = 127.0.0.1"
@@ -72,6 +74,7 @@ echo "Installer error file $DIR/logs/install.err"
 echo "Dataverse deploy log file $DIR/logs/dataverse.log"
 # PAYARA PERMISSIONS
 sudo chown -R dataverse:dataverse /usr/local/payara5
+sudo chown -R dataverse:dataverse /home/dataverse
 # sudo chown -R root:root /usr/local/payara5
 # sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/lib
 # sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/domains/domain1

@@ -48,7 +48,7 @@ sudo update-ca-trust
 sudo /bin/mv /usr/local/payara5/glassfish/domains/domain1/config/cacerts.jks /usr/local/payara5/glassfish/domains/domain1/config/cacerts.jks.bkp
 sudo /bin/cp -f /etc/pki/java/cacerts /usr/local/payara5/glassfish/domains/domain1/config/cacerts.jks
 # USER PAYARA
-sudo useradd dataverse
+sudo useradd dataverse -y
 sudo usermod -s /sbin/nologin dataverse
 sudo chown -R dataverse:dataverse /usr/local/payara5
 #sudo chown -R root:root /usr/local/payara5
