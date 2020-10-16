@@ -16,7 +16,7 @@ rm -rf /var/lib/pgsql
 echo "${GREEN}Installing dependencies!${RESET}"
 sudo yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 sudo yum makecache fast
-sudo yum install -y postgresql96 postgresql96-server postgresql96-libs
+sudo yum install -y postgresql96 postgresql96-server postgresql96-libs postgresql96-devel
 # STARTING DATABASE
 /usr/pgsql-9.6/bin/postgresql96-setup initdb
 # SETTING UP POSTGRES ACCESS

@@ -19,7 +19,7 @@ echo "${GREEN}Updating installed packages!${RESET}"
 sudo yum update -y
 # INSTALL RECOMMENDED PACKAGES
 echo "${GREEN}Installing dependencies!${RESET}"
-sudo yum install -y nano htop wget git net-tools nmap unzip curl libcurl curl-openssl policycoreutils-python
+sudo yum install -y nano htop wget git net-tools nmap unzip curl libcurl curl-openssl policycoreutils-python python37-devel
 echo "${GREEN}Setting SELinux open ports!${RESET}"
 # SETTING SELINUX
 sudo semanage port -a -t ntp_port_t -p udp 123
