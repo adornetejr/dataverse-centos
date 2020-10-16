@@ -10,7 +10,7 @@ echo "${GREEN}Installing dependencies!${RESET}"
 sudo yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel jq ImageMagick
 echo "${GREEN}Backing up old installation!${RESET}"
 TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S")
-sudo /bin/cp -R /usr/local/payara5 $DIR/backup/payara5-$TIMESTAMP
+/bin/cp -R /usr/local/payara5 $DIR/backup/payara5-$TIMESTAMP
 echo "${GREEN}Removing old settings!${RESET}"
 sudo rm -rf /tmp/payara5
 sudo rm -rf /usr/local/payara5
