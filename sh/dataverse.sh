@@ -23,10 +23,12 @@ else
     wget $LINK -P /tmp
     unzip /tmp/$FILE -d /tmp
 fi
-sudo /bin/cp /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
 # /bin/cp -f $DIR/default.config /tmp/dvinstall/default.config
 clear
 echo "${GREEN}Dataverse Install Settings:${RESET}"
+sudo /bin/cp /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
+sudo chown -R dataverse:dataverse /usr/local/payara5
+sudo chown -R dataverse:dataverse  /tmp/dvinstall
 echo " "
 DEF="POSTGRES_SERVER = localhost"
 PASS="POSTGRES_SERVER = 127.0.0.1"
@@ -59,7 +61,7 @@ cd /tmp/dvinstall/
 echo " "
 echo "${GREEN}Wait... Deploying.${RESET}"
 /bin/cp -f /usr/local/payara5/glassfish/domains/domain1/logs/server.log $DIR/logs/payara.log
-sudo -u dataverse ./install
+sudo ./install -y -f
 /bin/cp -f /usr/local/payara5/glassfish/domains/domain1/logs/server.log $DIR/logs/dataverse.log
 # ./install -y -f > $DIR/logs/install.log 2> $DIR/logs/install.err
 # FIX "EJB Timer Service" ERROR ON DEPLOY
@@ -71,7 +73,7 @@ echo "Installer log file $DIR/logs/install.log"
 echo "Installer error file $DIR/logs/install.err"
 echo "Dataverse deploy log file $DIR/logs/dataverse.log"
 # PAYARA PERMISSIONS
-sudo chown -R dataverse:dataverse /usr/local/payara5
+# sudo chown -R dataverse:dataverse /usr/local/payara5
 # sudo chown -R root:root /usr/local/payara5
 # sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/lib
 # sudo chown -R dataverse:dataverse /usr/local/payara5/glassfish/domains/domain1
