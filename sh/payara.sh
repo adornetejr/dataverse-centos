@@ -58,9 +58,9 @@ sudo chown -R dataverse:dataverse /usr/local/payara5
 sudo /bin/cp -f /usr/lib/systemd/system/payara.service /usr/lib/systemd/system/payara.service.bkp
 sudo /bin/cp -f $DIR/service/payara.service /usr/lib/systemd/system/payara.service
 sudo systemctl daemon-reload
-# HOST=$(hostname --fqdn)
+HOST=$(hostname --fqdn)
+echo "$HOST" > $DIR/hostname
 # echo "[glassfish]" >$DIR/default.config
-# echo "HOST_DNS_ADDRESS    $HOST" >>$DIR/default.config
 # echo "GLASSFISH_USER    dataverse" >>$DIR/default.config
 # echo "GLASSFISH_DIRECTORY	/usr/local/payara5" >>$DIR/default.config
 # echo "GLASSFISH_ADMIN_USER = admin" >>$DIR/default.config

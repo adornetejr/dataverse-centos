@@ -89,7 +89,7 @@ echo "${GREEN}Backing up Metadata${RESET}"
 META="https://$HOST/Shibboleth.sso/Metadata"
 wget $META -P $DIR --no-check-certificate
 echo "$DIR/Metadata"
-sudo rm -rf $DIR/default.config /tmp/dvinstall/default.config
+sudo rm -rf $DIR/root.pass $DIR/user.pass $DIR/default.config /tmp/dvinstall/default.config 
 sleep 4
 echo "${GREEN}Installation completed!${RESET}"
 echo " "

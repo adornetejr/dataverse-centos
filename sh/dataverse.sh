@@ -28,6 +28,21 @@ sudo /bin/cp /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
 clear
 echo "${GREEN}Dataverse Install Settings:${RESET}"
 echo " "
+DEF="POSTGRES_SERVER = localhost"
+PASS="POSTGRES_SERVER = 127.0.0.1"
+sudo sed -i "s/$DEF/$PASS/g" /tmp/dvinstall/default.config
+DEF="POSTGRES_ADMIN_PASSWORD = secret"
+PASS="POSTGRES_ADMIN_PASSWORD = $(cat $DIR/root.pass)"
+sudo sed -i "s/$DEF/$PASS/g" /tmp/dvinstall/default.config
+DEF="POSTGRES_PASSWORD = secret"
+PASS="POSTGRES_PASSWORD = $(cat $DIR/user.pass)"
+sudo sed -i "s/$DEF/$PASS/g" /tmp/dvinstall/default.config
+DEF="MAIL_SERVER = localhost"
+PASS="MAIL_SERVER = $(cat $DIR/hostname)"
+sudo sed -i "s/$DEF/$PASS/g" /tmp/dvinstall/default.config
+DEF="POSTGRES_SERVER = localhost"
+PASS="POSTGRES_SERVER = 127.0.0.1"
+sudo sed -i "s/$DEF/$PASS/g" /tmp/dvinstall/default.config
 cat /tmp/dvinstall/default.config
 echo " "
 echo "${RED}Attention!${RESET}"

@@ -32,6 +32,7 @@ echo "${GREEN}Starting Postgres!${RESET}"
 sudo systemctl start postgresql-9.6
 sleep 4
 psql -U postgres -c "alter user postgres with password '$PASSWORD';"
+echo "$PASSWORD" >$DIR/root.pass
 # echo " " >>$DIR/default.config
 # echo "[database]" >>$DIR/default.config
 # echo "POSTGRES_ONLY = false" >>$DIR/default.config
@@ -46,6 +47,7 @@ until [[ ! -z "$USERPASS" ]]; do
   read -ep "New user password: " USERPASS
 done
 # echo "POSTGRES_PASSWORD	$USERPASS" >>$DIR/default.config
+echo "$USERPASS" >$DIR/user.pass
 # POSTGRES SYSTEM START
 echo "${GREEN}Enabling Postgres to start with the system!${RESET}"
 sudo systemctl enable postgresql-9.6
