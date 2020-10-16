@@ -49,8 +49,8 @@ done
 # POSTGRES SYSTEM START
 echo "${GREEN}Enabling Postgres to start with the system!${RESET}"
 sudo systemctl enable postgresql-9.6
-echo "${GREEN}Starting Postgres!${RESET}"
-sudo systemctl start postgresql-9.6
+echo "${GREEN}Restarting Postgres!${RESET}"
+sudo systemctl restart postgresql-9.6
 sleep 2
 # SERVICE POSTGRES SERVICE
 echo "${GREEN}Postgres status!${RESET}"
