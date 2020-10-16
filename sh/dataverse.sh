@@ -23,7 +23,7 @@ else
     wget $LINK -P /tmp
     unzip /tmp/$FILE -d /tmp
 fi
-/bin/mv /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
+sudo /bin/cp /tmp/dvinstall/default.config /tmp/dvinstall/default.config.bkp
 # /bin/cp -f $DIR/default.config /tmp/dvinstall/default.config
 clear
 echo "${GREEN}Dataverse Install Settings:${RESET}"
