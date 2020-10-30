@@ -6,9 +6,14 @@ RESET=`tput sgr0`
 # INSTALL FIREWALLD
 echo "${GREEN}Installing dependencies!${RESET}"
 sudo yum install -y yum-utils
+sudo yum remove pyOpenSSL
+sudo /usr/bin/python2 -m pip install --upgrade pyOpenSSL
 sudo yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
 echo "${GREEN}Installing Certbot!${RESET}"
 sudo yum install -y certbot python2-certbot-apache python-requests python-six python-urllib3
+sudo /usr/bin/python2 -m pip install --upgrade pip
+sudo /usr/bin/python2 -m pip install --upgrade urllib3
+sudo /usr/bin/python2 -m pip install --upgrade pyOpenSSL
 echo "${GREEN}Setting up Certificate!${RESET}"
 sudo certbot --apache
 echo "${GREEN}Setting up cronjob!${RESET}"
